@@ -1,16 +1,12 @@
 /**
- * NEW: added circular Avatar 11.20.22 (after EU SemanticMarker Trademark)
+ * NEW: added circular Avatar 11.20.22 
  * Kept the TM for now
  * @fileoverview
  * Modified from following. SemanticMarker adds the QRAvatar piece
  * - Using the 'QRCode for Javascript library'
  * - Fixed dataset of 'QRCode for Javascript library' for support full-spec.
  * - this library has no dependencies.
- *  MODIFIED from: https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.js
  * 
- * @author davidshimjs
- * @see <a href="http://www.d-project.com/" target="_blank">http://www.d-project.com/</a>
- * @see <a href="http://jeromeetienne.github.com/jquery-qrcode/" target="_blank">http://jeromeetienne.github.com/jquery-qrcode/</a>
  */
 var SemanticMarker;
 
@@ -26,11 +22,7 @@ var SemanticMarker;
 	// Licensed under the MIT license:
 	//   http://www.opensource.org/licenses/mit-license.php
 	//
-	// The word "QR Code" is registered trademark of 
-	// DENSO WAVE INCORPORATED
-	//   http://www.denso-wave.com/qrcode/faqpatent-e.html
-	//
-	// Semantic Marker (R) is a registered trademark from Kona Currents, LLC
+	// Semantic Marker (TM) is a trademark from Kona Currents, LLC
 	//---------------------------------------------------------------------
 	
         /***** SemanticMarker.org start ***/
