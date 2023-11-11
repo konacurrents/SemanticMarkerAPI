@@ -10,17 +10,18 @@ Creating and Processing with Semantic Marker™️ System is through various API
 ## Sample WEB javascript calls
 
 This is called in the example javascript code at
-<a href="sampleSMWeb.html">SampleSMWeb.html</a>
+[SampleSMWeb.html](sampleSMWeb.html)
 
 # Semantic Marker API Web Interface
 
 The main http/https calls to the SemanticMarker cloud services is documented as: 
-<a href="SemanticMarkerWebAPI.html">SemanticMarkerWebAPI.html</a>
+[SemanticMarkerWebAPI.html](SemanticMarkerWebAPI.html)
 
 ## SMART - Semantic Marker Augmented Reality of Things
 
 The main interfaces to the SemanticMarker.org web services are through 
-web calls embodied in the following web page code (and available at <a href="https://SemanticMarker.org/smart">SemanticMarker.org/smart</a>). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. 
+web calls embodied in the following web page code (and available at 
+[SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. 
 
 An example html web page with many javascript calls is includes <a href="smart.html">smart.html</a>
 
