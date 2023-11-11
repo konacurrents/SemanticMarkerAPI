@@ -31,10 +31,12 @@ Example production web pages includes making appropriate API calls includes:
 The SMART web page makes calls through various javascript http calls (shown as XMLHttpRequest below). These are
 embedded in the  <a href="smart.js">smart.js</a> code modules.
 
-A typical <b>Http</b> web call might look like the following passing in a command which includes calls to the appropriate web interface (for example createSemanticMarker).
+A typical <b>Http</b> web call looks like the following, passing in a command which includes calls to the appropriate web interface (for example https://SemanticMarker.org/bot/createSemanticMarker as shown in the diagram above). 
+
+This is a http GET call, and others are PUSH commands where the payload 
 
 ```javascript
-//! sends the GET command, but shows an alert when done..
+//! sends the GET command to create a Semantic Marker
 function createSemanticMarker(command)
 {     
    var xhttp = new XMLHttpRequest();
@@ -44,6 +46,7 @@ function createSemanticMarker(command)
       // called when open is finished
       if (this.readyState == 4 && this.status == 200)
       {
+          alert("SemanticMarker was created");
       }
    };
 
@@ -53,3 +56,9 @@ function createSemanticMarker(command)
 
 ```
 
+This is a http GET call. The http PUSH command is also supported where the payload can provide secure information as well as files, such as the Semantic Marker Avatar image. 
+
+# Semantic Marker Examples with Avatar Images Embedded
+
+The resulting Semantic Marker can look like the following examples.
+![Semantic Marker Examples](SemanticMarkerExamples.png)

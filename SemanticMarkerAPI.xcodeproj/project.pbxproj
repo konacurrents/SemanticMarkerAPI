@@ -14,6 +14,7 @@
 		D2E4304E2AFF0EEE00E2C80B /* SemanticMarker.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SemanticMarker.js; sourceTree = "<group>"; };
 		D2E4304F2AFF10A700E2C80B /* smart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = smart.html; sourceTree = "<group>"; };
 		D2E430502AFF120200E2C80B /* smart.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = smart.js; sourceTree = "<group>"; };
+		D2E430512AFF1B6C00E2C80B /* SemanticMarkerExamples.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SemanticMarkerExamples.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -27,6 +28,7 @@
 				D2E4304E2AFF0EEE00E2C80B /* SemanticMarker.js */,
 				D2E4304B2AFF02C000E2C80B /* SemanticMarkerAPI.png */,
 				D2E4304C2AFF04F500E2C80B /* SemanticMarkerAPIMessages.png */,
+				D2E430512AFF1B6C00E2C80B /* SemanticMarkerExamples.png */,
 			);
 			sourceTree = "<group>";
 		};
