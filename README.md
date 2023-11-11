@@ -6,22 +6,23 @@ Creating and Processing with Semantic Marker™️ System is through various API
  
 ![SemanticMarker API Message](SemanticMarkerAPIMessages.png)
 
-## SemanticMarker.js
-
-This is javascript that will create a special Semantic Marker with the image Avatar inside.
-<a href="SemanticMarker.js">SemanticMarker.js</a>
 
 ## Sample WEB javascript calls
 
 This is called in the example javascript code at
 <a href="sampleSMWeb.html">SampleSMWeb.html</a>
 
-# SMART - Semantic Marker Augmented Reality of Things
+# Semantic Marker API Web Interface
+
+The main http/https calls to the SemanticMarker cloud services is documented as: 
+<a href="SemanticMarkerWebAPI.html">SemanticMarkerWebAPI.html</a>
+
+## SMART - Semantic Marker Augmented Reality of Things
 
 The main interfaces to the SemanticMarker.org web services are through 
 web calls embodied in the following web page code (and available at <a href="https://SemanticMarker.org/smart">SemanticMarker.org/smart</a>). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. 
 
-<a href="smart.html">smart.html</a>
+An example html web page with many javascript calls is includes <a href="smart.html">smart.html</a>
 
 Example production web pages includes making appropriate API calls includes:
 <a href="https://idogwatch.com/userpage/userpage.html?username=test&password=test">iDogWatch.com</a> and <a href="https://SemanticMarker.org/smart?username=test&password=test">SemanticMarker.org/smart</a>
@@ -55,12 +56,16 @@ function createSemanticMarker(command)
 ```
 
 ### Using the AvatarURL, once retrieved, the following will create the Semantic Marker final image
-The commandPath (the Semantic Marker address is a parameter as it the avatarURL, and if the 
+
+The commandPath (the Semantic Marker address is a parameter as is the avatarURL, and if the 
 avatar is circular or rectangle)
 
 ```javascript
+function createSemanticMarker(commandPath, avatarURL, circular)
+{
 try
    {
+   // http web call to get the image from the AvatarURL
       getImage(avatarURL).then
       (
          function (successurl)
@@ -82,10 +87,10 @@ try
 
       alert("Issue with Semantic Marker&trade; creation: \n" + error.message + "\nPlease file bug report");
    }
-
+}
 ```
 
-This is a http GET call. The http PUSH command is also supported where the payload can provide secure information as well as files, such as the Semantic Marker Avatar image. 
+This is a http GET call. The http POST command is also supported where the payload can provide secure information as well as files, such as the Semantic Marker Avatar image. 
 
 # Semantic Marker Examples with Avatar Images Embedded
 

@@ -10,11 +10,11 @@
 		D2E4304A2AFEF15600E2C80B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D2E4304C2AFF04F500E2C80B /* SemanticMarkerAPIMessages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SemanticMarkerAPIMessages.png; sourceTree = "<group>"; };
 		D2E4304D2AFF0E9C00E2C80B /* sampleSMWeb.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = sampleSMWeb.html; sourceTree = "<group>"; };
-		D2E4304E2AFF0EEE00E2C80B /* SemanticMarker.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = SemanticMarker.js; sourceTree = "<group>"; };
 		D2E4304F2AFF10A700E2C80B /* smart.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = smart.html; sourceTree = "<group>"; };
 		D2E430502AFF120200E2C80B /* smart.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = smart.js; sourceTree = "<group>"; };
 		D2E430512AFF1B6C00E2C80B /* SemanticMarkerExamples.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SemanticMarkerExamples.png; sourceTree = "<group>"; };
 		D2E430532AFF20C300E2C80B /* SemanticMarkerAPI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SemanticMarkerAPI.png; sourceTree = "<group>"; };
+		D2E430542B00013400E2C80B /* SemanticMarkerWebAPI.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SemanticMarkerWebAPI.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -25,10 +25,10 @@
 				D2E430502AFF120200E2C80B /* smart.js */,
 				D2E4304F2AFF10A700E2C80B /* smart.html */,
 				D2E4304D2AFF0E9C00E2C80B /* sampleSMWeb.html */,
-				D2E4304E2AFF0EEE00E2C80B /* SemanticMarker.js */,
 				D2E4304C2AFF04F500E2C80B /* SemanticMarkerAPIMessages.png */,
 				D2E430512AFF1B6C00E2C80B /* SemanticMarkerExamples.png */,
 				D2E430532AFF20C300E2C80B /* SemanticMarkerAPI.png */,
+				D2E430542B00013400E2C80B /* SemanticMarkerWebAPI.html */,
 			);
 			sourceTree = "<group>";
 		};
