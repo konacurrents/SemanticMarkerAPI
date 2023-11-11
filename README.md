@@ -24,7 +24,7 @@ web calls embodied in the following web page code (and available at <a href="htt
 <a href="smart.html">smart.html</a>
 
 Example production web pages includes making appropriate API calls includes:
-<a href="https://idogwatch.com/smart">iDogWatch.com</a> and <a href="https://SemanticMarker.org/smart">SemanticMarker.org/smart</a>
+<a href="https://idogwatch.com/userpage/userpage.html?username=test&password=test">iDogWatch.com</a> and <a href="https://SemanticMarker.org/smart?username=test&password=test">SemanticMarker.org/smart</a>
 
 ## Semantic Marker javascript
 
