@@ -33,8 +33,6 @@ embedded in the  <a href="smart.js">smart.js</a> code modules.
 
 A typical <b>Http</b> web call looks like the following, passing in a command which includes calls to the appropriate web interface (for example https://SemanticMarker.org/bot/createSemanticMarker as shown in the diagram above). 
 
-This is a http GET call, and others are PUSH commands where the payload 
-
 ```javascript
 //! sends the GET command to create a Semantic Marker
 function createSemanticMarker(command)
@@ -53,6 +51,37 @@ function createSemanticMarker(command)
   xhttp.open("GET", command, true);
   xhttp.send();
 }  
+
+```
+
+### Using the AvatarURL, once retrieved, the following will create the Semantic Marker final image
+The commandPath (the Semantic Marker address is a parameter as it the avatarURL, and if the 
+avatar is circular or rectangle)
+
+```javascript
+try
+   {
+      getImage(avatarURL).then
+      (
+         function (successurl)
+         {
+
+            var sm = new SemanticMarker(document.getElementById(idSM),
+               commandPath,
+               avatarURL,
+               circular);
+         }).catch (function (errorurl)
+         {
+
+            alert("Issue creating Avatar in Semantic Marker&trade; creation: \n" + errorurl + "\nPlease file bug report");
+         })
+
+   }
+   catch (error)
+   {
+
+      alert("Issue with Semantic Marker&trade; creation: \n" + error.message + "\nPlease file bug report");
+   }
 
 ```
 
