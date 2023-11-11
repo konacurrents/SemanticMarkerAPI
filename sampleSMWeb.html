@@ -1,0 +1,611 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+<title>SemanticMarker&#x2122;</title>
+
+<link rel="SHORTCUT ICON" href="SemanticMarkerSmall.png" type="image/x-icon" />
+<style>
+/* https://www.w3schools.com/css/css_tooltip.asp */
+.tooltip .tooltiptext {
+  top: -5px;
+  left: 105%;
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+</style>
+<style>
+
+	a.demo_img {
+		display: block;
+		width:400px;
+		position:relative;
+		line-height:25px;
+	}
+	
+	a.demo_img>div {
+		position:absolute;
+		padding:0;
+		margin:0;
+		zoom:0.25;
+		left: 140px; /* change this value to one that works best for you */
+		top: 100px; /* change this value to one that works best for you */
+		background: transparent url(files/arrow-down-grey.png) left 23px no-repeat;
+		margin-left: 24px;
+		opacity:0;
+		height: 0;
+		overflow: hidden;
+		
+		/* Enable transitions */
+		/*-webkit-transition: all .3s ease .15s;
+		-moz-transition: all .3s ease .15s;
+		-o-transition: all .3s ease .15s;
+		-ms-transition: all .3s ease .15s;
+		transition: all .3s ease .15s;*/
+	}
+	
+	a.demo_img>div img {
+		padding:8px;
+		margin-left:4px;
+		border:1px solid #BCBDC0;
+		background-color:#BCBDC0;
+		-webkit-border-radius: 5px;
+	   	   -moz-border-radius: 5px;
+		    	border-radius: 5px;
+		
+		-webkit-box-sizing:border-box; 
+		   -moz-box-sizing:border-box; 
+				box-sizing:border-box;
+	}
+	a.demo_img:hover>div {
+		
+		opacity:1;
+		height: 800px;
+		padding: 8px;   
+		
+		z-index:1;
+	}
+	
+</style>
+
+<style>
+
+/* gradient source: https://uigradients.com/#Wiretap */
+/* decreased transparency to 80% */
+.highlight {
+  //background-image: linear-gradient(to right, #F27121cc, #E94057cc, #8A2387cc);
+  border-radius: 6px;
+  border: 2px solid black;
+  padding: 3px 6px;
+  font-size: 68px;
+}
+
+
+.button {
+  background-color: #33FFFF;
+  color: black;
+  font-size: 18px;
+  border: 2px solid #4CAF50;
+  border-radius:12px;
+
+}
+
+.button:hover {
+  background-color: lightblue;
+   font-size: 18px;
+  color: white;
+}
+
+.HELPButton {
+  background-color: lightgreen;
+  color: black;
+  font-size: 18px;
+  border: 2px solid #4CAF50;
+  border-radius:12px;
+
+}
+
+.HELPButton:hover {
+  background-color: green;
+   font-size: 18px;
+  color: white;
+}
+
+.TextWrap {
+ float: left;
+ margin: 10px;
+}
+
+
+/* https://www.w3schools.com/cssref/tryit.asp?filename=trycss_sel_link_more2 */
+a.ex2:hover, a.ex2:active {font-size: 110%;}
+a.ex3:hover, a.ex3:active {font-size: 120%;}
+
+.sansserif {
+  /*font-family: Arial, Helvetica, sans-serif; */
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+.collapsible {
+  background-color: black; /*#777;*/
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 65%;
+  border: black;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+}
+
+/* when done, and is not collapsed, keep black */
+.active:hover {
+  background-color: black;
+}
+/* hover as a grey */
+.collapsible:hover {
+  background-color: #555;
+}
+
+/* Plus/Minus label */
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+/* Plus/Minus label */
+.active:after {
+  content: "\2212";
+}
+
+/* the content off white */
+.content {
+  padding: 0 10px; /*was 18*/
+  max-height: 0;
+  width: 60%;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  background-color:#f1f1f1;
+}
+
+
+
+/* https://www.w3schools.com/css/css_link.asp */
+/* unvisited link */
+a:link {
+  color: blue;
+}
+
+/* visited link */
+a:visited {
+  color: blue;
+}
+
+/* mouse over link */
+a:hover {
+  color: blue;
+}
+
+/* selected link */
+a:active {
+  color: blue;
+}
+a:link {
+  text-decoration: none;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+a:active {
+  text-decoration: underline;
+}
+
+.psmall  {
+  font-size:12px;
+}
+
+</style>
+<script>
+
+// a few to pick from
+var _QRAvatarArray = [ "https://idogwatch.com/pettutor/iDogWatch.png",
+                       "https://KnowledgeShark.me/images/snowLabyrinth.png",
+                       "https://KnowledgeShark.me/images/labyrinthICON.jpeg",
+                       "https://KnowledgeShark.me/images/labyrinthMT.png",
+                       "https://KnowledgeShark.me/images/LacieICON.jpg",
+                       "https://KnowledgeShark.me/images/MaggieICON.png",
+                       "https://KnowledgeShark.me/images/balloonLabyrinth.jpg",
+                       "https://KnowledgeShark.me/images/HowieICON.png",
+                       "https://KnowledgeShark.me/images/DukeICON.png",
+                       "https://KnowledgeShark.me/images/ScoobyICON.png" ];
+
+//! returns TRUE if valid (or a default), false otherwise
+function checkQRAvatar(avatarURLId)
+{
+	var whichQRindex = Math.floor(Math.random() * _QRAvatarArray.length);
+	//var defaultURL = "https://idogwatch.com/pettutor/iDogWatch.png";
+	var defaultURL = _QRAvatarArray[whichQRindex];
+	var avatarURL = document.getElementById(avatarURLId).value;
+
+	//no avatarURL so use iDogWatch
+   if (!avatarURL || avatarURL.length==0)
+	{
+		if (window.confirm("A custom AvatarURL is needed to physically \ndistinguish among your new Semantic Marker\u2122 collection \n\nWould you like a random Avatar? \n\n(Reset) to try another random Avatar \n\nChange the Avatar Image Kind between Circular and Square as well"))
+		{
+		  document.getElementById(avatarURLId).value = defaultURL;
+		  return true;
+		}
+		else
+		{
+		  return false;
+	   }
+	}
+	return true;
+}
+
+//! returns TRUE if valid (or a default), false otherwise
+function checkSMAddress(semanticMarkerURLId)
+{
+	var defaultURL = "https://SemanticMarker.org/bot/smart?uuid=xg-Sd7pit29L&flow=1680481930365&flowname=MountainsON";
+	var semanticMarkerURL = document.getElementById(semanticMarkerURLId).value;
+
+	//no avatarURL so use iDogWatch
+        if (!semanticMarkerURL || semanticMarkerURL.length==0)
+	{
+		if (window.confirm("A Semantic Marker address is needed\nWould you like a default Semantic Marker to get an idea on how it works?"))
+		{
+		  document.getElementById(semanticMarkerURLId).value = defaultURL;
+		  return true;
+		}
+		else
+		{
+		  return false;
+	   }
+	}
+	return true;
+}
+
+//! just web invokes the SemanticMarker
+function invokeSemanticMarker(smId)
+{
+
+   if (!checkSMAddress(smId))
+      return;
+
+   var webAddress = document.getElementById(smId).value;
+
+   if (window.confirm("Invoke: " + webAddress + "?"))
+   {
+      // invoke this manually..
+      //window.open(webAddress, 'SemanticMarkerWindow');
+      window.open(webAddress);
+   }
+}
+
+</script>
+
+<script src="https://SemanticMarker.org/SemanticMarker.js?v=1"></script>
+<script>
+//!create a semantic marker, and place at the idSM location
+function createSemanticMarkerPath(commandPath, avatarURL, idSM, idLabel)
+{
+   var circular = document.getElementById('boolArgValueCircular').value=="on";
+
+	//avatar URL
+	//var url = document.getElementById(idSemanticMarkerImageURL).value;
+
+	//no avatarURL so use iDogWatch
+   if (!avatarURL || avatarURL.length==0)
+	{
+		window.alert("A custom QRAvatarURL is needed to physically distinguish among your new Semantic Marker\u2122 collection");
+		return;
+	  //hard wire for now..
+	  //avatarURL = "https://idogwatch.com/pettutor/iDogWatch.png";
+	}
+
+	//empty the id first..
+	var previousSM = document.getElementById(idSM);
+	//Seems that the call is adding a new SM instead of cleaning it up..
+	document.getElementById(idSM).value = "";
+	//document.getElementById(idSM).html = "<p>x</p>";
+	document.getElementById(idSM).html = "<p >x</p>";
+
+   document.getElementById(idSM).innerHTML = "";
+
+   console.log(idSM);
+   console.log(document.getElementById(idSM));
+
+	//! fix bug: https://itecnote.com/tecnote/javascript-qrcode-js-error-code-length-overflow-17161056/
+	if (commandPath.length >= 192 && commandPath.length <= 220)
+	{
+      commandPath = commandPath + "&filler=";
+
+      // pad to greater thatn 220
+		var len = commandPath.length;
+		while (commandPath.length <= 220)
+		{
+		   commandPath= commandPath + "x";
+		}
+	}
+
+	try
+	{
+	   getImage(avatarURL).then
+		(
+		   function (successurl)
+			{
+	  
+	         var sm = new SemanticMarker(document.getElementById(idSM),
+	            commandPath,
+			      avatarURL,
+			      circular);
+			}).catch (function (errorurl)
+			{
+ 
+		      alert("Issue creating Avatar in Semantic Marker&trade; creation: \n" + errorurl + "\nPlease file bug report");
+			})
+
+	}
+	catch (error)
+	{
+
+		alert("Issue with Semantic Marker&trade; creation: \n" + error.message + "\nPlease file bug report");
+	}
+
+
+	//innerHTMl needed .. since a <p>
+   document.getElementById(idLabel).innerHTML = commandPath;
+
+
+}
+
+//!create a semantic marker, and place at the idSM location
+function createSemanticMarkerPathId(commandPathId, urlId ,idSM, idLabel)
+{
+	if (!checkSMAddress(commandPathId))
+	   return;
+
+   var commandPath = document.getElementById(commandPathId).value;
+
+	// check the QRAvatar for null, or provide a default. 
+	if (!checkQRAvatar(urlId))
+	   return;
+
+	var url = document.getElementById(urlId).value;
+   if (!url || url.length==0)
+	{
+	   //url = "https://SemanticMarker.org/images/SM-Circle-R.png"; 
+		window.alert("A custom AvatarURL is needed to physically distinguish your new Semantic Marker&trade; collection");
+		return;
+	}
+   createSemanticMarkerPath(commandPath, url ,idSM, idLabel);
+}
+
+//! grab the QRAvatar first..
+//! http://www.javascriptkit.com/javatutors/javascriptpromises.shtml
+function getImage(url)
+{
+    console.log("getImage(" + url + ")");
+    return new Promise(function(resolve, reject)
+	 {
+        var img = new Image()
+        img.onload = function()
+		  {
+            console.log("image.onload");
+            resolve(url)
+        }
+        img.onerror = function()
+		  {
+            reject(url)
+        }
+        img.src = url
+    })
+}
+</script>
+
+<script>
+function contactInfo()
+{
+   if (true)
+   {
+     alert("Please email scott@konacurrents.com\nOr visit KonaCurrents.com for more information.");
+   }
+   else
+   {
+     var info1 = prompt("Please enter your email address and we will get back with you.");
+     var info2 = prompt("Enter your Name or other information\nAnd any interests you can specify.");
+
+     alert("Will get back with you at email: " + info1);
+   }
+}
+</script>
+
+</head>
+<body>
+
+<h1>Kona Currents, LLC presents </h1>
+<h1><span class="highlight">Semantic Marker&trade;</span> </h1>
+<h2>Innovative Optical Vision Marker Processing</h2>
+<h3>Click on headings below for more information</h3>
+<img src="https://SemanticMarker.org/SemanticMarker.png" width="500">
+<img class="fit" width="300" src="https://SemanticMarker.org/vision/AR_SM.mov"
+<br>
+
+<!-- ---------------------------------------------------------   -->
+<!--BUTTON Semantic Marker Creation -->
+<button class="collapsible">Create your own Semantic Marker&trade;</button>
+<div class="content">
+<p class="sansserif">
+<b>Semantic Marker&trade;</b> offers 3 tiers of service, with Tier II and III requiring an account (advantages listed below.)
+<ol class="sansserif">
+<li type="I" class="sanserif">Simple Store and Forward
+<li type="I" class="sanserif">Semantic Marker&trade; Indirection
+<li type="I" class="sanserif">Semantic Marker&trade; SMART Button Management <br>(<b>SMART</b> = <b>S</b>emantic <b>M</b>arker&trade; <b>A</b>ugmented <b>R</b>eality of <b>T</b>hings)
+</ol>
+<li class="sansserif"><a class="demo_img" href="https://SemanticMarker.org/vision/Avatars.png">Photo Avatar
+   <div><img src="https://SemanticMarker.org/vision/Avatars.png"></div>Included with Tier I, II, III</a>
+<li class="sansserif"><a class="demo_img" href="https://SemanticMarker.org/vision/WatchSM.jpg">Tier III includes Interactive Live Photo Avatar <div><img src="https://SemanticMarker.org/vision/WatchSM.jpg"></div></a>
+
+<p class="sansserif">Create your own <b>Tier I. Semantic Marker&#x2122;</b> 
+by providing a URL of a Photo Avatar Image and a <b>SMART Semantic Marker&trade;</b> Address (or just click Create and defaults will be provided. Reset will let you try another.)
+<br>
+
+<div class="tooltip">
+<input type="button" class="HELPButton" id="HELPButton" value="info" onClick="alert('Avatar URL customizes your Semantic Marker&#x2122; \nhelping you distinguish between your future collection')" />
+   <span class="tooltiptext">Avatar URL customizes your Semantic Marker</span>
+</div>
+
+
+<label class="label">Photo Avatar Image URL:</label>
+<input name="semanticMarkerAvatarURL" id="semanticMarkerAvatarURL" size="64" type="text">
+
+
+<p style="margin-left:100px; margin-right:50px;" id="finalSemanticMarkerImage"></p>
+
+<div class="tooltip">
+   <input type="button" class="HELPButton" id="HELPButton" value="info" 
+   onClick="alert('Choose a Circular or Square embedded Avatar image')" />
+   <span class="tooltiptext">
+Choose a Circular or Square embedded Avatar image, and click 'Create' again
+   </span>
+</div>
+
+<label class="label" for="boolArgValueCircular">Photo Avatar Image Kind:</label>
+<select class="select label"  name="boolArgValueCircular" id="boolArgValueCircular">
+  <option value="on">Circular</option>
+  <option value="off">Square</option>
+</select>
+
+<br>
+
+<div class="tooltip">
+   <input type="button" class="HELPButton" id="HELPButton" value="info" 
+   onClick="checkQRAvatar('semanticMarkerAvatarURL');checkSMAddress('semanticMarkerURL')" />
+   <span class="tooltiptext">
+Checks if your avatar address is valid
+   </span>
+</div>
+
+
+<input type="button" class="button" id="createSMAny" value="Create Semantic Marker&#x2122;" onClick="createSemanticMarkerPathId('semanticMarkerURL','semanticMarkerAvatarURL','finalSemanticMarkerImage','semanticMarkerURLId')" />
+<input type="button" class="button" id="resetButton" value="Reset" onClick="document.getElementById('semanticMarkerAvatarURL').value = ''; document.getElementById('semanticMarkerURL').value = '';">
+<br><br>
+<div class="tooltip">
+   <input type="button" class="HELPButton" id="HELPButton" value="info" 
+	onClick="alert('SMART - Semantic Marker&trade; Augmented Reality of Things to run your IoT Devices')" />
+   <span class="tooltiptext">
+SMART - Semantic Marker&trade; Augmented Reality of Things to run your IoT Devices
+   </span>
+</div>
+<label class="label">SMART Semantic Marker&#x2122; Address
+</label>
+<input name="semanticMarkerURL" id="semanticMarkerURL" size="84" type="text">
+<br>
+
+<p class="sansserif" id="semanticMarkerURLId">Example: https://SemanticMarker.org</p>
+<div class="tooltip">
+   <input type="button" class="HELPButton" id="HELPButton" value="info" 
+   onClick="alert('Display the special SMART Semantic Marker &#x2122; in a new window')" />
+   <span class="tooltiptext">
+Display the special SMART Semantic Marker &#x2122; in a new window
+   </span>
+</div>
+<input type="button" class="button" id="buttonRunFlow" value="Run Semantic Marker&#x2122; in New Window" onClick="invokeSemanticMarker('semanticMarkerURL')" />
+
+<br>
+<br>
+
+<br>
+<input type="button" class="button" value="Contact Kona Currents, LLC to request Tier II and III accounts" onClick="contactInfo()" />
+<br>
+<br>
+
+
+
+</div>
+
+
+<!----------------------------------------------->
+<!-- END of user content -->
+<script>
+function toggleCol(whichElement, num)
+{
+// try to have the first one open..
+    whichElement.classList.toggle("active");
+    var contentX = whichElement.nextElementSibling;
+    if (contentX.style.maxHeight)
+    {
+        contentX.style.maxHeight = null;
+    } 
+    else 
+    {
+        contentX.style.maxHeight = contentX.scrollHeight + "px";
+    } 
+	 if (num == -1)
+	 {
+	     console.log("sc = " + contentX.scrollHeight);
+	     var x = contentX.scrollHeight + 50;
+        contentX.style.maxHeight = x + "px";
+	 }
+
+	 console.log("Max = " + contentX.style.maxHeight);
+}
+//! @see https://stackoverflow.com/questions/68425366/toggle-active-class-to-buttons-when-clicked
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) 
+{
+  coll[i].addEventListener("click", function() 
+  {
+    toggleCol(this, i);
+  });
+}
+
+// try to have the first one open..
+//toggleCol(coll[0], -1);
+
+</script>
+<br>
+<br>
+<a href="https://KnowledgeShark.me/images/KCNewLabel600-small.png"><img src="https://KnowledgeShark.me/images/KCNewLabel600-small.png" width="800"></a>
+<p class="sansserif">&#169; 2023 <a class="ex3" href="https://KonaCurrents.com">KonaCurrents.com</a>
+<i class="sansserif">and powered by <a class="ex3" href="https://KnowledgeShark.me" target=_blank>KnowledgeShark.me</a></i>
+<br>
+<!-- heading to GeekWire in Seattle -->
+v10.20-2.23
