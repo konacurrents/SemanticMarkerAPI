@@ -2,7 +2,7 @@
 
 ![SemanticMarker API](SemanticMarkerAPI.png)
 
-Creating and Processing with Semantic Marker™️ System is through various APIs (Application Programer Interface). This repository includes code that makes web calls using the http protocol and the javascript language. The following shows the interaction with the web services running at SemanticMarker.org. The code is almost a 50-50 mix of html and javascript. 
+Creating and Processing with Semantic Marker™️ System is through various APIs (Application Programer Interface). This repository includes code that makes web calls using the http protocol and the javascript language. The following shows the interaction with the web services running at SemanticMarker.org. The code included is almost a 50-50 mix of html and javascript. As these are an HTTP API, other languages make calls on these same web API's. 
  
 ![SemanticMarker API Message](SemanticMarkerAPIMessages.png)
 
