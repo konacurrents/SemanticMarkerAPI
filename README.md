@@ -15,7 +15,7 @@ This is called in the example javascript code at
 # Semantic Marker API Web Interface
 
 The main http/https calls to the SemanticMarker cloud services is documented as: 
-[SemanticMarkerWebAPI.html](SemanticMarkerWebAPI.html)
+[SemanticMarkerWebAPI.html](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/SemanticMarkerWebAPI.html)
 
 ## SMART - Semantic Marker Augmented Reality of Things
 
