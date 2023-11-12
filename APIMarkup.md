@@ -7,7 +7,8 @@ can also be run locally or moved to other web servers.
 
 ------------------------------------------------------------------------------------------
 
-#### Creating a Semantic Marker with an embedded Avatar Image
+### Creating a Semantic Marker with an embedded Avatar Image
+#### Semantic Marker Tier I 
 
 <details>
  <summary><code>POST</code> <code><b>/{namespace}/{category}/{UUID}/digitize</b></code> <code>Digitizes an Avatar Image for a Semantic Marker</code></summary>
