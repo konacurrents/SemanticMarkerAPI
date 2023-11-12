@@ -360,6 +360,12 @@ web page that encapsulates most of these interactions can seen at:  [SemanticMar
 The Semantic Marker supports existing and future two-dimensional optical vision markers. The following are a couple examples.
 
 The resulting Semantic Marker can look like the following examples.
+
+## SMART Buttons
 ![Semantic Marker Examples](SemanticMarkerExamples.png)
 
-![Semantic Marker QBar](SemanticMarkerQBar.png)
+## Alternate two-dimensiontal optical codes
+<img src="SemanticMarkerQBart.png" width="200">
+
+## Semantic Marker on an ESP-32 M5 small display
+<img src="M5.png" width="200">
