@@ -14,7 +14,7 @@
 		D2E430502AFF120200E2C80B /* smart.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = smart.js; sourceTree = "<group>"; };
 		D2E430512AFF1B6C00E2C80B /* SemanticMarkerExamples.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SemanticMarkerExamples.png; sourceTree = "<group>"; };
 		D2E430532AFF20C300E2C80B /* SemanticMarkerAPI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SemanticMarkerAPI.png; sourceTree = "<group>"; };
-		D2E430542B00013400E2C80B /* SemanticMarkerWebAPI.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = SemanticMarkerWebAPI.html; sourceTree = "<group>"; };
+		D2E430552B004FC900E2C80B /* APIMarkup.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = APIMarkup.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -28,7 +28,7 @@
 				D2E4304C2AFF04F500E2C80B /* SemanticMarkerAPIMessages.png */,
 				D2E430512AFF1B6C00E2C80B /* SemanticMarkerExamples.png */,
 				D2E430532AFF20C300E2C80B /* SemanticMarkerAPI.png */,
-				D2E430542B00013400E2C80B /* SemanticMarkerWebAPI.html */,
+				D2E430552B004FC900E2C80B /* APIMarkup.md */,
 			);
 			sourceTree = "<group>";
 		};
