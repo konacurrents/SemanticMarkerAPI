@@ -10,7 +10,7 @@ The main interfaces to the SemanticMarker.org web services are through
 web calls embodied in the following web page code (and available at 
 [SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. 
 
-An example html web page with many javascript calls is includes [smart.html](smart.html)
+An example html web page with many javascript calls included is at [smart.html](smart.html)
 
 Example production web pages includes making appropriate API calls includes:
 [iDogWatch.com](https://idogwatch.com/userpage/userpage.html?username=test&password=test) and 
@@ -348,6 +348,7 @@ Like many of these interfaces, the credentials including the username and passwo
 > ```
 
 </details>
+
 ------------------------------------------------------------------------------------------
 
 # Additional Interaction with the SMART Button Infrastructure
@@ -364,8 +365,8 @@ The resulting Semantic Marker can look like the following examples.
 ## SMART Buttons
 ![Semantic Marker Examples](SemanticMarkerExamples.png)
 
-## Alternate two-dimensiontal optical codes
+## Alternate two-dimensional optical codes
 <img src="SemanticMarkerQBar.png" width="200">
 
-## Semantic Marker on an ESP-32 M5 small display
-<img src="M5.png" width="200">
+## Semantic Marker on an small ESP-32 M5 display
+<img src="M5.png" width="300">
