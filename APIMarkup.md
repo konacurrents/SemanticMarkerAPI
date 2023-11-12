@@ -7,8 +7,7 @@ can also be run locally or moved to other web servers.
 
 ------------------------------------------------------------------------------------------
 
-### Creating a Semantic Marker with an embedded Avatar Image
-#### Semantic Marker Tier I 
+#### Creating a Semantic Marker with an embedded Avatar Image
 
 <details>
  <summary><code>POST</code> <code><b>/{namespace}/{category}/{UUID}/digitize</b></code> <code>Digitizes an Avatar Image for a Semantic Marker</code></summary>
@@ -20,6 +19,12 @@ can also be run locally or moved to other web servers.
 > | namespace |  required | string                  | Namespace of Semantic Marker                                          |
 > | category  |  required | string                  | Namespace of Semantic Marker                                          |
 > | UUID      |  required | string                  | UUID of the user                                                      |
+
+##### Payload
+
+> | content-type  | example                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | application/json`| `{"username":"name","password":"pass"}`                                     |
 
 
 ##### Responses
@@ -392,5 +397,40 @@ can also be run locally or moved to other web servers.
 > ```
 
 </details>
+
+### Using the AvatarURL, once retrieved, the following will create the Semantic Marker final image
+
+The commandPath (the Semantic Marker address is a parameter as is the avatarURL, and if the 
+avatar is circular or rectangle)
+
+```javascript
+function createSemanticMarker(commandPath, avatarURL, circular)
+{
+try
+   {
+   // http web call to get the image from the AvatarURL
+      getImage(avatarURL).then
+      (
+         function (successurl)
+         {
+
+            var sm = new SemanticMarker(document.getElementById(idSM),
+               commandPath,
+               avatarURL,
+               circular);
+         }).catch (function (errorurl)
+         {
+
+            alert("Issue creating Avatar in Semantic Marker&trade; creation: \n" + errorurl + "\nPlease file bug report");
+         })
+
+   }
+   catch (error)
+   {
+
+      alert("Issue with Semantic Marker&trade; creation: \n" + error.message + "\nPlease file bug report");
+   }
+}
+```
 
 ------------------------------------------------------------------------------------------
