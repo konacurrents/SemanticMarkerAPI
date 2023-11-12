@@ -1,12 +1,13 @@
 
-## Semantic Marker REST API 
+# Semantic Marker REST API 
 
-The current base URL for these is SemanticMarker.org but the entire set
-can also be run locally or moved to other web servers.
+This documents the main REST API calls to create and manage a Semantic Marker.
+The current base URL for these is [SemanticMarker.org](https://SemanticMarker.org) but the entire set
+can also be run locally or moved to other web servers. 
 
 ------------------------------------------------------------------------------------------
 
-#### Creating new/overwriting existing stubs & proxy configs
+#### Creating a Semantic Marker with an embedded Avatar Image
 
 <details>
  <summary><code>POST</code> <code><b>/{namespace}/{category}/{UUID}/digitize</b></code> <code>Digitizes an Avatar Image for a Semantic Marker</code></summary>
@@ -15,14 +16,16 @@ can also be run locally or moved to other web servers.
 
 > | name      |  type     | data type               | description                                                           |
 > |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
-> | None      |  required | object (JSON or YAML)   | N/A  |
+> | namespace |  required | string                  | Namespace of Semantic Marker                                          |
+> | category  |  required | string                  | Namespace of Semantic Marker                                          |
+> | UUID      |  required | string                  | UUID of the user                                                      |
 
 
 ##### Responses
 
 > | http code     | content-type                      | response                                                            |
 > |---------------|-----------------------------------|---------------------------------------------------------------------|
-> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `201`         | `text/plain;charset=UTF-8`        | `http URL of resulting Avatar Image`                                |
 > | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
 
 ##### Example cURL
@@ -36,7 +39,38 @@ can also be run locally or moved to other web servers.
 
 ------------------------------------------------------------------------------------------
 
-#### Listing existing stubs & proxy configs as YAML string
+<details>
+ <summary><code>GET</code> <code><b>/train/ks/{category}/{namespace}/{UUID}/{escapedSemanticMarker}</b></code> <code>Creates a Tier I Semantic Marker using the Semantic Marker Address escaped</code></summary>
+
+##### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | namespace |  required | string                  | Namespace of Semantic Marker                                          |
+> | category  |  required | string                  | Namespace of Semantic Marker                                          |
+> | UUID      |  required | string                  | UUID of the user                                                      |
+> | escapedAddress      |  required | string                  | The Semantic Marker Address is escaped so it is a single parameter argument|
+
+
+##### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+##### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/train/ks"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
+------------------------------------------------------------------------------------------
+
+#### Semantic Marker Tier II 
 
 <details>
  <summary><code>GET</code> <code><b>/</b></code> <code>(gets all in-memory stub & proxy configs)</code></summary>
