@@ -9,7 +9,7 @@ can also be run locally or moved to other web servers.
 #### Creating new/overwriting existing stubs & proxy configs
 
 <details>
- <summary><code>POST</code> <code><b>/</b></code> <code>(overwrites all in-memory stub and/or proxy-config)</code></summary>
+ <summary><code>POST</code> <code><b>/{namespace}/{category}/{UUID}/digitize</b></code> <code>Digitizes an Avatar Image for a Semantic Marker</code></summary>
 
 ##### Parameters
 
@@ -24,12 +24,12 @@ can also be run locally or moved to other web servers.
 > |---------------|-----------------------------------|---------------------------------------------------------------------|
 > | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
 > | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
-> | `405`         | `text/html;charset=utf-8`         | None                                                                |
 
 ##### Example cURL
 
 > ```javascript
->  curl -X POST -H "Content-Type: application/json" --data @post.json http://localhost:8889/
+> set fullsm = "http://localhost:1880/sm/"$sm"/digitize"
+> curl -v  -F filename=$filename -F upload=@$filename -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
 > ```
 
 </details>
