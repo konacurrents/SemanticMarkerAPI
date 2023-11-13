@@ -10,22 +10,28 @@ The main interfaces to the SemanticMarker.org web services are through
 web calls embodied in the following web page code (and available at 
 [SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. 
 
-An example html web page with many javascript calls included is at [smart.html](smart.html)
+These fit an overall cloud and device interaction Semantic Marker architecture shown here 
+![SemanticMarkerAPIMessages](SemanticMarkerAPIMessages.png)
+
+
+
+# Semantic Marker REST API
+
+The following are the main REST API calls to create and manage a Semantic Marker. 
+The current base URL for these is [SemanticMarker.org](https://SemanticMarker.org) but the entire set
+can also be run locally or moved to other web servers. For the Semantic Marker to be sharable and run
+by outside parties, the Semantic Marker address URL must be publically available (for example, http://localhost would only
+be usable for local testing, but https://SemanticMarker.org is globally accessible)
+
+### Example Web Pages making REST API calls
+
+An example html web page with many javascript calls via these REST APi's is included at: [smart.html](smart.html)
 
 Example production web pages includes making appropriate API calls includes:
 [iDogWatch.com](https://idogwatch.com/userpage/userpage.html?username=test&password=test) and 
 [SemanticMarker.org](https://SemanticMarker.org/smart?username=test&password=test)
 
-
-# Semantic Marker REST API
-
-This documents the main REST API calls to create and manage a Semantic Marker.
-The current base URL for these is [SemanticMarker.org](https://SemanticMarker.org) but the entire set
-can also be run locally or moved to other web servers. For the Semantic Marker to be sharable and run
-by outside parties, the Semantic Marker address URL must be publically available (for example, http://localhost would only
-be usable for local testing., but https://SemanticMarker.org is globally accessible)
-
-Kona Currents, LLC offers three tiers of Semantic Marker offerings.
+## Kona Currents, LLC offers three tiers of Semantic Marker offerings.
 
 ### Tier I. Semantic Marker Indirection
 ### Tier II.  Semantic Marker Store and Forward
@@ -51,7 +57,7 @@ Excerpt from html file:
 
 ```javascript
 //The commandPath (the Semantic Marker address is a parameter as is the avatarURL, and if the
-avatar is circular or rectangle).
+//avatar is circular or rectangle).
 function createSemanticMarker(commandPath, avatarURL, circular)
 {
 try
@@ -115,8 +121,8 @@ This is a simple example of creating a Tier I Semantic Marker inside the ESP-32 
 ##### Example ESP32 C Code
 ```c
    //!Draws a SemanticMarker&trade;
-    //!Create a SemanticMarker code with a width of 135 QR code  at (0, 100).  å¨(0,0)åååºääªå½äº135äç´ç
-    //!Please select the appropriate QR code version according to the number of characters.  è·æ¹æ®åç¦æ°ééæ©åéçäç´ççæ¬
+    //!Create a SemanticMarker code with a width of 135 QR code  at (0, 100).
+    //!Please select the appropriate QR code version according to the number of characters. 
     createSemanticMarker("https://iDogWatch.com/bot/help",0,100,135);
     //try to draw a character in the middle ...
     printTextAtTextPosition("SM",_zoomedTextPositions[QRAVATAR_ACTION]);
