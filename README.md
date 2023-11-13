@@ -1,4 +1,4 @@
-#  Semantic Marker ™️ API Manual
+#  Semantic Marker ™️  REST API Manual
 
 ![SemanticMarker API](SemanticMarkerAPI.png)
 
@@ -374,5 +374,6 @@ The resulting Semantic Marker can look like the following examples.
 ## Alternate two-dimensional optical codes
 <img src="SemanticMarkerQBar.png" width="200">
 
-## Semantic Marker on an small ESP-32 M5 display
+## Semantic Marker on a small ESP-32 M5 display
+This Semantic Marker might change every second to reflect sensor status.
 <img src="M5.png" width="300">
