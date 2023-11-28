@@ -354,7 +354,7 @@ Like many of these interfaces, the credentials including the username and passwo
 </details>
 
 ------------------------------------------------------------------------------------------
-# Messaging Grammer 
+# Messaging BNF Grammer 
 
 These are the Websocket and MQTT messaging formats. This includes the legacy websocket interface
 defined as the <b>Barklet Language</b>. The format is a mix of original Barklet Language used with WebSockets,
@@ -367,9 +367,10 @@ To run, doload the scripts and run with a valid username and password.
 ## BNF Grammer for Barklet Language
 
 ```ebnf
-  Description = Grammer for Barklet communication
-  --- BNF: NOTE: {} are part of language not BNF
-  --NOTE: <guest ID> ":"  -- created by chat-room, not user messages
+  Description ::= Grammer for Barklet communication
+   NOTE ::= {} are part of language not BNF
+   NOTE ::= : <guest ID> ":"  created by chat-room, not user messages
+
     message          ::= [<guest ID> ":"] <payload> <player_name> [<time>] 
                     | '{' [<device>] <JSONMessage> '}'
     payload          ::= <request> [<deviceInfo>] [<SemanticMarker>] [<OTA>]| <reply>
@@ -459,14 +460,17 @@ To run, doload the scripts and run with a valid username and password.
                       | "zoomSM" <SMNum>
                       | "buttonA" ["longpress" | "shortpress"]
                       | "buttonB" ["longpress" | "shortpress"]
+
     sendString      ::= "temp" 
                       | "status" 
                       | "capture" 
                       | "volume" 
                       | "feed" 
+
     encodedBase64String ::=
                       |  <Semantic Marker value after decoding base64>
-    SemanticMarkerApp Messages ::=
+
+    SemanticMarkerAppMessages ::=
                       | DEBUG <boolean>
                       | HUD <boolean>
                       | MQTT_DEBUG <boolean>
