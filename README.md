@@ -1,6 +1,6 @@
 #  Semantic Marker ™️  REST and MQTT Message API Manual
 
-![SemanticMarker API](SemanticMarkerAPI.png)
+![SemanticMarker API](images/SemanticMarkerAPI.png)
 
 Creating and Processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The diagram below shows the interaction with the web services running at [SemanticMarker.org](https://SemanticMarker.org). The code included is almost a 50-50 mix of html and javascript. As these are an HTTP API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.)
 
@@ -11,7 +11,7 @@ web calls embodied in the following web page code (and available at
 [SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. 
 
 These fit an overall cloud and device interaction Semantic Marker architecture shown here 
-![SemanticMarkerAPIMessages](SemanticMarkerAPIMessages.png)
+![SemanticMarkerAPIMessages](images/SemanticMarkerAPIMessages.png)
 
 
 # Semantic Marker REST API
@@ -128,7 +128,7 @@ This is a simple example of creating a Tier I Semantic Marker inside the ESP-32 
 ```
 #### Example Semantic Marker shown on the small M5 Display 
 
-<img src="M5.png" width="300">
+<img src="images/M5.png" width="300">
 </details>
 
 <details>
@@ -144,7 +144,7 @@ The <b>createSemanticMarker</b> is a method that performs all the Semantic Marke
 ```
 #### Example functional Semantic Marker with enclosed Avatar image
 
-![Semantic Marker on Watch Example](watch.png)
+![Semantic Marker on Watch Example](images/watch.png)
 
 Note this image captured from the Semantic Marker Apple Watch, shows the Semantic Marker (where a long press will invoke the Semantic Marker using the Tier III REST API), but also shows the <b>FEED</b> button. This makes a call on the <b>/feed</b> REST API shown below. 
 
@@ -860,11 +860,11 @@ The Semantic Marker supports existing and future two-dimensional optical vision 
 The resulting Semantic Marker can look like the following examples.
 
 ## SMART Buttons
-![Semantic Marker Examples](SemanticMarkerExamples.png)
+![Semantic Marker Examples](images/SemanticMarkerExamples.png)
 
 ## Alternate two-dimensional optical codes
-<img src="SemanticMarkerQBar.png" width="200">
+<img src="images/SemanticMarkerQBar.png" width="200">
 
 ## Semantic Marker on a small ESP-32 M5 display
 This Semantic Marker might change every second to reflect sensor status.
-<img src="M5.png" width="300">
+<img src="images/M5.png" width="300">
