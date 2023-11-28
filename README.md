@@ -818,7 +818,7 @@ To run, doload the scripts and run with a valid username and password.
 
 ### cmddevice - sends boolean value to the specified device, basically a <set> request but the value is on/off
 <details>
- <summary><code>GET</code> <code><b>/command/{username}/{password}/{device}/{command}/{on/off}</b></code></summary>
+ <summary><code>GET</code> <code><b>/cmddevice/{username}/{password}/{device}/{command}/{on/off}</b></code></summary>
 
 #### Parameters
 
