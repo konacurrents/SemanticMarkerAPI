@@ -410,8 +410,9 @@ To run, doload the scripts and run with a valid username and password.
  *   number           ::= <int>
  *   boolean          ::= "on" | "off"
  *
- *   JSONMessage      ::= <set> | <send> | <set64> | <SemanticMarkerApp Messages>
+ *   JSONMessage      ::= <set> | <setdevice> | <send> | <set64> | <SemanticMarkerApp Messages>
  *   device           ::= "device" : name_of_device
+ *   setdevice        ::= <device> <set>
  *   set              ::= "set" : setString , "val": valString
  *   send             ::= "send" : sendString
  *   set64            ::= "set64" : <encodedBase64String>
@@ -493,6 +494,345 @@ To run, doload the scripts and run with a valid username and password.
 ```
 
 
+# The following are REST API's matching the BNF Grammer
+------------------------------------------------------------------------------------------
+### feed - sends the feed message to the ESP-32 devices
+<details>
+ <summary><code>GET</code> <code><b>/feed/{username}/{password}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/feed/USERNAME/PASSWORD"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
+### feeddevice - sends the feed message to a specific named ESP-32 device
+<details>
+ <summary><code>GET</code> <code><b>/feeddevice/{username}/{password}/{devicename}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+> | deviceName  |  required | string                  | name of device
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/feeddevice/USERNAME/PASSWORD/DEVICE"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
+### lookupuser - Retrieves the JSON settings of the user specified
+<details>
+ <summary><code>GET</code> <code><b>/lookupuser/{username}/{password}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/lookupuser/USERNAME/PASSWORD"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+### Resulting JSON 
+
+```json
+{
+    "username":_username,
+    "password":_password,
+    "name" : flowName,
+    "uuid" : uuid,
+    "isdata": isDataFlag,
+    "private": privateflag,
+    "flowNum"  : flowNum,
+    "flowCat"  : flowCat,
+    "date" : dateString,
+    "parameters" : parameters,
+    "desc": desc,
+    "QRAvatarURL":QRAvatarURL,
+    "nextFlowURL":nextFlowURL,
+    "flow" : allCommandsJSON,
+
+    "dataSM" : dataSM,
+    "KSMatrix" : KSMatrixText,
+    "artifactsSM" : artifactsSM,
+    "markup" : markupText,
+    "languagesSM": languagesSM,
+    "videoSM": videoSM,
+    "isCircularAvatar": isCircularAvatar,
+
+    "KSWave" : KSWaveText,
+    "bridgeSM" : bridgeSM,
+    "future" : futureText,
+
+    "audioSM" : audioSM,
+    "locationSM" : locationSM,
+    "inheritedSM" : inheritedSM,
+    "deckSM" : deckSM,
+    "isMessaging" : isMessaging,
+    "isIndirectSM" : isIndirectSM,
+    "indirectSM" : indirectSM
+}
+
+</details>
+
+### set- sends the <set> message (command/value) to all device
+<details>
+ <summary><code>GET</code> <code><b>/set/{username}/{password}/{command}/{value}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+> | command  |  required | string                  | command for <set>
+> | value  |  required | string                  | value for <set>
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/set/USERNAME/PASSWORD/COMMAND/VAL"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
+
+### setdevice - sends the <set> message (command/value) to the specified device
+<details>
+ <summary><code>GET</code> <code><b>/setdevice/{username}/{password}/{devicename}/{command}/{value}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+> | deviceName  |  required | string                  | name of device
+> | command  |  required | string                  | command for <set>
+> | value  |  required | string                  | value for <set>
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/setdevice/USERNAME/PASSWORD/DEVICE/COMMAND/VAL"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
+### send - sends a request command <send>
+<details>
+ <summary><code>GET</code> <code><b>/send/{username}/{password}/{request}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+> | request  |  required | string                  | command request string
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/send/USERNAME/PASSWORD/DEVICE"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
+### senddevice - sends a request command <senddevice>
+<details>
+ <summary><code>GET</code> <code><b>/senddevice/{username}/{password}/{device}/{request}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+> | device  |  required | string                  | device to receive message
+> | request  |  required | string                  | command request string
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/senddevice/USERNAME/PASSWORD/DEVICE/REQUEST"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
+### set64device - sends a set request command but in Base64 <set64device>
+<details>
+ <summary><code>GET</code> <code><b>/set64device/{username}/{password}/{device}/{command}/{base64Val}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+> | device  |  required | string                  | device to receive message
+> | command  |  required | string                  | command request string
+> | base64val  |  required | string                  | the value but encoded in base64
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/set64device/USERNAME/PASSWORD/DEVICE/BASE64VAL"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
+### command - sends boolean value to the devices, basically a <set> request but the value is on/off
+<details>
+ <summary><code>GET</code> <code><b>/command/{username}/{password}/{command}/{on/off}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+> | command  |  required | string                  | command request string
+> | val  |  required | string                  | the value in boolean (on/off)
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/command/USERNAME/PASSWORD/COMMAND/BOOLEAN_VAL"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
+### cmddevice - sends boolean value to the specified device, basically a <set> request but the value is on/off
+<details>
+ <summary><code>GET</code> <code><b>/command/{username}/{password}/{device}/{command}/{on/off}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+> | device  |  required | string                  | device to receive message
+> | command  |  required | string                  | command request string
+> | val  |  required | string                  | the value in boolean (on/off)
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/cmddevice/USERNAME/PASSWORD/DEVICE/COMMAND/BOOLEAN_VAL"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
 ------------------------------------------------------------------------------------------
 # Additional Interaction with the SMART Button Infrastructure
 
