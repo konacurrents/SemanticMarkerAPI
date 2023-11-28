@@ -1,0 +1,23 @@
+#!/bin/tcsh
+#set echo
+if ($#argv < 2) then
+   echo "Usage: pub user password [dev]"
+	exit 1
+endif
+echo $#argv
+
+set user = $1
+set pass = $2
+#set dev = $3
+set topic = usersP/dawgpack
+set userT = pub_$user.$$
+#set echo
+
+if ($#argv == 2) then
+  mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m  \{\'set\':\'semanticMarker\',\'val\':\'https://KnowledgeShark.me/red/ks/genre.kshark/knowledgeshark.me/TBHNY\'\}
+
+else if ($#argv ==  3) then
+  set dev = $3
+  mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m  \{\'dev\':\'$dev\',\'set\':\'semanticMarker\',\'val\':\'https://KnowledgeShark.me/red/ks/deathstar.kshark/knowledgeshark.me/TBHNY\'\}
+
+endif

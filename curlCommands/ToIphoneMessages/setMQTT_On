@@ -1,0 +1,3 @@
+
+curl https://idogwatch.com/bot/set/USERNAME/PASSWORD/MQTT_DEBUG/true
+#curl https://idogwatch.com/bot/set/USERNAME/PASSWORD/MQTT_DEBUG/false

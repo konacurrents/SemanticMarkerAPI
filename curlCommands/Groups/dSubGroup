@@ -1,0 +1,23 @@
+#!/bin/tcsh
+if ($#argv < 2) then
+   echo "Usage: sub user password [group]"
+	exit 1
+endif
+if ($#argv == 2) then
+   echo "Sub all groups"
+   set topic = usersP/groups/\#
+endif
+if ($#argv == 3) then
+   set group = $3
+   echo "Sub group: " $group
+   set topic = usersP/groups/$group
+endif
+set host = idogwatch.com
+#set host = molokai.local
+set user = $1
+set pass = $2
+# Basically subscribe to any group we have permission too..
+#(grabs images, and root pub)
+set userT = sub_$user.$$
+set echo
+mosquitto_sub -h $host -i $userT -u $user -P $pass -t $topic

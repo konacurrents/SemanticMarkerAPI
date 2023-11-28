@@ -1,0 +1,20 @@
+#!/bin/tcsh
+set echo
+if ($#argv < 2) then
+   echo "Usage: pub user password"
+	exit 1
+endif
+set user = $1
+set pass = $2
+#set topic = usersP/bark/$user
+set topic = usersP/dawgpack
+set userT = pub_$user.$$
+set echo
+#mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m \{\'set\':\'location\',\'val\':\'Seattle,\ Wa\'\,\'dev\':\'$dev\'}
+
+
+#mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m \ \#REMOTE\ \{Salmon}\ \{\#connectedMe}\ \{I,F}\ \ \{\'T\':\'1673228620\',\'dev\':\'RatPatrol\',\'user\':\'scott@konacurrents.com\',\'location\':\'Seattle,\ Wa\',\'ble\':\'PTFeeder:RatPatrol\',\'v\':\'Version-\(2.13c\)-1.6.2023-ESP_32_FEEDER_BLE_ASYNC_TIME\'}
+
+mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m \ \#REMOTE\ \{RatPatrol}\ \{\#connectedMe}\ \{I,F}\ \ \{\'T\':\'1673228620\',\'dev\':\'RatPatrol\',\'user\':\'scott@konacurrents.com\',\'location\':\'Portland,\ Or\',\'ble\':\'PTFeeder:RatPatrol\',\'v\':\'Version-\(2.13c\)-1.6.2023-ESP_32_FEEDER_BLE_ASYNC_TIME\'}
+
+

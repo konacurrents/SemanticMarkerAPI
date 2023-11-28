@@ -1,0 +1,17 @@
+#!/bin/tcsh
+#set echo
+if ($#argv < 4) then
+   echo "Usage: pub user password stream page"
+	exit 1
+endif
+set wave=KikahaPhotos
+set user = $1
+set pass = $2
+set stream = $3
+set page = $4
+
+set topic = usersP/bark/$user
+set userT = pub_$user.$$
+set echo
+# {set:hightemp,val:80}
+mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m \#followMe\ \{AVM=https://SemanticMarker.org/bot/wave/$wave\?stream=$stream\&page=$page\}

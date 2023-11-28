@@ -1,0 +1,16 @@
+#!/bin/tcsh
+#set echo
+if ($#argv < 3) then
+   echo "Usage: pub user password dev"
+	exit 1
+endif
+set user = $1
+set pass = $2
+set topic = usersP/bark/$user
+set userT = pub_$user.$$
+set dev = $3
+set echo
+# {set:hightemp,val:80}
+#mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m \{\'set\':\'otafile\',\'val\':\'http://Konacurrents.com/OTA/TEST/M5/ESP_IOT.ino.m5stick_c_plus.bin\'\,\'dev\':\'$dev\'}
+mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m \{\'set\':\'otafile\',\'val\':\'http://192.168.0.217/OTA/ESP_IOT.ino.m5stick_c_plus.bin\'\,\'dev\':\'$dev\'}
+#mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m \{\'set\':\'otafile\',\'val\':\'http://KnowledgeShark.org/OTA/TEST/M5/ESP_IOT.ino.m5stick_c_plus.bin\'\,\'dev\':\'$dev\'}

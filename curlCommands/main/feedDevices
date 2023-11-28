@@ -1,0 +1,5 @@
+#!/bin/tcsh
+
+set echo
+#curl https://idogwatch.com/bot/feedguestdevices/scott@konacurrents.com/doggy?device=scott\&device=laura
+curl https://idogwatch.com/bot/feedguestdevices/scott@konacurrents.com/doggy?device=scott

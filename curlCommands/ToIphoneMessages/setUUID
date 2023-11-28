@@ -1,0 +1,11 @@
+
+#set debug first
+curl https://idogwatch.com/bot/set/USERNAME/PASSWORD/DEBUG/true
+
+curl https://idogwatch.com/bot/set/USERNAME/PASSWORD/SM_Instance_Image/true
+curl https://idogwatch.com/bot/set/USERNAME/PASSWORD/replaceUUID/xg-Sd7pit29L
+
+curl https://idogwatch.com/bot/set/USERNAME/PASSWORD/SM_ReplaceUUID/true
+#curl https://idogwatch.com/bot/set/USERNAME/PASSWORD/replaceUUID/HIgdp-UCcDVO
+
+#curl https://idogwatch.com/bot/set/USERNAME/PASSWORD/SM_QRAvatar/true

@@ -1,0 +1,41 @@
+#!/bin/tcsh
+#set echo
+if ($#argv < 2) then
+   echo "Usage: pub user password [num 1,2,3]"
+	exit 1
+endif
+#echo $#argv
+
+set user = $1
+set pass = $2
+#set dev = $3
+set topic = usersP/bark/$user
+set userT = pub_$user.$$
+
+if ($#argv == 2) then
+set echo
+mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m \#followMe\ \{AVM=https://KnowledgeShark.me/red/ks/Concurrency/knowledgeshark.me/TBHNY\}
+
+else if ($#argv ==  3) then
+  set num = $3
+  if ($num == 1) then
+set echo
+mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m \#followMe\ \{AVM=https://KnowledgeShark.me/red/ks/deathstar.kshark/knowledgeshark.me/TBHNY\}
+
+  else if ($num == 0) then
+set echo
+mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m \#followMe\ \{AVM=https://KnowledgeShark.me/red/ks/genre.kshark/knowledgeshark.me/FPklRR\}
+
+  else if ($num == 2) then
+set echo
+mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m \#followMe\ \{AVM=https://SemanticMarker.orgY\}
+  else if ($num == 3) then
+set echo
+mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m \#followMe\ \{AVM=https://KnowledgeShark.me/red/ks/qravatar/KnowledgeShark\}
+  else if ($num == 4) then
+set echo
+mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m \#followMe\ \{AVM=https://KnowledgeShark.me/red/ks/Dissemination/knowledgeshark.me/IDCO5J\}
+
+  endif
+
+endif

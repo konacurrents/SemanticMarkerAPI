@@ -1,0 +1,14 @@
+#!/bin/tcsh
+#set echo
+if ($#argv < 2) then
+   echo "Usage: pub user password"
+	exit 1
+endif
+set user = $1
+set guest = $1_guest
+set pass = $2
+set topic = usersP/bark/$user
+set userT = pub_$user.$$
+set echo
+mosquitto_pub -h idogwatch.com -i $userT -u $guest -P $pass -t $topic  -m \#TEMP
+

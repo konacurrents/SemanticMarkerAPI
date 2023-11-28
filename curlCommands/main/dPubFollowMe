@@ -1,0 +1,15 @@
+#!/bin/tcsh
+#set echo
+if ($#argv < 2) then
+   echo "Usage: pub user password"
+	exit 1
+endif
+set user = $1
+set pass = $2
+set topic = usersP/bark/$user
+set userT = pub_$user.$$
+set echo
+# {set:hightemp,val:80}
+#mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m \#followMe\ \{AVM=https://SemanticMarker.org\}
+#mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m \#followMe\ \{AVM=https://KnowledgeShark.me/red/ks/Concurrency/knowledgeshark.me/hxm1LB\}
+mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m \#followMe\ \{AVM=https://KnowledgeShark.me/red/ks/qravatar/KnowledgeShark\}

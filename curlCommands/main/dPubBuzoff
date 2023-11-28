@@ -1,0 +1,15 @@
+#!/bin/tcsh
+#set echo
+if ($#argv < 2) then
+   echo "Usage: pub user password"
+	exit 1
+endif
+set user = $1
+set pass = $2
+set topic = usersP/bark/$user
+set userT = pub_$user.$$
+set echo
+mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m \{\'cmd\':\'buzzoff\'\}
+#mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m feedme
+
+#mosquitto_pub -h molokai.local -i pubit -u newuser -P newuser -t newuser/bark -m feedme

@@ -1,0 +1,18 @@
+#!/bin/tcsh
+#set echo
+if ($#argv < 3) then
+   echo "Usage: pub user password group"
+	exit 1
+endif
+set host = idogwatch.com
+#set host = molokai.local
+set user = $1
+set pass = $2
+set group = $3
+set topic = usersP/groups/$group
+set userT = pub_$user.$$
+set echo
+mosquitto_pub -h $host -i $userT -u $user -P $pass -t $topic  -m \#STATUS
+#mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m feedme
+
+#mosquitto_pub -h molokai.local -i pubit -u newuser -P newuser -t newuser/bark -m feedme

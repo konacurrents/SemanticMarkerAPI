@@ -16,12 +16,115 @@
 		D2E430532AFF20C300E2C80B /* SemanticMarkerAPI.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SemanticMarkerAPI.png; sourceTree = "<group>"; };
 		D2E430562B017A5C00E2C80B /* SemanticMarkerQBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SemanticMarkerQBar.png; sourceTree = "<group>"; };
 		D2E430572B0184CD00E2C80B /* M5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = M5.png; sourceTree = "<group>"; };
+		D2E430C92B15653500E2C80B /* DAWGPubFeed */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = DAWGPubFeed; sourceTree = "<group>"; };
+		D2E430CA2B15653500E2C80B /* DAWGDocFollow3 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = DAWGDocFollow3; sourceTree = "<group>"; };
+		D2E430CB2B15653500E2C80B /* DAWGDocFollow2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = DAWGDocFollow2; sourceTree = "<group>"; };
+		D2E430CC2B15653500E2C80B /* DAWGpub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = DAWGpub; sourceTree = "<group>"; };
+		D2E430CD2B15653500E2C80B /* DAWGSendDevStatus */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = DAWGSendDevStatus; sourceTree = "<group>"; };
+		D2E430CE2B15653500E2C80B /* DAWGDocFollow */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = DAWGDocFollow; sourceTree = "<group>"; };
+		D2E430CF2B15653500E2C80B /* DAWGsub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = DAWGsub; sourceTree = "<group>"; };
+		D2E430D12B15653500E2C80B /* callit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = callit; sourceTree = "<group>"; };
+		D2E430D22B15653500E2C80B /* dPubGroup */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubGroup; sourceTree = "<group>"; };
+		D2E430D32B15653500E2C80B /* dPubGroupStatus */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubGroupStatus; sourceTree = "<group>"; };
+		D2E430D42B15653500E2C80B /* dSubGroup */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dSubGroup; sourceTree = "<group>"; };
+		D2E430D52B15653500E2C80B /* dSub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dSub; sourceTree = "<group>"; };
+		D2E430D62B15653500E2C80B /* dPub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPub; sourceTree = "<group>"; };
+		D2E430D82B15653500E2C80B /* dPubGatewayOff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubGatewayOff; sourceTree = "<group>"; };
+		D2E430D92B15653500E2C80B /* tempPub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = tempPub; sourceTree = "<group>"; };
+		D2E430DA2B15653500E2C80B /* d2Sub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = d2Sub; sourceTree = "<group>"; };
+		D2E430DB2B15653500E2C80B /* dPubWIFI */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubWIFI; sourceTree = "<group>"; };
+		D2E430DC2B15653500E2C80B /* dPubDocFollow3 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubDocFollow3; sourceTree = "<group>"; };
+		D2E430DD2B15653500E2C80B /* dPubSendSPIFF */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubSendSPIFF; sourceTree = "<group>"; };
+		D2E430DE2B15653500E2C80B /* dPubGatewayOn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubGatewayOn; sourceTree = "<group>"; };
+		D2E430DF2B15653500E2C80B /* dPubTemperature */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubTemperature; sourceTree = "<group>"; };
+		D2E430E02B15653500E2C80B /* feedDevices */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = feedDevices; sourceTree = "<group>"; };
+		D2E430E12B15653500E2C80B /* dPubBLEServerOn */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubBLEServerOn; sourceTree = "<group>"; };
+		D2E430E22B15653500E2C80B /* dPubOTA */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubOTA; sourceTree = "<group>"; };
+		D2E430E32B15653500E2C80B /* gPub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = gPub; sourceTree = "<group>"; };
+		D2E430E42B15653500E2C80B /* dPubGEN3All */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubGEN3All; sourceTree = "<group>"; };
+		D2E430E52B15653500E2C80B /* dPubSM */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubSM; sourceTree = "<group>"; };
+		D2E430E62B15653500E2C80B /* dPubStatus */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubStatus; sourceTree = "<group>"; };
+		D2E430E72B15653500E2C80B /* dPubFollowMe */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubFollowMe; sourceTree = "<group>"; };
+		D2E430E82B15653500E2C80B /* dPubBLEServerOff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubBLEServerOff; sourceTree = "<group>"; };
+		D2E430E92B15653500E2C80B /* dPubLocation */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubLocation; sourceTree = "<group>"; };
+		D2E430EA2B15653500E2C80B /* dPubOTAFile_Main_M5 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubOTAFile_Main_M5; sourceTree = "<group>"; };
+		D2E430EB2B15653500E2C80B /* subSys */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = subSys; sourceTree = "<group>"; };
+		D2E430EC2B15653500E2C80B /* dSubImages */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dSubImages; sourceTree = "<group>"; };
+		D2E430ED2B15653500E2C80B /* dPubPoweroff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubPoweroff; sourceTree = "<group>"; };
+		D2E430EE2B15653500E2C80B /* oPubCmd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = oPubCmd; sourceTree = "<group>"; };
+		D2E430EF2B15653500E2C80B /* dPubDevicePairDev */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubDevicePairDev; sourceTree = "<group>"; };
+		D2E430F02B15653500E2C80B /* dPubGEN3Only */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubGEN3Only; sourceTree = "<group>"; };
+		D2E430F12B15653500E2C80B /* gSub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = gSub; sourceTree = "<group>"; };
+		D2E430F22B15653500E2C80B /* dPubSMART */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubSMART; sourceTree = "<group>"; };
+		D2E430F32B15653500E2C80B /* dPubDevicesFeed */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubDevicesFeed; sourceTree = "<group>"; };
+		D2E430F42B15653500E2C80B /* dPubColor */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubColor; sourceTree = "<group>"; };
+		D2E430F52B15653500E2C80B /* dPubDeleteSPIFF */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubDeleteSPIFF; sourceTree = "<group>"; };
+		D2E430F62B15653500E2C80B /* dPubWave1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubWave1; sourceTree = "<group>"; };
+		D2E430F72B15653500E2C80B /* LocPub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = LocPub; sourceTree = "<group>"; };
+		D2E430F82B15653500E2C80B /* dPubQueryTesting */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubQueryTesting; sourceTree = "<group>"; };
+		D2E430F92B15653500E2C80B /* dPubBuz */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubBuz; sourceTree = "<group>"; };
+		D2E430FA2B15653500E2C80B /* dSub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dSub; sourceTree = "<group>"; };
+		D2E430FB2B15653500E2C80B /* dPubCaptured */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubCaptured; sourceTree = "<group>"; };
+		D2E430FC2B15653500E2C80B /* dPubDevicePair */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubDevicePair; sourceTree = "<group>"; };
+		D2E430FD2B15653500E2C80B /* dPubSendStatusDev */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubSendStatusDev; sourceTree = "<group>"; };
+		D2E430FE2B15653500E2C80B /* dPubReadSPIFF */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubReadSPIFF; sourceTree = "<group>"; };
+		D2E430FF2B15653500E2C80B /* dPubOTAFileKS */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubOTAFileKS; sourceTree = "<group>"; };
+		D2E431002B15653500E2C80B /* dPubSendStatus */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubSendStatus; sourceTree = "<group>"; };
+		D2E431012B15653500E2C80B /* dPubClean */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubClean; sourceTree = "<group>"; };
+		D2E431022B15653500E2C80B /* dPubTemperatureLow */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubTemperatureLow; sourceTree = "<group>"; };
+		D2E431032B15653500E2C80B /* dPubSendTemp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubSendTemp; sourceTree = "<group>"; };
+		D2E431042B15653500E2C80B /* dPub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPub; sourceTree = "<group>"; };
+		D2E431052B15653500E2C80B /* dPubSwapWIFI */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubSwapWIFI; sourceTree = "<group>"; };
+		D2E431062B15653500E2C80B /* dPubOTAFile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubOTAFile; sourceTree = "<group>"; };
+		D2E431072B15653600E2C80B /* LocSub */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = LocSub; sourceTree = "<group>"; };
+		D2E431082B15653600E2C80B /* dPubDeviceFeed */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubDeviceFeed; sourceTree = "<group>"; };
+		D2E431092B15653600E2C80B /* dPubWaveNext */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubWaveNext; sourceTree = "<group>"; };
+		D2E4310A2B15653600E2C80B /* dPubLOC */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubLOC; sourceTree = "<group>"; };
+		D2E4310B2B15653600E2C80B /* dPubResetTimer */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubResetTimer; sourceTree = "<group>"; };
+		D2E4310C2B15653600E2C80B /* dPubWavePrev */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubWavePrev; sourceTree = "<group>"; };
+		D2E4310D2B15653600E2C80B /* dPubCleanDEV */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubCleanDEV; sourceTree = "<group>"; };
+		D2E4310E2B15653600E2C80B /* dPubBuzoff */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubBuzoff; sourceTree = "<group>"; };
+		D2E4310F2B15653600E2C80B /* dPubStatusDev */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubStatusDev; sourceTree = "<group>"; };
+		D2E431102B15653600E2C80B /* dPubFinish */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubFinish; sourceTree = "<group>"; };
+		D2E431112B15653600E2C80B /* dPubLOC_DAWG */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubLOC_DAWG; sourceTree = "<group>"; };
+		D2E431122B15653600E2C80B /* dPubQueryFeed */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubQueryFeed; sourceTree = "<group>"; };
+		D2E431132B15653600E2C80B /* dPubErase */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubErase; sourceTree = "<group>"; };
+		D2E431142B15653600E2C80B /* dPubVER */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubVER; sourceTree = "<group>"; };
+		D2E431162B15653600E2C80B /* setOnlyFlip */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setOnlyFlip; sourceTree = "<group>"; };
+		D2E431172B15653600E2C80B /* setMQTT */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setMQTT; sourceTree = "<group>"; };
+		D2E431182B15653600E2C80B /* SMCommands */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SMCommands; sourceTree = "<group>"; };
+		D2E431192B15653600E2C80B /* setAnimals */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setAnimals; sourceTree = "<group>"; };
+		D2E4311A2B15653600E2C80B /* setDEBUG */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setDEBUG; sourceTree = "<group>"; };
+		D2E4311B2B15653600E2C80B /* nouser */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nouser; sourceTree = "<group>"; };
+		D2E4311C2B15653600E2C80B /* setUUID-2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "setUUID-2"; sourceTree = "<group>"; };
+		D2E4311D2B15653600E2C80B /* setNoAnimals */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setNoAnimals; sourceTree = "<group>"; };
+		D2E4311E2B15653600E2C80B /* setUUID */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setUUID; sourceTree = "<group>"; };
+		D2E4311F2B15653600E2C80B /* nopass */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = nopass; sourceTree = "<group>"; };
+		D2E431202B15653600E2C80B /* setNoZoom */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setNoZoom; sourceTree = "<group>"; };
+		D2E431212B15653600E2C80B /* setHUD */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setHUD; sourceTree = "<group>"; };
+		D2E431222B15653600E2C80B /* setUseCutBufferNO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setUseCutBufferNO; sourceTree = "<group>"; };
+		D2E431232B15653600E2C80B /* setMatrix */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setMatrix; sourceTree = "<group>"; };
+		D2E431242B15653600E2C80B /* setZoom */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setZoom; sourceTree = "<group>"; };
+		D2E431252B15653600E2C80B /* setUseCutBuffer */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setUseCutBuffer; sourceTree = "<group>"; };
+		D2E431262B15653600E2C80B /* setNoFlip */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setNoFlip; sourceTree = "<group>"; };
+		D2E431272B15653600E2C80B /* webpages */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = webpages; sourceTree = "<group>"; };
+		D2E431282B15653600E2C80B /* dPubMatrixON */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubMatrixON; sourceTree = "<group>"; };
+		D2E431292B15653600E2C80B /* dPubMatrix */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubMatrix; sourceTree = "<group>"; };
+		D2E4312A2B15653600E2C80B /* setFlip */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setFlip; sourceTree = "<group>"; };
+		D2E4312B2B15653600E2C80B /* setMQTT_On */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setMQTT_On; sourceTree = "<group>"; };
+		D2E4312C2B15653600E2C80B /* dPubOTAFile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.csh; path = dPubOTAFile; sourceTree = "<group>"; };
+		D2E4312D2B15653600E2C80B /* noclickCmd600 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = noclickCmd600; sourceTree = "<group>"; };
+		D2E4312E2B15653600E2C80B /* setPDF */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setPDF; sourceTree = "<group>"; };
+		D2E4312F2B15653600E2C80B /* noclickCmd30 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = noclickCmd30; sourceTree = "<group>"; };
+		D2E431302B15653600E2C80B /* setPause */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setPause; sourceTree = "<group>"; };
+		D2E431312B15653600E2C80B /* setVideo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setVideo; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
 		D2E4303F2AFEE67B00E2C80B = {
 			isa = PBXGroup;
 			children = (
+				D2E430C72B15653500E2C80B /* curlCommands */,
 				D2E4304A2AFEF15600E2C80B /* README.md */,
 				D2E430502AFF120200E2C80B /* smart.js */,
 				D2E4304F2AFF10A700E2C80B /* smart.html */,
@@ -32,6 +135,147 @@
 				D2E430562B017A5C00E2C80B /* SemanticMarkerQBar.png */,
 				D2E430572B0184CD00E2C80B /* M5.png */,
 			);
+			sourceTree = "<group>";
+		};
+		D2E430C72B15653500E2C80B /* curlCommands */ = {
+			isa = PBXGroup;
+			children = (
+				D2E430C82B15653500E2C80B /* dawgpack */,
+				D2E430D02B15653500E2C80B /* Groups */,
+				D2E430D52B15653500E2C80B /* dSub */,
+				D2E430D62B15653500E2C80B /* dPub */,
+				D2E430D72B15653500E2C80B /* main */,
+				D2E431152B15653600E2C80B /* ToIphoneMessages */,
+			);
+			path = curlCommands;
+			sourceTree = "<group>";
+		};
+		D2E430C82B15653500E2C80B /* dawgpack */ = {
+			isa = PBXGroup;
+			children = (
+				D2E430C92B15653500E2C80B /* DAWGPubFeed */,
+				D2E430CA2B15653500E2C80B /* DAWGDocFollow3 */,
+				D2E430CB2B15653500E2C80B /* DAWGDocFollow2 */,
+				D2E430CC2B15653500E2C80B /* DAWGpub */,
+				D2E430CD2B15653500E2C80B /* DAWGSendDevStatus */,
+				D2E430CE2B15653500E2C80B /* DAWGDocFollow */,
+				D2E430CF2B15653500E2C80B /* DAWGsub */,
+			);
+			path = dawgpack;
+			sourceTree = "<group>";
+		};
+		D2E430D02B15653500E2C80B /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				D2E430D12B15653500E2C80B /* callit */,
+				D2E430D22B15653500E2C80B /* dPubGroup */,
+				D2E430D32B15653500E2C80B /* dPubGroupStatus */,
+				D2E430D42B15653500E2C80B /* dSubGroup */,
+			);
+			path = Groups;
+			sourceTree = "<group>";
+		};
+		D2E430D72B15653500E2C80B /* main */ = {
+			isa = PBXGroup;
+			children = (
+				D2E430D82B15653500E2C80B /* dPubGatewayOff */,
+				D2E430D92B15653500E2C80B /* tempPub */,
+				D2E430DA2B15653500E2C80B /* d2Sub */,
+				D2E430DB2B15653500E2C80B /* dPubWIFI */,
+				D2E430DC2B15653500E2C80B /* dPubDocFollow3 */,
+				D2E430DD2B15653500E2C80B /* dPubSendSPIFF */,
+				D2E430DE2B15653500E2C80B /* dPubGatewayOn */,
+				D2E430DF2B15653500E2C80B /* dPubTemperature */,
+				D2E430E02B15653500E2C80B /* feedDevices */,
+				D2E430E12B15653500E2C80B /* dPubBLEServerOn */,
+				D2E430E22B15653500E2C80B /* dPubOTA */,
+				D2E430E32B15653500E2C80B /* gPub */,
+				D2E430E42B15653500E2C80B /* dPubGEN3All */,
+				D2E430E52B15653500E2C80B /* dPubSM */,
+				D2E430E62B15653500E2C80B /* dPubStatus */,
+				D2E430E72B15653500E2C80B /* dPubFollowMe */,
+				D2E430E82B15653500E2C80B /* dPubBLEServerOff */,
+				D2E430E92B15653500E2C80B /* dPubLocation */,
+				D2E430EA2B15653500E2C80B /* dPubOTAFile_Main_M5 */,
+				D2E430EB2B15653500E2C80B /* subSys */,
+				D2E430EC2B15653500E2C80B /* dSubImages */,
+				D2E430ED2B15653500E2C80B /* dPubPoweroff */,
+				D2E430EE2B15653500E2C80B /* oPubCmd */,
+				D2E430EF2B15653500E2C80B /* dPubDevicePairDev */,
+				D2E430F02B15653500E2C80B /* dPubGEN3Only */,
+				D2E430F12B15653500E2C80B /* gSub */,
+				D2E430F22B15653500E2C80B /* dPubSMART */,
+				D2E430F32B15653500E2C80B /* dPubDevicesFeed */,
+				D2E430F42B15653500E2C80B /* dPubColor */,
+				D2E430F52B15653500E2C80B /* dPubDeleteSPIFF */,
+				D2E430F62B15653500E2C80B /* dPubWave1 */,
+				D2E430F72B15653500E2C80B /* LocPub */,
+				D2E430F82B15653500E2C80B /* dPubQueryTesting */,
+				D2E430F92B15653500E2C80B /* dPubBuz */,
+				D2E430FA2B15653500E2C80B /* dSub */,
+				D2E430FB2B15653500E2C80B /* dPubCaptured */,
+				D2E430FC2B15653500E2C80B /* dPubDevicePair */,
+				D2E430FD2B15653500E2C80B /* dPubSendStatusDev */,
+				D2E430FE2B15653500E2C80B /* dPubReadSPIFF */,
+				D2E430FF2B15653500E2C80B /* dPubOTAFileKS */,
+				D2E431002B15653500E2C80B /* dPubSendStatus */,
+				D2E431012B15653500E2C80B /* dPubClean */,
+				D2E431022B15653500E2C80B /* dPubTemperatureLow */,
+				D2E431032B15653500E2C80B /* dPubSendTemp */,
+				D2E431042B15653500E2C80B /* dPub */,
+				D2E431052B15653500E2C80B /* dPubSwapWIFI */,
+				D2E431062B15653500E2C80B /* dPubOTAFile */,
+				D2E431072B15653600E2C80B /* LocSub */,
+				D2E431082B15653600E2C80B /* dPubDeviceFeed */,
+				D2E431092B15653600E2C80B /* dPubWaveNext */,
+				D2E4310A2B15653600E2C80B /* dPubLOC */,
+				D2E4310B2B15653600E2C80B /* dPubResetTimer */,
+				D2E4310C2B15653600E2C80B /* dPubWavePrev */,
+				D2E4310D2B15653600E2C80B /* dPubCleanDEV */,
+				D2E4310E2B15653600E2C80B /* dPubBuzoff */,
+				D2E4310F2B15653600E2C80B /* dPubStatusDev */,
+				D2E431102B15653600E2C80B /* dPubFinish */,
+				D2E431112B15653600E2C80B /* dPubLOC_DAWG */,
+				D2E431122B15653600E2C80B /* dPubQueryFeed */,
+				D2E431132B15653600E2C80B /* dPubErase */,
+				D2E431142B15653600E2C80B /* dPubVER */,
+			);
+			path = main;
+			sourceTree = "<group>";
+		};
+		D2E431152B15653600E2C80B /* ToIphoneMessages */ = {
+			isa = PBXGroup;
+			children = (
+				D2E431162B15653600E2C80B /* setOnlyFlip */,
+				D2E431172B15653600E2C80B /* setMQTT */,
+				D2E431182B15653600E2C80B /* SMCommands */,
+				D2E431192B15653600E2C80B /* setAnimals */,
+				D2E4311A2B15653600E2C80B /* setDEBUG */,
+				D2E4311B2B15653600E2C80B /* nouser */,
+				D2E4311C2B15653600E2C80B /* setUUID-2 */,
+				D2E4311D2B15653600E2C80B /* setNoAnimals */,
+				D2E4311E2B15653600E2C80B /* setUUID */,
+				D2E4311F2B15653600E2C80B /* nopass */,
+				D2E431202B15653600E2C80B /* setNoZoom */,
+				D2E431212B15653600E2C80B /* setHUD */,
+				D2E431222B15653600E2C80B /* setUseCutBufferNO */,
+				D2E431232B15653600E2C80B /* setMatrix */,
+				D2E431242B15653600E2C80B /* setZoom */,
+				D2E431252B15653600E2C80B /* setUseCutBuffer */,
+				D2E431262B15653600E2C80B /* setNoFlip */,
+				D2E431272B15653600E2C80B /* webpages */,
+				D2E431282B15653600E2C80B /* dPubMatrixON */,
+				D2E431292B15653600E2C80B /* dPubMatrix */,
+				D2E4312A2B15653600E2C80B /* setFlip */,
+				D2E4312B2B15653600E2C80B /* setMQTT_On */,
+				D2E4312C2B15653600E2C80B /* dPubOTAFile */,
+				D2E4312D2B15653600E2C80B /* noclickCmd600 */,
+				D2E4312E2B15653600E2C80B /* setPDF */,
+				D2E4312F2B15653600E2C80B /* noclickCmd30 */,
+				D2E431302B15653600E2C80B /* setPause */,
+				D2E431312B15653600E2C80B /* setVideo */,
+			);
+			path = ToIphoneMessages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

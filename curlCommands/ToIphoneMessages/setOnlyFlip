@@ -1,0 +1,24 @@
+curl https://idogwatch.com/bot/set/USERNAME/PASSWORD/SM_Flip/on
+#curl https://idogwatch.com/bot/set/USERNAME/PASSWORD/SM_Flip/off
+#
+#
+#SMSharingLeader
+#SMFocusCapture
+#SMSharing
+#SM_AR_Minimal
+#SemanticWidgets
+#SM_Instance_Image
+#images
+#SM_VisionLinker
+#SM_AR_Zoom
+#animals
+#
+#// others:
+#Timeout .. speed
+#HUD (heads up display) .. in AVCamera ..
+#
+#Speech touched..
+#
+#Take a picutre..
+#
+#user KSAVCameraCallbackProtocol

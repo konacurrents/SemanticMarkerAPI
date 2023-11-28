@@ -1,0 +1,21 @@
+#!/bin/tcsh
+set echo
+if ($#argv < 4) then
+   echo "Usage: pub user password dev color" 
+	exit 1
+endif
+set user = $1
+set pass = $2
+set dev = $3
+set topic = usersP/bark/$user
+set userT = pub_$user.$$
+set echo
+# {set:hightemp,val:80}
+set flag = $4
+mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m  \{\'dev\':\'\*$dev\',\'set\':\'screencolor\',\'val\':\'$flag\'\}
+
+#mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m  \{\'dev\':\'$dev\*\',\'set\':\'screencolor\',\'val\':\'$flag\'\}
+#mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m  \{\'dev\':\'\*$dev\*\',\'set\':\'screencolor\',\'val\':\'$flag\'\}
+#mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m  \{\'dev\':\'!\*$dev\*\',\'set\':\'screencolor\',\'val\':\'$flag\'\}
+#mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m  \{\'dev\':\'!\*$dev\*\&!\*GEN3\',\'set\':\'screencolor\',\'val\':\'$flag\'\}
+#mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m  \{\'dev\':\'\*$dev\*\|\*GEN3\',\'set\':\'screencolor\',\'val\':\'$flag\'\}

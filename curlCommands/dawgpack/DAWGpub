@@ -1,0 +1,13 @@
+#!/bin/tcsh
+#set echo
+if ($#argv < 2) then
+   echo "Usage: sub user password"
+	exit 1
+endif
+set user = $1
+set pass = $2
+set topic = usersP/dawgpack
+#set topic = usersP/#  (grabs images, and root pub)
+set userT = sub_$user.$$
+set echo
+mosquitto_pub -h idogwatch.com -i $userT -u $user -P $pass -t $topic  -m \#STATUS

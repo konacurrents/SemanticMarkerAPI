@@ -1,0 +1,12 @@
+#!/bin/tcsh
+set user=test
+set pass=test
+
+#set user=scott@konacurrents.com
+#set pass=id0gwatch
+set echo
+
+curl localhost:1880/feedgroup/$user/$pass/atlasDogs
+curl localhost:1880/statusgroup/$user/$pass/atlasDogs
+curl localhost:1880/feeddevicegroup/$user/$pass/PumpkinUno/atlasDogs
+#curl localhost:1880/feedgroup/scott@konacurrents.com/id0gwatch/atlasDogs

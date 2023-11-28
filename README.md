@@ -356,7 +356,142 @@ Like many of these interfaces, the credentials including the username and passwo
 </details>
 
 ------------------------------------------------------------------------------------------
+# Messaging Grammer 
 
+These are the Websocket and MQTT messaging formats. This includes the legacy websocket interface
+defined as the <b>Barklet Language</b>. The format is a mix of original Barklet Language used with WebSockets,
+and the newer JSON Format messages.
+
+## BNF Grammer for Barklet Language
+
+```objc
+/*
+ * Description = Grammer for Barklet communication
+ * --- BNF: NOTE: {} are part of language not BNF
+ * --NOTE: <guest ID> ":"  -- created by chat-room, not user messages
+ *   message          ::= [<guest ID> ":"] <payload> <player_name> [<time>] 
+ *                   | '{' [<device>] <JSONMessage> '}'
+ *   payload          ::= <request> [<deviceInfo>] [<SemanticMarker>] [<OTA>]| <reply>
+ *   request          ::= #STATUS | #TEMP | #CAPTURE | #FEED | #VERSION | #DOCFOLLOW | #followMe | #CLEAN_SSID_EPROM | #OTA
+ *   reply            ::=  <connection>
+ *                       | <location>
+ *                   | <biometrics> <bot_name>
+ *                   | <ack>
+ *                   | <chat>
+ *                   | <version>
+ *                   | <distanceTo< <bot_name>
+ *   SemanticMarker   ::= AVM= <SMAddress>
+ *   SMAddress        ::= SemanticMarkerURL
+ *   OTA              ::= {v=Version} | {k=<kind>}
+ *   kind             ::= ESP_M5 | ESP_32
+ *   connection       ::= <connectionStatus> <status>
+ *   connectionStatus ::= <connectionPhase> <bot_name> | #REMOTE
+ *   connectionPhase  ::= #CONNECTED | #WAITING | #DISCONNECTED
+ *   status           ::= {I,F,remote}   //Inside network, Foreground  || Outside, background
+ *   location         ::= #GPS <loc>
+ *   loc              ::= {nil} | {<lat:float>,<lon:float>,<alt-feet:float>}
+ *   chat             ::= #CHAT_CONNECTED | #CHAT_DISCONNECTED
+ *   ack              ::= #ACK <ack_kind>
+ *   ack_kind         ::= <ack_feed> | <docfollow>
+ *   ack_feed         ::= "Fed" <bot_name>
+ *   biometrics       ::= <temp> | <acceleration>
+ *   temp             ::= {TempF=<float>}
+ *   acceleration     ::= {Acc=<floatX>,<floatY>,<floatZ>}
+ *   deviceInfo       ::= <identity> | {"deviceName":<name>}
+ *   bot_name         ::= <identity>
+ *   player_name      ::= <identity>
+ *   identity         ::= {<name> [<UUID>]}
+ *   UUID             ::= <32 bit name>
+ *   float            ::= <int> : <int>
+ *   time             ::= {hh:mm:ss}
+ *   version          ::= {ver=x.x}
+ *   number           ::= <int>
+ *   boolean          ::= "on" | "off"
+ *
+ *   JSONMessage      ::= <set> | <send> | <set64> | <SemanticMarkerApp Messages>
+ *   device           ::= "device" : name_of_device
+ *   set              ::= "set" : setString , "val": valString
+ *   send             ::= "send" : sendString
+ *   set64            ::= "set64" : <encodedBase64String>
+ *   setString        ::= "semanticMarker" 
+ *                     | "highTemp" <number>
+ *                     | "feed" <boolean>
+ *                     | "status" <boolean>
+ *                     | "resetTimer" <boolean>
+ *                     | "devOnlySM" <boolean>
+ *                     | "ble+wifi" <boolean>
+ *                     | "factoryReset" <boolean>
+ *                     | "restartModels" <boolean>
+ *                     | "screenTimeout" <number>
+ *                     | "stepperAngle" <number>
+ *                     | "noclick"  <boolean>
+ *                     | "gateway"  <boolean>
+ *                     | "DiscoverM5PTClicker"  <boolean>
+ *                     | "useSPIFF"  <boolean>
+ *                     | "timerDelay" <number>
+ *                     | "startTimer"  <boolean>
+ *                     | "stepper"  <number>
+ *                     | "clockWiseMotor" <boolean>
+ *                     | "otaFile" <string>
+ *                     | "location" <string>
+ *                     | "device"  <string>
+ *                     | "pairNow"  <boolean>
+ *                     | "pairDev" <string>
+ *                     | "useGroups" <boolean>
+ *                     | "groups" <boolean>
+ *                     | "screenColor" <number>
+ *                     | "gen3only" <boolean>
+ *                     | "BLEUsePairedDeviceName" <boolean>
+ *                     | "BLEUseDeviceName" <boolean>
+ *                     | "minMenue" <boolean>
+ *                     | "addWIFI" <boolean>
+ *                     | "useDOCFOLLOW" <boolean>
+ *                     | "semanticMarker" 
+ *                     | "blankscreen" <boolean>
+ *                     | "SubDawgpack" <boolean>
+ *                     | "buzz" <boolean>
+ *                     | "BLEClient" <boolean>
+ *                     | "BLEServer" <boolean>
+ *                     | "tilt" <boolean>
+ *                     | "zoomSM" <SMNum>
+ *                     | "buttonA" ["longpress" | "shortpress"]
+ *                     | "buttonB" ["longpress" | "shortpress"]
+ *   sendString      ::= "temp" 
+ *                     | "status" 
+ *                     | "capture" 
+ *                     | "volume" 
+ *                     | "feed" 
+ *   encodedBase64String ::=
+ *                     |  <Semantic Marker value after decoding base64>
+ *   SemanticMarkerApp Messages ::=
+ *                     | DEBUG <boolean>
+ *                     | HUD <boolean>
+ *                     | MQTT_DEBUG <boolean>
+ *                     | SMFocusCapture <boolean>
+ *                     | SMSharing <boolean>
+ *                     | SMSharingLeader <boolean>
+ *                     | SM_AR_Minimal <boolean>
+ *                     | SM_AR_ZOOM <boolean>
+ *                     | SM_AR_Zoom <boolean>
+ *                     | SM_Flip <boolean>
+ *                     | SM_FlipRotate <boolean>
+ *                     | SM_Instance_Image <boolean>
+ *                     | SM_QRAvatar <boolean>
+ *                     | SM_ReplaceUUID <boolean>
+ *                     | SM_UseCropImage <boolean>
+ *                     | SM_VisionLinker <boolean>
+ *                     | animals <boolean>
+ *                     | images <boolean>
+ *                     | matrix <boolean>
+ *                     | noclick <boolean>
+ *                     | pause <boolean>
+ *                     | pdf <boolean>
+ *                     | replaceUUID <UUID string>
+ */
+```
+
+
+------------------------------------------------------------------------------------------
 # Additional Interaction with the SMART Button Infrastructure
 
 Outside of creating a Semantic Marker, modification and invocation is out of scope of this API document. One

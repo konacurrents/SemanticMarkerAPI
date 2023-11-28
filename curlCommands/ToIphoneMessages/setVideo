@@ -1,0 +1,5 @@
+curl https://idogwatch.com/bot/set/USERNAME/PASSWORD/images/off
+curl https://idogwatch.com/bot/set/USERNAME/PASSWORD/matrix/off
+#curl https://idogwatch.com/bot/set/USERNAME/PASSWORD/animals/on
+#curl https://idogwatch.com/bot/set/USERNAME/PASSWORD/animals/on
+
