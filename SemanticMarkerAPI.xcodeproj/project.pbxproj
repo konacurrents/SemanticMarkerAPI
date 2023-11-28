@@ -118,6 +118,7 @@
 		D2E4312F2B15653600E2C80B /* noclickCmd30 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = noclickCmd30; sourceTree = "<group>"; };
 		D2E431302B15653600E2C80B /* setPause */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setPause; sourceTree = "<group>"; };
 		D2E431312B15653600E2C80B /* setVideo */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = setVideo; sourceTree = "<group>"; };
+		D2E431322B166F9D00E2C80B /* watch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = watch.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -134,6 +135,7 @@
 				D2E430532AFF20C300E2C80B /* SemanticMarkerAPI.png */,
 				D2E430562B017A5C00E2C80B /* SemanticMarkerQBar.png */,
 				D2E430572B0184CD00E2C80B /* M5.png */,
+				D2E431322B166F9D00E2C80B /* watch.png */,
 			);
 			sourceTree = "<group>";
 		};

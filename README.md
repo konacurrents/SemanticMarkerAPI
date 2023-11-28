@@ -31,11 +31,11 @@ Example production web pages includes making appropriate API calls includes:
 [iDogWatch.com](https://idogwatch.com/userpage/userpage.html?username=test&password=test) and 
 [SemanticMarker.org](https://SemanticMarker.org/smart?username=test&password=test)
 
-## Kona Currents, LLC offers three tiers of Semantic Marker offerings.
+# Kona Currents, LLC offers three tiers of Semantic Marker offerings.
 
-### Tier I. Semantic Marker Indirection
-### Tier II.  Semantic Marker Store and Forward
-### Tier III.  Semantic Marker SMART Button Management
+## Tier I. Semantic Marker Indirection
+## Tier II.  Semantic Marker Store and Forward
+## Tier III.  Semantic Marker SMART Button Management
 
 ------------------------------------------------------------------------------------------
 # Tier I Semantic Marker Indirection
@@ -132,6 +132,7 @@ This is a simple example of creating a Tier I Semantic Marker inside the ESP-32 
 <details>
 <summary><code>Apple iOS Objective-C</code> <code><b>create Semantic Marker</b></code></summary>
 This is a simple example of creating a Tier I Semantic Marker inside the iOS Apple Objective-c code base.
+The <b>createSemanticMarker</b> is a method that performs all the Semantic Marker image merging and creation. The image merging is placing the avatarImage inside the resulting Semantic Marker at a size and aspect ratio inherent to the Semantic Marker specifications.
 
 ##### Example iOS ObjectiveC
 ```objectiveC
@@ -139,6 +140,10 @@ This is a simple example of creating a Tier I Semantic Marker inside the iOS App
     UIImage *image = [self createSemanticMarker:address avatarImage:image];
 
 ```
+#### Example functional Semantic Marker with enclosed Avatar image
+
+![Semantic Marker on Watch Example](watch.png)
+
 </details>
 
 ------------------------------------------------------------------------------------------
