@@ -127,6 +127,9 @@ This is a simple example of creating a Tier I Semantic Marker inside the ESP-32 
     //try to draw a character in the middle ...
     printTextAtTextPosition("SM",_zoomedTextPositions[QRAVATAR_ACTION]);
 ```
+#### Example Semantic Marker shown on the small M5 Display 
+
+<img src="M5.png" width="300">
 </details>
 
 <details>
