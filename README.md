@@ -230,7 +230,7 @@ Semantic Marker actions. The created result is called a SMART Button - standing 
 
 A SMART Button has a unique Semantic Marker address such as:
 
-##### https://SemanticMarker.org/bot/smart?uuid=UUID&flow=flowNUM
+##### https://SemanticMarker.org/bot/smart?uuid=V6gZLkRley&flow=1698208438983
 
 #### Creating a Semantic Marker with an embedded Avatar Image
 ##### Digitize an image for use in a Semantic Marker Avatar (Note should have been cropped by the user)
