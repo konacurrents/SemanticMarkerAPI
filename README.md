@@ -1,4 +1,4 @@
-#  Semantic Marker ™️  REST API Manual
+#  Semantic Marker ™️  REST and MQTT Message API Manual
 
 ![SemanticMarker API](SemanticMarkerAPI.png)
 
@@ -252,13 +252,13 @@ A SMART Button has a unique Semantic Marker address such as:
 Like many of these interfaces, the credentials including the username and password, are passed as part of the payload in these POST calls.
 ```json
 {
-                         "username":_username,
-                         "password":_password,
-                         "name" : flowName,
-                         "uuid" : uuid,
-                         "flowNum"  : flowNum,
-                         "flowCat"  : flowCat
-                       }
+   "username":_username,
+   "password":_password,
+   "name" : flowName,
+   "uuid" : uuid,
+   "flowNum"  : flowNum,
+   "flowCat"  : flowCat
+}
 ```
 ##### Example cURL POST
 
@@ -306,43 +306,41 @@ Like many of these interfaces, the credentials including the username and passwo
 Like many of these interfaces, the credentials including the username and password, are passed as part of the payload in these POST calls.
 ```json
 {
-                         "username":_username,
-                         "password":_password,
-                         "name" : flowName,
-                         "uuid" : uuid,
-                         "isdata": isDataFlag,
-                         "private": privateflag,
-                         "flowNum"  : flowNum,
-                         "flowCat"  : flowCat,
-                         "date" : dateString,
-                         "parameters" : parameters,
-                         "desc": desc,
-                         "QRAvatarURL":QRAvatarURL,
-                         "nextFlowURL":nextFlowURL,
-                         "flow" : allCommandsJSON,
+    "username":_username,
+    "password":_password,
+    "name" : flowName,
+    "uuid" : uuid,
+    "isdata": isDataFlag,
+    "private": privateflag,
+    "flowNum"  : flowNum,
+    "flowCat"  : flowCat,
+    "date" : dateString,
+    "parameters" : parameters,
+    "desc": desc,
+    "QRAvatarURL":QRAvatarURL,
+    "nextFlowURL":nextFlowURL,
+    "flow" : allCommandsJSON,
 
-                         "dataSM" : dataSM,
-                         "KSMatrix" : KSMatrixText,
-                         "artifactsSM" : artifactsSM,
-                         "markup" : markupText,
-                         "languagesSM": languagesSM,
-                         "videoSM": videoSM,
-                         "isCircularAvatar": isCircularAvatar,
+    "dataSM" : dataSM,
+    "KSMatrix" : KSMatrixText,
+    "artifactsSM" : artifactsSM,
+    "markup" : markupText,
+    "languagesSM": languagesSM,
+    "videoSM": videoSM,
+    "isCircularAvatar": isCircularAvatar,
 
-                         "KSWave" : KSWaveText,
-                         "bridgeSM" : bridgeSM,
-                         "future" : futureText,
+    "KSWave" : KSWaveText,
+    "bridgeSM" : bridgeSM,
+    "future" : futureText,
 
-                         "audioSM" : audioSM,
-                         "locationSM" : locationSM,
-                         "inheritedSM" : inheritedSM,
-                         "deckSM" : deckSM,
-                         "isMessaging" : isMessaging,
-                         "isIndirectSM" : isIndirectSM,
-                         "indirectSM" : indirectSM
-                       }
-
-
+    "audioSM" : audioSM,
+    "locationSM" : locationSM,
+    "inheritedSM" : inheritedSM,
+    "deckSM" : deckSM,
+    "isMessaging" : isMessaging,
+    "isIndirectSM" : isIndirectSM,
+    "indirectSM" : indirectSM
+}
 ```
 ##### Example cURL POST
 
@@ -361,6 +359,10 @@ Like many of these interfaces, the credentials including the username and passwo
 These are the Websocket and MQTT messaging formats. This includes the legacy websocket interface
 defined as the <b>Barklet Language</b>. The format is a mix of original Barklet Language used with WebSockets,
 and the newer JSON Format messages.
+
+Many of the messages described in the following BNF Grammer can be run
+through the shell commands at: [Example curl commands](curlCommands)
+To run, doload the scripts and run with a valid username and password.
 
 ## BNF Grammer for Barklet Language
 
