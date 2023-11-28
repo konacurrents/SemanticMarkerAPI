@@ -144,6 +144,8 @@ The <b>createSemanticMarker</b> is a method that performs all the Semantic Marke
 
 ![Semantic Marker on Watch Example](watch.png)
 
+Note this image captured from the Semantic Marker Apple Watch, shows the Semantic Marker (where a long press will invoke the Semantic Marker using the Tier III REST API), but also shows the <b>FEED</b> button. This makes a call on the <b>/feed</b> REST API shown below. 
+
 </details>
 
 ------------------------------------------------------------------------------------------
