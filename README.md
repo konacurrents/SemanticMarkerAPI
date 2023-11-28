@@ -2,7 +2,7 @@
 
 ![SemanticMarker API](SemanticMarkerAPI.png)
 
-Creating and Processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The following shows the interaction with the web services running at SemanticMarker.org. The code included is almost a 50-50 mix of html and javascript. As these are an HTTP API, other languages make calls on these same web API's. 
+Creating and Processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The diagram below shows the interaction with the web services running at [SemanticMarker.org](https://SemanticMarker.org). The code included is almost a 50-50 mix of html and javascript. As these are an HTTP API, other languages make calls on these same web API's (such as the <b>curl</b> shell calls.)
 
 ## SMART - Semantic Marker Augmented Reality of Things
 
@@ -12,7 +12,6 @@ web calls embodied in the following web page code (and available at
 
 These fit an overall cloud and device interaction Semantic Marker architecture shown here 
 ![SemanticMarkerAPIMessages](SemanticMarkerAPIMessages.png)
-
 
 
 # Semantic Marker REST API
@@ -41,7 +40,7 @@ Example production web pages includes making appropriate API calls includes:
 # Tier I Semantic Marker Indirection
 
 A Tier I Semantic Marker is a straight indirection to a remote address. These are created
-directly from the various language implementation. Eamples of javascript, C and objective-c are shown. These
+directly from the various language implementation. Examples of javascript, C and objective-c are shown. These
 are snipits of code from various Semantic Marker apps to give a flavor of the APIs.
 
 <details>
