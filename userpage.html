@@ -1,0 +1,2874 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+<!--6.15.23 standalone  Updated July 16, 2022 3.8.23, 3.13.23  5.4.23 (May the 4th be with you)-->
+<!--8.17.23 updated the Semantic Marker(TM) after it's been "accepted" by USPTO. Next is "registered" -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pet Tutor Feeding Panel</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/47e581f8dc.js"
+	crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet" href="https://SemanticMarker.org/semanticStyle.css">
+
+
+<style type="text/css">
+.main-wrapper {
+	margin-bottom: 75px;
+}
+
+@media screen and (min-width: 1024px) and (min-height: 810px) {
+	.main-wrapper {
+		margin-bottom: 0;
+		margin-left: 150px !important;
+	}
+}
+
+@media screen and (min-height: 900px) {
+	.main-wrapper {
+		margin-left: 150px !important;
+		margin-bottom: 0;
+	}
+}
+
+.nav-xs {
+	z-index: 1000;
+	background-color: #ebebeb;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+@media screen and (min-width: 1024px) and (min-height: 810px) {
+	.nav-xs {
+		display: none;
+	}
+}
+
+@media screen and (min-height: 900px) {
+	.nav-xs {
+		display: none;
+	}
+}
+
+.nav-xs .nav-item p {
+	margin-bottom: 0 !important;
+}
+
+.nav-lg {
+	z-index: 1000;
+	background-color: #ebebeb;
+	position: fixed;
+	top: 100px;
+	left: 0;
+	bottom: 0;
+	width: 153px;
+}
+
+.nav-lg {
+	display: none;
+}
+
+@media screen and (min-width: 1024px) and (min-height: 810px) {
+	.nav-lg {
+		display: block;
+	}
+}
+
+@media screen and (min-height: 900px) {
+	.nav-lg {
+		display: block;
+	}
+}
+
+.nav-item button {
+	background-color: transparent !important;
+	color: #0e6efd !important;
+	outline: none !important;
+}
+
+.tab-pane h1 {
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 100px;
+	text-align: center;
+	color: black;
+	font-family: "Nunito", sans-serif;
+	line-height: 100px;
+	background-color: #84bcfc;
+}
+
+.tab-pane h1 img {
+	position: absolute;
+	left: -5px;
+	top: 8px;
+	max-width: 110px;
+	padding-right: 12px;
+}
+
+@media screen and (min-width: 700px) {
+	.tab-pane h1 {
+		padding-left: 48px;
+		font-size: 48px;
+		text-align: center;
+	}
+	.tab-pane h1 img {
+		max-width: 150px;
+		left: -5px;
+		top: -15px;
+	}
+}
+
+.tab-pane h1+ul, .tab-pane h1+div {
+	margin-top: 100px !important;
+}
+
+.tab-pane h2 {
+	font-size: 20px;
+	font-family: "Nunito", sans-serif;
+	font-weight: bold;
+	display: flex;
+	align-items: center;
+}
+
+.tab-pane h2 img {
+	max-width: 45px;
+	margin-right: 12px;
+}
+
+.tab-pane ul, .tab-pane li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.tab-pane h2, .tab-pane ul, .tab-pane li {
+	margin-bottom: 15px;
+}
+
+.tab-pane .accordion-body {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+
+.btn-trigger {
+	width: 100%;
+	height: 150px;
+	background-color: #FB992F !important;
+	font-size: 50px !important;
+	color: black !important;
+	font-family: 'Nunito', sans-serif !important;
+	border-radius: 6rem !important;
+}
+
+.btn-triggeretc {
+	box-shadow: 0 8px #FB992F !important;
+	background-color: #F1EFE3 !important;
+	border: solid 3px !important;
+}
+
+.btn-trigger:active {
+	background-color: #F1EFE3 !important;
+	box-shadow: 0 0px #F1EFE3 !important;
+	transform: translateY(8px) !important;
+}
+
+.btn-trigger-all {
+	width: 100%;
+	height: 150px;
+	background-color: #FB992F !important;
+	font-size: 50px !important;
+	color: black !important;
+	font-family: 'Nunito', sans-serif !important;
+	border-radius: 6rem !important;
+}
+
+.btn-triggeretc-all {
+	box-shadow: 0 8px #FB992F !important;
+	background-color: lightblue !important;
+	border: solid 3px !important;
+}
+
+.btn-trigger-all:active {
+	background-color: #F1EFE3 !important;
+	box-shadow: 0 0px #F1EFE3 !important;
+	transform: translateY(8px) !important;
+}
+
+.btn-trigger-gen3 {
+	width: 100%;
+	height: 150px;
+	background-color: #FB992F !important;
+	font-size: 50px !important;
+	color: black !important;
+	font-family: 'Nunito', sans-serif !important;
+	border-radius: 6rem !important;
+}
+
+.btn-triggeretc-gen3 {
+	box-shadow: 0 8px #FB992F !important;
+	background-color: lightgreen !important;
+	border: solid 3px !important;
+}
+
+.btn-trigger-gen3:active {
+	background-color: #F1EFE3 !important;
+	box-shadow: 0 0px #F1EFE3 !important;
+	transform: translateY(8px) !important;
+}
+
+.btn-trigger-m5 {
+	width: 100%;
+	height: 150px;
+	background-color: #FB992F !important;
+	font-size: 50px !important;
+	color: black !important;
+	font-family: 'Nunito', sans-serif !important;
+	border-radius: 6rem !important;
+}
+
+.btn-triggeretc-m5 {
+	box-shadow: 0 8px #FB992F !important;
+	background-color: red !important;
+	border: solid 3px !important;
+}
+
+.btn-trigger-m5:active {
+	background-color: #F1EFE3 !important;
+	box-shadow: 0 0px #F1EFE3 !important;
+	transform: translateY(8px) !important;
+}
+.btn-settings {
+	width: 100%;
+	color: white !important;
+	background-color: rgb(14, 110, 253) !important;
+}
+
+.btn-feed-qr {
+	padding: 5px;
+	background-color: #FB992F;
+	color: black;
+	font-weight: 700;
+	font-size: 18px;
+	line-height: 18px;
+	font-family: "Nunito", sans-serif;
+	border-radius: 8px;
+	border: 0;
+}
+
+.btn-feed-qr img {
+	margin-top: 5px;
+	background-color: white;
+	border-radius: 8px;
+	padding: 5px;
+	width: 100%;
+}
+
+.btn-common, #btn-instructions-xs, .btn-share {
+	overflow: hidden;
+	border: solid 2px;
+	font-size: 1rem;
+	color: white;
+	background: none;
+	cursor: pointer;
+	padding: 6px 12px;
+	text-transform: uppercase;
+	outline: none;
+	border-radius: 4rem;
+	font-weight: 700;
+	font-family: 'Nunito', sans-serif;
+}
+
+.btn-shareetc {
+	box-shadow: 0 4px #023047;
+	background-color: white;
+	color: #457b9d;
+}
+
+.btn-shareetc:active {
+	background-color: white;
+	box-shadow: 0 0px #023047;
+	transform: translateY(4px);
+}
+
+#btn-instructions-xs {
+	box-shadow: 0 4px #023047;
+	background-color: white;
+	color: #457b9d;
+}
+
+#btn-instructions-xs:active {
+	background-color: white;
+	box-shadow: 0 0px #023047;
+	transform: translateY(4px);
+}
+
+.btns {
+	position: fixed;
+	z-index: 1001;
+	top: 30px;
+	right: 20px;
+}
+
+.btn-share span {
+	display: none;
+}
+
+@media screen and (min-width: 600px) {
+	.btn-share span {
+		display: inline-block;
+	}
+}
+
+@media screen and (min-width: 1024px) and (min-height: 810px) {
+	#btn-instructions-xs {
+		display: none;
+	}
+}
+
+@media screen and (min-height: 900px) {
+	#btn-instructions-xs {
+		display: none;
+	}
+}
+
+#btn-instructions {
+	font-size: 18px;
+	background-color: red;
+	border-radius: 4px 0 0 0;
+	border: 2px solid red;
+	transition-duration: 0.4s;
+	position: fixed;
+	z-index: 1002;
+	bottom: 0;
+	right: 0;
+	display: none;
+}
+
+@media screen and (min-width: 1024px) and (min-height: 810px) {
+	#btn-instructions {
+		display: block;
+	}
+}
+
+@media screen and (min-height: 900px) {
+	#btn-instructions {
+		display: block;
+	}
+}
+
+#btn-instructions:hover {
+	border: 2px solid red;
+	background-color: white;
+	color: black;
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0
+		rgba(0, 0, 0, 0.19);
+}
+
+.logo-pt {
+	max-width: 150px;
+	padding-left: 20px;
+}
+
+.logo-dw {
+	max-width: 98px;
+	position: absolute;
+	left: 24px;
+	bottom: 24px;
+}
+
+#accordion-qr {
+	margin-top: 48px;
+}
+
+.toast-container {
+	bottom: 0 !important;
+}
+
+p {
+	font-size: 15px;
+}
+
+.fa-bounce-hover:hover {
+	-webkit-animation: fa-bounce 2s infinite linear;
+	-moz-animation: fa-bounce 2s infinite linear;
+	-o-animation: fa-bounce 2s infinite linear;
+	animation: fa-bounce 2s infinite linear;
+}
+
+.header {
+	background-color: #84bcfc;
+	height: 100px;
+	width: 100%;
+	position: fixed;
+}
+
+.headertext {
+	padding-top: 25px;
+	padding-left: 215px;
+	color: black;
+	font-family: "Nunito", sans-serif;
+	font-size: 40px;
+}
+
+.sidebar {
+	background-color: #ebebeb;
+	width: 145px;
+	height: 100vh;
+	float: left;
+}
+
+.feedbtn {
+	padding: 20px 70px;
+	top: 23px;
+	margin-top: 50px;
+	margin-bottom: 25px;
+	background-color: #FB992F;
+	color: black;
+	font-size: 50px;
+	font-family: "Nunito", sans-serif;
+	border-radius: 4rem;
+	border: solid 0px;
+}
+
+.feedbtn:active {
+	padding: 20px 70px;
+	top: 23px;
+	margin-top: 50px;
+	margin-bottom: 25px;
+	margin-left: 225px;
+	background-color: #FB992F;
+	font-size: 60px;
+	font-family: "Nunito", sans-serif;
+	border-radius: 4rem;
+	border: solid 0px;
+	box-shadow: 5px 10px;
+}
+
+.addbtn {
+	padding: 20px 120px;
+	top: 23px;
+	margin-left: 40px;
+	background-color: transparent;
+	font-size: 60px;
+	font-family: "Nunito", sans-serif;
+	border-radius: 4rem;
+	border: solid 4px #FB992F;
+}
+
+.qrbtn {
+	padding: 20px 67px;
+	margin: 5px;
+	background-color: #FB992F;
+	font-weight: 700;
+	font-size: 15px;
+	font-family: "Nunito", sans-serif;
+	border-radius: 4rem;
+	border: solid 2px;
+	text-align: left;
+	text-dectoration: bold;
+}
+
+.qrbtnetc {
+	box-shadow: 0 6px #FB992F;
+	background-color: #F1EFE3;
+	color: black;
+}
+
+.qrbtnetc:hover {
+	background-color: #F1EFE3;
+	box-shadow: 0 0px #F1EFE3;
+	transform: translateY(6px);
+}
+
+.hide {
+	display: none;
+}
+
+.nohide:hover+.hide {
+	display: block;
+}
+
+input.apple-switch {
+	position: relative;
+	-webkit-appearance: none;
+	outline: none;
+	width: 50px;
+	height: 30px;
+	background-color: #fff;
+	border: 1px solid #D9DADC;
+	border-radius: 50px;
+	box-shadow: inset -20px 0 0 0 #D9DADC;
+}
+
+input.apple-switch:after {
+	content: "";
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	background: transparent;
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+input.apple-switch:checked {
+	box-shadow: inset 20px 0 0 0 #4ed164;
+	border-color: #4ed164;
+}
+
+input.apple-switch:checked:after {
+	left: 20px;
+	box-shadow: -2px 4px 3px rgba(0, 0, 0, 0.05);
+}
+
+.headText {
+	font-size: 20px;
+	font-family: "Nunito", sans-serif;
+	text-dectoration: bold;
+	vertical-align: bottom;
+}
+
+
+/* ROOM BUTTON **/
+
+
+.label {
+  background-color: white;
+  color: black;
+  font-size: 26px;
+
+}
+
+
+.H1green {
+  background-color: lightgreen;
+  color: black;
+  font-size: 36px;
+  border: 2px solid #4CAF50;
+  border-radius:12px;
+
+}
+
+.H1green:hover {
+  background-color: green;
+   font-size: 36px;
+  color: white;
+}
+
+
+.M5button {
+  background-color: #FF3933;
+  color: white;
+  font-size: 36px;
+  border: 2px solid #4CAF50;
+  border-radius:12px;
+
+}
+
+.M5button:hover {
+  background-color: red;
+   font-size: 36px;
+  color: black;
+}
+
+
+.button {
+  background-color: #33FFFF;
+  color: black;
+  font-size: 36px;
+  border: 2px solid #4CAF50;
+  border-radius:12px;
+
+}
+
+.button:hover {
+  background-color: lightblue;
+   font-size: 36px;
+  color: white;
+}
+
+
+/*# sourceMappingURL=style.css.map */
+</style>
+
+</head>
+
+
+<script>
+
+
+/*
+
+	 // next line doesn't compile
+    var $temp =$("<input>");
+    var $url = 'https://smartanimaltraining.com';
+
+    $('.clipboard').on('click', function() {
+      $("body").append($temp);
+      $temp.val($url).select();
+      document.execCommand("copy");
+      $temp.remove();
+    })
+
+
+        const toastTriggers = document.getElementById('liveToastBtns')
+    const toastLiveExamples = document.getElementById('liveToasts')
+    if (toastTriggers) {
+      toastTriggers.addEventListener('click', () => {
+        const toast = new bootstrap.Toast(toastLiveExamples)
+
+        toast.show()
+      })
+    }
+
+    const toastTrigger = document.getElementById('liveToastBtn')
+    const toastLiveExample = document.getElementById('liveToast')
+    if (toastTrigger) {
+      toastTrigger.addEventListener('click', () => {
+        const toast = new bootstrap.Toast(toastLiveExample)
+
+        toast.show()
+      })
+    }
+
+	 darkmode.find('input').on('click', function() {
+    if($(this).prop("checked") == true) {
+        darkMode();
+    }
+    else {
+        undarkMode();
+    }
+});
+
+*/
+
+var _rootBotURL = "https://idogwatch.com/bot";
+//var _rootBotURL = "http://localhost:1880";
+
+//! THESE GLOBALS are set by the mustache syntax as parameters from node-red
+// password is from the PASSWORD (not manually set parameters)
+var _password = null; //"{{req.params.PASSWORD}}";
+var _username = null; //"{{req.params.NAME}}"; // NAME in the req.params.NAME
+var _guestPassword = null; "{{req.params.guestPassword}}";
+var _userInfoJSON = null; //"{{req.params.userinfo}}";
+
+
+//var _password = "PASS";
+//var _username = "scott@konacurrents.com";
+//var _guestPassword = "PASS";
+//var _userInfoJSON = "normal";
+
+
+//!Set to true if the msg.req.params.PASSWORD == null (as it wasn't passed in..)
+//! set in the create buttons ..
+
+var _isGuestPage = false; //"{{req.params.PASSWORD}}".length == 0;
+
+//var _isGuestPage = true;
+//var _isGuestPage = false;
+
+/**  These are all the web calls ***/
+
+
+//! try a login
+//! Cannot hide password yet: https://stackoverflow.com/questions/9554987/how-can-i-hide-the-password-entered-via-a-javascript-dialog-prompt
+function requestLoginWindow(doReadCookies)
+{
+	if (doReadCookies)
+	  readCookies();
+
+	if (_isGuestPage)
+	{
+
+	}
+
+	else
+	{
+
+    	// basically is password is null then ask for both.. but reuse the username
+	    // but if username null do it too
+       if (!_password || _password.length == 0
+	      || !_username || _username.length ==0)
+	    {
+          let username = prompt("Please enter your username: ",_username);
+	       _username = username;
+
+	       let password = prompt("Please enter password","");
+	       _password = password;
+	    }
+	}
+
+	saveCookies();
+
+   reloadUserAgent();
+
+}
+
+//!! START COOKIE
+//! https://www.w3schools.com/js/tryit.asp?filename=tryjs_cookie_username
+//! https://developer.mozilla.org/en-US/docs/Web/API/Document/cookie
+//! https://www.tutorialspoint.com/javascript/javascript_cookies.htm
+//! https://stackoverflow.com/questions/16842226/setting-multiple-cookies-in-javascript
+/*
+It's counter-intuitive, but setting document.cookie does not overwrite already set cookies, except the one cookie with the same name, if it exists. And the way to remove a cookie, is to set its expiry date to the past. I recommend experimenting in the developer tools of your browser!
+*/
+
+//!   This will be name=value
+//!   For preferences, this will be 
+
+//! writeCookie appends to document,cookie
+function writeCookie(name, value)
+{
+	  //! add expiration
+	  var now = new Date();
+     now.setMonth( now.getMonth() + 3 );
+
+	  var cookie = name + "=" + encodeURIComponent(value);
+     cookie += ";expires=" + now.toUTCString() + ";"
+
+	  console.log("writeCookie: " + cookie);
+
+     document.cookie = cookie;
+     //document.cookie = "expires=" + now.toUTCString() + ";"
+}
+
+// {"name":name, "value":value}
+var _cookieValues = [];
+
+//! reads the cookies, will set the documentID if valid
+function readCookies()
+{
+// not using cookies
+return;
+
+    var allcookies = document.cookie;
+
+    // Get all the cookies pairs in an array
+    cookiearray = allcookies.split(';');
+
+    // Now take key value pair out of this array
+    for (var i=0; i<cookiearray.length; i++)
+	 {
+		   console.log("readCookie: " + cookiearray[i]);
+         name = cookiearray[i].split('=')[0];
+		   name = name.trim();
+         value = decodeURIComponent(cookiearray[i].split('=')[1]);
+
+		   var object = {"name":name,"value":value};
+		   _cookieValues.push(object);
+
+		  if (name.localeCompare("_username")==0)
+		  {
+	        var val = object.value;
+			  _username = val;
+		  }
+
+		  else if (name.localeCompare("_password")==0)
+		  {
+	        var val = object.value;
+			  _password = val;;
+		  }
+     }
+}
+
+//! writes the cookies
+//! This reads the _parameters which are elementId's
+function saveCookies()
+{
+
+	 var cookieNames = ['_username','_password'];
+
+	 for (var i = 0; i < cookieNames.length; i++)
+	 {
+	    var cookieName = cookieNames[i];
+
+		 // OR?? can the _username of the cookiename be used?
+		 var val = cookieNames[i];
+	    // lets start with the SMART Button IoT set..
+		  if (cookieNames[i].localeCompare("_username")==0)
+		  {
+	        var object = {"name":cookieName,"value":_username};
+	        writeCookie(object.name, object.value);
+		  }
+		  else if (cookieNames[i].localeCompare("_password")==0)
+		  {
+	        var object = {"name":cookieName,"value":_password};
+	        writeCookie(object.name, object.value);
+		  }
+	 }
+
+}
+
+
+//!! END COOKIE
+
+//!  START FEED COMMANDS *****
+
+function callWebFeed()
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/feed/" + _username + "/" + _password, true);
+  xhttp.send();
+}
+
+function callWebFeedGuest()
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/feedguest/" + _username + "/" + _guestPassword, true);
+  xhttp.send();
+}
+
+
+function callWebSuperStatusName()
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/superstatus/" + _username + "/" + _password, true);
+  xhttp.send();
+}
+
+function callWebFeedSuper()
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/feedsuper/" + _username + "/" + _password, true);
+  xhttp.send();
+}
+
+function callWebFeedDeviceName(deviceName) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/feeddevice/" + _username + "/" + _password + "/" + deviceName, true);
+  xhttp.send();
+}
+
+
+function callWebFeedGuestDeviceName(deviceName) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/feedguestdevice/" + _username + "/" + _guestPassword + "/" + deviceName, true);
+  xhttp.send();
+}
+//!  END FEED COMMANDS *****
+
+
+//onoff == "on" or "off"
+function callWebCommandOnOff(command, onoff)
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/command/"  + _username + "/" + _password + "/" + command + "/" + val, true);
+  xhttp.send();
+}
+
+//onoff == "on" or "off"
+function callWebCommandSetVal(command, val)
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/" + command + "/" + _username + "/" + _password + "/" + onoff, true);
+  xhttp.send();
+}
+
+//onoff == "on" or "off"
+function callWebBuzzer(onoff)
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/buzzer/" + _username + "/" + _password + "/" + onoff, true);
+  xhttp.send();
+}
+
+//onoff == "on" or "off"
+function callWebScreenTimeout(timeval) {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/screentimeout/" + _username + "/" + _password + "/" + timeval, true);
+  xhttp.send();
+}
+
+
+//onoff == "on" or "off"
+function callWebPoweroff()
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/poweroff/" + _username + "/" + _password, true);
+  xhttp.send();
+}
+
+
+//onoff == "on" or "off"
+function callWebZoomSM(onoff)
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/zoomsm/" + _username + "/" + _password + "/" + onoff, true);
+  xhttp.send();
+}
+
+
+//onoff == "on" or "off"
+function callWebGateway(onoff)
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/gateway/" + _username + "/" + _password + "/" + onoff, true);
+  xhttp.send();
+}
+
+
+//onoff == "on" or "off"
+function callWebTilt(onoff)
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/tilt/" + _username + "/" + _password + "/" + onoff, true);
+  xhttp.send();
+}
+
+//cmd == sm1, sm2, ... hard wired for now..
+// sm1 - user page
+// sm2 = feed command
+function callWebShowSemanticMarker(cmd)
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/showSemanticMarker/" + _username + "/" + _password + "/" + cmd, true);
+  xhttp.send();
+}
+
+//cmd == sm1, sm2, ... hard wired for now..
+// sm1 - user page
+// sm2 = feed command
+function callWebSendGuestPassword()
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/sendguestpassword/" + _username + "/" + _password, true);
+  xhttp.send();
+}
+
+//onoff == "on" or "off"
+function callWebBLEClient(onoff)
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/bleclient/" + _username + "/" + _password + "/" + onoff, true);
+  xhttp.send();
+}
+
+function callWebStatusName()
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/status/" + _username + "/" + _password, true);
+  xhttp.send();
+}
+
+
+// elementId == document.
+function callWebConfigInfo(elementId)
+{
+  var xhttp = new XMLHttpRequest();
+
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById(elementId).innerHTML =
+      this.responseText;
+    }
+  };
+    xhttp.open("GET", "https://idogwatch.com/bot/lookupuser/" + _username + "/" + _password, true);
+xhttp.send();
+}
+
+
+//invokes the web address
+function invokeWebAddress(webAddress)
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+
+  };
+    xhttp.open("GET", webAddress, true);
+   xhttp.send();
+}
+
+
+//invokes the web address
+function invokeGuestPage()
+{
+   location.href = "https://idogwatch.com/bot/guestpage3/" + _username + "/" + _guestPassword;
+}
+
+
+//! to reimage over OTA
+function callWebReimageOTA(match)
+{
+  var xhttp = new XMLHttpRequest();
+  // strip spaces
+
+  if (confirm("Are you Sure, OTA " + match + " takes 2 minutes? And this message is sent to all your listening devices (cool and concerning).") == true) {
+
+  xhttp.onreadystatechange = function() {
+   if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+
+  xhttp.open("GET", "https://idogwatch.com/bot/reimageOTA/" + _username + "/" + _password + "/" + match, true);
+  xhttp.send();
+  }
+}
+
+
+// user, pass, userinfo==super/normal, id == id of element of where to display result..
+function callWebGetConfigInfo(id)
+{
+  var xhttp = new XMLHttpRequest();
+
+  //results comes here..
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      document.getElementById(id).innerHTML =
+      this.responseText;
+    }
+  };
+  xhttp.open("GET", "https://idogwatch.com/bot/lookupuser/" + _username + "/" + _password, true);
+  xhttp.send();
+}
+
+//cmd == pairdev,
+//valItem is where we get the value..
+function callWebSendVal(cmd,valItem)
+{
+  var xhttp = new XMLHttpRequest();
+  //strip spaces
+  var val = document.getElementById(valItem).value.replace(/\s+/g, '');
+
+  xhttp.onreadystatechange = function() {
+   if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+
+  xhttp.open("GET", "https://idogwatch.com/bot/set/" + _username + "/" + _password + "/" + cmd + "/" + val, true);
+  xhttp.send();
+}
+
+//don't strip spaces
+function callWebSendValAsIs(cmd,valItem)
+{
+  var xhttp = new XMLHttpRequest();
+  //strip spaces
+  var val = document.getElementById(valItem).value;
+
+  xhttp.onreadystatechange = function() {
+   if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+
+  xhttp.open("GET", "https://idogwatch.com/bot/set/" + _username + "/" + _password + "/" + cmd + "/" + val, true);
+  xhttp.send();
+}
+
+//! DEVICE MANAGEMENT (add, remove, rename)
+//!adds the device (from the deviceName .. to the user)
+function callWebAddDeviceName(deviceNameId)
+{
+  var xhttp = new XMLHttpRequest();
+  // strip spaces
+  var deviceName = document.getElementById(deviceNameId).value;
+  deviceName = deviceName.replace(/[^a-zA-Z0-9-]/g, "");
+
+
+  //!https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readystatechange_event
+  xhttp.onreadystatechange = function() {
+   if (this.readyState == 4 && this.status == 200) {
+       reloadUserAgent();
+		 alert("Added Device: " + deviceName);
+
+     }
+  };
+
+  //! https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
+  xhttp.open("GET", _rootBotURL + "/adddevice/" + _username + "/" + _password + "/" +  deviceName, true);
+  xhttp.send();
+}
+
+//!removes the device (from the deviceName .. to the user)
+function callWebRemoveDeviceName(deviceNameId)
+{
+    var xhttp = new XMLHttpRequest();
+  // strip spaces and special characters
+  var deviceName = document.getElementById(deviceNameId).value;
+  deviceName = deviceName.replace(/[^a-zA-Z0-9-]/g, "");
+
+
+  xhttp.onreadystatechange = function() {
+   if (this.readyState == 4 && this.status == 200) {
+           reloadUserAgent();
+		     alert("Removed Device: " + deviceName);
+   }
+  };
+
+  xhttp.open("GET", _rootBotURL + "/removedevice/" + _username + "/" + _password + "/" +  deviceName, true);
+  xhttp.send();
+
+}
+//!renames the device (from the deviceName .. to the user)
+function callWebRenameDeviceName(deviceNameId, deviceNameNewId)
+{
+    var xhttp = new XMLHttpRequest();
+  // strip spaces
+  var deviceName = document.getElementById(deviceNameId).value;
+  deviceName = deviceName.replace(/[^a-zA-Z0-9-]/g, "");
+
+  var deviceNameNew = document.getElementById(deviceNameNewId).value;
+  deviceNameNew = deviceNameNew.replace(/[^a-zA-Z0-9-]/g, "");
+
+  xhttp.onreadystatechange = function() {
+   if (this.readyState == 4 && this.status == 200) {
+          reloadUserAgent();
+		    alert("Renamed Device: " + deviceName + " to: " + deviceNameNew);
+     }
+  };
+
+  xhttp.open("GET", _rootBotURL + "/renamedevice/" + _username + "/" + _password + "/" +  deviceName + "/" +  deviceNameNew, true);
+  xhttp.send();
+}
+
+
+//!END DEVICE MANAGEMENT
+//!  END WEB CALLS
+
+
+
+//!pass id of html item with a checkmark
+function handleClickBuzzer(id)
+{
+   callWebBuzzer(id.checked?"on":"off");
+}
+
+function handleClickTilt(id)
+{
+   callWebTilt(id.checked?"on":"off");
+}
+
+function handleClickZoom(id)
+{
+   callWebZoomSM(id.checked?"on":"off");
+}
+
+
+//!perform the feed command
+function callFeedCommand()
+{
+   if (_isGuestPage)
+	{
+	    callWebFeedGuest();
+	}
+	else
+	{
+	    callWebFeed();
+	}
+}
+
+//!perform the feed command for a device
+function callFeedDeviceNameCommand(deviceName)
+{
+   if (_isGuestPage)
+	{
+	   callWebFeedGuestDeviceName(deviceName);
+	}
+	else
+	{
+	   callWebFeedDeviceName(deviceName);
+	}
+
+}
+
+//!super feed
+function callFeedSuperCommand()
+{
+   callWebFeedSuper();
+}
+
+//!super status
+function callSuperStatusCommand()
+{
+   callWebSuperStatusName();
+}
+
+
+
+//! hides all the elements that only make sense for users (not guests)
+function hideUserOnlyStuff()
+{
+    //https://bobbyhadz.com/blog/javascript-hide-element-by-id
+
+  if (_isGuestPage)
+  {
+     var removeIds = ['SettingsButton','liveToastBtns'];
+	  for (let i=0; i< removeIds.length; i++)
+	  {
+	    var item = document.getElementById(removeIds[i]);
+	    item.style.display = "none";
+	  }
+	  //change title too
+	  var trainTitleItem = document.getElementById('TrainTitle');
+	  trainTitleItem.innerHTML = "<h1><img src=\"https://idogwatch.com/pettutor/nick/ptlogo.png\" class=\"logo-pt\" alt=\"PetTutor\" />Guest of " + _username + "</h1>";
+
+   }
+}
+
+/***** ROOM CODE 3.8.23   *****/
+
+
+//! clears a text area
+function clearTextArea(textAreaId)
+{
+   var currentVal = document.getElementById(textAreaId).value;
+   console.log("clearing: " + currentVal);
+   document.getElementById(textAreaId).value = "";
+}
+
+
+//!create the list of devices.. Fill in the idDeviceListOptions (which has the select already formed)
+function createDeviceListOptions(idDeviceListOptions)
+{
+
+  var htmlSelect = "";
+  htmlSelect += "<option value='NO_ONE'>NO_ONE</option>";
+  htmlSelect += "\n";
+  htmlSelect += "<option value='--ALL--'>--ALL--</option>";
+  htmlSelect += "\n";
+
+  // used for sorting later..
+  var deviceNames = [];
+
+  // go through list, but dont include GENERIC and DEFAULT
+  for (var i =0; i< _devicesJSON.length; i++)
+  {
+        //Not sorting yet..
+        let deviceName = _devicesJSON[i].deviceName;
+        if ("_GENERIC_".localeCompare(deviceName)!=0 && "_DEFAULT_".localeCompare(deviceName) != 0)
+        {
+          deviceNames.push(deviceName);
+        }
+   }
+
+   //now sort
+   deviceNames.sort();
+   for (var i =0; i< deviceNames.length; i++)
+   {
+     let deviceName = deviceNames[i];
+
+     // create option for the deviceName
+     htmlSelect += "<option value='" + deviceName + "'>" + deviceName + "</option>";
+     htmlSelect += "\n";
+   }
+
+  document.getElementById(idDeviceListOptions).innerHTML = htmlSelect;
+}
+
+
+//! create a room with less devices
+function createRoom2()
+{
+
+     var devices =  [{"deviceName":"ScoobyDoo"},{"deviceName":"PumpkinUno"},{"deviceName":"DukeGEN3"},{"deviceName":"HowieFeeder"}, {"deviceName":"M55"}, {"deviceName":"M5Rainier"}, {"deviceName":"LauraBabe"}, {"deviceName":"M522"} ];
+	  createDeviceLabels(devices);
+}
+
+//! array of devices in this room.
+var _devicesInRoomArray = [];
+
+//! clear and setup the room
+function clearRoomTouched(devicesId, roomStringId)
+{
+   // clear the ARRAY of devicesInRoom
+   _devicesInRoomArray = [];
+
+   //setup the pulldown
+   createDeviceListOptions(devicesId);
+
+   //clear the text area
+   clearTextArea(roomStringId);
+
+}
+//! add device to room and array
+function addDeviceToRoom(devicesId, roomStringId)
+{
+   var deviceName = document.getElementById(devicesId).value;
+
+   var currentVal = document.getElementById(roomStringId).value;
+   if (currentVal.length > 0)
+      currentVal += ", ";
+   currentVal += deviceName;
+
+   //update the text area
+   document.getElementById(roomStringId).value = currentVal;
+
+   //add to array
+   _devicesInRoomArray.push(deviceName);
+
+}
+//! create the room
+function createRoom(roomStringId)
+{
+   var roomString = document.getElementById(roomStringId).value;
+   console.log("Room = " + _devicesInRoomArray);
+
+	//! need to create the JSON
+	var devicesJSON = [];
+	for (var i=0;i< _devicesInRoomArray.length; i++)
+	{
+		 var deviceName = _devicesInRoomArray[i];
+	    var deviceNameJSON = {"deviceName":deviceName};
+		 devicesJSON.push(deviceNameJSON);
+
+	}
+   createDeviceLabels(devicesJSON, false);
+}
+
+
+/***** END ROOM CODE 3.8.23   *****/
+var _devicesJSON = [];
+
+//look at the array of device names ["d1","d2"...]
+function createDeviceFeedButtonsNew()
+{
+    hideUserOnlyStuff();
+
+	  //Uncomment out the 2nd one..
+
+     //var devices =  [{"deviceName":"_GENERIC_"},{"deviceName":"ScoobyDoo"},{"deviceName":"PumpkinUno"},{"deviceName":"GreyGoose"},{"deviceName":"DukeGEN3"},{"deviceName":"HowieFeeder"}, {"deviceName":"M55"}, {"deviceName":"M5Rainier"}, {"deviceName":"LauraBabe"}, {"deviceName":"M522"}, {"deviceName":"M5Rainier"}, {"deviceName":"M5WRR"},{"deviceName":"MoonShot"}];
+    var devices = null; // {{{req.params.devicenames}}};
+
+	 //store globally
+    //_devicesJSON = devices;
+	 devices = _devicesJSON;
+
+    createDeviceLabels(devices, true);
+}
+//! 3.13.23
+function callWebFeedGuestDevicesCommand(devicesJSON)
+{
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    }
+  };
+  // create parameters
+  var command = "https://idogwatch.com/bot/feedguestdevices/" + _username + "/" + _guestPassword ;
+  for (var i=0; i< devicesJSON.length; i++)
+  {
+        let deviceName = devicesJSON[i].deviceName;
+		  if (i == 0)
+			    command += "?";
+		  else
+			    command += "&";
+        command += "device=" + devicesJSON[i].deviceName;
+	}
+	console.log("web: " + command);
+   xhttp.open("GET", command, true);
+   xhttp.send();
+}
+
+//! pass in the devices to show..
+function createDeviceLabels(deviceNamesJSON, showAllFeedButton)
+{
+
+    var devicesJSON = deviceNamesJSON;
+    var htmlButtons = "";
+
+    var button = "<div class=\"col-12 col-sm-6 col-lg-4\">" +
+                          "<button type=\"button\" class=\"btn btn-trigger btn-triggeretc-all\" id=\"liveToastBtn\" ";
+	 if (showAllFeedButton)
+	 {
+
+			button += "onclick=\"callFeedCommand()\">" + "Feed All" + "</button>";
+
+	 }
+	 else
+	 {
+	    // 3.13.23  feed the room
+       button += " onclick=\"callWebFeedGuestDevicesCommand([";
+			// create the array here..   [ {deviceName:name},{deviceName: name} ..]
+
+		console.log(button);
+
+       for (var i =0; i< devicesJSON.length; i++)
+		 {
+		    if (i > 0)
+			    button += ",";
+			 button += "{'deviceName':";
+          button += "'" + devicesJSON[i].deviceName + "'}";
+		    console.log(button);
+		 }
+	    button += 	"])\">" + "Feed Room" + "</button>";
+		 console.log(button);
+
+	 }
+    button += "</div>";
+
+	 //! new 3.8.23 .. when a subset is shown, don't include feed all (as missleading)
+	 // 3.13.23  feed the room using feedguestdevices
+    htmlButtons += button;
+
+    for (var i =0; i< devicesJSON.length; i++)
+    {
+        let deviceName = devicesJSON[i].deviceName;
+        if ("_GENERIC_".localeCompare(deviceName)!=0 && "_DEFAULT_".localeCompare(deviceName) != 0)
+        {
+           console.log("B = " + deviceName);
+           if (deviceName.includes("GEN3"))
+           {
+
+           }
+           else if (deviceName.startsWith("M5"))
+           {
+
+           }
+           else
+           {
+              var button = "<div class=\"col-12 col-sm-6 col-lg-4\">" +
+                          "<button type=\"button\" class=\"btn btn-trigger btn-triggeretc\" id=\"liveToastBtn\" onclick=\"callFeedDeviceNameCommand('" + deviceName + "')\">" + deviceName + "</button>" +
+								"</div>";
+              htmlButtons += button;
+           }
+        }
+    }
+    for (var i =0; i< devicesJSON.length; i++)
+    {
+        let deviceName = devicesJSON[i].deviceName;
+        if ("_GENERIC_".localeCompare(deviceName)!=0 && "_DEFAULT_".localeCompare(deviceName) != 0)
+        {
+           console.log("B = " + deviceName);
+           if (deviceName.includes("GEN3"))
+           {
+              var button = "<div class=\"col-12 col-sm-6 col-lg-4\">" +
+                          "<button type=\"button\" class=\"btn btn-trigger-gen3 btn-triggeretc-gen3\" id=\"liveToastBtn\" onclick=\"callFeedDeviceNameCommand('" + deviceName + "')\">" + deviceName + "</button>" +
+								"</div>";
+              htmlButtons += button;
+           }
+            else if (deviceName.startsWith("M5"))
+           {
+           }
+           else
+           {
+
+           }
+        }
+    }
+    for (var i =0; i< devicesJSON.length; i++)
+    {
+        let deviceName = devicesJSON[i].deviceName;
+        if ("_GENERIC_".localeCompare(deviceName)!=0 && "_DEFAULT_".localeCompare(deviceName) != 0)
+        {
+           console.log("B = " + deviceName);
+           if (deviceName.includes("GEN3"))
+           {
+
+           }
+           else if (deviceName.startsWith("M5"))
+           {
+              var button = "<div class=\"col-12 col-sm-6 col-lg-4\">" +
+                          "<button type=\"button\" class=\"btn btn-trigger-m5 btn-triggeretc-m5\" id=\"liveToastBtn\" onclick=\"callFeedDeviceNameCommand('" + deviceName + "')\">" + deviceName + "</button>" +
+								"</div>";
+              htmlButtons += button;
+           }
+           else
+           {
+
+           }
+        }
+
+    }
+
+  document.getElementById("deviceButtons").innerHTML= htmlButtons;
+
+ if ("scott@konacurrents.com".localeCompare("scott@konacurrents.com")==0)
+ {
+    //try 3 semanticMarkers..
+    var  semanticMarkers = "SemanticMarker&#x2122; for HowieFeeder, PumpkinUno and ScoobyDoo: <p>";
+    semanticMarkers += "<image src=\"https://idogwatch.com/HowieFeeder.png\" width=300>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+    semanticMarkers += "<image src=\"https://idogwatch.com/PumpkinUno.png\"  width=300>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+    semanticMarkers += "<image src=\"https://idogwatch.com/ScoobyDoo.png\"   width=300>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+    semanticMarkers += "<image src=\"https://idogwatch.com/GreyGooseSM.png\"   width=300>   ";
+      //document.getElementById("extra").innerHTML= semanticMarkers;
+  }
+
+  if ("super".localeCompare(_userInfoJSON)==0)
+  {
+    htmlButtons += "<br>" +
+    "<button  type=\"button\" class=\"button feedSuperButton1\" onclick=\"callFeedSuperCommand( )\">Super User Feed All*</button>";
+    htmlButtons += " * <b>Guinness World Records</b> territory";
+
+  }
+  //document.getElementById("deviceButtons").innerHTML= htmlButtons;
+
+
+  if ("super".localeCompare(_userInfoJSON)==0)
+  {
+    var superStatusButton = "<br>" +
+    "<button  type=\"button\" class=\"button button3\" onclick=\"callSuperStatusNameCommand( )\">Super Status*</button>";
+    superStatusButton += " * <b>Guinness World Records</b> territory";
+
+  }
+}
+
+//   ***************************** start timer ***************************
+
+// ***** Interval Timer ****
+//https://www.w3schools.com/js/js_timing.asp
+var _countdownTimer;
+var _timerRunning = false;
+var _intervalSeconds = 5;
+var _intervalSecondsMax = 25;
+var _timerDurationMinutes = 25; // minutes
+// start time .. so if the 
+var _startTimerTime;
+// end time .. based on the duration
+var _endTimerTime;
+var _countdownTime;
+// use _numFeedsButton for the number of feeds
+
+//! calculate the duration
+function setupTimerDuration()
+{
+
+	// milliseconds .. 60,000 milliseconds/minute
+   _startTimerTime = (new Date()).getTime();
+
+	_endTimerTime = _startTimerTime + (_timerDurationMinutes* 60000);
+
+   document.getElementById('_numFeedsButton').innerHTML = "0";
+
+
+}
+
+//! returns if over the duration
+function finishTimerDuration()
+{
+	// milliseconds
+   var timeNowMilliseconds = (new Date()).getTime();
+	var isOver =  (timeNowMilliseconds > _endTimerTime);
+
+	var milliSec =  _endTimerTime - timeNowMilliseconds;
+	var sec = Math.floor((milliSec/1000) % 60);
+   var min = Math.floor(((milliSec/1000) / 60) % 60);
+   var hour =Math.floor( ((milliSec/1000) / 60) / 60);
+
+	if (isOver)
+	   sec = min = hour = 0;
+
+	var timeLeftString = hour + ":" + min + ":" + sec +  " (hr:min:sec)";
+   document.getElementById('timeLeftButton').innerHTML = timeLeftString;
+
+//	console.log("finish: " + _endTimerTime + ", " + timeNowMilliseconds + " = " + isOver);
+
+	return isOver;
+
+}
+
+//! sets the timer label
+function setTimerLabel(isStart)
+{
+	var startString = isStart?"Start Timer":"Stop Timer";
+   // document.getElementById('timerButton').innerHTML = startString + " Timer (min:" + _intervalSeconds + ", max:" + _intervalSecondsMax + ")";
+   document.getElementById('timerButton').innerHTML = startString;
+
+}
+//! random between two numbers min/max
+//! see https://www.w3schools.com/js/js_random.asp
+function getRandomInteger(min, max) 
+{
+  min = parseInt(min);
+  max = parseInt(max);
+
+  let randomInt=  Math.floor(Math.random() * (max - min) + min)
+  console.log("random(" + min + "," + max + ") = " + randomInt);
+  if (randomInt < min)
+  {
+     alert("Num < min = " + randomInt);
+  }
+
+  return randomInt;
+}
+
+//Sets the timer
+function setIntervalTimerMinMax(minSecondsId, maxSecondsId, durationMinutesId)
+{
+   var seconds = parseInt(document.getElementById(minSecondsId).value); 
+   var secondsMax = parseInt(document.getElementById(maxSecondsId).value); 
+
+	// make the max at least the min
+	if (seconds >= secondsMax)
+	{
+	   secondsMax = seconds;
+      document.getElementById(maxSecondsId).value = String(secondsMax); 
+	}
+
+	// find the duration minutes
+	var durationMinutes = document.getElementById(durationMinutesId).value; 
+
+   _intervalSeconds = seconds;
+   _intervalSecondsMax = secondsMax;
+	_timerDurationMinutes = durationMinutes;
+
+   // not changing state..
+   var _countdownTime = getRandomInteger(_intervalSeconds, _intervalSecondsMax);
+   if (_timerRunning)
+   {
+      clearInterval(_countdownTimer);
+      _timerRunning = false;
+   }
+   document.getElementById('timeInButton').innerHTML = _countdownTime;
+	setTimerLabel(true);
+   document.getElementById('timerButton').style.color = "black";
+
+}
+
+//start stop button touched
+function startStopTimer()
+{
+
+   var time = _intervalSeconds;
+   if (_timerRunning == false)
+   {
+		// start the timer
+      document.getElementById('timerButton').style.color = "red";
+	   setTimerLabel(false);
+      _timerRunning = true;
+      // init the timer
+      initTimer();
+		// only setup the timer on first start..
+      setupTimerDuration();
+
+		// update the time label
+      finishTimerDuration();
+   }
+   else
+   {
+		// sstop the  timer
+	   setTimerLabel(true);
+      document.getElementById('timerButton').style.color = "black";
+
+      // clear/stop the timer
+      clearInterval(_countdownTimer);
+      _timerRunning = false;
+   }
+}
+//every second .. to update countdown
+function initTimer()
+{
+   var seconds = getRandomInteger(_intervalSeconds, _intervalSecondsMax);
+
+   _countdownTime = seconds;
+
+	//! call the timer: with seconds
+	//!   setInterval(function, millisecods)
+	//! https://www.w3schools.com/jsref/met_win_setinterval.asp
+   _countdownTimer = setInterval(updateTimer, 1000) // set up a setInterval for the countdown function
+
+	// call every second
+  finishTimerDuration();
+
+}
+
+
+// https://stackoverflow.com/questions/9609731/onchange-event-for-input-type-number
+// called each second, so change label, etc
+function updateTimer()
+{
+  var isDone = finishTimerDuration();
+  if (isDone)
+  {
+	  startStopTimer();
+     alert("timer duration complete: " + _timerDurationMinutes + " minutes");
+	  return;
+  }
+
+  // change the timeInButton label
+  document.getElementById('timeInButton').innerHTML = _countdownTime;
+  if (_countdownTime <= 0 )
+  {
+      //restart
+      callFeedCommand();
+
+      document.getElementById('timeInButton').innerHTML = "FEED";
+      clearInterval(_countdownTimer);
+      initTimer();
+
+      var numFeeds = parseInt(document.getElementById('_numFeedsButton').innerHTML);
+      numFeeds++;
+      document.getElementById('_numFeedsButton').innerHTML = numFeeds;
+
+
+      return;
+  }
+  else
+  {
+      //document.getElementById("demo").innerHTML = " ";
+   }
+  _countdownTime--;
+
+}
+
+//   ***************************** end timer ***************************
+
+//!https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript`
+function getParameterByName(name, url = window.location.href) {
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+//!check query parms for username password
+//!https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript`
+// support:  ?username=NAME&password=P
+function checkQueryParms()
+{
+   var username = getParameterByName('username'); // "lorem"
+   var password = getParameterByName('password'); // "" (present with empty value)
+   var guetpassword = getParameterByName('guetpassword'); // "" (present with empty value)
+	if (username)
+	{
+	   _username = username;
+	   _password = password;
+
+
+		if (false) //todo..
+		//if (guestpassword)
+		{
+			// empty the password
+			_password = "";
+		   _guestPassword = guestpassword;
+         _isGuestPage = true;
+		}
+
+      saveCookies();
+	}
+}
+
+
+//this one isn't called! stange.
+//window.onload = createDeviceFeedButtonsNew;
+window.onload = function()
+{
+
+	// see if values were put on query line
+   checkQueryParms()
+
+	//! 6.13.23 if not supplied then request user login
+	requestLoginWindow(true);
+
+}
+
+//! logout .. erases cookies
+function logout()
+{
+    if (!_password || _password == "")
+	 {
+	    //alert("Already logged out...");
+	    // already logged out..
+		 // so do a refresh...
+	    //requestLoginWindow(true);
+		 //return;
+		 location.reload();
+		 return;
+
+	 }
+    alert("This logs you out so next time you have to enter password and optionally a different username");
+    _password = "";
+	 saveCookies();
+	//requestLoginWindow(true);
+
+	 location.reload();
+}
+//! 6.12.23 reload by calling lookupuser with our known user-name and password
+function reloadUserAgent()
+{
+//! TODO .. get a guest version of this..
+
+   // _rootBotURL = "https://iDogWatch.com/bot";
+
+  // the address to retrieve. use format=json to get it as well
+  let command = _rootBotURL + "/lookupuser/"
+	    +  _username + "/" + _password;
+
+  console.log("reloadUserAgent: " + command);
+
+  // NOW make an async call .. so the replies are at different times
+  // Store the results in the _requestedSMs array
+  let xhttp = new XMLHttpRequest();
+
+  // format=json so this will be json..
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+		//!result is the SM FLOW flows.. [{flow},{flow}]
+		let jsonReply = this.responseText;
+
+		//check for error..
+		var errors = ["error","Invalid","Wrong password"];
+		for (let i =0; i< errors.length;i++)
+		{
+		   if (jsonReply.indexOf(errors[i]) >= 0)
+		   {
+			   console.log("ERROR: "+ jsonReply);
+            if (confirm("Error retrieving: " + _username + "\n\nTry again?"))
+				{
+					// empty the username/password..
+					_password = "";
+
+				   // trying agagin..
+	            requestLoginWindow(false);
+				}
+			   return;
+			}
+		}
+
+		console.log("REPLY = " + jsonReply);
+		 
+		// parse into JSON
+      var userJSON = JSON.parse(jsonReply);
+
+		//set the guest password 
+		_guestPassword = userJSON.guestPassword;
+
+		// set the global for the devices right now
+		_devicesJSON = userJSON.devices;
+
+		// this creates the buttons...
+      createDeviceLabels(_devicesJSON, true);
+
+    }
+  };
+
+  // async..
+  xhttp.open("GET",command, true);
+  xhttp.send();
+}
+</script>
+
+
+<body>
+	<div class="nav-xs">
+		<ul class="nav nav-pills nav-fill">
+			<!-- nav-flush -->
+			<li class="nav-item">
+				<button class="nav-link active" data-bs-toggle="pill"
+					data-bs-target="#v-pills-train" type="button" role="tab"
+					aria-controls="v-pills-train" aria-selected="true">
+					<i class="fa fa-solid fa-dog fa-2x fa-bounce-hover"></i>
+					<p style="margin-top: 0.25em;">Train</p>
+				</button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link" data-bs-toggle="pill"
+					data-bs-target="#v-pills-play" type="button" role="tab"
+					aria-controls="v-pills-play" aria-selected="false">
+					<i class="fa-solid fa-bone fa-2x fa-bounce-hover"></i>
+					<p style="margin-top: 0.25em;">Play</p>
+				</button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link" data-bs-toggle="pill"
+					data-bs-target="#v-pills-feed" type="button" role="tab"
+					aria-controls="v-pills-feed" aria-selected="false">
+					<i class="fa-solid fa-bowl-food fa-2x fa-bounce-hover"></i>
+					<p style="margin-top: 0.25em;">Auto-Feed</p>
+				</button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link" data-bs-toggle="pill"
+				   id="SettingsButton"
+					data-bs-target="#v-pills-settings" type="button" role="tab"
+					aria-controls="v-pills-settings" aria-selected="false">
+					<i class="fa-solid fa-gears fa-2x fa-bounce-hover"></i>
+					<p style="margin-top: 0.25em;">Settings</p>
+				</button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link" data-bs-toggle="pill"
+				   id="LogoutButton"
+					type="button" role="tab" onclick="logout()"
+					aria-controls="v-pills-settings" aria-selected="false">
+					<i class="fa-solid fa-cube fa-2x fa-bounce-hover"></i>
+					<p style="margin-top: 0.25em;">Logout</p>
+				</button>
+			</li>
+		</ul>
+	</div>
+	<div class="nav-lg">
+		<ul
+			class="nav nav-pills flex-sm-column flex-row flex-nowrap mb-auto mx-auto text-center align-items-center p-4">
+			<!-- nav-flush -->
+			<li class="nav-item">
+				<button class="nav-link active" data-bs-toggle="pill"
+					data-bs-target="#v-pills-train" type="button" role="tab"
+					aria-controls="v-pills-train" aria-selected="true">
+					<i class="fa fa-solid fa-dog fa-2x fa-bounce-hover"></i>
+					<p style="margin-top: 0.25em;">Train</p>
+				</button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link" data-bs-toggle="pill"
+					data-bs-target="#v-pills-play" type="button" role="tab"
+					aria-controls="v-pills-play" aria-selected="false">
+					<i class="fa-solid fa-bone fa-2x fa-bounce-hover"></i>
+					<p style="margin-top: 0.25em;">Play</p>
+				</button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link" data-bs-toggle="pill"
+					data-bs-target="#v-pills-feed" type="button" role="tab"
+					aria-controls="v-pills-feed" aria-selected="false">
+					<i class="fa-solid fa-bowl-food fa-2x fa-bounce-hover"></i>
+					<p style="margin-top: 0.25em;">Auto-Feed</p>
+				</button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link" data-bs-toggle="pill"
+					data-bs-target="#v-pills-settings" type="button" role="tab"
+					aria-controls="v-pills-settings" aria-selected="false">
+					<i class="fa-solid fa-gears fa-2x fa-bounce-hover"></i>
+					<p style="margin-top: 0.25em;">Settings</p>
+				</button>
+			</li>
+			<li class="nav-item">
+				<button class="nav-link" data-bs-toggle="pill"
+					 type="button" role="tab"
+					aria-selected="false" onclick="logout()">
+					<i class="fa-solid fa-cube fa-2x fa-bounce-hover"></i>
+					<p style="margin-top: 0.25em;">Logout</p>
+				</button>
+			</li>
+		</ul>
+		<img class="logo-dw"
+			src="https://idogwatch.com/pettutor/nick/dwlogo.png" />
+		<img class="logo-dw"
+		   src="https://SemanticMarker.org/SMInside.png" />
+
+
+	</div>
+	<div class="main-wrapper">
+		<div class="btns">
+			<button type="button" id="liveToastBtns"
+			            onclick="invokeGuestPage()"
+
+				class="btn-share clipboard btn-shareetc">
+				<i class="fa-solid fa-share"></i><span>&nbsp;&nbsp;SHARE</span>
+			</button>
+			<button type="button" id="btn-instructions-xs"
+				data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+				aria-controls="offcanvasExample">
+				<i class="fa-solid fa-circle-exclamation fa-shake"
+					style="-fa-animation-iteration-count: 15;"></i><span></span>
+			</button>
+		</div>
+		<button id="btn-instructions" class="btn btn-primary" type="button"
+			data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"
+			aria-controls="offcanvasExample">
+			<i class="fa-solid fa-circle-exclamation fa-shake"
+				style="-fa-animation-iteration-count: 15;"></i>&nbsp;Instructions
+		</button>
+		<main class="container-fluid">
+			<div class="row">
+				<div class="col-sm p-3 min-vh-100 tab-content">
+
+					<!-- Begin Train Content  -->
+
+					<div class="tab-pane active" id="v-pills-train" role="tabpanel"
+						aria-labelledby="v-pills-train-tab" tabindex="0">
+						<h1 id="TrainTitle">
+							<img src="https://idogwatch.com/pettutor/nick/ptlogo.png"
+								class="logo-pt" alt="PetTutor" />Train
+						</h1>
+						<div class="row" id="deviceButtons"></div>
+
+     <!-- the Advanced Feed -->
+						<div class="accordion accordion-flush" id="accordion-qr">
+							<div class="accordion-item active">
+								<h2 class="accordion-header" id="accordion-qr-header">
+									<button class="accordion-button collapsed" type="button"
+										data-bs-toggle="collapse"
+										data-bs-target="#accordion-qr-flush-collapseOne"
+										aria-expanded="false"
+										aria-controls="accordion-qr-flush-collapseOne">
+										<i class="fa-solid fa-qrcode fa-2x fa-pull-left"></i>&nbsp;
+										Advanced Feed Options - Semantic Marker &#x2122 inside
+									</button>
+								</h2>
+
+								<div id="accordion-qr-flush-collapseOne"
+									class="accordion-collapse collapse collapse"
+									aria-labelledby="flush-headingOne"
+									data-bs-parent="#accordionFlushExample">
+									<div class="accordion-body">
+										<div class="row">
+											<div class="col-6 col-sm-2">
+												<p id="SemanticMarkerElement">
+													<script src="https://SemanticMarker.org/SemanticMarker.js"></script>
+
+													<a href="https://SemanticMarker.org">
+													<img width="500" src="https://SemanticMarker.org/SMInside.png">
+													</a>
+
+												</p>
+
+<!-- copied from smart.html --->
+				   <input  id="help" class="HELPButton" type="button" value="Help creating Semantic Marker&#x2122;" 
+					onclick="alert('Create your own guest feeding Semantic Marker&#x2122; that others can scan to feed your dog (maybe printout and put on your shelter kennel.) \n\nSteps:\n(1) Setup Feeder Names\n(2) Pick a feeder (or --ALL--) \n(3) Add a URL to a picture of your dog \n(leaving blank will use a default)\n(4) Choose a circular or square QRAvatar image shape (the image inside the Semantic Marker&#x2122;)\n(5) Click on create a Semantic Marker button \n\nPlease contact scott@konacurrents.com if you need help getting a URL with image of your dog\n\nSee https://SemanticMarker.org for more info, and if you would like to try the iDogWatch app for your Apple devices.')"> 
+				  <input type="button" class="M5button" id="PickFeederName" value="(1) Setup Feeder Names" onClick="clearRoomTouched('devicesForSM','devicesInRoomTextArea')" />
+				  <br>
+				  <br>
+				  <label class="label" for="devicesForSM">(2) Pick Feeder:</label><select class="select label"  name="devicesForSM" id="devicesForSM">x</select>
+
+<br>
+<br>
+<label class="label" for="semanticMarkerAvatarURL">(3) QRAvatar Image URL: (default if empty)</label><input name="semanticMarkerAvatarURL" id="semanticMarkerAvatarURL" size="64" type="text">
+<p style="margin-left:100px; margin-right:50px;" id="finalSemanticMarkerImage"></p>
+
+<br>
+<br>
+<label class="label" for="boolArgValueCircular">(4) QRAvatar Shape:</label>
+<select class="select label"  name="boolArgValueCircular" id="boolArgValueCircular">
+  <option value="on">Circular</option>
+  <option value="off">Square</option>
+>/select>
+<br>
+<br>
+
+<input type="button" class="button" id="PickFeederName" value="(5) Create Semantic Marker&#x2122;" 
+onClick="createSemanticMarker('devicesForSM','semanticMarkerAvatarURL','finalSemanticMarkerImage','_messageId')" />
+
+
+<!-- put here since a global in code below.... -->
+<br>
+<br>
+<p class="label" id="_messageId">
+
+
+<script>
+
+// copied from smart.html, only _word replaced with _guestPassword
+
+var _deviceName;
+var _isSendToAll;
+
+
+//! returns string up the argments..
+//! sets up the device and isSendToAll
+function setupDevice(idDevices)
+{
+   var deviceName = document.getElementById(idDevices).value;
+
+   if ("--ALL--".localeCompare(deviceName)==0)
+      _isSendToAll = true;
+	// added null
+	else if ("".localeCompare(deviceName)==0)
+	{
+		alert("Please (1) Setup Feeder Names and (2) Pick a Feeder");
+	   _isSendToAll = true;
+	}
+   else
+      _isSendToAll = false;
+
+   _deviceName = deviceName;
+}
+
+
+//! grab the QRAvatar first..
+//! http://www.javascriptkit.com/javatutors/javascriptpromises.shtml
+function getImage(url)
+{
+    console.log("getImage: " + url);
+    return new Promise(function(resolve, reject)
+    {
+        var img = new Image()
+        img.onload = function()
+        {
+            console.log("image.onload");
+            resolve(url)
+        }
+        img.onerror = function()
+        {
+            reject(url)
+        }
+        img.src = url
+    })
+}
+
+
+//!create a semantic marker, and place at the idSM location
+function createSemanticMarker(idDevices,idSemanticMarkerImageURL,idSM, idLabel)
+{
+   setupDevice(idDevices);
+
+   // this will use guest password..
+   var command = "feedguest";
+   var commandPath = getCommandPathGuest(command);
+   // feedguest<device>/USER/GPASS/<device>
+   document.getElementById('_messageId').innerHTML = commandPath;
+
+   var circular = document.getElementById('boolArgValueCircular').value=="on";
+
+   var avatarURL = document.getElementById(idSemanticMarkerImageURL).value;
+
+   //no avatarURL so use iDogWatch
+   if (!avatarURL || avatarURL.length==0)
+   {
+     //hard wire for now..
+     avatarURL = "https://idogwatch.com/pettutor/iDogWatch.png";
+   }
+
+   //empty the id first..
+   //Seems that the call is adding a new SM instead of cleaning it up..
+   document.getElementById(idSM).value = "";
+   document.getElementById(idSM).html = "<p>x</p>";
+
+
+   document.getElementById(idSM).innerHTML = "";
+
+   console.log(idSM);
+   console.log(document.getElementById(idSM));
+
+   //! fix bug: https://itecnote.com/tecnote/javascript-qrcode-js-error-code-length-overflow-17161056/
+   if (commandPath.length >= 192 && commandPath.length <= 220)
+   {
+      commandPath = commandPath + "&filler=";
+
+      // pad to greater thatn 220
+      var len = commandPath.length;
+      while (commandPath.length <= 220)
+      {
+         commandPath= commandPath + "x";
+      }
+   }
+ try
+   {
+      getImage(avatarURL).then
+      (
+         function (successurl)
+         {
+
+            var sm = new SemanticMarker(document.getElementById(idSM),
+               commandPath,
+               avatarURL,
+               circular);
+         }).catch (function (errorurl)
+         {
+
+            alert("Issue creating QRAvatar in Semantic Marker creation: \n" + errorurl + "\n\nPlease file bug report"
+               + "\nsyntax including  # can be problematic");
+         })
+   }
+   catch (error)
+   {
+
+      alert("Issue with Semantic Marker creation: \n" + error.message + "\nPlease file bug report");
+   }
+
+   document.getElementById(idLabel).innerHTML = commandPath;
+}
+
+// checks username password have values ..
+function validUserInfo()
+{
+   if (_username && _username.length > 0 &&
+       _password && _password.length > 0)
+       return true;
+   else
+       return false;
+
+}
+
+
+//! sets using the password provided, so can be user password or guest password
+//! This uses knowledge of _isSentToAll, and _deviceName, and this command (which tacks on Device if needed)
+function getCommandPathWithPassword(command,password)
+{
+  if (!validUserInfo())
+     return;
+
+  var commandPath = "";
+  if (_isSendToAll)
+  {
+     commandPath = _rootBotURL + "/" + command + "/" + _username + "/" + password;
+  }
+  else
+  {
+     //NOTE: lowercase all..
+     command = command + "device";
+     commandPath = _rootBotURL + "/" + command + "/" + _username + "/" + password + "/" +  _deviceName;
+  }
+  return commandPath;
+}
+
+
+
+//! Returns a SemanticMarker parameterized command string
+//! This uses knowledge of _isSentToAll, and _deviceName, and this command (which tacks on Device if needed)
+function getCommandPathWithSMParameters(command)
+{
+  var commandPath = "";
+  if (_isSendToAll)
+  {
+     commandPath = _rootBotURL + "/" + command + "/" + _SemanticMarkerParameters[0] + "/" + _SemanticMarkerParameters[1];
+  }
+  else
+  {
+     //NOTE: lowercase all..
+     command = command + "device";
+     commandPath = _rootBotURL + "/" + command + "/" + _SemanticMarkerParameters[0] + "/" + _SemanticMarkerParameters[1] + "/" +  _deviceName;
+  }
+  return commandPath;
+}
+
+//! This uses knowledge of _isSentToAll, and _deviceName, and this command (which tacks on Device if needed)
+function getCommandPath(command)
+{
+  return getCommandPathWithPassword(command,_password);
+}
+
+//! This uses knowledge of _isSentToAll, and _deviceName, and this command (which tacks on Device if needed)
+function getCommandPathGuest(command)
+{
+  return getCommandPathWithPassword(command,_guestPassword);
+}
+
+
+//end copied from smart.html
+
+</script>
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+     <!-- the Room Feed -->
+						<div class="accordion accordion-flush" id="accordion-room">
+							<div class="accordion-item active">
+								<h2 class="accordion-header" id="accordion-room-header">
+									<button class="accordion-button collapsed" type="button"
+										data-bs-toggle="collapse"
+										data-bs-target="#accordion-room-flush-collapseOne"
+										aria-expanded="false"
+										aria-controls="accordion-room-flush-collapseOne">
+										<i class="fa-solid fa-qrcode fa-2x fa-pull-left"></i>&nbsp;
+										Create Temporary Feeding Room
+									</button>
+								</h2>
+
+								<div id="accordion-room-flush-collapseOne"
+									class="accordion-collapse collapse collapse"
+									aria-labelledby="flush-headingOne"
+									data-bs-parent="#accordionFlushExample">
+									<div class="accordion-body">
+										<div class="row">
+											<div class="col-6 col-sm-2">
+												<p id="SemanticMarkerElement">
+				   <input  id="help" class="HELPButton" type="button" value="Help Creating Room" onclick="alert('Create a temporary feeding room with a subset of your named feeders.  \n(1) Clear room first, then select feeder clicking \n(2) Add Device each time, then \n(3) Create room \n\nLater (*) Reset_All_Feeders will remove room and return to all feeders')"> 
+<br>
+<br>
+				  <input type="button" class="button" id="clearRoom" value="(1) Clear the room" onClick="clearRoomTouched('devicesForRoomId','devicesInRoomTextArea')" />
+
+<br>
+<br>
+               <input type="button" class="H1green" id="stringTextArgs"  value="(2) Add Device" onClick="addDeviceToRoom('devicesForRoomId','devicesInRoomTextArea')" />
+<br>
+<br>
+				  <select class="select label"  name="devicesForRoomId" id="devicesForRoomId">x</select>
+</select>
+
+<br>
+<br>
+
+<input type="button" class="M5button" id="stringTextArgs"  value="(3) Create Room" onClick="createRoom('devicesInRoomTextArea')" />
+
+        <br>
+        <br>
+<textarea class="label" id="devicesInRoomTextArea" readonly name="devicesInRoomTextArea" rows="3" cols="100">
+</textarea>
+<br>
+<br>
+				   <button  id="showAllFeedersButton" class="M5button" type="button"
+									    onclick="createDeviceFeedButtonsNew()">(*) Reset_All_Feeders</button>
+<!-- END 3.8.23 adding a room idea --->
+
+
+
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- End Train Content -->
+
+					<!-- Begin Play Content -->
+
+					<div class="tab-pane" id="v-pills-play" role="tabpanel"
+						aria-labelledby="v-pills-play-tab" tabindex="1">
+						<h1>
+							<img src="https://idogwatch.com/pettutor/nick/ptlogo.png"
+								class="logo-pt" alt="PetTutor" />Play
+						</h1>
+						<ul class="row">
+							<li class="col-12">
+								<ul>
+									<li class="row">
+										<div class="col-6 col-sm-6">TILT Mode</div>
+										<div class="col-6 col-sm-6">
+											<input id="idTilt2" class="apple-switch"
+												onclick="handleClickTilt('idTilt2');" type="checkbox" />
+										</div>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+
+					<!-- End Play Content -->
+
+					<!-- Begin Feed Content -->
+
+					<div class="tab-pane" id="v-pills-feed" role="tabpanel"
+						aria-labelledby="v-pills-feed-tab" tabindex="2">
+						<h1>
+							<img src="https://idogwatch.com/pettutor/nick/ptlogo.png"
+								class="logo-pt" alt="PetTutor" />Auto-Feed
+						</h1>
+						<div class="row">
+							<div class="col-12 col-sm-4 mt-4 mt-sm-0">
+				   <input  id="help" class="HELPButton" type="button" value="Help With Timer" onclick="alert(
+					'Set Min Seconds, and Max Seconds. If different, then a random feed value between those two times is used each time. \n\nThe Duration in minutes sets how long to perform action. \n\nStart and Stop button control timer. \n\nThe countdown interval is shown below as is the total time left. ')"
+					> 
+					   </div>
+					</div>
+						<div class="row">
+							<!--                    <div class="col-12 col-sm-3">Auto Feed Timer</div>-->
+							<div class="col-12 col-sm-4 mt-4 mt-sm-0">
+								Min Seconds
+								<div class="input-group mb-3">
+									<input class="form-control" type="number" min=5 max=3000 step=5
+										onChange="setIntervalTimerMinMax('timerIntervalSeconds','timerIntervalSecondsMax','timerDurationMinutes')"
+										id="timerIntervalSeconds" value="5"
+										aria-label="Min Amount (seconds)">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 col-sm-4 mt-4 mt-sm-0">
+								Max Seconds
+								<div class="input-group mb-3">
+									<input class="form-control" type="number" min=5 max=3000 step=5
+										onChange="setIntervalTimerMinMax('timerIntervalSeconds','timerIntervalSecondsMax','timerDurationMinutes')"
+										id="timerIntervalSecondsMax" value="25"
+										aria-label="Max Amount (seconds)">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 col-sm-4 mt-4 mt-sm-0">
+								Duration Minutes<div class="input-group mb-3">
+									<input class="form-control" type="number" min=1 max=3000 step=1
+										onChange="setIntervalTimerMinMax('timerIntervalSeconds','timerIntervalSecondsMax','timerDurationMinutes')"
+										id="timerDurationMinutes" value="25"
+										aria-label="Duration (minutes)">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 col-sm-4 mt-3 mt-sm-0">
+								<button id="timerButton" type="button" class="btn btn-trigger"
+									style="width: 100%;" onclick="startStopTimer()">Start Timer</button>
+								<button id="timeInButton" type="button" class="HELPButton"
+									style="width: 50%;">5</button>
+								Time until next feed
+								<br>
+								<button id="_numFeedsButton" type="button" class="H1green"
+									style="width: 50%;">0</button>
+								Total Feed Count
+								<br>
+								<button id="timeLeftButton" type="button" class="M5button"
+									style="width: 50%;">0:00:00 (hr:min:sec)</button>
+								Total time left
+							</div>
+						</div>
+					</div>
+
+					<!-- End Feed Content -->
+
+
+					<!-- Begin Settings Content -->
+
+					<div class="tab-pane" id="v-pills-settings" role="tabpanel"
+						aria-labelledby="v-pills-settings-tab" tabindex="3">
+						<h1>
+							<img src="https://idogwatch.com/pettutor/nick/ptlogo.png"
+								class="logo-pt" alt="PetTutor" />Settings
+						</h1>
+						<ul class="row">
+							<li class="col-12 col-lg-6">
+								<div class="col-12">
+									<h2>
+										<img src="https://idogwatch.com/pettutor/nick/feederMini.svg"
+											alt="Feeder Mini Settings" />Mini Feeder Settings
+									</h2>
+								</div>
+								<ul>
+									<li class="row">
+										<div class="col-6 col-sm-6">Feeder Buzzer</div>
+										<div class="col-6 col-sm-6">
+											<input id="idBuzzer" class="apple-switch"
+												onclick="handleClickBuzzer(idBuzzer);" type="checkbox" />
+										</div>
+									</li>
+							<!--
+									<li class="row col-lg-8">
+										<div>Device Naming: Case Sensitive, Spaces and Special
+											Characters Removed. Adding GEN3 to denote older GEN3 feeders, and Prepend with M5 for Mini Clickers</div>
+										<div class="input-group col-6 col-sm-6">
+											<input type="text" class="form-control"
+												placeholder="Enter Device Name" aria-label="Device Name"
+												id='deviceNameId'>
+											<button class="btn btn-success" type="button"
+												onclick="callWebAddDeviceName('deviceNameId')">
+												<i class="fa-solid fa-plus"></i>
+											</button>
+											<button class="btn btn-danger" type="button"
+												onclick="callWebRemoveDeviceName('deviceNameId')">
+												<i class="fa-solid fa-trash-can"> </i>
+											</button>
+										</div>
+									</li>
+									<li class="row col-lg-8">
+										<div class="input-group col-6 col-sm-6">
+											<input type="text" class="form-control"
+												placeholder="Enter New Device Name"
+												aria-label="Rename Device Name" id="deviceNameNewId">
+											<button class="btn btn-warning" type="button"
+												onclick="callWebRenameDeviceName('deviceNameId','deviceNameNewId')">Rename</button>
+										</div>
+									</li>
+									-->
+
+								</ul>
+							</li>
+
+							<li class="col-12 col-lg-6">
+								<div class="col-12">
+									<h2>
+										<img src="https://idogwatch.com/pettutor/nick/clickerMini.svg"
+											alt="Mini Clicker Settings" />Mini Clicker Settings
+									</h2>
+								</div>
+								<ul>
+									<li class="row">
+										<div class="col-6 col-sm-6">
+											TILT Mode</i>
+										</div>
+										<div class="col-6 col-sm-6">
+											<input id="idTilt" class="apple-switch"
+												onclick="handleClickTilt(idTilt);" type="checkbox" />
+										</div>
+									</li>
+									<li class="row">
+										<div class="col-6 col-sm-6">Zoom In Display</div>
+										<div class="col-6 col-sm-6">
+											<input id="idZoom" class="apple-switch"
+												onclick="handleClickZoom(idZoom);" type="checkbox" />
+										</div>
+									</li>
+								</ul>
+							</li>
+
+
+
+							<div class="accordion accordion-flush" id="accordionFlushExample">
+
+								<!-- device naming -->
+								<div class="accordion-item">
+									<h2 class="accordion-header" id="flush-headingOne">
+										<button class="accordion-button collapsed" type="button"
+											data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+											aria-expanded="false" aria-controls="flush-collapseOne">
+											Device Naming
+									</h2>
+									<div id="flush-collapseOne" class="accordion-collapse collapse"
+										aria-labelledby="flush-headingOne"
+										data-bs-parent="#accordionFlushExample">
+										<div>Device Naming: Case Sensitive, Spaces and Special
+											Characters Removed. Add GEN3 to denote older GEN3 feeders. Prepend with M5 for Mini Clickers to show in red.</div>
+										<div class="accordion-body">
+										   <div class="input-group col-6 col-sm-6">
+											<input type="text" class="form-control"
+												placeholder="Enter Device Name" aria-label="Device Name"
+												id='deviceNameId'>
+											<button class="btn btn-success" type="button"
+												onclick="callWebAddDeviceName('deviceNameId')">
+												<i class="fa-solid fa-plus"></i>
+											</button>
+											<button class="btn btn-danger" type="button"
+												onclick="callWebRemoveDeviceName('deviceNameId')">
+												<i class="fa-solid fa-trash-can"> </i>
+											</button>
+											</div>
+
+										   <div class="input-group col-6 col-sm-6">
+											<input type="text" class="form-control"
+												placeholder="Enter New Device Name"
+												aria-label="Rename Device Name" id="deviceNameNewId">
+											<button class="btn btn-warning" type="button"
+												onclick="callWebRenameDeviceName('deviceNameId','deviceNameNewId')">Rename</button>
+
+											</div>
+
+									</div>
+
+								</div>
+
+
+								<!-- technical info -->
+						<!--
+								<div class="accordion-item">
+									<h2 class="accordion-header" id="flush-headingOne">
+										<button class="accordion-button collapsed" type="button"
+											data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+											aria-expanded="false" aria-controls="flush-collapseOne">
+											Technical Information</button>
+									</h2>
+									<div id="flush-collapseOne" class="accordion-collapse collapse"
+										aria-labelledby="flush-headingOne"
+										data-bs-parent="#accordionFlushExample">
+										<div class="accordion-body">
+											<button type="button"
+												onclick="callWebGetConfigInfo('configInfoItem')">Retrieve Configuration Info</button>
+											<br> <br> <span id="configInfoItem"
+												style="overflow-wrap: anywhere;"> Click to retrieve configuration information </span>
+										</div>
+									</div>
+									<div id="flush-collapseOne" class="accordion-collapse collapse"
+										aria-labelledby="flush-headingOne"
+										data-bs-parent="#accordionFlushExample">
+										<div class="accordion-body">
+											<button type="button"
+												onclick="window.location='https://idogwatch.com/bot/ui/#!/2?socketid=Gyd2JwbXTLu_z_KXAAAA';">
+												Show user Feeding Statistics</button>
+											<br>
+										</div>
+									</div>
+								</div>
+								-->
+
+								<!-- update devices -->
+
+								<div class="accordion-item">
+									<h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+										<button class="accordion-button collapsed" type="button"
+											data-bs-toggle="collapse"
+											data-bs-target="#panelsStayOpen-collapseTwo"
+											aria-expanded="false"
+											aria-controls="panelsStayOpen-collapseTwo">Update Devices</button>
+									</h2>
+									<div id="panelsStayOpen-collapseTwo"
+										class="accordion-collapse collapse"
+										aria-labelledby="panelsStayOpen-headingTwo">
+										<div class="accordion-body">
+											<div class="row">
+												<div class="col-12 col-sm-4">
+													<button type="button" onclick="callWebReimageOTA('ESP_32')"
+														class="btn btn-settings">Update Mini Feeder</button>
+												</div>
+												<div class="col-12 col-sm-4 mt-2 mt-sm-0">
+													<button type="button" onclick="callWebReimageOTA('ESP_M5')"
+														class="btn btn-settings">Update Mini Clicker</button>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+
+								<!-- send messages -->
+
+								<div class="accordion-item">
+									<h2 class="accordion-header" id="panelsStayOpen-headingThree">
+										<button class="accordion-button collapsed" type="button"
+											data-bs-toggle="collapse"
+											data-bs-target="#panelsStayOpen-collapseThree"
+											aria-expanded="false"
+											aria-controls="panelsStayOpen-collapseThree">Settings via
+											Messages to your feeder devices</button>
+									</h2>
+									<div id="panelsStayOpen-collapseThree"
+										class="accordion-collapse collapse"
+										aria-labelledby="panelsStayOpen-headingThree"
+										data-bs-parent="#accordionFlushExample">
+										<div class="accordion-body">
+											<span style="overflow-wrap: anywhere;">
+												<div class="accordion accordion-flush"
+													id="accordionFlushExample">
+													<ul>
+														<li class="col-12 col-lg-6">
+																<div class="input-group mb-3">
+																	<input class="form-control" type="text" width="40"
+																		placeholder="Enter Device Name"
+																		id="devName">
+																<button class="btn btn-warning" type="button"
+																	onclick="callWebSendVal('device','devName')">Name Your Device</button>
+															</div>
+														</li>
+														<li class="col-12 col-lg-6">
+																<div class="input-group mb-3">
+																	<input class="form-control" type="text" width="40"
+																		placeholder="Inform M5 of Paired Feeder Device Name"
+																		id="pairedDevName">
+																<button type="button"
+																	onclick="callWebSendVal('pairdev','pairedDevName')">Name Paired Feeder</button>
+															</div>
+														</li>
+														<li class="col-12 col-lg-6">
+																<div class="input-group mb-3">
+																	<input class="form-control" type="text" width="40"
+																		placeholder="Provide City, State to keep track of your feeders"
+																		id="locationName">
+
+																<button type="button"
+																	onclick="callWebSendValAsIs('location','locationName')">Location in World</button>
+															</div>
+														</li>
+														<li class="col-12 col-lg-6">
+																<div class="input-group mb-3">
+																	<!--note: needs 'id' for select -->
+																   <select class="form-control" name="stepperKind" id="stepperKind">
+																	   <option value="uno">UNO</option>
+																		<option value="tumbler">Tumbler</option>
+																	</select>
+																<button class="btn btn-warning" type="button"
+																	onclick="callWebSendVal('stepper', 'stepperKind')">Set Canister Type</button>
+															   </div>
+														</li>
+														<li class="col-12 col-lg-6">
+																<div class="input-group mb-3">
+																	<input class="form-control" type="number" min=5
+																		max=3000 step=1 id="stepperAngle" value="45">
+																<button type="button"
+																	onclick="callWebSendVal('stepperangle','stepperAngle')">Tumbler Dispenser Angle</button>
+															</div>
+														</li>
+														<li class="col-12 col-lg-6">
+															<div class="col-12 col-sm-4 mt-4 mt-sm-0">
+																<div class="input-group mb-3">
+																	<img width="100"
+																		src="https://idogwatch.com/pettutor/nick/dwlogo.png" />
+																</div>
+															</div>
+														</li>
+													</ul>
+											</span>
+										</div>
+									</div>
+								</div>
+								<!--end of sending messages div -->
+
+
+							</div>
+					</div>
+
+					<!-- End Settings Content -->
+				</div>
+			</div>
+		</main>
+		<!-- Notifications (Feed & Share Button(s)) -->
+
+		<div aria-live="polite" aria-atomic="true" class="position-relative">
+			<div class="toasty toast-container p-3">
+				<!-- Begin Share Notification -->
+				<div id="liveToasts" class="toast" role="alert"
+					aria-live="assertive" aria-atomic="true">
+					<div class="toast-header">
+						<i class="fa-solid fa-copy"></i> <strong class="me-auto"></strong>
+						<small>just now</small>
+						<button type="button" class="btn-close" data-bs-dismiss="toast"
+							aria-label="Close"></button>
+					</div>
+					<div class="toast-body">Guest link copied to clipboard. Share
+						your feeding panel with friends!</div>
+				</div>
+				<!-- Begin Feed Notification -->
+				<div id="liveToast" class="toast" role="alert" aria-live="assertive"
+					aria-atomic="true">
+					<div class="toast-header">
+						<i class="fa-solid fa-bone"></i> <strong class="me-auto"></strong>
+						<small>just now</small>
+						<button type="button" class="btn-close" data-bs-dismiss="toast"
+							aria-label="Close"></button>
+					</div>
+					<div class="toast-body">A reward was delivered to your pet.</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Notifications -->
+
+		<!-- Begin Instructions -->
+
+		<div class="offcanvas offcanvas-start" tabindex="-1"
+			id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+			<div class="offcanvas-header">
+				<h3 class="offcanvas-title" id="offcanvasExampleLabel">Instructions</h3>
+				<button type="button" class="btn-close" data-bs-dismiss="offcanvas"
+					aria-label="Close"></button>
+			</div>
+			<div class="offcanvas-body">
+				<div>
+					 <h5>
+                  <i class="fa-solid fa-dog fa-1x"></i> Train
+               </h5>
+      <p>Feed All will trigger ALL feeders on the account. There is an option to create buttons for each feeder in settings.</p>
+      <p>A new invention called a <a href="https://SemanticMarker.org">Semantic Marker</a> &#x2122; can also be created where scanning will be the same as clicking on a button and feed your dog.</p>
+               <h5>
+                  <i class="fa-solid fa-bone fa-1x"></i> Play
+               </h5>
+<p>Only applies to the Mini Clicker if it has been connected to WiFi. This can put the Mini Clicker into TILT mode. However, it is also possible to turn on TILT from the Mini Clicker screen.</p>
+               <h5>
+                  <i class="fa-solid fa-bowl-food fa-1x"></i> Auto-Feed
+               </h5>
+<p>The number of seconds between automatically sent feed commands.NOTE: This web page must remain open for the auto commands to be sent.</p>
+               <h5>
+                  <i class="fa-solid fa-gears fa-1x"></i> Settings
+               </h5>
+<p>Change Buzzer, rename devices, update firmware and switch between UNO and Tumbler.</p>
+               <p>
+               <h5>
+                  <i class="fa-solid fa-cube fa-1x"></i> Login/Logout
+               </h5>
+<p>Login/Logout requiring a new username password to continue.</p>
+               <p>
+
+					<center>
+						<a href="https://smartanimaltraining.com/pages/support">Support
+							Documentation</a>
+					</center>
+					</p>
+					<p>
+					<center>Phone: (877)250-2694</center>
+					</p>
+					<p>
+					<center>Email: <a href="mailto:support@pettutor.biz">support@pettutor.biz</a></center>
+					<p>
+					<center>Contact <a href="mailto:scott@konacurrents.com">scott@konacurrents.com</a> to signup for testing <a href="https://idogwatch.com">iDogWatch</a> apps on iPhone/iPad and for more info on the <a href="https://SemanticMarker.org">Semantic Marker</a>&#x2122;</center>
+					</p>
+					<p>
+					<center>Version 1.9a 11.30.2023</center>
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- End Instructions -->
+	</div>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+		integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+		crossorigin="anonymous"></script>
+	<script>
+
+	</script>
+</body>
+</html>
+
+
