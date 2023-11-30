@@ -50,6 +50,7 @@
 //  6.11.23 the UserDB that node-red reads from is a COPY of the master if 
 //  run seperately (split).
 
+//! this is the address things use for later 
 var _semanticMarkerFlowURL = "https://SemanticMarker.org/bot/";
 
 // this is before moving to the new smart deck..
@@ -59,7 +60,10 @@ var _useOldSMARTDeck = true;
 //var _semanticMarkerFlowURL = "http://localhost:2001/";
 
 //! address of the rootBotURL (iDogwatch.com right now)
+//! THis is the address of the node-red we are calling..
+
 var _rootBotURL = "https://iDogWatch.com/bot";
+//var _rootBotURL = "http://localhost:1880";
 
 
 // BELOW: defines var _rootBotURL = "https://iDogWatch.com/bot";
@@ -73,12 +77,17 @@ var _rootBotURL = "https://iDogWatch.com/bot";
 let _useFinal = false;
 var _username = null;
 var _password = null;
+// _word is used for the guest password .. I think it was a worry the cookie was goofy..
 var _word;
 var _saveUserInfo;
 var _devicesJSON =  [{"deviceName":"_GENERIC_"},{"deviceName":"ScoobyDoo"},{"deviceName":"PumpkinUno"},{"deviceName":"GreyGoose"},{"deviceName":"DukeGEN3"},{"deviceName":"HowieFeeder"}, {"deviceName":"M55"}, {"deviceName":"M5Rainier"}, {"deviceName":"LauraBabe"}, {"deviceName":"M522"}, {"deviceName":"M5Rainier"}, {"deviceName":"M5WRR"},{"deviceName":"MoonShot"},{"deviceName":"LacieUSBC"}];
 
 //Array of: [uuid, deckname, deckcat, deckpassword, date]
 var _smartDecks = [];
+
+// 10.31.23
+//Array of: [gpassword: pass]
+var _guestPasswordsJSON = [];
 
 //! initialize when refreshing after logoff
 function initGlobals()
@@ -89,6 +98,7 @@ function initGlobals()
   _password = "";
   _word = "";
   _UUIDNumbers = [];
+  _guestPasswordsJSON = [];
 
   //clear out  the SMART Deck
   document.getElementById('_UUID_Select').innerHTML = "";
@@ -106,6 +116,7 @@ function validUserInfo()
 
 }
 
+//NO _useFinal
 if (_useFinal)
 {
    _username = "{{req.params.NAME}}";
@@ -126,7 +137,7 @@ else
     //_username = "test";
     //_password = "test";
 
-    _word = "doggy";
+    _word = "NOT_SET";
      _devicesJSON =  [{"deviceName":"_GENERIC_"},{"deviceName":"ScoobyDoo"},{"deviceName":"PumpkinUno"},{"deviceName":"GreyGoose"},{"deviceName":"DukeGEN3"},{"deviceName":"HowieFeeder"}, {"deviceName":"M55"}, {"deviceName":"M5Rainier"}, {"deviceName":"LauraBabe"}, {"deviceName":"M522"}, {"deviceName":"M5Rainier"}, {"deviceName":"M5WRR"},{"deviceName":"MoonShot"},{"deviceName":"LacieUSBC"}];
 
 	  //_smartDecks = [{"uuid":"OvdEK4Ks_j2Z","deckname":"marker1","deckcat":"LegacyMarkers","deckpassword":"darwin","date":1679955654862}];
@@ -728,6 +739,56 @@ function createDeviceListOptions(idDeviceListOptions)
   document.getElementById(idDeviceListOptions).innerHTML = htmlSelect;
 }
 
+//! 10.31.23 
+//!create the list of guest passwords.. Fill in the guestPasswordsSelectID (which has the select already formed)
+function createGuestPasswordListOptions(guestPasswordsSelectID)
+{
+
+  var htmlSelect = "";
+  htmlSelect += "<option value='NONE'>NONE</option>";
+  htmlSelect += "\n";
+
+  // used for sorting later..
+  var guestPasswords = [];
+
+  // go through list, but dont include GENERIC and DEFAULT
+  for (var i =0; i< _guestPasswordsJSON.length; i++)
+  {
+		  //Not sorting yet..
+        let guestPassword = _guestPasswordsJSON[i].gpassword;
+		  guestPasswords.push(guestPassword);
+	}
+
+	//now sort
+	guestPasswords.sort();
+   for (var i =0; i< guestPasswords.length; i++)
+   {
+     let guestPassword = guestPasswords[i];
+
+	  // create option for the deviceName
+     htmlSelect += "<option value='" + guestPassword + "'>" + guestPassword + "</option>";
+     htmlSelect += "\n";
+   }
+
+  document.getElementById(guestPasswordsSelectID).innerHTML = htmlSelect;
+}
+
+//! wraps addNewGuestPassword
+function sendAddNewGuestPassword(idGuestPasswordString)
+{
+   var addPassword = document.getElementById(idGuestPasswordString).value;
+	var values = [_username, _password, addPassword];
+   sendURLValues("addguestpassword", values);
+}
+
+//! wraps removeGuestPassword
+function sendRemoveGuestPassword(idGuestPasswordString)
+{
+   var removePassword = document.getElementById(idGuestPasswordString).value;
+	var values = [_username, _password, removePassword];
+   sendURLValues("removeguestpassword", values);
+}
+
 //! just sent all for FEED and CAPTURE, using send: feed
 function sendAllCommand(command, cmd)
 {
@@ -799,7 +860,17 @@ function getCommandPath(command)
 //! This uses knowledge of _isSentToAll, and _deviceName, and this command (which tacks on Device if needed)
 function getCommandPathGuest(command)
 {
-  return getCommandPathWithPassword(command,_word);
+  // _word is the guest password
+  // 11.21.23 .. if the _guestPasswordsSelectId is set, then use that one..
+  // id="_guestPasswordsSelectID" class="select btnB" >x</select>
+  var selectedGuestPassword = document.getElementById('_guestPasswordsSelectID').value;
+  var command;
+  if (selectedGuestPassword && selectedGuestPassword.length > 0 &&  selectedGuestPassword != "NONE")
+    command = getCommandPathWithPassword(command,selectedGuestPassword);
+  else
+    command = getCommandPathWithPassword(command,_word);
+  console.log("Guest command = '" + command + "'");
+  return command;
 }
 
 //! wraps the command no args, but this is sent as a guest
@@ -1814,7 +1885,7 @@ function initRegisteredDevices()
    registerDeviceChange('_M5SpecificCommands',"M5 Specific Commands");
    registerDeviceChange("_TimerCommands","Timer Commands to your device");
    registerDeviceChange("_CommandsToYourDevice", "Commands to your Device");
-   registerDeviceChange("_DeviceNamesManagedByBot", "Device Names managed by your Agent (bot)");
+   registerDeviceChange("_DeviceNamesManagedByBot", "Device Names & Guest Passwords managed by your Agent (bot)");
 
    registerDeviceChange("_DOCFOLLOWMessages", "DOCFOLLOW SemanticMarker&#x2122; Example Messages");
    registerDeviceChange("_RevertToMainOTA", "Revert to MAIN OTA");
@@ -5382,6 +5453,9 @@ var _cookieValues = [];
 //! reads the cookies, will set the documentID if valid (Note this is called 2 times on startup..)
 function readCookies()
 {
+// 11.21.23 .. no cookies
+return;
+
     var allcookies = document.cookie;
 
     // Get all the cookies pairs in an array
@@ -5441,6 +5515,9 @@ function readCookies()
 //! This reads the _parameters which are elementId's
 function saveCookies()
 {
+
+// 11.21.23 no cookies
+    return;
 
 	 var cookieNames = ['_SMRecordDevice','_m5Commands','_password','_username', '_GroupCommands'];
 
@@ -5531,8 +5608,18 @@ function reloadUserAgent()
 		// parse into JSON
       var userJSON = JSON.parse(jsonReply);
 
+		console.log("userJSON = " + JSON.stringify(userJSON));
+
 		//set the guest password 
 		_word = userJSON.guestPassword;
+
+		//! 10.31.23 add the Guest Passwords
+		_guestPasswordsJSON = userJSON.guestPasswords;
+		if (!_guestPasswordsJSON)
+		   _guestPasswordsJSON = [];
+
+		console.log("GuestPasswords = " + JSON.stringify(_guestPasswordsJSON));
+		createGuestPasswordListOptions('_guestPasswordsSelectID');
 
 		// set the global for the devices right now
 		_devicesJSON = userJSON.devices;
@@ -5540,7 +5627,7 @@ function reloadUserAgent()
 		// it's the devices that can change..
 		// Update the Options of devices and devicesToPair
       createDeviceListOptions('devices');
-      createDeviceListOptions('devicesToPair');
+      createDeviceListOptions('_devicesToPair');
 
 // NEW .. add to smart.html version *********
 		//! NEW: 
@@ -5966,12 +6053,224 @@ function callGetCommandReload(url)
 
 /* **************************** END GROUPS ************************ */
 
+//   ***************************** start timer ***************************
+
+// ***** Interval Timer ****
+//https://www.w3schools.com/js/js_timing.asp
+var _countdownTimer;
+var _timerRunning = false;
+// these defaults need to be same as text defaults (since isn't initialized unless clicking on items)
+var _intervalSeconds = 5;
+var _intervalSecondsMax = 5;
+var _timerDurationMinutes = 1; // minutes
+// start time .. so if the 
+var _startTimerTime;
+// end time .. based on the duration
+var _endTimerTime;
+var _countdownTime;
+
+/*
+Globals: getElementById()
+   'timerButton'
+   'timeLeftButton'
+   'timeInButton'
+	'_numFeedsButton'
+Parameters:
+	durationMinutesId
+   minSecondsId
+   maxSecondsId
+*/
+
+//! calculate the duration
+function setupTimerDuration()
+{
+
+	// milliseconds .. 60,000 milliseconds/minute
+   _startTimerTime = (new Date()).getTime();
+
+	_endTimerTime = _startTimerTime + (_timerDurationMinutes* 60000);
+
+	document.getElementById('_numFeedsButton').value = 0;
+
+}
+
+//! returns if over the duration
+function finishTimerDuration()
+{
+	// milliseconds
+   var timeNowMilliseconds = (new Date()).getTime();
+	var isOver =  (timeNowMilliseconds > _endTimerTime);
+
+	var milliSec =  _endTimerTime - timeNowMilliseconds;
+	var sec = Math.floor((milliSec/1000) % 60);
+   var min = Math.floor(((milliSec/1000) / 60) % 60);
+   var hour =Math.floor( ((milliSec/1000) / 60) / 60);
+
+	if (isOver)
+	   sec = min = hour = 0;
+
+	var timeLeftString = hour + ":" + min + ":" + sec +  " (hr:min:sec)";
+   document.getElementById('timeLeftButton').value = timeLeftString;
+
+
+	return isOver;
+
+}
+
+//! sets the timer label
+function setTimerLabel(isStart)
+{
+	var startString = isStart?"Start Timer":"Stop Timer";
+   document.getElementById('_timerButton').value = startString;
+
+}
+//! random between two numbers min/max
+//! see https://www.w3schools.com/js/js_random.asp
+function getRandomInteger(min, max) 
+{
+  min = parseInt(min);
+  max = parseInt(max);
+
+  let randomInt=  Math.floor(Math.random() * (max - min) + min)
+  console.log("random(" + min + "," + max + ") = " + randomInt);
+  if (randomInt < min)
+  {
+     alert("Num < min = " + randomInt);
+  }
+
+  return randomInt;
+}
+
+//Sets the timer
+function setIntervalTimerMinMax(minSecondsId, maxSecondsId, durationMinutesId)
+{
+   var seconds = parseInt(document.getElementById(minSecondsId).value); 
+   var secondsMax = parseInt(document.getElementById(maxSecondsId).value); 
+
+	// make the max at least the min
+	if (seconds >= secondsMax)
+	{
+	   secondsMax = seconds;
+      document.getElementById(maxSecondsId).value = String(secondsMax); 
+	}
+
+	// find the duration minutes
+	var durationMinutes = document.getElementById(durationMinutesId).value; 
+
+
+   _intervalSeconds = seconds;
+   _intervalSecondsMax = secondsMax;
+	_timerDurationMinutes = durationMinutes;
+
+   // not changing state..
+   var _countdownTime = getRandomInteger(_intervalSeconds, _intervalSecondsMax);
+   if (_timerRunning)
+   {
+      clearInterval(_countdownTimer);
+      _timerRunning = false;
+   }
+   document.getElementById('timeInButton').value = _countdownTime;
+	setTimerLabel(true);
+//   document.getElementById('_timerButton').style.color = "black";
+
+}
+
+//start stop button touched
+function startStopTimer()
+{
+
+   var time = _intervalSeconds;
+   if (_timerRunning == false)
+   {
+		// start the timer
+//      document.getElementById('_timerButton').style.color = "red";
+	   setTimerLabel(false);
+      _timerRunning = true;
+      // init the timer
+      initTimer();
+		// only setup the timer on first start..
+      setupTimerDuration();
+
+		// update the time label
+      finishTimerDuration();
+   }
+   else
+   {
+		// sstop the  timer
+	   setTimerLabel(true);
+//      document.getElementById('_timerButton').style.color = "black";
+
+      // clear/stop the timer
+      clearInterval(_countdownTimer);
+      _timerRunning = false;
+   }
+}
+//every second .. to update countdown
+function initTimer()
+{
+   var seconds = getRandomInteger(_intervalSeconds, _intervalSecondsMax);
+
+   _countdownTime = seconds;
+
+	//! call the timer: with seconds
+	//!   setInterval(function, millisecods)
+	//! https://www.w3schools.com/jsref/met_win_setinterval.asp
+   _countdownTimer = setInterval(updateTimer, 1000) // set up a setInterval for the countdown function
+
+	// call every second
+  finishTimerDuration();
+
+}
+
+
+// https://stackoverflow.com/questions/9609731/onchange-event-for-input-type-number
+// called each second, so change label, etc
+function updateTimer()
+{
+  var isDone = finishTimerDuration();
+  if (isDone)
+  {
+	  startStopTimer();
+     alert("timer duration complete: " + _timerDurationMinutes + " minutes");
+	  return;
+  }
+
+  // change the timeInButton label
+  document.getElementById('timeInButton').value = _countdownTime;
+  if (_countdownTime <= 0 )
+  {
+      //restart
+      //callFeedCommand();
+		//! same code as "Send" up above..
+      sendNoArgs('devices','commandNoArg');
+
+		//TODO .. generic FEED command
+		var command = document.getElementById('commandNoArg').value;
+      document.getElementById('timeInButton').value = command;
+      clearInterval(_countdownTimer);
+      initTimer();
+
+	   var numFeeds = document.getElementById('_numFeedsButton').value;
+		numFeeds++;
+	   document.getElementById('_numFeedsButton').value = numFeeds;
+      return;
+  }
+  else
+  {
+      //document.getElementById("demo").value = " ";
+   }
+  _countdownTime--;
+
+}
+
+//   ***************************** end timer ***************************
+
 // creates a help button, looking at all the HelpClass items
 function createHelpButtons()
 {
 
   var allHelpClassArray = document.getElementsByClassName("HelpClass");
-  for (int i=0; i< allHelpClassArray.length; i++)
+  for (var i=0; i< allHelpClassArray.length; i++)
   {
       var helpObject = allHelpClassArray[i];
 
@@ -6008,7 +6307,7 @@ function initWebPage()
 
 	// update the 2 places where devices are shown
    createDeviceListOptions('devices');
-   createDeviceListOptions('devicesToPair');
+   createDeviceListOptions('_devicesToPair');
    var htmlText = "User Page for <a href='https://idogwatch.com/bot/userpage/" + _username + "/" + _password + "'>" + _username + "</a>";
    htmlText += " ";
    //htmlText += "<a href='https://idogwatch.com/bot/userpage2/" + _username + "/" + _password + "'>" + " (NewPage) " + "</a>";
@@ -6171,7 +6470,7 @@ Send commands to your device(s) using on/off flag
   </span>
 </div>
 <input type="button" class="button" id="buttonBooleanArgs27" value="Send Message" onClick="sendBooleanArgs('devices','commandBoolean27','boolArgValue27')" />
-<label class="label" for="commandBoolean">Command:</label>
+<label class="label" for="commandBoolean97">Command:</label>
 <select class="select label"  name="commandBoolean27" id="commandBoolean27">
   <option value="tilt">Set Tilt</option>
   <option value="buzz">Set Buzzer</option>
@@ -6203,7 +6502,7 @@ Select type of feeder:UNO is 16, Tumbler is taller
   </span>
 </div>
 <input type="button" class="button" id="stringTextArgsCanister" value="Send Message" onClick="sendTextArgs('devices','argCanister','stringArgCanister')" />
-<label class="label" for="commandBoolean">Command:</label>
+<label class="label" for="argCanister">Command:</label>
 <select class="select label"  name="argCanister" id="argCanister">
   <option value="stepper">Canister Type</option>
 </select>
@@ -6231,6 +6530,9 @@ Help us set a Guiness World Record. Record your location (city, state, country, 
 </select>
 
 
+<br>
+
+<label class="label" for="commandBooleanTimer">Input Value:</label>
 <input class="text" name="stringArgText" id="stringArgText" length="64" type="text"/>
 
 
@@ -6238,14 +6540,19 @@ Help us set a Guiness World Record. Record your location (city, state, country, 
 
 <h2 class="H2" id="_TimerCommands" name="_TimerCommands" onClick="hideShowMarkup(['m2.1','m3.1'])">2.2 Timer Commands to your device</h2>
 <p class="label" id="m2.1"> 
+<input type="button" class="HELPButton" id="HELPButton" value="Help on Variable Timer in Device" 
+					onClick="alert('Set Min Seconds, and Max Seconds. If different, then a random feed value between those two times is used each time.  \n\nStart Timer and value on/off control timer. ')" />
+<br>
+<br>
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Select a timer to run on the device')" />
 <input type="button" class="button" id="intBooleanArgsTimer" value="Send Message" onClick="sendTextArgs('devices','intArgCommandTimer','intArgTextTimer')" />
-<label class="label" for="intArgCommandTimer">Timer Interval:</label>
+<label class="label" for="intArgCommandTimer">Timer Interval Min:</label>
 <select class="select label"  name="intArgCommandTimer" id="intArgCommandTimer">
-  <option value="timerdelay">Timer delay in seconds</option>
+  <option value="timerdelay">Timer min delay in seconds</option>
+  <option value="timerdelayMax">Timer max delay in seconds</option>
 </select>
+<input class="text" name="intArgTextTimer" id="intArgTextTimer" length="10" type="number" min=0 max=3000 value=5>
 
-<input class="text" name="intArgTextTimer" id="intArgTextTimer" length="64" type="number" min=0 max=3000 value=0>
 <br>
 <br>
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Select turning on/off the timer')" />
@@ -6262,10 +6569,48 @@ Help us set a Guiness World Record. Record your location (city, state, country, 
 </select>
 
 
+<!-
+   '_timerButton'
+   'timeLeftButton'
+   'timeInButton'
+-->
+<br>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="Help on Variable Timer from this Webpage" 
+onClick="alert('Set Min Seconds, and Max Seconds. If different, then a random feed value between those two times is used each time. \n\nThe Duration in minutes sets how long to perform action. \n\nStart and Stop button control timer. \n\nThe countdown interval is shown below as is the total time left. ' + '\n\nCommand will be: '
++ document.getElementById('commandNoArg').value + ' sent to: ' + document.getElementById('devices').value)" />
+<br>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Min seconds')" />
+<label class="label" for="timerIntervalSeconds">Min Seconds:</label>
+<input class="text" name="timerIntervalSeconds" id="timerIntervalSeconds" length="10" type="number" min=5 max=3000 value=5 onChange="setIntervalTimerMinMax('timerIntervalSeconds','timerIntervalSecondsMax','timerDurationMinutes')">
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Max seconds')" />
+<label class="label" for="timerIntervalSecondsMax">Max Seconds:</label>
+<input class="text" name="timerIntervalSecondsMax" id="timerIntervalSecondsMax" length="10" type="number" min=5 max=3000 value=5 onChange="setIntervalTimerMinMax('timerIntervalSeconds','timerIntervalSecondsMax','timerDurationMinutes')">
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Total duration of timed feeding')" />
+<label class="label" for="timerDurationMinutes">Duration (minutes):</label>
+<input class="text" name="timerDurationMinutes" id="timerDurationMinutes" length="10" type="number" min=1 max=3000 value=1 onChange="setIntervalTimerMinMax('timerIntervalSeconds','timerIntervalSecondsMax','timerDurationMinutes')">
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Start and Stop the timer')" />
+<input type="button" class="button" id="_timerButton" value="Start Timer" onClick="startStopTimer()" />
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Random time until next feed between min and max seconds')" />
+<label class="label" for="timeInButton">Time Until Next Feed:</label>
+<input type="button" class="HELPButton" id="timeInButton" value="5"  />
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('The number of feeds since starting. Use this to calculate the amount of food dispensed.')" />
+<label class="label" for="_numFeedsButton">Total Feeds since start:</label>
+<input type="button" class="HELPButton" id="_numFeedsButton" value="0"  />
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Total time left set by the duration in minutes above')" />
+<label class="label" for="timeLeftButton">Total Time Left:</label>
+<input type="button" class="HELPButton" id="timeLeftButton" value="0:00:00 (hr:min:sec)"  />
 <!----------------------------------------------------------------------->
 
 
-<h2 class="H2" id="_DeviceNamesManagedByBot" name="_DeviceNamesManagedByBot" onClick="hideShowMarkup(['m3.1'])">2.3 Device Names managed by your Agent (bot)</h2>
+<h2 class="H2" id="_DeviceNamesManagedByBot" name="_DeviceNamesManagedByBot" onClick="hideShowMarkup(['m3.1'])">2.3 Device Names and Guest Passwords managed by your Agent (bot)</h2>
 <p class="label" id="m3.1"> 
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Note: these are not sent to the devices,\njust to your agent bot.\nThe DeviceName pulldown will change on refresh.')" />
 
@@ -6276,7 +6621,9 @@ The DeviceName pulldown will change on refresh.
 <br>
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Adds the device name you enter')" />
 <input type="button" class="button" id="button_addDeviceNameBot" value="Add Device" onClick="addDeviceNameBot('addDeviceNameBot_string')" />
-<label class="label">Add Device to your agent(bot)</label>
+<label class="label" for="addDeviceNameBot_string">Add Device to your agent(bot)</label>
+<br>
+<label class="label" for="addDeviceNameBot_string">New Device Name:</label>
 <input class="text" name="addDeviceNameBot_string" id="addDeviceNameBot_string" length="64" type="text"/>
 <br>
 <br>
@@ -6290,7 +6637,34 @@ The DeviceName pulldown will change on refresh.
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Rename the device selected above\nTo the name you enter')" />
 <input type="button" class="button" id="button_renameDeviceNameBot" value="Rename Device" onClick="renameDeviceNameBot('devices', 'renameDeviceNameBot_string')" />
 <label class="label">Rename Device managed by your agent(bot), use above device names</label>
+<br>
+<label class="label">Renamed Device Name:</label>
 <input class="text" name="renameDeviceNameBot_string" id="renameDeviceNameBot_string" length="64" type="text"/>
+
+<br>
+<br>
+<!-- guest passwords --->
+
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('List of your guest passwords. Use these to pass out as you can remove them later ')" />
+
+<label class="label" for="_guestPasswordsSelectID">Guest Passwords:</label>
+<select name="devices"  id="_guestPasswordsSelectID" class="select btnB" >x</select>
+
+<br>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Add a new guest password')" />
+<input type="button" class="button" id="_buttonAddGuestPassword" value="Add New Guest Password" onClick="sendAddNewGuestPassword('_AddGuestPassword')" />
+<br>
+<label class="label" for="_AddGuestPassword">New Guest Password:</label>
+<input class="text" name="_AddGuestPassword" id="_AddGuestPassword" length="40" value="" />
+
+<br>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Remove a guest password - using the selected one')" />
+<input type="button" class="button" id="_buttonRemoveGuestPassword" value="Remove Guest Password" onClick="sendRemoveGuestPassword('_RemoveGuestPassword')" />
+<br>
+<label class="label" for="_RemoveGuestPassword">Remove Guest Password:</label>
+<input class="text" name="_RemoveGuestPassword" id="_RemoveGuestPassword" length="40" value="" />
 
 <br>
 <!----------------------------------------------------------------------->
@@ -6301,8 +6675,10 @@ Note: these are messages sent directly to the devices in the above pulldown (wit
 <br>
 <input type="button" class="HELPButton" id="m2HELPButton" value="?" onClick="alert('Rename the device you enter\n(if not in devices list)\nTo New Deivce you enter')" />
 <input type="button" class="button" id="renameDeviceId" value="Rename Device" onClick="sendRenameDevice('currentDeviceName','newDeviceName')" />
+<br>
 <label class="label">Current Device Name (if not in above list):</label>
 <input class="text" name="currentDeviceName" id="currentDeviceName" length="64" type="text">
+<br>
 <label class="label">New Device Name:</label>
 <input class="text" name="newDeviceName" id="newDeviceName" length="64" type="text">
 <br>
@@ -6310,6 +6686,7 @@ Note: these are messages sent directly to the devices in the above pulldown (wit
 <input type="button" class="HELPButton" id="m3HELPButton" value="?" onClick="alert('Rename device in pulldown\nTo name entered')" />
 <input type="button" class="button" id="renameDeviceId2" value="Rename Device" onClick="sendRenameDevice('devices','newDeviceName2')" />
 <label class="label">Use Device Name Pulldown:</label>
+<br>
 <label class="label">New Device Name:</label>
 <input class="text" name="newDeviceName2" id="newDeviceName2" length="64" type="text">
 
@@ -6317,8 +6694,10 @@ Note: these are messages sent directly to the devices in the above pulldown (wit
 <br>
 <input type="button" class="HELPButton" id="m4HELPButton" value="?" onClick="alert('Set any JSON to the value entered')" />
 <input type="button" class="button" id="setCommand" value="setCommand" onClick="sendAnySetCommand('devices','anySetCommand','anySetVal')" />
+<br>
 <label class="label">Any Set Command:</label>
 <input class="text" name="anySetCommand" id="anySetCommand" length="64" type="text">
+<br>
 <label class="label">Val: (spaces allowed, but nothing like "/")</label>
 <input class="text" name="anySetVal" id="anySetVal" length="64" type="text">
 
@@ -6326,8 +6705,10 @@ Note: these are messages sent directly to the devices in the above pulldown (wit
 <br>
 <input type="button" class="HELPButton" id="m5HELPButton" value="?" onClick="alert('Set any JSON to any value including / ')" />
 <input type="button" class="button" id="setCommand64" value="setCommand64" onClick="sendAnySetCommand64('devices','anySetCommand64','anySetVal64')" />
+<br>
 <label class="label">Any Set Command:</label>
 <input class="text" name="anySetCommand64" id="anySetCommand64" length="64" type="text">
+<br>
 <label class="label">Val: (any URL allowed)</label>
 <input class="text" name="anySetVal64" id="anySetVal64" length="64" type="text">
 <br>
@@ -6382,6 +6763,8 @@ Manages sending messages to specific message groups, which allows for multiple d
 
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Add a a group to your user. This requires that group to be known to the MQTT messaging system (using addUserToGroup below)')" />
 <input type="button" class="button" id="_buttonAddNewGroup" value="Add New Group" onClick="addNewGroup('_newGroupName')" />
+<br>
+<label class="label" for="_newGroupName">New Group Name:</label>
 <input class="text" name="_newGroupName" id="_newGroupName" length="40" type="text" value="" />
 <br>
 <br>
@@ -6392,8 +6775,10 @@ Manages sending messages to specific message groups, which allows for multiple d
 
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Add a device (yours or others) where you provide the device name, and a name to help you know whos device it is - such as Scotts.ScoobyDoo'. To delete devices, use delete group.)" />
 <input type="button" class="button" id="_buttonAddGroupDevice" value="Add Device to Group" onClick="addNewGroupDevice('_groups','_newGroupDeviceName','_newGroupDisplayDevicename')" />
+<br>
 <label class="label" for="_newGroupDeviceName">Device Name:</label>
 <input class="text" name="_newGroupDeviceName" id="_newGroupDeviceName" length="40" type="text" value="" />
+<br>
 
 <label class="label" for="_newGroupDisplayDeviceName">Display Device Name:</label>
 <input class="text" name="_newGroupDisplayDeviceName" id="_newGroupDisplayDeviceName" length="40" type="text" value="" />
@@ -6403,6 +6788,7 @@ Manages sending messages to specific message groups, which allows for multiple d
 
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Subscribe to specific groups. Syntax: # or empty, revers to all, otherwise comma seperated (eg. atlasDogs,houndDogs) spaces allowed.')" />
 <input type="button" class="button" id="_buttonSubscribeGroups" value="Subscribe Groups" onClick="subscribeGroups('devices','_subscribeGroupNames')" />
+<br>
 <label class="label" for="_subscribeGroupNames">Group Names:</label>
 <input class="text" name="_subscribeGroupNames" id="_subscribeGroupNames" length="40" type="text" value="#" />
 
@@ -6412,7 +6798,7 @@ Manages sending messages to specific message groups, which allows for multiple d
 <br>
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Send to your device(s)\nUsing on/off flag')" />
 <input type="button" class="button" id="buttonBooleanArgs97" value="Send Message" onClick="sendBooleanArgs('devices','commandBoolean97','boolArgValue97')" />
-<label class="label" for="commandBoolean">Command:</label>
+<label class="label" for="commandBoolean97">Command:</label>
 <select class="select label"  name="commandBoolean97" id="commandBoolean97">
   <option value="usegroups">Use GROUPS if a group member</option>
 </select>
@@ -6621,13 +7007,13 @@ _settingKeys = @[SEMANTIC_WIDGETS_SETTING, SEMANTIC_VISION_SHARING_SETTINGS, SEM
 <br>
 <br>
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Sets to pair ONLY with device named')" />
-<input type="button" class="M5button" id="stringTextArgs"  value="Pair" onClick="sendTextArgs('devices','stringArgCommandPair','devicesToPair')" />
+<input type="button" class="M5button" id="stringTextArgs"  value="Pair" onClick="sendTextArgs('devices','stringArgCommandPair','_devicesToPair')" />
 <label class="label" for="stringArgCommandPair">Command:</label>
 <select class="select label"  name="stringArgCommandPair" id="stringArgCommandPair">
   <option value="pairdev">Pair with GEN3 or ESP Device</option>
 </select>
-<label class="label" for="devicesToPair">Pair with Device Named:</label>
-<select class="select label"  id="devicesToPair" >x</select>
+<label class="label" for="_devicesToPair">Pair with Device Named:</label>
+<select class="select label"  id="_devicesToPair" >x</select>
 
 <!--    Button Press START --->
 <!--
@@ -6671,7 +7057,7 @@ SMART Button IoT Recording via Semantic Marker&#x2122; Flows</h2>
 <br>
 <!-- https://www.w3schools.com/tags/tag_textarea.asp -->
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('A couple simple commands, and Clear')" />
-<label class="label" for="recordedMessages">Recorded Messages:</label>
+<label class="label" for="_recordedMessages">Recorded Messages:</label>
 <input type="button" class="button" id="recordedMessagesClear" value="Clear" onClick="clearTextArea('_recordedMessages');" />
 <input type="button" class="button" id="sendCaptureButton" value="Capture" onClick="sendCommandToDevice('devices','capture')" />
 <input type="button" class="button" id="sendCaptureButton" value="Feed" onClick="sendCommandToDevice('devices','feed')" />
@@ -7346,13 +7732,13 @@ one calls smart?uuid=U&flow=F&format=json&isdata=true
 <!-- repeated here -->
 <br>
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Sends the Semantic Marker')" />
-<input type="button" class="button" id="buttonBooleanArgsM5-SM" value="Send Message" onClick="sendBooleanArgs('devices','commandBooleanM5-SM','boolArgValueM5-SM')" />
-<select class="select label"  name="commandBooleanM5-SM" id="commandBooleanM5-SM">
+<input type="button" class="button" id="buttonBooleanArgsM5-SM" value="Send Message" onClick="sendBooleanArgs('devices','commandBooleanM5-SM2','boolArgValueM5-SM2')" />
+<select class="select label"  name="commandBooleanM5-SM2" id="commandBooleanM5-SM2">
   <option value="zoomSM">Show SemanticMarker&#x2122;</option>
 </select>
 
-<label class="label" for="boolArgValueM5-SM">Value:</label>
-<select class="select label"  name="boolArgValueM5-SM" id="boolArgValueM5-SM">
+<label class="label" for="boolArgValueM5-SM2">Value:</label>
+<select class="select label"  name="boolArgValueM5-SM2" id="boolArgValueM5-SM2">
   <option value="off">Show SM</option>
   <option value="on">Hide SM</option>
 </select>
@@ -7401,7 +7787,7 @@ one calls smart?uuid=U&flow=F&format=json&isdata=true
 <!------------ USER ACCOUNTS  ----------------------------------------------------------->
 <h1 class="M5button" id="_UserAccountsTab" name="_UserAccountsTab" onClick="hideShowMarkup(['_UserAccounts'])" >USER and GROUP Account Setup</h1>
 <p class="label" id="_UserAccounts">
-The following messages are system password protected so ask your administrator at PetTutor or iDogWatch for updates
+Some of following messages are system token (password) protected so ask your administrator at PetTutor or iDogWatch for updates. Others are for the user to update your agent.
 <br>
 <br>
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Adds a user to a group. This reuires a password token that only group administrators will pocess. Removing users isnt automated yet. Contact the administrators. \nGROUP = ' + document.getElementById('_groups').value)" />
@@ -7497,6 +7883,8 @@ function sendChangeYourPassword(idChangeYourPasswordUserName,idChangeYourPasswor
 <br>
 <label class="label" for="_ChangeYourNewPassword">New Password:</label>
 <input class="text" name="_ChangeYourNewPassword" id="_ChangeYourNewPassword" length="40" value="" />
+<br>
+
 
 <!----------------------------------------------------------------------->
 
@@ -7524,6 +7912,8 @@ Provide a URL of an image, and that will be used inside your SemanticMarker&#x21
 <br>
 This will also be your guest feed so your main password is protected.
 <br>
+NOTE: if the GuestPassword is chosen above, then that will be the guest password used.
+<br>
 <br>
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Specify a QRAvatar URL to customize your Semantic Marker&#x2122;')" />
 <input type="button" class="H1green" id="createSM" value="Create Feeding Semantic Marker&#x2122;" onClick="createSemanticMarker('devices','semanticMarkerAvatarURL','finalSemanticMarkerImage','semanticMarkerURLId')" />
@@ -7541,14 +7931,16 @@ This will also be your guest feed so your main password is protected.
 <br>
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('URL of the Semantic Marker to create')" />
 <input type="button" class="button" id="createSMAny" value="Create Semantic Marker&#x2122;" onClick="createSemanticMarkerPathId('semanticMarkerURL','semanticMarkerAvatarURL','finalSemanticMarkerImage','semanticMarkerURLId')" />
-<label class="label">Any Semantic Marker&#x2122; Address</label><input name="semanticMarkerURL" id="semanticMarkerURL" size="64" type="text">
+<label class="label" for="semanticMarkerURL">Any Semantic Marker&#x2122; Address</label><input name="semanticMarkerURL" id="semanticMarkerURL" size="64" type="text">
 <p class="label" id="semanticMarkerURLId">url</p>
 <br><br>
 <br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Shows the World Wide Feeding Statistics todate')" />
+<input type="button" class="OTHERbutton" onClick="invokeURL('https://idogwatch.com/bot/ui/#!/2?socketid=Gyd2JwbXTLu_z_KXAAAA')" value="Feeding Statistics"/>
 
 <br><br>
 <img src="https://KnowledgeShark.me/images/KCNewLabel600-small.png" width="500"></a>
 <br><br>
 &#169;2023 <a href="https://KonaCurrents.com">KonaCurrents</a>, LLC
 
-<h3>10.2.23 v9.8 MQTT Groups & M5QRCodeReader & dev for SM & SMART Decks first time</h3>
+<h3>11.29.23 v10.6 Random Interval Timer, Guest Passwords & MQTT Groups & M5QRCodeReader & dev for SM & SMART Decks</h3>
