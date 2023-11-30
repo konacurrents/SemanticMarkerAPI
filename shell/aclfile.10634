@@ -1,0 +1,385 @@
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User scott@konacurrents.com
+user scott@konacurrents.com
+# *** SUPER USER ***
+topic readwrite usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/scott@konacurrents.com/# 
+
+#group
+topic  readwrite usersP/bark/groups/atlasDogs
+
+#User scott@konacurrents.com_guest
+user scott@konacurrents.com_guest
+# *** SUPER USER GUEST ***
+topic readwrite usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/scott@konacurrents.com/# 
+
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User idogwatch
+user idogwatch
+# *** SUPER USER ***
+topic readwrite usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/idogwatch/# 
+
+#group
+topic  readwrite usersP/bark/groups/atlasDogs
+
+#User idogwatch_guest
+user idogwatch_guest
+# *** SUPER USER GUEST ***
+topic readwrite usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/idogwatch/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User laura@makegr8pets.org
+user laura@makegr8pets.org
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/laura@makegr8pets.org/# 
+
+#User laura@makegr8pets.org_guest
+user laura@makegr8pets.org_guest
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/laura@makegr8pets.org/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User scott@semanticmarker.org
+user scott@semanticmarker.org
+# *** SUPER USER ***
+topic readwrite usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/scott@semanticmarker.org/# 
+
+#User scott@semanticmarker.org_guest
+user scott@semanticmarker.org_guest
+# *** SUPER USER GUEST ***
+topic readwrite usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/scott@semanticmarker.org/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User frankie@konacurrents.com
+user frankie@konacurrents.com
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/frankie@konacurrents.com/# 
+
+#User frankie@konacurrents.com_guest
+user frankie@konacurrents.com_guest
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/frankie@konacurrents.com/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User test
+user test
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/test/# 
+
+#group
+topic  readwrite usersP/bark/groups/atlasDogs
+
+
+#User test_guest
+user test_guest
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/test/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User bill
+user bill
+# *** SUPER USER ***
+topic readwrite usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/bill/# 
+
+#User bill_guest
+user bill_guest
+# *** SUPER USER GUEST ***
+topic readwrite usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/bill/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User greg
+user greg
+# *** SUPER USER ***
+topic readwrite usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/greg/# 
+
+#User greg_guest
+user greg_guest
+# *** SUPER USER GUEST ***
+topic readwrite usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/greg/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User wes
+user wes
+# *** SUPER USER ***
+topic readwrite usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/wes/# 
+
+#User wes_guest
+user wes_guest
+# *** SUPER USER GUEST ***
+topic readwrite usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/wes/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User amanda
+user amanda
+# *** SUPER USER ***
+topic readwrite usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/amanda/# 
+
+#User amanda_guest
+user amanda_guest
+# *** SUPER USER GUEST ***
+topic readwrite usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/amanda/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User sarahc@smartanimaltraining.com
+user sarahc@smartanimaltraining.com
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/sarahc@smartanimaltraining.com/# 
+
+#User sarahc@smartanimaltraining.com_guest
+user sarahc@smartanimaltraining.com_guest
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/sarahc@smartanimaltraining.com/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User pettutor
+user pettutor
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/pettutor/# 
+
+#User pettutor_guest
+user pettutor_guest
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/pettutor/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User nick@smartanimaltraining.com
+user nick@smartanimaltraining.com
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/nick@smartanimaltraining.com/# 
+
+#User nick@smartanimaltraining.com_guest
+user nick@smartanimaltraining.com_guest
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/nick@smartanimaltraining.com/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User opatrie@isd191.org
+user opatrie@isd191.org
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/opatrie@isd191.org/# 
+
+#User opatrie@isd191.org_guest
+user opatrie@isd191.org_guest
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/opatrie@isd191.org/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User stinedvm@yahoo.com
+user stinedvm@yahoo.com
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/stinedvm@yahoo.com/# 
+
+#User stinedvm@yahoo.com_guest
+user stinedvm@yahoo.com_guest
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/stinedvm@yahoo.com/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User kirbythecwc@gmail.com
+user kirbythecwc@gmail.com
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/kirbythecwc@gmail.com/# 
+
+#User kirbythecwc@gmail.com_guest
+user kirbythecwc@gmail.com_guest
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/kirbythecwc@gmail.com/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User info@buildingbondstraining.com
+user info@buildingbondstraining.com
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/info@buildingbondstraining.com/# 
+
+#User info@buildingbondstraining.com_guest
+user info@buildingbondstraining.com_guest
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/info@buildingbondstraining.com/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User alycia.rogal@gmail.com
+user alycia.rogal@gmail.com
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/alycia.rogal@gmail.com/# 
+
+#User alycia.rogal@gmail.com_guest
+user alycia.rogal@gmail.com_guest
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/alycia.rogal@gmail.com/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User lrsteven@gmail.com
+user lrsteven@gmail.com
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/lrsteven@gmail.com/# 
+
+#User lrsteven@gmail.com_guest
+user lrsteven@gmail.com_guest
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/lrsteven@gmail.com/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User cyndyb57@comcast.net
+user cyndyb57@comcast.net
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/cyndyb57@comcast.net/# 
+
+#User cyndyb57@comcast.net_guest
+user cyndyb57@comcast.net_guest
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/cyndyb57@comcast.net/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User jnee7@yahoo.com
+user jnee7@yahoo.com
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/jnee7@yahoo.com/# 
+
+#User jnee7@yahoo.com_guest
+user jnee7@yahoo.com_guest
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/jnee7@yahoo.com/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User info@politepaws.com.au
+user info@politepaws.com.au
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/info@politepaws.com.au/# 
+
+#User info@politepaws.com.au_guest
+user info@politepaws.com.au_guest
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/info@politepaws.com.au/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User llamb1623@gmail.com
+user llamb1623@gmail.com
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/llamb1623@gmail.com/# 
+
+#User llamb1623@gmail.com_guest
+user llamb1623@gmail.com_guest
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/llamb1623@gmail.com/# 
+####
+
+# Thu Apr 7 17:12:38 PDT 2022
+
+#User dekeoboe2@yahoo.com
+user dekeoboe2@yahoo.com
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/dekeoboe2@yahoo.com/# 
+
+#User dekeoboe2@yahoo.com_guest
+user dekeoboe2@yahoo.com_guest
+topic read usersP/bark 
+topic readwrite usersP/dawgpack 
+topic readwrite usersP/+/dekeoboe2@yahoo.com/# 
+####
