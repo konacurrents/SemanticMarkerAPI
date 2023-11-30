@@ -848,6 +848,49 @@ To run, doload the scripts and run with a valid username and password.
 </details>
 
 ------------------------------------------------------------------------------------------
+# MQTT Messaging using BNF Grammer
+
+In addition to the REST Web calls, the lower level MQTT messaging can be used directly.
+This requires that the MQTT pub/sub engine be available. Semantic Marker&trade; currently uses
+the Eclipse Mosquitto&trade; open source MQTT broker. This is available at [mosquitto.org](https://mosquitto.org).
+
+## Publish topic payload
+
+The [dPub](curlCommands/dPub) is a sample of how a valid user could publish a payload on a topic
+<details>
+ <summary><code>mosquito_pub</code> <code><b>mosquitto_pub -i userID -u username -P password -t topic -m PAYLOAD</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | userID |  required | string                  | unique user ID (for each publish)
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+> | topic  |  required | string                  | command request string
+> | PAYLOAD  |  required | string                  | the payload to send (if on shell this must be escaped)
+
+</details>
+
+## Subscribe topic
+
+The [dSub](curlCommands/dSub) is a sample of how a valid user could subscribe to a valid topic. The generic 
+topic is <b>usersP/bark/#</b>.
+
+<details>
+ <summary><code>mosquito_sub</code> <code><b>mosquitto_sub -i userID -u username -P password -t topic</b></code></summary>
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | userID |  required | string                  | unique user ID (for each publish)
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+> | topic  |  required | string                  | command request string
+
+</details>
+
+------------------------------------------------------------------------------------------
 # Additional Interaction with the SMART Button Infrastructure
 
 Outside of creating a Semantic Marker, modification and invocation is out of scope of this API document. One
