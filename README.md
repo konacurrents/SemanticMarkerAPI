@@ -364,9 +364,9 @@ Like many of these interfaces, the credentials including the username and passwo
 
 </details>
 
-### Semantic Marker&trade; Registry
+# Semantic Marker&trade; Registry
 
-The results of these REST calls are entries in the Semantic Marker registery, as shown in this image.
+The results of these REST calls are database entries in the Semantic Marker registry, as shown in this image.
 ![Semantic Marker Registry](images/SemanticMarkerRegistry.png)
 
 ------------------------------------------------------------------------------------------
@@ -449,6 +449,7 @@ To run, doload the scripts and run with a valid username and password.
                       | "DiscoverM5PTClicker"  <boolean>
                       | "useSPIFF"  <boolean>
                       | "timerDelay" <number>
+                      | "timerDelayMax" <number>
                       | "startTimer"  <boolean>
                       | "stepper"  <number>
                       | "clockWiseMotor" <boolean>
@@ -892,18 +893,51 @@ topic is <b>usersP/bark/#</b>.
 > | name      |  type     | data type               | description                                                           |
 > |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
 > | userID |  required | string                  | unique user ID (for each publish)
-> | username |  required | string                  | username of user
+> | username |  required | string                  | username 
 > | password  |  required | string                  | password of user
 > | topic  |  required | string                  | command request string
 
 </details>
 
-## Topics
+## MQTT Topic Namespace Design
 
-The MQTT pub/sub engine uses topics and permissions to constrain who can receive and who can send information (payload) through the network. The following shows the MQTT Topic Namespace, including a hierarchy of permissions. For example, everyone can communicate to others in the same account, but not across acounts. But there is a super account that can send messages to everyone. In addition, there is a dawgpack topic that everyone can collaborate on (much like an old party line). So a <b>status</b> could be requested on the super topic, and replies sent to the dawgpack. In addition, group topics are another way to communication across user accounts (by subscribing to group topics).
+The MQTT pub/sub engine uses topics and permissions to constrain who can receive and who can send information (payload) through the network. The following diagram shows the MQTT Topic Namespace, including a hierarchy of permissions. For example, everyone can communicate to others in the same account, but not across acounts. There is a super account that can send messages to everyone. In addition, there is a dawgpack topic that everyone can collaborate on (much like an old party line). So a <b>status</b> could be requested on the super topic, and replies sent to the dawgpack. In addition, group topics are another way to communication across user accounts (by subscribing to group topics).
 
 The following diagram highlights this namespace design.
 ![MQTT Topic Namespace](images/IOT_MQTT_Namespace.png)
+
+Note the power of this Namespace Design is that new topics, especially groups, can be greated without modifying existing subscriptions. This is especially powerful for the embedded ESP-32 IoT devices as they will automatically receive messages as controlled by the MQTT messaging broker. Membership in groups is performed through the REST calls and the following User and Group Commands.
+
+### User and Group Commands
+
+The shell commands for creating users and topics include:
+
+<details>
+ <summary><code>addMosquitoUser</code> <code><b>addMosquitoUser user password guestPassword</b></code></summary>
+ [addMosquitoUser.sh](shell/addMosquitoUser.sh)
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | user |  required | string                  | username 
+> | password  |  required | string                  | password of user
+> | guestPassword  |  required | string                  | guest password
+
+</details>
+
+<details>
+ <summary><code>adduserToGroup</code> <code><b>addMosquitoUser user group</b></code></summary>
+ [addUserToGroup.sh](shell/addUserToGroup.sh)
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | user |  required | string                  | username 
+> | group  |  required | string                  | group name
+
+</details>
 
 ------------------------------------------------------------------------------------------
 # Additional Interaction with the SMART Button Infrastructure
