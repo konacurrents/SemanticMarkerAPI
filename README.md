@@ -10,6 +10,8 @@ The main interfaces to the SemanticMarker.org web services are through
 web calls embodied in the following web page code (and available at 
 [SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. 
 
+These messages are run through the MQTT publish/subscribe system described later.
+
 These fit an overall cloud and device interaction Semantic Marker architecture shown here 
 ![SemanticMarkerAPIMessages](images/SemanticMarkerAPIMessages.png)
 
@@ -361,6 +363,11 @@ Like many of these interfaces, the credentials including the username and passwo
 > ```
 
 </details>
+
+### Semantic Marker&trade; Registry
+
+The results of these REST calls are entries in the Semantic Marker registery, as shown in this image.
+![Semantic Marker Registry](images/SemanticMarkerRegistry.png)
 
 ------------------------------------------------------------------------------------------
 # Messaging BNF Grammer 
@@ -879,6 +886,7 @@ topic is <b>usersP/bark/#</b>.
 
 <details>
  <summary><code>mosquito_sub</code> <code><b>mosquitto_sub -i userID -u username -P password -t topic</b></code></summary>
+
 #### Parameters
 
 > | name      |  type     | data type               | description                                                           |
@@ -889,6 +897,13 @@ topic is <b>usersP/bark/#</b>.
 > | topic  |  required | string                  | command request string
 
 </details>
+
+## Topics
+
+The MQTT pub/sub engine uses topics and permissions to constrain who can receive and who can send information (payload) through the network. The following shows the MQTT Topic Namespace, including a hierarchy of permissions. For example, everyone can communicate to others in the same account, but not across acounts. But there is a super account that can send messages to everyone. In addition, there is a dawgpack topic that everyone can collaborate on (much like an old party line). So a <b>status</b> could be requested on the super topic, and replies sent to the dawgpack. In addition, group topics are another way to communication across user accounts (by subscribing to group topics).
+
+The following diagram highlights this namespace design.
+![MQTT Topic Namespace](images/IOT_MQTT_Namespace.png)
 
 ------------------------------------------------------------------------------------------
 # Additional Interaction with the SMART Button Infrastructure
