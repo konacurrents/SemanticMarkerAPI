@@ -378,7 +378,7 @@ and the newer JSON Format messages.
 
 Many of the messages described in the following BNF Grammer can be run
 through the shell commands at: [Example curl commands](curlCommands)
-To run, doload the scripts and run with a valid username and password.
+To run, download the scripts and run with a valid username and password.
 
 ## BNF Grammer for Barklet Language
 
@@ -855,6 +855,276 @@ To run, doload the scripts and run with a valid username and password.
 
 </details>
 
+## Group Commands
+The following subset REST calls are for managing Group entry for the MQTT Publish/Subscribe capabilies.
+
+### addGroup - adds a group to the user
+<details>
+ <summary><code>GET</code> <code><b>/addGroup/{username}/{password}/{group}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+> | group  |  required | string                  | group name
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/addGroup/USERNAME/PASSWORD/GROUP"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
+### removeGroup - remove membership in a group
+<details>
+ <summary><code>GET</code> <code><b>/removeGroup/{username}/{password}/{group}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+> | group  |  required | string                  | group name
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/removeGroup/USERNAME/PASSWORD/GROUP"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
+### statusGroup - ask for status inside a group
+<details>
+ <summary><code>GET</code> <code><b>/statusGroup/{username}/{password}/{group}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+> | group  |  required | string                  | group name
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/statusGroup/USERNAME/PASSWORD/GROUP"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
+### feedGroup - sends a feed to the group
+<details>
+ <summary><code>GET</code> <code><b>/feedGroup/{username}/{password}/{group}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+> | group  |  required | string                  | group name
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/feedGroup/USERNAME/PASSWORD/GROUP"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
+### feedDeviceGroup - sends a feed to the group but only device name
+<details>
+ <summary><code>GET</code> <code><b>/feedDeviceGroup/{username}/{password}/{device}/{group}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+> | device  |  required | string                  | device name
+> | group  |  required | string                  | group name
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/feedDeviceGroup/USERNAME/PASSWORD/DEVICE/GROUP"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
+### captureGroup - sends a capture to the group
+<details>
+ <summary><code>GET</code> <code><b>/captureGroup/{username}/{password}/{group}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+> | group  |  required | string                  | group name
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/captureGroup/USERNAME/PASSWORD/GROUP"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
+### Devices and Group
+
+### addDeviceToGroup - Adds one of your devices to a group
+<details>
+ <summary><code>GET</code> <code><b>/addDeviceToGrouop/{username}/{password}/{device}/{display}/{color}/{group}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+> | device  |  required | string                  | name of your device
+> | display  |  required | string                  | name you want to call your device (eg. GroupA_DeviceB)
+> | color  |  required | string                  | color of button (not implemented yet)
+> | group  |  required | string                  | group name
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/captureGroup/USERNAME/PASSWORD/DEVICE/DISPLAY/COLOR/GROUP"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
+### addUserToGroupTopic - adds the user to the group (done by admin)
+<details>
+ <summary><code>GET</code> <code><b>/addUserToGroupTopic/{group}/{username}/{TOKEN}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | group  |  required | string                  | group name
+> | username |  required | string                  | username of user
+> | token  |  required | string                  | token for admin to use
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/addUserToGroupTopic/GROUP/USERNAME/TOKEN"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
+### addUserToGroupTopic - adds the user to the group (done by admin)
+<details>
+ <summary><code>GET</code> <code><b>/addUserToGroupTopic/{group}/{username}/{TOKEN}</b></code></summary>
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | group  |  required | string                  | group name
+> | username |  required | string                  | username of user
+> | token  |  required | string                  | token for admin to use
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/addUserToGroupTopic/GROUP/USERNAME/TOKEN"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
 ------------------------------------------------------------------------------------------
 # MQTT Messaging using BNF Grammer
 
@@ -914,7 +1184,8 @@ The shell commands for creating users and topics include:
 
 <details>
  <summary><code>addMosquitoUser</code> <code><b>addMosquitoUser user password guestPassword</b></code></summary>
- [addMosquitoUser.sh](shell/addMosquitoUser.sh)
+
+ Shell command: [addMosquitoUser.sh](shell/addMosquitoUser.sh)
 
 #### Parameters
 
@@ -928,7 +1199,8 @@ The shell commands for creating users and topics include:
 
 <details>
  <summary><code>adduserToGroup</code> <code><b>addMosquitoUser user group</b></code></summary>
- [addUserToGroup.sh](shell/addUserToGroup.sh)
+
+ Shell command: [addUserToGroup.sh](shell/addUserToGroup.sh)
 
 #### Parameters
 
