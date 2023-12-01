@@ -646,6 +646,10 @@ To run, download the scripts and run with a valid username and password.
 <details>
  <summary><code>GET</code> <code><b>/set/{username}/{password}/{command}/{value}</b></code></summary>
 
+```ebnf
+    set              ::= "set" : setString , "val": valString
+```
+
 #### Parameters
 
 > | name      |  type     | data type               | description                                                           |
@@ -676,6 +680,12 @@ To run, download the scripts and run with a valid username and password.
 ### setdevice - sends the <set> message (command/value) to the specified device
 <details>
  <summary><code>GET</code> <code><b>/setdevice/{username}/{password}/{devicename}/{command}/{value}</b></code></summary>
+
+```ebnf
+    setDevice        ::= "device": device, "set" : setString , "val": valString
+    send             ::= "send" : sendString
+    set64            ::= "set64" : <encodedBase64String>
+```
 
 #### Parameters
 
@@ -708,6 +718,10 @@ To run, download the scripts and run with a valid username and password.
 <details>
  <summary><code>GET</code> <code><b>/send/{username}/{password}/{request}</b></code></summary>
 
+```ebnf
+    send             ::= "send" : sendString
+```
+
 #### Parameters
 
 > | name      |  type     | data type               | description                                                           |
@@ -736,6 +750,10 @@ To run, download the scripts and run with a valid username and password.
 ### senddevice - sends a request command <senddevice>
 <details>
  <summary><code>GET</code> <code><b>/senddevice/{username}/{password}/{device}/{request}</b></code></summary>
+
+```ebnf
+    send             ::= "device": device, "send" : sendString
+```
 
 #### Parameters
 
@@ -766,6 +784,10 @@ To run, download the scripts and run with a valid username and password.
 ### set64device - sends a set request command but in Base64 <set64device>
 <details>
  <summary><code>GET</code> <code><b>/set64device/{username}/{password}/{device}/{command}/{base64Val}</b></code></summary>
+
+```ebnf
+    set64device      ::= "device": device, "set64" : <encodedBase64String>
+```
 
 #### Parameters
 
@@ -798,6 +820,10 @@ To run, download the scripts and run with a valid username and password.
 <details>
  <summary><code>GET</code> <code><b>/command/{username}/{password}/{command}/{on/off}</b></code></summary>
 
+```ebnf
+    command             ::= "command" : command, "val": on/off
+```
+
 #### Parameters
 
 > | name      |  type     | data type               | description                                                           |
@@ -827,6 +853,10 @@ To run, download the scripts and run with a valid username and password.
 ### cmddevice - sends boolean value to the specified device, basically a <set> request but the value is on/off
 <details>
  <summary><code>GET</code> <code><b>/cmddevice/{username}/{password}/{device}/{command}/{on/off}</b></code></summary>
+
+```ebnf
+    cmdDevice        ::= "device": device, "command" : command, "val": on/off
+```
 
 #### Parameters
 
@@ -1033,8 +1063,6 @@ The following subset REST calls are for managing Group entry for the MQTT Publis
 
 </details>
 
-### Devices and Group
-
 ### addDeviceToGroup - Adds one of your devices to a group
 <details>
  <summary><code>GET</code> <code><b>/addDeviceToGrouop/{username}/{password}/{device}/{display}/{color}/{group}</b></code></summary>
@@ -1096,34 +1124,6 @@ The following subset REST calls are for managing Group entry for the MQTT Publis
 
 </details>
 
-### addUserToGroupTopic - adds the user to the group (done by admin)
-<details>
- <summary><code>GET</code> <code><b>/addUserToGroupTopic/{group}/{username}/{TOKEN}</b></code></summary>
-
-#### Parameters
-
-> | name      |  type     | data type               | description                                                           |
-> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
-> | group  |  required | string                  | group name
-> | username |  required | string                  | username of user
-> | token  |  required | string                  | token for admin to use
-
-
-#### Responses
-
-> | http code     | content-type                      | response                                                            |
-> |---------------|-----------------------------------|---------------------------------------------------------------------|
-> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
-> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
-
-#### Example cURL
-
-> ```javascript
-> set fullsm = "http://localhost:1880/addUserToGroupTopic/GROUP/USERNAME/TOKEN"
-> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
-> ```
-
-</details>
 
 ------------------------------------------------------------------------------------------
 # MQTT Messaging using BNF Grammer
