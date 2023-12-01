@@ -4,7 +4,7 @@
 
 Creating and Processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The diagram below shows the interaction with the web services running at [SemanticMarker.org](https://SemanticMarker.org). The code included is almost a 50-50 mix of html and javascript. As these are an HTTP API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.)
 
-## SMART - Semantic Marker Augmented Reality of Things
+## SMART - Semantic Marker™️   Augmented Reality of Things
 
 The main interfaces to the SemanticMarker.org web services are through 
 web calls embodied in the following web page code (and available at 
@@ -12,16 +12,16 @@ web calls embodied in the following web page code (and available at
 
 These messages are run through the MQTT publish/subscribe system described later.
 
-These fit an overall cloud and device interaction Semantic Marker architecture shown here 
+These fit an overall cloud and device interaction Semantic Marker™️   architecture shown here 
 ![SemanticMarkerAPIMessages](images/SemanticMarkerAPIMessages.png)
 
 
-# Semantic Marker REST API
+# Semantic Marker™️   REST API
 
-The following are the main REST API calls to create and manage a Semantic Marker. 
+The following are the main REST API calls to create and manage a Semantic Marker™️  . 
 The current base URL for these is [SemanticMarker.org](https://SemanticMarker.org) but the entire set
-can also be run locally or moved to other web servers. For the Semantic Marker to be sharable and run
-by outside parties, the Semantic Marker address URL must be publically available (for example, http://localhost would only
+can also be run locally or moved to other web servers. For the Semantic Marker™️   to be sharable and run
+by outside parties, the Semantic Marker™️   address URL must be publically available (for example, http://localhost would only
 be usable for local testing, but https://SemanticMarker.org is globally accessible)
 
 ### Example Web Pages making REST API calls
@@ -32,18 +32,18 @@ Example production web pages includes making appropriate API calls includes:
 [iDogWatch.com](https://idogwatch.com/userpage/userpage.html?username=test&password=test) and 
 [SemanticMarker.org](https://SemanticMarker.org/smart?username=test&password=test)
 
-# Kona Currents, LLC offers three tiers of Semantic Marker offerings.
+# Kona Currents, LLC offers three tiers of Semantic Marker™️   offerings.
 
-## Tier I. Semantic Marker Indirection
-## Tier II.  Semantic Marker Store and Forward
-## Tier III.  Semantic Marker SMART Button Management
+## Tier I. Semantic Marker™️   Indirection
+## Tier II.  Semantic Marker™️   Store and Forward
+## Tier III.  Semantic Marker™️   SMART Button Management
 
 ------------------------------------------------------------------------------------------
-# Tier I Semantic Marker Indirection
+# Tier I Semantic Marker™️   Indirection
 
-A Tier I Semantic Marker is a straight indirection to a remote address. These are created
+A Tier I Semantic Marker™️   is a straight indirection to a remote address. These are created
 directly from the various language implementation. Examples of javascript, C and objective-c are shown. These
-are snipits of code from various Semantic Marker apps to give a flavor of the APIs.
+are snipits of code from various Semantic Marker™️   apps to give a flavor of the APIs.
 
 <details>
 <summary><code>Javascript</code> <code><b>new SemanticMarker</b></code></summary>
@@ -57,7 +57,7 @@ embedded in the  [smart.js](smart.js) code modules.
 Excerpt from html file:
 
 ```javascript
-//The commandPath (the Semantic Marker address is a parameter as is the avatarURL, and if the
+//The commandPath (the Semantic Marker™️   address is a parameter as is the avatarURL, and if the
 //avatar is circular or rectangle).
 function createSemanticMarker(commandPath, avatarURL, circular)
 {
@@ -87,7 +87,7 @@ try
    }
 }
 ```
-#### Example of calling the web server to create a Tier II or Tier III Semantic Marker
+#### Example of calling the web server to create a Tier II or Tier III Semantic Marker™️  
 
 A typical <b>Http</b> web call looks like the following, passing in a command which includes calls to the appropriate web interface (for example https://SemanticMarker.org/bot/createSemanticMarker as shown in the diagram above). 
 
@@ -117,7 +117,7 @@ function createSemanticMarker(command)
 <details>
 <summary><code>ESP-32 M5 Code</code> <code><b>create Semantic Marker</b></code></summary>
 
-This is a simple example of creating a Tier I Semantic Marker inside the ESP-32 code base.
+This is a simple example of creating a Tier I Semantic Marker™️   inside the ESP-32 code base.
 
 ##### Example ESP32 C Code
 ```c
@@ -128,15 +128,15 @@ This is a simple example of creating a Tier I Semantic Marker inside the ESP-32 
     //try to draw a character in the middle ...
     printTextAtTextPosition("SM",_zoomedTextPositions[QRAVATAR_ACTION]);
 ```
-#### Example Semantic Marker shown on the small M5 Display 
+#### Example Semantic Marker™️   shown on the small M5 Display 
 
 <img src="images/M5.png" width="300">
 </details>
 
 <details>
 <summary><code>Apple iOS Objective-C</code> <code><b>create Semantic Marker</b></code></summary>
-This is a simple example of creating a Tier I Semantic Marker inside the iOS Apple Objective-c code base.
-The <b>createSemanticMarker</b> is a method that performs all the Semantic Marker image merging and creation. The image merging is placing the avatarImage inside the resulting Semantic Marker at a size and aspect ratio inherent to the Semantic Marker specifications.
+This is a simple example of creating a Tier I Semantic Marker™️   inside the iOS Apple Objective-c code base.
+The <b>createSemanticMarker</b> is a method that performs all the Semantic Marker™️   image merging and creation. The image merging is placing the avatarImage inside the resulting Semantic Marker™️   at a size and aspect ratio inherent to the Semantic Marker™️   specifications.
 
 ##### Example iOS ObjectiveC
 ```objectiveC
@@ -144,24 +144,24 @@ The <b>createSemanticMarker</b> is a method that performs all the Semantic Marke
     UIImage *image = [self createSemanticMarker:address avatarImage:image];
 
 ```
-#### Example functional Semantic Marker with enclosed Avatar image
+#### Example functional Semantic Marker™️   with enclosed Avatar image
 
 ![Semantic Marker on Watch Example](images/watch.png)
 
-Note this image captured from the Semantic Marker Apple Watch, shows the Semantic Marker (where a long press will invoke the Semantic Marker using the Tier III REST API), but also shows the <b>FEED</b> button. This makes a call on the <b>/feed</b> REST API shown below. 
+Note this image captured from the Semantic Marker™️   Apple Watch, shows the Semantic Marker™️   (where a long press will invoke the Semantic Marker™️   using the Tier III REST API), but also shows the <b>FEED</b> button. This makes a call on the <b>/feed</b> REST API shown below. 
 
 </details>
 
 ------------------------------------------------------------------------------------------
-# Tier II Semantic Marker Store and Forward
+# Tier II Semantic Marker™️   Store and Forward
 
-A Tier II Semantic Marker invoves storing information at one of our Semantic Marker cloud servers. This
-include an indirect address that a valid user can modify. Later, the Tier III Semantic Marker provides
+A Tier II Semantic Marker™️   invoves storing information at one of our Semantic Marker™️   cloud servers. This
+include an indirect address that a valid user can modify. Later, the Tier III Semantic Marker™️   provides
 full user control.
 
-## Creates a Tier II Semantic Marker using the Semantic Marker Address (escaped)
+## Creates a Tier II Semantic Marker™️   using the Semantic Marker Address (escaped)
 
-### Exists - called to see if this Semantic Marker has already been created
+### Exists - called to see if this Semantic Marker™️   has already been created
 <details>
  <summary><code>GET</code> <code><b>/exists/ks/{category}/{namespace}/{UUID}/{escapedSemanticMarker}</b></code></summary>
 
@@ -170,7 +170,7 @@ full user control.
 > | name      |  type     | data type               | description                                                           |
 > |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
 > | namespace |  required | string                  | Namespace of Semantic Marker                                          |
-> | category  |  required | string                  | Namespace of Semantic Marker                                          |
+> | category  |  required | string                  | Category of Semantic Marker                                          |
 > | UUID      |  required | string                  | UUID of the user                                                      |
 > | escapedAddress      |  required | string                  | The Semantic Marker Address is escaped so it is a single parameter argument|
 
@@ -366,7 +366,7 @@ Like many of these interfaces, the credentials including the username and passwo
 
 # Semantic Marker&trade; Registry
 
-The results of these REST calls are database entries in the Semantic Marker registry, as shown in this image.
+The results of these REST calls are database entries in the Semantic Marker&trade; registry, as shown in this image.
 ![Semantic Marker Registry](images/SemanticMarkerRegistry.png)
 
 ------------------------------------------------------------------------------------------
@@ -647,7 +647,7 @@ To run, download the scripts and run with a valid username and password.
  <summary><code>GET</code> <code><b>/set/{username}/{password}/{command}/{value}</b></code></summary>
 
 ```ebnf
-    set              ::= "set" : setString , "val": valString
+set  ::= "set" : setString , "val": valString
 ```
 
 #### Parameters
@@ -682,9 +682,7 @@ To run, download the scripts and run with a valid username and password.
  <summary><code>GET</code> <code><b>/setdevice/{username}/{password}/{devicename}/{command}/{value}</b></code></summary>
 
 ```ebnf
-    setDevice        ::= "device": device, "set" : setString , "val": valString
-    send             ::= "send" : sendString
-    set64            ::= "set64" : <encodedBase64String>
+setDevice  ::= "device": device, "set" : setString , "val": valString
 ```
 
 #### Parameters
@@ -719,7 +717,7 @@ To run, download the scripts and run with a valid username and password.
  <summary><code>GET</code> <code><b>/send/{username}/{password}/{request}</b></code></summary>
 
 ```ebnf
-    send             ::= "send" : sendString
+send  ::= "send" : sendString
 ```
 
 #### Parameters
@@ -752,7 +750,7 @@ To run, download the scripts and run with a valid username and password.
  <summary><code>GET</code> <code><b>/senddevice/{username}/{password}/{device}/{request}</b></code></summary>
 
 ```ebnf
-    send             ::= "device": device, "send" : sendString
+sendDevice ::= "device": device, "send" : sendString
 ```
 
 #### Parameters
@@ -786,7 +784,7 @@ To run, download the scripts and run with a valid username and password.
  <summary><code>GET</code> <code><b>/set64device/{username}/{password}/{device}/{command}/{base64Val}</b></code></summary>
 
 ```ebnf
-    set64device      ::= "device": device, "set64" : <encodedBase64String>
+set64device  ::= "device": device, "set64" : <encodedBase64String>
 ```
 
 #### Parameters
@@ -821,7 +819,7 @@ To run, download the scripts and run with a valid username and password.
  <summary><code>GET</code> <code><b>/command/{username}/{password}/{command}/{on/off}</b></code></summary>
 
 ```ebnf
-    command             ::= "command" : command, "val": on/off
+command  ::= "command" : command, "val": on/off
 ```
 
 #### Parameters
@@ -855,7 +853,7 @@ To run, download the scripts and run with a valid username and password.
  <summary><code>GET</code> <code><b>/cmddevice/{username}/{password}/{device}/{command}/{on/off}</b></code></summary>
 
 ```ebnf
-    cmdDevice        ::= "device": device, "command" : command, "val": on/off
+cmdDevice  ::= "device": device, "command" : command, "val": on/off
 ```
 
 #### Parameters
@@ -886,7 +884,7 @@ To run, download the scripts and run with a valid username and password.
 </details>
 
 ## Group Commands
-The following subset REST calls are for managing Group entry for the MQTT Publish/Subscribe capabilies.
+The following subset of REST calls are for managing Group entry for the MQTT Publish/Subscribe capabilies.
 
 ### addGroup - adds a group to the user
 <details>
@@ -1176,7 +1174,7 @@ The MQTT pub/sub engine uses topics and permissions to constrain who can receive
 The following diagram highlights this namespace design.
 ![MQTT Topic Namespace](images/IOT_MQTT_Namespace.png)
 
-Note the power of this Namespace Design is that new topics, especially groups, can be greated without modifying existing subscriptions. This is especially powerful for the embedded ESP-32 IoT devices as they will automatically receive messages as controlled by the MQTT messaging broker. Membership in groups is performed through the REST calls and the following User and Group Commands.
+Note the power of this Namespace Design is that new topics, especially groups, can be created without modifying existing subscriptions. This is especially powerful for the embedded ESP-32 IoT devices without modification as they will automatically receive messages as controlled by the MQTT messaging broker. Membership in groups is performed through the REST calls and the following User and Group Commands.
 
 ### User and Group Commands
 
@@ -1214,14 +1212,14 @@ The shell commands for creating users and topics include:
 ------------------------------------------------------------------------------------------
 # Additional Interaction with the SMART Button Infrastructure
 
-Outside of creating a Semantic Marker, modification and invocation is out of scope of this API document. One
+Outside of creating a Semantic Marker&trade;, modification and invocation is out of scope of this API document. One
 web page that encapsulates most of these interactions can seen at:  [SemanticMarker.org/smart](https://SemanticMarker.org/smart)
 
-# Semantic Marker Examples with Avatar Images Embedded
+# Semantic Marker&trade; Examples with Avatar Images Embedded
 
-The Semantic Marker supports existing and future two-dimensional optical vision markers. The following are a couple examples.
+The Semantic Marker&trade; supports existing and future two-dimensional optical vision markers. The following are a couple examples.
 
-The resulting Semantic Marker can look like the following examples.
+The resulting Semantic Marker&trade; can look like the following examples.
 
 ## SMART Buttons
 ![Semantic Marker Examples](images/SemanticMarkerExamples.png)
@@ -1229,6 +1227,6 @@ The resulting Semantic Marker can look like the following examples.
 ## Alternate two-dimensional optical codes
 <img src="images/SemanticMarkerQBar.png" width="200">
 
-## Semantic Marker on a small ESP-32 M5 display
-This Semantic Marker might change every second to reflect sensor status.
+## Semantic Marker&trade; on a small ESP-32 M5 display
+This Semantic Marker&trade; might change every second to reflect sensor status.
 <img src="images/M5.png" width="300">
