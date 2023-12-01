@@ -7,12 +7,12 @@ Creating and Processing with the Semantic Marker™️  System is through variou
 ## SMART - Semantic Marker™️   Augmented Reality of Things
 
 The main interfaces to the SemanticMarker.org web services are through 
-web calls embodied in the following web page code (and available at 
+web calls embodied in the following web page code, and is available at 
 [SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. 
 
 These messages are run through the MQTT publish/subscribe system described later.
 
-These fit an overall cloud and device interaction Semantic Marker™️   architecture shown here 
+These fit an overall cloud and device interaction Semantic Marker™️   architecture shown here. 
 ![SemanticMarkerAPIMessages](images/SemanticMarkerAPIMessages.png)
 
 
@@ -227,9 +227,11 @@ full user control.
 # Tier III Semantic Marker - SMART Buttons
 
 A Tier III Semantic Marker provides storage for the Avatar image and for very fine control of
-Semantic Marker actions. The created result is called a SMART Button - standing for Semantic Marker Augmented Reality of Things.
+Semantic Marker actions. The created result is called a SMART Button - standing for Semantic Marker&trade; Augmented Reality of Things.
+The resulting stored processing steps is especially suited to customized Internet of Things (IoT) processing, such 
+as a custom user manual for your IoT home devices (eg. your accounts, passwords, WIFI address, and device Id's). These utilize all the API calls shown in this document but customized to your environment..
 
-A SMART Button has a unique Semantic Marker address such as:
+A SMART Button has a unique Semantic Marker&trade; address such as:
 
 ##### https://SemanticMarker.org/bot/smart?uuid=V6gZLkRley&flow=1698208438983
 
