@@ -286,7 +286,6 @@ Like many of these interfaces, the credentials including the username and passwo
 > -F flowcat=$flowcat \
 > -F kind=$kind \
 > $fullsm
-
 > ```
 
 </details>
@@ -359,7 +358,6 @@ Like many of these interfaces, the credentials including the username and passwo
 > set fullsm = "https://SemanticMarker.org/bot/smflowpost"
 > curl --trace-ascii curl.trace  \
 > $fullsm
-
 > ```
 
 </details>
