@@ -2,7 +2,7 @@
 
 ![SemanticMarker API](images/SemanticMarkerAPI.png)
 
-Creating and Processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The diagram below shows the interaction with the web services running at [SemanticMarker.org](https://SemanticMarker.org). The code included is almost a 50-50 mix of html and javascript. As these are an HTTP API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.)
+Creating and Processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The diagram below shows the interaction with the web services running at [SemanticMarker.org](https://SemanticMarker.org). The code included is almost a 50-50 mix of html and javascript. As these are an REST (HTTP) API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.) At the heart of the messaging API is the publish/subscribe engine described below using the [BNF Language Grammer](https://en.wikipedia.org/wiki/Backus-Naur_form).
 
 ## SMART - Semantic Marker™️   Augmented Reality of Things
 
@@ -10,7 +10,7 @@ The main interfaces to the SemanticMarker.org web services are through
 web calls embodied in the following web page code, and is available at 
 [SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. 
 
-These messages are run through the MQTT publish/subscribe system described later.
+These messages are then run through the MQTT publish/subscribe system described later.
 
 These fit an overall cloud and device interaction Semantic Marker™️   architecture shown here. 
 ![SemanticMarkerAPIMessages](images/SemanticMarkerAPIMessages.png)
