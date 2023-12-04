@@ -10,7 +10,8 @@ The main interfaces to the [SemanticMarker.org](https://SemanticMarker.org) web 
 calls embodied in the following web page code, and is available at 
 [SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. In addition apps, like the [Semantic Marker iOS Apple App](https://semanticmarker.org/vision/testflight.html) are in various phases of development, also interacting with the same API's.
 
-These messages are then run through the MQTT publish/subscribe system described later.
+> [!NOTE]
+> These messages are then run through the MQTT publish/subscribe system described later.
 
 These fit an overall cloud and device interaction Semantic Marker™️   architecture shown here. 
 ![SemanticMarkerAPIMessages](images/SemanticMarkerAPIMessages.png)
@@ -414,9 +415,8 @@ These are the Websocket and MQTT messaging formats. This includes the legacy web
 defined as the <b>Barklet Language</b>. The format is a mix of original Barklet Language used with WebSockets,
 and the newer JSON Format messages.
 
-Many of the messages described in the following BNF Grammar can be run
-through the shell commands at: [Example curl commands](curlCommands)
-To run, download the scripts and run with a valid username and password.
+> [!NOTE]
+> Many of the messages described in the following BNF Grammar can be run through the shell commands at: [Example curl commands](curlCommands) To run, download the scripts and run with a valid username and password.
 
 ## BNF Grammar for Barklet Language
 
@@ -1271,7 +1271,8 @@ The MQTT pub/sub engine uses topics and permissions to constrain who can receive
 The following diagram highlights this namespace design.
 ![MQTT Topic Namespace](images/IOT_MQTT_Namespace.png)
 
-Note the power of this Namespace Design is that new topics, especially groups, can be created without modifying existing subscriptions. This is especially powerful for the embedded ESP-32 IoT devices without modification as they will automatically receive messages as controlled by the MQTT messaging broker. Membership in groups is performed through the REST calls and the following User and Group Commands.
+> [!NOTE] 
+> the power of this Namespace Design is that new topics, especially groups, can be created without modifying existing subscriptions. This is especially powerful for the embedded ESP-32 IoT devices without modification as they will automatically receive messages as controlled by the MQTT messaging broker. Membership in groups is performed through the REST calls and the following User and Group Commands.
 
 ### User and Group Commands
 
