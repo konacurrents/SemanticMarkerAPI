@@ -11,7 +11,7 @@ calls embodied in the following web page code, and is available at
 [SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. In addition apps, like the [Semantic Marker iOS Apple App](https://semanticmarker.org/vision/testflight.html) are in various phases of development, also interacting with the same API's.
 
 > [!NOTE]
-> These messages are then run through the MQTT publish/subscribe system described later.
+> These messages are then run through the MQTT publish/subscribe system described [later](#mqtt-messaging-using-bnf-grammar).
 
 These fit an overall cloud and device interaction Semantic Marker™️   architecture shown here. 
 ![SemanticMarkerAPIMessages](images/SemanticMarkerAPIMessages.png)
