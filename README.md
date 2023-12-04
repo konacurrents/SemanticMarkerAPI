@@ -266,9 +266,10 @@ full user control.
 # Tier III Semantic Marker - SMART Buttons
 
 A Tier III Semantic Marker provides storage for the Avatar image and for very fine control of
-Semantic Marker actions. The created result is called a SMART Button - standing for Semantic Marker&trade; Augmented Reality of Things.
-The resulting stored processing steps is especially suited to customized Internet of Things (IoT) processing, such 
-as a custom user manual for your IoT home devices (eg. your accounts, passwords, WIFI address, and device Id's). These utilize all the API calls shown in this document but customized to your environment..
+Semantic Marker actions. The created result is called a SMART Button - standing for Semantic Marker&trade; Augmented Reality of Things. 
+
+> [!TIP]
+> The resulting stored processing steps are especially suited to customized Internet of Things (IoT) processing, such as a custom user manual for your IoT home devices (eg. your accounts, passwords, WIFI address, and device Id's). These utilize all the API calls shown in this document but customized to your environment..
 
 A SMART Button has a unique Semantic Marker&trade; address such as:
 
@@ -1327,4 +1328,4 @@ The resulting Semantic Marker&trade; can look like the following examples.
 
 ## Semantic Marker&trade; on a small ESP-32 M5 display
 This Semantic Marker&trade; might change every second to reflect sensor status.
-uimg src="images/M5.png" width="300">
+<img src="images/M5.png" width="300">
