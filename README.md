@@ -32,6 +32,42 @@ Example production web pages includes making appropriate API calls includes:
 [iDogWatch.com](https://idogwatch.com/userpage/userpage.html?username=test&password=test) and 
 [SemanticMarker.org](https://SemanticMarker.org/smart?username=test&password=test)
 
+#### Table of REST and MQTT API Calls
+<details>
+####  REST API
+ <summary><code>GET</code> <code><b>/exists/ks/{category}/{namespace}/{UUID}/{escapedSemanticMarker}</b></code></summary>
+ <summary><code>GET</code> <code><b>/train/ks/{namespace}/{category}/{UUID}/{escapedSemanticMarker}</b></code></summary>
+ <summary><code>POST</code> <code><b>/{namespace}/{category}/{UUID}/digitize</b></code> </summary>
+ <summary><code>POST</code> <code><b>/smflowpost</b></code> </summary>
+ <summary><code>GET</code> <code><b>/invokeSemanticMarker/{username}/{password}/{SemanticMarkerAddress}</b></code></summary>
+ <summary><code>GET</code> <code><b>/createSemanticMarker/{username}/{password}/{SemanticMarkerAddress}/{AvatarURL}</b></code></summary>
+ <summary><code>GET</code> <code><b>/feed/{username}/{password}</b></code></summary>
+ <summary><code>GET</code> <code><b>/feeddevice/{username}/{password}/{devicename}</b></code></summary>
+ <summary><code>GET</code> <code><b>/lookupuser/{username}/{password}</b></code></summary>
+ <summary><code>GET</code> <code><b>/set/{username}/{password}/{command}/{value}</b></code></summary>
+ <summary><code>GET</code> <code><b>/setdevice/{username}/{password}/{devicename}/{command}/{value}</b></code></summary>
+ <summary><code>GET</code> <code><b>/send/{username}/{password}/{request}</b></code></summary>
+ <summary><code>GET</code> <code><b>/senddevice/{username}/{password}/{device}/{request}</b></code></summary>
+ <summary><code>GET</code> <code><b>/set64device/{username}/{password}/{device}/{command}/{base64Val}</b></code></summary>
+ <summary><code>GET</code> <code><b>/command/{username}/{password}/{command}/{on/off}</b></code></summary>
+ <summary><code>GET</code> <code><b>/cmddevice/{username}/{password}/{device}/{command}/{on/off}</b></code></summary>
+ <summary><code>GET</code> <code><b>/addGroup/{username}/{password}/{group}</b></code></summary>
+ <summary><code>GET</code> <code><b>/removeGroup/{username}/{password}/{group}</b></code></summary>
+ <summary><code>GET</code> <code><b>/statusGroup/{username}/{password}/{group}</b></code></summary>
+ <summary><code>GET</code> <code><b>/feedGroup/{username}/{password}/{group}</b></code></summary>
+ <summary><code>GET</code> <code><b>/feedDeviceGroup/{username}/{password}/{device}/{group}</b></code></summary>
+ <summary><code>GET</code> <code><b>/captureGroup/{username}/{password}/{group}</b></code></summary>
+ <summary><code>GET</code> <code><b>/addDeviceToGrouop/{username}/{password}/{device}/{display}/{color}/{group}</b></code></summary>
+ <summary><code>GET</code> <code><b>/addUserToGroupTopic/{group}/{username}/{TOKEN}</b></code></summary>
+
+#### MQTT Messaging
+ <summary><code>mosquito_pub</code> <code><b>mosquitto_pub -i userID -u username -P password -t topic -m PAYLOAD</b></code></summary>
+ <summary><code>mosquito_sub</code> <code><b>mosquitto_sub -i userID -u username -P password -t topic</b></code></summary>
+ <summary><code>addMosquitoUser</code> <code><b>addMosquitoUser user password guestPassword</b></code></summary>
+ <summary><code>adduserToGroup</code> <code><b>addMosquitoUser user group</b></code></summary>
+</details>
+
+
 # Kona Currents, LLC offers three tiers of Semantic Marker™️   offerings.
 
 ## Tier I. Semantic Marker™️   Indirection
