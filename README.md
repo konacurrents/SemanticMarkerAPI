@@ -32,8 +32,8 @@ Example production web pages includes making appropriate API calls includes:
 [iDogWatch.com](https://idogwatch.com/userpage/userpage.html?username=test&password=test) and 
 [SemanticMarker.org](https://SemanticMarker.org/smart?username=test&password=test)
 
-#### Table of REST and MQTT API Calls
 <details>
+ <summary><code>Table of REST and MQTT API Calls</code> </summary>
  <summary><code>GET</code> <code><b>/exists/ks/{category}/{namespace}/{UUID}/{escapedSemanticMarker}</b></code></summary>
  <summary><code>GET</code> <code><b>/train/ks/{namespace}/{category}/{UUID}/{escapedSemanticMarker}</b></code></summary>
  <summary><code>POST</code> <code><b>/{namespace}/{category}/{UUID}/digitize</b></code> </summary>
