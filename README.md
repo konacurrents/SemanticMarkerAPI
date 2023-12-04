@@ -17,7 +17,7 @@ These fit an overall cloud and device interaction Semantic Marker™️   archit
 ![SemanticMarkerAPIMessages](images/SemanticMarkerAPIMessages.png)
 
 
-# Semantic Marker™️   REST API
+# Semantic Marker™️  REST and MQTT API
 
 The following are the main REST API calls to create and manage a Semantic Marker™️  . 
 The current base URL for these is [SemanticMarker.org](https://SemanticMarker.org) but the entire set
