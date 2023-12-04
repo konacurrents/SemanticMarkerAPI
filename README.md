@@ -53,12 +53,12 @@ The list of API calls is shown next with full details later in their appropriate
  <summary><code>GET</code> <code><b>/captureGroup/{username}/{password}/{group}</b></code></summary>
  <summary><code>GET</code> <code><b>/addDeviceToGroup/{username}/{password}/{device}/{display}/{color}/{group}</b></code></summary>
  <summary><code>GET</code> <code><b>/addUserToGroupTopic/{group}/{username}/{TOKEN}</b></code></summary>
+ <summary><code>GET</code> <code><b>/addUser/{username}/{password}/{guestpassword}/{TOKEN}</b></code></summary>
 
  <summary><code>mosquito_pub</code> <code><b>mosquitto_pub -i userID -u username -P password -t topic -m PAYLOAD</b></code></summary>
  <summary><code>mosquito_sub</code> <code><b>mosquitto_sub -i userID -u username -P password -t topic</b></code></summary>
  <summary><code>addMosquitoUser</code> <code><b>addMosquitoUser user password guestPassword</b></code></summary>
  <summary><code>addUserToGroup</code> <code><b>addMosquitoUser user group</b></code></summary>
- <summary><code><b>/addUser/{username}/{password}/{guestpassword}/{TOKEN}</b></code></summary>
 </details>
 
 ### Example Web Pages making REST API calls
