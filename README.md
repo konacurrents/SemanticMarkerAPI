@@ -1277,7 +1277,12 @@ The following diagram highlights this namespace design.
 
 ### User and Group Commands
 
-The shell commands for creating users and topics include:
+The shell commands for creating users and topics include the following.
+
+> [!CAUTION]
+> These shell commands must be run on the same computer that can access the user and password files. These
+> commands should only be run by an approved user (and the REST API requires a special **TOKEN** or password
+> that should be guarded).
 
 <details>
  <summary><code>addMosquitoUser</code> <code><b>addMosquitoUser user password guestPassword</b></code></summary>
@@ -1316,14 +1321,14 @@ web page that encapsulates most of these interactions can seen at:  [SemanticMar
 
 # Semantic Marker&trade; Examples with Avatar Images Embedded
 
-The Semantic Marker&trade; supports existing and future two-dimensional optical vision markers. The following are a couple examples.
+The Semantic Marker&trade; supports existing and future two-dimensional optical visual markers. The following are a couple examples.
 
 The resulting Semantic Marker&trade; can look like the following examples.
 
 ## SMART Buttons
 ![Semantic Marker Examples](images/SemanticMarkerExamples.png)
 
-## Alternate two-dimensional optical codes
+## Alternate two-dimensional optical codes or barcodes
 <img src="images/SemanticMarkerQBar.png" width="200">
 
 ## Semantic Marker&trade; on a small ESP-32 M5 display
