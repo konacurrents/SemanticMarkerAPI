@@ -8,7 +8,7 @@ Creating and processing with the Semantic Marker™️  System is through variou
 
 The main interfaces to the [SemanticMarker.org](https://SemanticMarker.org) web services are through 
 calls embodied in the following web page code, and is available at 
-[SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. In addition apps, like the [iOS Apple Apple](https://semanticmarker.org/vision/testflight.html) are in various phased of development, and these interact with the same API's.
+[SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. In addition apps, like the [Semantic Marker iOS Apple App](https://semanticmarker.org/vision/testflight.html) are in various phases of development, also interacting with the same API's.
 
 These messages are then run through the MQTT publish/subscribe system described later.
 
@@ -68,6 +68,7 @@ Example production web pages includes making appropriate API calls includes:
 [SemanticMarker.org](https://SemanticMarker.org/smart?username=test&password=test)
 
 
+------------------------------------------------------------------------------------------
 
 # Kona Currents, LLC offers three tiers of Semantic Marker™️   offerings.
 
