@@ -57,7 +57,8 @@ The list of API calls is shown next with full details later in their appropriate
  <summary><code>mosquito_pub</code> <code><b>mosquitto_pub -i userID -u username -P password -t topic -m PAYLOAD</b></code></summary>
  <summary><code>mosquito_sub</code> <code><b>mosquitto_sub -i userID -u username -P password -t topic</b></code></summary>
  <summary><code>addMosquitoUser</code> <code><b>addMosquitoUser user password guestPassword</b></code></summary>
- <summary><code>adduserToGroup</code> <code><b>addMosquitoUser user group</b></code></summary>
+ <summary><code>addUserToGroup</code> <code><b>addMosquitoUser user group</b></code></summary>
+ <summary><code><b>/addUser/{username}/{password}/{guestpassword}/{TOKEN}</b></code></summary>
 </details>
 
 ### Example Web Pages making REST API calls
@@ -1195,6 +1196,9 @@ The following subset of REST calls are for managing Group entry for the MQTT Pub
 <details>
  <summary><code>GET</code> <code><b>/addUserToGroupTopic/{group}/{username}/{TOKEN}</b></code></summary>
 
+> [!CAUTION]
+> This requires a secure TOKEN password managed by the system administrators
+
 #### Parameters
 
 > | name      |  type     | data type               | description                                                           |
@@ -1220,6 +1224,38 @@ The following subset of REST calls are for managing Group entry for the MQTT Pub
 
 </details>
 
+### addUser - adds the user to the system (done by admin)
+<details>
+ <summary><code>GET</code> <code><b>/addUser/{username}/{password}/{guestpassword}/{TOKEN}</b></code></summary>
+
+> [!CAUTION]
+> This requires a secure TOKEN password managed by the system administrators
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password |  required | string                  | password of user
+> | guestpassword |  required | string                  | guestpassword of user
+> | token  |  required | string                  | token for admin to use
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/addUser/USERNAME/PASSWORD/GUESTPASSWORD/TOKEN"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
 
 ------------------------------------------------------------------------------------------
 # MQTT Messaging using BNF Grammar
@@ -1300,7 +1336,7 @@ The shell commands for creating users and topics include the following.
 </details>
 
 <details>
- <summary><code>adduserToGroup</code> <code><b>addMosquitoUser user group</b></code></summary>
+ <summary><code>addUserToGroup</code> <code><b>addMosquitoUser user group</b></code></summary>
 
  Shell command: [addUserToGroup.sh](shell/addUserToGroup.sh)
 
