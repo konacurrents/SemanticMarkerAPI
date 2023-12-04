@@ -57,7 +57,7 @@ Example production web pages includes making appropriate API calls includes:
  <summary><code>GET</code> <code><b>/feedGroup/{username}/{password}/{group}</b></code></summary>
  <summary><code>GET</code> <code><b>/feedDeviceGroup/{username}/{password}/{device}/{group}</b></code></summary>
  <summary><code>GET</code> <code><b>/captureGroup/{username}/{password}/{group}</b></code></summary>
- <summary><code>GET</code> <code><b>/addDeviceToGrouop/{username}/{password}/{device}/{display}/{color}/{group}</b></code></summary>
+ <summary><code>GET</code> <code><b>/addDeviceToGroup/{username}/{password}/{device}/{display}/{color}/{group}</b></code></summary>
  <summary><code>GET</code> <code><b>/addUserToGroupTopic/{group}/{username}/{TOKEN}</b></code></summary>
 
 #### MQTT Messaging
@@ -1158,7 +1158,7 @@ The following subset of REST calls are for managing Group entry for the MQTT Pub
 
 ### addDeviceToGroup - Adds one of your devices to a group
 <details>
- <summary><code>GET</code> <code><b>/addDeviceToGrouop/{username}/{password}/{device}/{display}/{color}/{group}</b></code></summary>
+ <summary><code>GET</code> <code><b>/addDeviceToGroup/{username}/{password}/{device}/{display}/{color}/{group}</b></code></summary>
 
 #### Parameters
 
@@ -1324,4 +1324,4 @@ The resulting Semantic Marker&trade; can look like the following examples.
 
 ## Semantic Marker&trade; on a small ESP-32 M5 display
 This Semantic Marker&trade; might change every second to reflect sensor status.
-<img src="images/M5.png" width="300">
+uimg src="images/M5.png" width="300">
