@@ -2,13 +2,13 @@
 
 ![SemanticMarker API](images/SemanticMarkerAPI.png)
 
-Creating and Processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The diagram below shows the interaction with the web services running at [SemanticMarker.org](https://SemanticMarker.org). The code included is almost a 50-50 mix of html and javascript. As these are an REST (HTTP) API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.) At the heart of the messaging API is the publish/subscribe engine described below using the [BNF Language Grammer](https://en.wikipedia.org/wiki/Backus-Naur_form).
+Creating and processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This GitHub repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The diagram below shows the interaction with the web services running at [SemanticMarker.org](https://SemanticMarker.org). The code included is almost a 50-50 mix of html and javascript. As these are a REST (HTTP) API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.) At the heart of the messaging API is the MQTT publish/subscribe engine described below using the [BNF Language Grammar Specification](https://en.wikipedia.org/wiki/Backus-Naur_form).
 
 ## SMART - Semantic Marker™️   Augmented Reality of Things
 
-The main interfaces to the SemanticMarker.org web services are through 
-web calls embodied in the following web page code, and is available at 
-[SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. 
+The main interfaces to the [SemanticMarker.org](https://SemanticMarker.org) web services are through 
+calls embodied in the following web page code, and is available at 
+[SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. In addition apps, like the [iOS Apple Apple](https://semanticmarker.org/vision/testflight.html) are in various phased of development, and these interact with the same API's.
 
 These messages are then run through the MQTT publish/subscribe system described later.
 
@@ -24,13 +24,7 @@ can also be run locally or moved to other web servers. For the Semantic Marker�
 by outside parties, the Semantic Marker™️   address URL must be publically available (for example, http://localhost would only
 be usable for local testing, but https://SemanticMarker.org is globally accessible)
 
-### Example Web Pages making REST API calls
-
-An example html web page with many javascript calls via these REST APi's is included at: [smart.html](smart.html)
-
-Example production web pages includes making appropriate API calls includes:
-[iDogWatch.com](https://idogwatch.com/userpage/userpage.html?username=test&password=test) and 
-[SemanticMarker.org](https://SemanticMarker.org/smart?username=test&password=test)
+The list of API calls is shown next with full details later in their appropriate sections.
 
 <details>
  <summary><code>Table of REST and MQTT API Calls</code> </summary>
@@ -64,6 +58,15 @@ Example production web pages includes making appropriate API calls includes:
  <summary><code>addMosquitoUser</code> <code><b>addMosquitoUser user password guestPassword</b></code></summary>
  <summary><code>adduserToGroup</code> <code><b>addMosquitoUser user group</b></code></summary>
 </details>
+
+### Example Web Pages making REST API calls
+
+An example html web page with many javascript calls via these REST APi's is included at: [smart.html](smart.html)
+
+Example production web pages includes making appropriate API calls includes:
+[iDogWatch.com](https://idogwatch.com/userpage/userpage.html?username=test&password=test) and 
+[SemanticMarker.org](https://SemanticMarker.org/smart?username=test&password=test)
+
 
 
 # Kona Currents, LLC offers three tiers of Semantic Marker™️   offerings.
@@ -404,20 +407,20 @@ The results of these REST calls are database entries in the Semantic Marker&trad
 ![Semantic Marker Registry](images/SemanticMarkerRegistry.png)
 
 ------------------------------------------------------------------------------------------
-# Messaging BNF Grammer 
+# Messaging BNF Grammar 
 
 These are the Websocket and MQTT messaging formats. This includes the legacy websocket interface
 defined as the <b>Barklet Language</b>. The format is a mix of original Barklet Language used with WebSockets,
 and the newer JSON Format messages.
 
-Many of the messages described in the following BNF Grammer can be run
+Many of the messages described in the following BNF Grammar can be run
 through the shell commands at: [Example curl commands](curlCommands)
 To run, download the scripts and run with a valid username and password.
 
-## BNF Grammer for Barklet Language
+## BNF Grammar for Barklet Language
 
 ```ebnf
-  Description ::= Grammer for Barklet communication
+  Description ::= Grammar for Barklet communication
    NOTE ::= {} are part of language not BNF
    NOTE ::= : <guest ID> ":"  created by chat-room, not user messages
 
@@ -548,7 +551,7 @@ To run, download the scripts and run with a valid username and password.
 ```
 
 
-# The following are REST API's matching the BNF Grammer
+# The following are REST API's matching the BNF Grammar
 ------------------------------------------------------------------------------------------
 ### invokeSemanticMarker - runs the Semantic Marker&trade;
 <details>
@@ -1217,7 +1220,7 @@ The following subset of REST calls are for managing Group entry for the MQTT Pub
 
 
 ------------------------------------------------------------------------------------------
-# MQTT Messaging using BNF Grammer
+# MQTT Messaging using BNF Grammar
 
 In addition to the REST Web calls, the lower level MQTT messaging can be used directly.
 This requires that the MQTT pub/sub engine be available. Semantic Marker&trade; currently uses
