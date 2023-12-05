@@ -1311,8 +1311,7 @@ The following subset of REST calls are for managing Group entry for the MQTT Pub
 <details>
  <summary><code>GET</code> <code><b>/addUserToGroupTopic/{group}/{username}/{TOKEN}</b></code></summary>
 
-> [!CAUTION]
-> This requires a secure TOKEN password managed by the system administrators
+[!CAUTION]  This requires a secure TOKEN password managed by the system administrators
 
 #### Parameters
 
