@@ -126,11 +126,11 @@ JSON formatted messages which is a subset of [JSON messages](#mqtt-messaging-usi
 
 </details>
 
-<details>
-
 > [!CAUTION]
 > The ESP devices have a small buffer for accepting JSON messages (about 500 characters) so sending these
 > JSON messages will be cut off (thus not valid JSON format) if the buffer is too big.
+
+<details>
 
  <summary><code>/sendJSONCommandBLE</code> <code><b>Sends Command Message in JSON format over BLE</b></code></summary>
 
