@@ -118,11 +118,12 @@ JSON formatted messages which is a subset of [JSON messages](#mqtt-messaging-usi
 > |O | otaUpdate|
 > |r | reboot |
 
- <summary><code>/sendJSONCommandBLE</code> <code><b>Sends Command Message in JSON format over BLE</b></code></summary>
 
 > [!CAUTION]
 > The ESP devices have a small buffer for accepting JSON messages (about 500 characters) so sending these
 > JSON messages will be cut off (and not valid JSON format) if the buffer is too big.
+
+ <summary><code>/sendJSONCommandBLE</code> <code><b>Sends Command Message in JSON format over BLE</b></code></summary>
 
 #### Parameters
 
@@ -1308,10 +1309,13 @@ The following subset of REST calls are for managing Group entry for the MQTT Pub
 </details>
 
 ### addUserToGroupTopic - adds the user to the group (done by admin)
+
+> [!CAUTION]  
+> This requires a secure TOKEN password managed by the system administrators
+
 <details>
  <summary><code>GET</code> <code><b>/addUserToGroupTopic/{group}/{username}/{TOKEN}</b></code></summary>
 
-[!CAUTION]  This requires a secure TOKEN password managed by the system administrators
 
 #### Parameters
 
@@ -1339,11 +1343,13 @@ The following subset of REST calls are for managing Group entry for the MQTT Pub
 </details>
 
 ### addUser - adds the user to the system (done by admin)
-<details>
- <summary><code>GET</code> <code><b>/addUser/{username}/{password}/{guestpassword}/{TOKEN}</b></code></summary>
 
 > [!CAUTION]
 > This requires a secure TOKEN password managed by the system administrators
+
+<details>
+ <summary><code>GET</code> <code><b>/addUser/{username}/{password}/{guestpassword}/{TOKEN}</b></code></summary>
+
 
 #### Parameters
 
