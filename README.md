@@ -73,13 +73,11 @@ The list of API calls is shown next with full details later in their appropriate
 These consist of single character commands (so bluetooth clients with length restrictions can send commands), and 
 JSON formatted messages which is a subset of [JSON messages](#mqtt-messaging-using-bnf-grammar) sent over MQTT.
 
-> [!CAUTION]
-> The ESP devices have a small buffer for accepting JSON messages (about 500 characters) so sending these
-> JSON messages will be cut off (thus not valid JSON format) if the buffer is too big.
-
 <details>
 
  <summary><code>BLE Bluetooth ESP-32 Device Interfaces</code> </summary>
+</details>
+<details>
  <summary><code>/connectBLE</code> <code><b>connect to BLE service</b></code></summary>
 
 #### Parameters
@@ -89,6 +87,9 @@ JSON formatted messages which is a subset of [JSON messages](#mqtt-messaging-usi
 > | SERVICE_UUID |   B0E6A4BF-CCCC-FFFF-330C-0000000000F0                  | BLE Service UUID |
 > | CHARACTERISTIC_UUID | B0E6A4BF-CCCC-FFFF-330C-0000000000F1 | BLE Characteristic UUID |
 
+</details>
+
+<details>
  <summary><code>/sendCommandBLE</code> <code><b>Sends Command Message over BLE</b></code></summary>
 
 #### Parameters
@@ -122,6 +123,14 @@ JSON formatted messages which is a subset of [JSON messages](#mqtt-messaging-usi
 > |O | otaUpdate|
 > |r | reboot |
 
+
+</details>
+
+<details>
+
+> [!CAUTION]
+> The ESP devices have a small buffer for accepting JSON messages (about 500 characters) so sending these
+> JSON messages will be cut off (thus not valid JSON format) if the buffer is too big.
 
  <summary><code>/sendJSONCommandBLE</code> <code><b>Sends Command Message in JSON format over BLE</b></code></summary>
 
