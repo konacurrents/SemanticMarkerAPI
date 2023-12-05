@@ -25,7 +25,11 @@ can also be run locally or moved to other web servers. For the Semantic Marker�
 by outside parties, the Semantic Marker™️   address URL must be publically available (for example, http://localhost would only
 be usable for local testing, but https://SemanticMarker.org is globally accessible)
 
-The list of API calls is shown next with full details later in their appropriate sections.
+> [!NOTE]
+>  Throughout this API document, a black arrow -> denotes expandable **details**. Clicking will expand that section 
+> and show more information (such as the parameter details when using the API.)
+
+The list of API calls is shown next with full details later in their appropriate sections. 
 
 <details>
  <summary><code>Table of REST and MQTT API Calls</code> </summary>
@@ -59,9 +63,110 @@ The list of API calls is shown next with full details later in their appropriate
  <summary><code>mosquito_sub</code> <code><b>mosquitto_sub -i userID -u username -P password -t topic</b></code></summary>
  <summary><code>addMosquitoUser</code> <code><b>addMosquitoUser user password guestPassword</b></code></summary>
  <summary><code>addUserToGroup</code> <code><b>addMosquitoUser user group</b></code></summary>
+ <summary><code>/connectBLE</code> <code><b>connect to BLE service</b></code></summary>
+ <summary><code>/sendCommandBLE</code> <code><b>Sends Command Message over BLE</b></code></summary>
+ <summary><code>/sendJSONCommandBLE</code> <code><b>Sends Command Message in JSON format over BLE</b></code></summary>
 </details>
 
-### Example Web Pages making REST API calls
+## Other API calls over Bluetooth
+
+
+<details>
+
+ <summary><code>BLE Bluetooth ESP-32 Device Interfaces</code> </summary>
+ <summary><code>/connectBLE</code> <code><b>connect to BLE service</b></code></summary>
+#### Parameters
+
+> | name      |  value     | description                                                           |
+> |-----------|-----------|-------------------------|
+> | SERVICE_UUID |   B0E6A4BF-CCCC-FFFF-330C-0000000000F0                  | BLE Service UUID |
+> | CHARACTERISTIC_UUID | B0E6A4BF-CCCC-FFFF-330C-0000000000F1 | BLE Characteristic UUID |
+
+ <summary><code>/sendCommandBLE</code> <code><b>Sends Command Message over BLE</b></code></summary>
+#### Parameters
+
+> | value      |   description |
+> |-----------|-----------|
+> |H | help|
+> |W | restartWIFI|
+> |w | swap WIFI|
+> |N | sendWIFI|
+> |n | nextWIFI|
+> |a | auto feed ON|
+> |A | auto feed OFF|
+> |j | jackpot|
+> |B | buzzerOn|
+> |b | buzzerOff|
+> |s | single feed|
+> |0x00 | single feed|
+> |c | feed|
+> |u | uno|
+> |m | mini|
+> |L | tumbler|
+> |G | gatewayOn|
+> |g | gatewayOff|
+> |R | clean credentials - AP Node|
+> |X | clean EPROM - Factory Reset|
+> |E | use only PTFeeder naming|
+> |e | use naming PTFeeder:name|
+> |T | tiltOn|
+> |t | tiltOff|
+> |O | otaUpdate|
+> |r | reboot |
+
+ <summary><code>/sendJSONCommandBLE</code> <code><b>Sends Command Message in JSON format over BLE</b></code></summary>
+#### Parameters
+
+> | JSON value      |   description |
+> |-----------|-----------|
+> |{'cmd':'feed'} | feed |
+> |{'cmd':'status'} | status |
+> |{'cmd':'wifi'} | update WIFI |
+> |{'ssid':'SSID','ssidPassword':'PASS'} | set SSID and SSID Password |
+> |{'cmd':'sm1'} | M5 change to the s1 (or other) pages |
+> |{'cmd':'clean'} | clean the EPROM |
+> |{'cmd':'erase'} | erase the EPROM |
+> |{'cmd':'poweroff'} | turn the power off on the device |
+> |{'cmd':'ota'} | perform an OTA - Over the Air update |
+> |{'cmd':'feed'} | perform a feed |
+> |{'cmd':'buzzon'} | turn buzzer on |
+> |{'cmd':'buzzoff'} | turn buzzer off |
+> |{'cmd':'bleclienton'} | turn the BLE client feature on |
+> |{'cmd':'bleclientoff'} | turn the BLE client feature off |
+> |{'cmd':'bleserveron'} | turn the BLE Server on |
+> |{'cmd':'bleserveroff'| |  turn the BLE Server off |
+> |{'cmd':'resetfirsttime'} | reset the first time flag |
+> |{'cmd':'reboot' | reboot the IoT device |
+> |{'set':'BLEUseDeviceName','val':'on'"} | use the Device Name for the BLE name service name|
+> |{'set':'BLEUseDeviceName','val':'off'"} | Don't use the Device Name for the BLE name service name|
+> |{'set':'pairnow','val':'on'"} | have the device pair to the named pair device |
+> |{'set':'timerdelay','val':'30'"} | set the timer delay to the val specified (eg. 30 sec) |
+> |{'set':'startTimer','val':'on'"} | start the timer |
+> |{"startTimer" val:@"off"} | stop the timer |
+> |{'cmd':'zoomSMOn'} | M5 display zooms and shows the Semantic Marker&trade; |
+> |{'cmd':'zoomSMoff'} | Don't show the Semantic Marker&trade; |
+> |{'set':'tilt','val':'on'} | turn tilt detection on |
+> |{'set':'tilt','val':'off'} | turn tilt detection off |
+> |{'set':'gateway','val':'on'} | turn the gateway value on |
+> |{'set':'gateway','val':'off'} | turn the gateway value off |
+> |{'set':'hightemp','val':'88'} | set the high temp detector to the val |
+> |{'set':'stepperangle','val':'30'} | change the stepper angle |
+> |{'set':'screentimeout','val':'400'} | change the screen timeout |
+> |{'set':'noclick','val':'400'} | change if no click since val to turn off |
+> |{'set':'stepper','val':'mini'} | change the kind of stepper |
+> |{'set':'stepper','val':'uno'} | change the kind of stepper |
+> |{'set':'stepper','val':'tumbler'} | change the kind of stepper |
+> |{'set':'device','val':'MyFeederName'} | name the device used in messages and BLE Device |
+> |{'set':'location','val':'Buckley, WA USA'} | specify location to city/state/country |
+> |{'set':'gen3only','val':'true'} | turn on gen3 pairing only |
+> |{'set':'gen3only','val':'false'} | turn off gen3 pairing only |
+> |{'send':'temp'} | sends the temperature of the device |
+> |{'send':'capture'} | captures an image and sends it |
+> |{'send':'volume'} | specify the volume to be sent |
+
+</details>
+
+## Example Web Pages making REST API calls
 
 An example html web page with many javascript calls via these REST APi's is included at: [smart.html](smart.html)
 
