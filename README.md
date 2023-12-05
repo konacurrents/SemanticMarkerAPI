@@ -26,7 +26,7 @@ by outside parties, the Semantic Marker™️   address URL must be publically a
 be usable for local testing, but https://SemanticMarker.org is globally accessible)
 
 > [!NOTE]
->  Throughout this API document, a black arrow ![arrow](images/arrow.jpg) denotes expandable **details**. Clicking will expand that section 
+>  Throughout this API document, a black arrow <img src="images/arrow.jpg" width=30> denotes expandable **details**. Clicking will expand that section 
 > and show more information (such as the parameter details when using the API.)
 
 The list of API calls is shown next with full details later in their appropriate sections. 
