@@ -70,11 +70,14 @@ The list of API calls is shown next with full details later in their appropriate
 
 ## Other API calls over Bluetooth
 
+These consist of single character commands (so bluetooth clients with length restrictions can send commands), and 
+JSON formatted messages which is a subset of [JSON messages](#mqtt-messaging-using-bnf-grammar) sent over MQTT.
 
 <details>
 
  <summary><code>BLE Bluetooth ESP-32 Device Interfaces</code> </summary>
  <summary><code>/connectBLE</code> <code><b>connect to BLE service</b></code></summary>
+
 #### Parameters
 
 > | name      |  value     | description                                                           |
@@ -83,6 +86,7 @@ The list of API calls is shown next with full details later in their appropriate
 > | CHARACTERISTIC_UUID | B0E6A4BF-CCCC-FFFF-330C-0000000000F1 | BLE Characteristic UUID |
 
  <summary><code>/sendCommandBLE</code> <code><b>Sends Command Message over BLE</b></code></summary>
+
 #### Parameters
 
 > | value      |   description |
@@ -115,6 +119,7 @@ The list of API calls is shown next with full details later in their appropriate
 > |r | reboot |
 
  <summary><code>/sendJSONCommandBLE</code> <code><b>Sends Command Message in JSON format over BLE</b></code></summary>
+
 #### Parameters
 
 > | JSON value      |   description |
@@ -123,6 +128,7 @@ The list of API calls is shown next with full details later in their appropriate
 > |{'cmd':'status'} | status |
 > |{'cmd':'wifi'} | update WIFI |
 > |{'ssid':'SSID','ssidPassword':'PASS'} | set SSID and SSID Password |
+> |{'username':'NAME','password':'PASS'} | set username and Password for MQTT meessaging|
 > |{'cmd':'sm1'} | M5 change to the s1 (or other) pages |
 > |{'cmd':'clean'} | clean the EPROM |
 > |{'cmd':'erase'} | erase the EPROM |
