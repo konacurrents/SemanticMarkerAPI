@@ -13,7 +13,12 @@ calls embodied in the following web page code, and is available at
 > [!NOTE]
 > These messages are then run through the MQTT publish/subscribe system described [later](#mqtt-messaging-using-bnf-grammar).
 
-These fit an overall cloud and device interaction Semantic Marker™️   architecture shown here. 
+> [!TIP]
+> The versitality of these API's are shown with additional clients implemented for
+> voice recognition (like alexa, or siri), other messaging like telegram, X, discourse, nodered, apache (tomcat) and slack. 
+
+These fit an overall cloud and device interaction Semantic Marker™️   architecture shown here and currently hosted at [SemanticMarker.org](https://SemanticMarker.org).
+
 ![SemanticMarkerAPIMessages](images/SemanticMarkerAPIMessages.png)
 
 
