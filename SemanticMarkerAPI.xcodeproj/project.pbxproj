@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		D24B00782B1EE0AB00D29C0A /* arrow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = arrow.jpg; path = images/arrow.jpg; sourceTree = "<group>"; };
 		D2E4304A2AFEF15600E2C80B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D2E4304C2AFF04F500E2C80B /* SemanticMarkerAPIMessages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SemanticMarkerAPIMessages.png; sourceTree = "<group>"; };
 		D2E4304D2AFF0E9C00E2C80B /* sampleSMWeb.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = sampleSMWeb.html; sourceTree = "<group>"; };
@@ -127,6 +128,7 @@
 			children = (
 				D2E430C72B15653500E2C80B /* curlCommands */,
 				D2E4304A2AFEF15600E2C80B /* README.md */,
+				D24B00782B1EE0AB00D29C0A /* arrow.jpg */,
 				D2E430502AFF120200E2C80B /* smart.js */,
 				D2E4304F2AFF10A700E2C80B /* smart.html */,
 				D2E4304D2AFF0E9C00E2C80B /* sampleSMWeb.html */,
