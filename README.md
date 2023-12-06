@@ -21,8 +21,8 @@ These fit an overall cloud and device interaction Semantic Marker™️   archit
 ![SemanticMarkerAPIMessages](images/SemanticMarkerAPIMessages.png)
 
 > [!TIP]
-> The versatility of these API's are shown with additional clients implemented for
-> voice recognition (like alexa, or siri), and other other messaging systems like telegram, X, discourse, nodered, apache (tomcat) and slack. 
+> The versatility of these API's are denoted in upper left of diagram, through additional clients implemented for
+> voice recognition (like Alexa, or Siri), and over messaging systems like telegram, X, discourse, nodered, apache (tomcat) and slack. 
 
 # Semantic Marker™️  REST and MQTT API
 
