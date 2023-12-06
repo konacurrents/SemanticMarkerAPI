@@ -12,7 +12,7 @@ calls embodied in the following web page code, and is available at
 [SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. In addition apps, like the [Semantic Marker iOS Apple App](https://semanticmarker.org/vision/testflight.html) are in various phases of development, also interacting with the same API's.
 
 > [!NOTE]
-> These messages are then run through the MQTT publish/subscribe system described [later](#mqtt-messaging-using-bnf-grammar).
+> Many of these messages, after security matching, are then run through the MQTT publish/subscribe system described [later](#mqtt-messaging-using-bnf-grammar).
 
 
 These fit an overall cloud and device interaction Semantic Marker™️   architecture shown here and currently hosted at [SemanticMarker.org](https://SemanticMarker.org).
@@ -134,7 +134,7 @@ JSON formatted messages which is a subset of [JSON messages](#mqtt-messaging-usi
 
 > [!CAUTION]
 > The ESP devices have a small buffer for accepting JSON messages (about 500 characters) so sending these
-> JSON messages will be cut off (thus not valid JSON format) if the buffer is too big.
+> JSON messages will be cut off (thus not valid JSON format) if the message is too long.
 
 <details>
 
@@ -194,12 +194,14 @@ JSON formatted messages which is a subset of [JSON messages](#mqtt-messaging-usi
 
 ## Example Web Pages making REST API calls
 
-An example html web page with many javascript calls via these REST APi's is included at: [smart.html](smart.html)
+An example html web page with many javascript calls via these REST API's is included at: [smart.html](smart.html)
 
 Example production web pages includes making appropriate API calls includes:
 [iDogWatch.com](https://idogwatch.com/userpage/userpage.html?username=test&password=test) and 
 [SemanticMarker.org](https://SemanticMarker.org/smart?username=test&password=test)
 
+In addition, applications such as we developed for the ESP-32 family of embedded IoT devices, show
+use of this API. See [Semantic Marker ESP-32 Download](https://GitHub.com/konacurrents/SemanticMarkerESP-32) for an example.
 
 ------------------------------------------------------------------------------------------
 
@@ -688,8 +690,8 @@ and the newer JSON Format messages.
 # The following are REST API's matching the BNF Grammar
 
 > [!NOTE]
-> In addition to the REST sytax, URL **query arguments** are also sometimes used. For example, 
-> passing username and password and reply with a JSON format would look as follows:
+> In addition to the REST sytax, URL (query parameters)[https://en.wikipedia.org/wiki/Query_string] are sometimes used. For example, 
+> supplying query parameters and their values for  **username**, **password** and with a **JSON format** reply would look as follows:
 >    **https://SemanticMarker.org/smart?username=x&password=y&format=JSON**
 
 ------------------------------------------------------------------------------------------
