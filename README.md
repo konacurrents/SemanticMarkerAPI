@@ -21,7 +21,7 @@ These fit an overall cloud and device interaction Semantic Marker™️   archit
 
 > [!TIP]
 > The versatility of these API's are shown with additional clients implemented for
-> voice recognition (like alexa, or siri), other messaging like telegram, X, discourse, nodered, apache (tomcat) and slack. 
+> voice recognition (like alexa, or siri), and other other messaging systems like telegram, X, discourse, nodered, apache (tomcat) and slack. 
 
 # Semantic Marker™️  REST and MQTT API
 
@@ -29,7 +29,7 @@ The following are the main REST API calls to create and manage a Semantic Marker
 The current base URL for these is [SemanticMarker.org](https://SemanticMarker.org) but the entire set
 can also be run locally or moved to other web servers. For the Semantic Marker™️   to be sharable and run
 by outside parties, the Semantic Marker™️   address URL must be publically available 
-(for example, ** https://SemanticMarker.org** is globally accessible, while **http://localhost** would only be available for local use - such as a dog kennel operation.)
+(for example, **https://SemanticMarker.org** is globally accessible, while **http://localhost** would only be available for local use - such as a dog kennel operation.) 
 
 > [!NOTE]
 >  Throughout this API document, a black arrow <img src="images/arrow.jpg" width=20> denotes expandable **details**. Clicking will expand that section 
@@ -134,7 +134,7 @@ JSON formatted messages which is a subset of [JSON messages](#mqtt-messaging-usi
 
 > [!CAUTION]
 > The ESP devices have a small buffer for accepting JSON messages (about 500 characters) so sending these
-> JSON messages will be cut off (thus not valid JSON format) if the message is too long.
+> JSON messages will be cut off if the message is too long (an error as not a valid JSON format.)
 
 <details>
 
