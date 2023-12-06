@@ -2,7 +2,8 @@
 
 ![SemanticMarker API](images/SemanticMarkerAPI.png)
 
-Creating and processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This GitHub repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The diagram below shows the interaction with the web services running at [SemanticMarker.org](https://SemanticMarker.org). The code included is almost a 50-50 mix of html and javascript. As these are a REST (HTTP) API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.) At the heart of the messaging API is the MQTT publish/subscribe engine described below using the [BNF Language Grammar Specification](https://en.wikipedia.org/wiki/Backus-Naur_form).
+Creating and processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This GitHub repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The diagram below shows the interaction with the web services running at [SemanticMarker.org](https://SemanticMarker.org). The code included is mix of html and javascript. As these are a REST (HTTP) API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.) At the heart of the messaging API is the MQTT publish/subscribe engine described in the [BNF Language Grammar Specification](https://en.wikipedia.org/wiki/Backus-Naur_form).
+and formatted through a collection of [JSON messages](#mqtt-messaging-using-bnf-grammar) sent over MQTT.
 
 ## SMART - Semantic Marker™️   Augmented Reality of Things
 
@@ -13,25 +14,25 @@ calls embodied in the following web page code, and is available at
 > [!NOTE]
 > These messages are then run through the MQTT publish/subscribe system described [later](#mqtt-messaging-using-bnf-grammar).
 
-> [!TIP]
-> The versitality of these API's are shown with additional clients implemented for
-> voice recognition (like alexa, or siri), other messaging like telegram, X, discourse, nodered, apache (tomcat) and slack. 
 
 These fit an overall cloud and device interaction Semantic Marker™️   architecture shown here and currently hosted at [SemanticMarker.org](https://SemanticMarker.org).
 
 ![SemanticMarkerAPIMessages](images/SemanticMarkerAPIMessages.png)
 
+> [!TIP]
+> The versatility of these API's are shown with additional clients implemented for
+> voice recognition (like alexa, or siri), other messaging like telegram, X, discourse, nodered, apache (tomcat) and slack. 
 
 # Semantic Marker™️  REST and MQTT API
 
 The following are the main REST API calls to create and manage a Semantic Marker™️  . 
 The current base URL for these is [SemanticMarker.org](https://SemanticMarker.org) but the entire set
 can also be run locally or moved to other web servers. For the Semantic Marker™️   to be sharable and run
-by outside parties, the Semantic Marker™️   address URL must be publically available (for example, http://localhost would only
-be usable for local testing, but https://SemanticMarker.org is globally accessible)
+by outside parties, the Semantic Marker™️   address URL must be publically available 
+(for example, ** https://SemanticMarker.org** is globally accessible, while **http://localhost** would only be available for local use - such as a dog kennel operation.)
 
 > [!NOTE]
->  Throughout this API document, a black arrow <img src="images/arrow.jpg" width=30> denotes expandable **details**. Clicking will expand that section 
+>  Throughout this API document, a black arrow <img src="images/arrow.jpg" width=20> denotes expandable **details**. Clicking will expand that section 
 > and show more information (such as the parameter details when using the API.)
 
 The list of API calls is shown next with full details later in their appropriate sections. 
@@ -685,6 +686,12 @@ and the newer JSON Format messages.
 
 
 # The following are REST API's matching the BNF Grammar
+
+> [!NOTE]
+> In addition to the REST sytax, URL **query arguments** are also sometimes used. For example, 
+> passing username and password and reply with a JSON format would look as follows:
+>    **https://SemanticMarker.org/smart?username=x&password=y&format=JSON**
+
 ------------------------------------------------------------------------------------------
 ### invokeSemanticMarker - runs the Semantic Marker&trade;
 <details>
