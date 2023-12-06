@@ -2,8 +2,9 @@
 
 ![SemanticMarker API](images/SemanticMarkerAPI.png)
 
-Creating and processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This GitHub repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c, and [IoT devices](https://GitHub.com/konacurrents/SemanticMarkerESP-32). The code included is mix of html and javascript. As these are a REST (HTTP) API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.) At the heart of the messaging API is the MQTT publish/subscribe engine described in the [BNF Language Grammar Specification](https://en.wikipedia.org/wiki/Backus-Naur_form).
+Creating and processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This GitHub repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The code included is mix of html and javascript. As these are a REST (HTTP) API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.) At the heart of the messaging API is the MQTT publish/subscribe engine described in the [BNF Language Grammar Specification](https://en.wikipedia.org/wiki/Backus-Naur_form).
 and formatted through a collection of [JSON messages](#mqtt-messaging-using-bnf-grammar) sent over MQTT.
+Our [Semantic Marker ESP-32 IoT Device](https://GitHub.com/konacurrents/SemanticMarkerESP-32) software download shows use of this MQTT messaging.
 
 ## SMART - Semantic Marker™️   Augmented Reality of Things
 
@@ -690,7 +691,7 @@ and the newer JSON Format messages.
 # The following are REST API's matching the BNF Grammar
 
 > [!NOTE]
-> In addition to the REST sytax, URL [query parameters](https://en.wikipedia.org/wiki/Query_string) are sometimes used. For example, 
+> In addition to the REST syntax, URL [query parameters](https://en.wikipedia.org/wiki/Query_string) are sometimes used. For example, 
 > supplying query parameters and their values for  **username**, **password** and with a **JSON format** reply would look as follows:
 >    **https://SemanticMarker.org/smart?username=x&password=y&format=JSON**
 
