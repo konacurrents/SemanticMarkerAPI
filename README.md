@@ -403,10 +403,10 @@ full user control.
 </details>
 
 ------------------------------------------------------------------------------------------
-# Tier III Semantic Marker - SMART Buttons
+# Tier III Semantic Marker&trade; - SMART Buttons
 
-A Tier III Semantic Marker provides storage for the Avatar image and for very fine control of
-Semantic Marker actions. The created result is called a SMART Button - standing for Semantic Marker&trade; Augmented Reality of Things. 
+A Tier III Semantic Marker&trade; provides storage for the Avatar image and for very fine control of
+Semantic Marker actions. The created result is called a <b>SMART Button</b> - standing for Semantic Marker&trade; Augmented Reality of Things. 
 
 > [!TIP]
 > The resulting stored processing steps are especially suited to customized Internet of Things (IoT) processing, such as a custom user manual for your IoT home devices (eg. your accounts, passwords, WIFI address, and device Id's). These utilize all the API calls shown in this document but customized to your environment..
@@ -552,12 +552,12 @@ The results of these REST calls are database entries in the Semantic Marker&trad
 ------------------------------------------------------------------------------------------
 # Messaging BNF Grammar 
 
-These are the Websocket and MQTT messaging formats. This includes the legacy websocket interface
+These are the Websocket and MQTT messaging formats. This includes the original [iDogWatch](https://iDogWatch.com) websocket interface
 defined as the <b>Barklet Language</b>. The format is a mix of original Barklet Language used with WebSockets,
 and the newer JSON Format messages.
 
 > [!NOTE]
-> Many of the messages described in the following BNF Grammar can be run through the shell commands at: [Example curl commands](curlCommands) To run, download the scripts and run with a valid username and password.
+> Many of the messages described in the following BNF Grammar can be run through the UNIX shell commands at: [Example curl commands](curlCommands) To run, download the scripts and run with a valid username and password. CURL is a tool to send web REST commands from the command line. 
 
 ## BNF Grammar for Barklet Language
 
