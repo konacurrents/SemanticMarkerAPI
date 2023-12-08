@@ -42,7 +42,7 @@ The list of API calls is shown next with full details later in their appropriate
  <summary><code>Table of REST and MQTT API Calls</code> </summary>
  <summary><code>GET</code> <code><b>/exists/ks/{category}/{namespace}/{UUID}/{escapedSemanticMarker}</b></code></summary>
  <summary><code>GET</code> <code><b>/train/ks/{namespace}/{category}/{UUID}/{escapedSemanticMarker}</b></code></summary>
- <summary><code>POST</code> <code><b>/{namespace}/{category}/{UUID}/digitize</b></code> </summary>
+ <summary><code>POST</code> <code><b>/sm/{namespace}/{category}/{UUID}/digitize</b></code> </summary>
  <summary><code>POST</code> <code><b>/smflowpost</b></code> </summary>
  <summary><code>GET</code> <code><b>/invokeSemanticMarker/{username}/{password}/{SemanticMarkerAddress}</b></code></summary>
  <summary><code>GET</code> <code><b>/createSemanticMarker/{username}/{password}/{SemanticMarkerAddress}/{AvatarURL}</b></code></summary>
@@ -73,6 +73,42 @@ The list of API calls is shown next with full details later in their appropriate
  <summary><code>/connectBLE</code> <code><b>connect to BLE service</b></code></summary>
  <summary><code>/sendCommandBLE</code> <code><b>Sends Command Message over BLE</b></code></summary>
  <summary><code>/sendJSONCommandBLE</code> <code><b>Sends Command Message in JSON format over BLE</b></code></summary>
+
+> | name      |  parameters | protocol     | 
+> |-----------|-----------|-------------------------|
+> | /exists/ks/ | {category}/{namespace}/{UUID}/{escapedSemanticMarker} | GET  |
+> | /train/ks/ | {namespace}/{category}/{UUID}/{escapedSemanticMarker} | GET |
+> | /sm | {namespace}/{category}/{UUID}/digitize | POST |
+> | /smflowpost | | POST |
+> | /invokeSemanticMarker|{username}/{password}/{SemanticMarkerAddress}| GET |
+> | /createSemanticMarker|{username}/{password}/{SemanticMarkerAddress}/{AvatarURL}| GET |
+> | /feed/{username}|{password}| GET |
+> | /feeddevice|{username}/{password}/{devicename}| GET |
+> | /lookupuser/{username}/{password}| GET |
+> | /set/{username}/{password}/{command}/{value}| GET |
+> | /setdevice|{username}/{password}/{devicename}/{command}/{value}| GET |
+> | /send|{username}/{password}/{request}| GET |
+> | /senddevice|{username}/{password}/{device}/{request}| GET |
+> | /set64device|{username}/{password}/{device}/{command}/{base64Val}| GET |
+> | /command|{username}/{password}/{command}/{on/off}| GET |
+> | /cmddevice|{username}/{password}/{device}/{command}/{on/off}| GET |
+> | /addGroup|{username}/{password}/{group}| GET |
+> | /removeGroup|{username}/{password}/{group}| GET |
+> | /statusGroup|{username}/{password}/{group}| GET |
+> | /feedGroup|{username}/{password}/{group}| GET |
+> | /feedDeviceGroup|{username}/{password}/{device}/{group}| GET |
+> | /captureGroup|{username}/{password}/{group}| GET |
+> | /addDeviceToGroup|{username}/{password}/{device}/{display}/{color}/{group}| GET |
+> | /addUserToGroupTopic|{group}/{username}/{TOKEN}| GET |
+> | /addUser|{username}/{password}/{guestpassword}/{TOKEN}| GET |
+
+> | mosquitto_pub | -i userID -u username -P password -t topic -m PAYLOAD | MQTT |
+> | mosquitto_sub | -i userID -u username -P password -t topic | MQTT |
+> | addMosquitoUser|  user password guestPassword | MQTT |
+> | addMosquitoUser|  user group | MQTT |
+> | /connectBLE |  | BLE |
+> | /sendCommandBLE | character | BLE |
+> | /sendJSONCommandBLE | JSON | BLE |
 </details>
 
 ## Other API calls over Bluetooth
@@ -413,7 +449,7 @@ A SMART Button has a unique Semantic Marker&trade; address such as:
 #### Creating a Semantic Marker with an embedded Avatar Image
 ##### Digitize an image for use in a Semantic Marker Avatar (Note should have been cropped by the user)
 <details>
- <summary><code>POST</code> <code><b>/{namespace}/{category}/{UUID}/digitize</b></code> </summary>
+ <summary><code>POST</code> <code><b>/sm/{namespace}/{category}/{UUID}/digitize</b></code> </summary>
 
 ##### Parameters
 
