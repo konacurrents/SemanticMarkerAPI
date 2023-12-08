@@ -39,40 +39,7 @@ by outside parties, the Semantic Marker™️   address URL must be publically a
 The list of API calls is shown next with full details later in their appropriate sections. 
 
 <details>
- <summary><code>Table of REST and MQTT API Calls</code> </summary>
- <summary><code>GET</code> <code><b>/exists/ks/{category}/{namespace}/{UUID}/{escapedSemanticMarker}</b></code></summary>
- <summary><code>GET</code> <code><b>/train/ks/{namespace}/{category}/{UUID}/{escapedSemanticMarker}</b></code></summary>
- <summary><code>POST</code> <code><b>/sm/{namespace}/{category}/{UUID}/digitize</b></code> </summary>
- <summary><code>POST</code> <code><b>/smflowpost</b></code> </summary>
- <summary><code>GET</code> <code><b>/invokeSemanticMarker/{username}/{password}/{SemanticMarkerAddress}</b></code></summary>
- <summary><code>GET</code> <code><b>/createSemanticMarker/{username}/{password}/{SemanticMarkerAddress}/{AvatarURL}</b></code></summary>
- <summary><code>GET</code> <code><b>/feed/{username}/{password}</b></code></summary>
- <summary><code>GET</code> <code><b>/feeddevice/{username}/{password}/{devicename}</b></code></summary>
- <summary><code>GET</code> <code><b>/lookupuser/{username}/{password}</b></code></summary>
- <summary><code>GET</code> <code><b>/set/{username}/{password}/{command}/{value}</b></code></summary>
- <summary><code>GET</code> <code><b>/setdevice/{username}/{password}/{devicename}/{command}/{value}</b></code></summary>
- <summary><code>GET</code> <code><b>/send/{username}/{password}/{request}</b></code></summary>
- <summary><code>GET</code> <code><b>/senddevice/{username}/{password}/{device}/{request}</b></code></summary>
- <summary><code>GET</code> <code><b>/set64device/{username}/{password}/{device}/{command}/{base64Val}</b></code></summary>
- <summary><code>GET</code> <code><b>/command/{username}/{password}/{command}/{on/off}</b></code></summary>
- <summary><code>GET</code> <code><b>/cmddevice/{username}/{password}/{device}/{command}/{on/off}</b></code></summary>
- <summary><code>GET</code> <code><b>/addGroup/{username}/{password}/{group}</b></code></summary>
- <summary><code>GET</code> <code><b>/removeGroup/{username}/{password}/{group}</b></code></summary>
- <summary><code>GET</code> <code><b>/statusGroup/{username}/{password}/{group}</b></code></summary>
- <summary><code>GET</code> <code><b>/feedGroup/{username}/{password}/{group}</b></code></summary>
- <summary><code>GET</code> <code><b>/feedDeviceGroup/{username}/{password}/{device}/{group}</b></code></summary>
- <summary><code>GET</code> <code><b>/captureGroup/{username}/{password}/{group}</b></code></summary>
- <summary><code>GET</code> <code><b>/addDeviceToGroup/{username}/{password}/{device}/{display}/{color}/{group}</b></code></summary>
- <summary><code>GET</code> <code><b>/addUserToGroupTopic/{group}/{username}/{TOKEN}</b></code></summary>
- <summary><code>GET</code> <code><b>/addUser/{username}/{password}/{guestpassword}/{TOKEN}</b></code></summary>
-
- <summary><code>mosquito_pub</code> <code><b>mosquitto_pub -i userID -u username -P password -t topic -m PAYLOAD</b></code></summary>
- <summary><code>mosquito_sub</code> <code><b>mosquitto_sub -i userID -u username -P password -t topic</b></code></summary>
- <summary><code>addMosquitoUser</code> <code><b>addMosquitoUser user password guestPassword</b></code></summary>
- <summary><code>addUserToGroup</code> <code><b>addMosquitoUser user group</b></code></summary>
- <summary><code>/connectBLE</code> <code><b>connect to BLE service</b></code></summary>
- <summary><code>/sendCommandBLE</code> <code><b>Sends Command Message over BLE</b></code></summary>
- <summary><code>/sendJSONCommandBLE</code> <code><b>Sends Command Message in JSON format over BLE</b></code></summary>
+ <summary><code>Table of REST, MQTT and BLE API Calls</code> </summary>
 
 > | name      |  parameters | protocol     | 
 > |-----------|-----------|-------------------------|
@@ -105,7 +72,7 @@ The list of API calls is shown next with full details later in their appropriate
 > | mosquitto_sub | -i userID -u username -P password -t topic | MQTT |
 > | addMosquitoUser|  user password guestPassword | MQTT |
 > | addMosquitoUser|  user group | MQTT |
-> | /connectBLE |  | BLE |
+> | /connectBLE | service characteristics | BLE |
 > | /sendCommandBLE | character | BLE |
 > | /sendJSONCommandBLE | JSON | BLE |
 </details>
