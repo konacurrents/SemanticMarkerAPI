@@ -42,7 +42,7 @@ The list of API calls is shown next with full details later in their appropriate
  <summary><code>Table of REST, MQTT and BLE API Calls</code> </summary>
 
 > | name      |  description | parameters | protocol     | 
-> |-----------|----------------------|-------------------------|------|
+> |-----------|----------------------|---------------|------|
 > | /exists/ks | query if Semantic Marker&trade; exists |{category}/{namespace}/{UUID}/{escapedSemanticMarker} | GET  |
 > | /train/ks | train a Semantic Marker&trade; |{namespace}/{category}/{UUID}/{escapedSemanticMarker} | GET |
 > | /sm | create a new Semantic Marker&trade; |{namespace}/{category}/{UUID}/digitize | POST |
