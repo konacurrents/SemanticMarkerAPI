@@ -42,7 +42,7 @@ The list of API calls is shown next with full details later in their appropriate
  <summary><code>Table of REST, MQTT and BLE API Calls</code> </summary>
 
 > | name      |  description | parameters | protocol     | 
-> |-----------|-----------|-------------------------|
+> |-----------|----------------------|-------------------------|------|
 > | /exists/ks | query if Semantic Marker&trade; exists |{category}/{namespace}/{UUID}/{escapedSemanticMarker} | GET  |
 > | /train/ks | train a Semantic Marker&trade; |{namespace}/{category}/{UUID}/{escapedSemanticMarker} | GET |
 > | /sm | create a new Semantic Marker&trade; |{namespace}/{category}/{UUID}/digitize | POST |
@@ -85,7 +85,10 @@ JSON formatted messages which is a subset of [JSON messages](#mqtt-messaging-usi
 <details>
 
  <summary><code>BLE Bluetooth ESP-32 Device Interfaces</code> </summary>
+
+ Must <b>Discovery</b> and <b>Bind</b> to desired device.
 </details>
+
 <details>
  <summary><code>/connectBLE</code> <code><b>connect to BLE service</b></code></summary>
 
