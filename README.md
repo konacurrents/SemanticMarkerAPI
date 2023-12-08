@@ -43,29 +43,29 @@ The list of API calls is shown next with full details later in their appropriate
 
 > | name      |  description | parameters | protocol     | 
 > |-----------|----------------------|---------------|------|
-> | /exists/ks | query if Semantic Marker&trade; exists |{category}/{namespace}/{UUID}/{escapedSemanticMarker} | GET  |
-> | /train/ks | train a Semantic Marker&trade; |{namespace}/{category}/{UUID}/{escapedSemanticMarker} | GET |
-> | /sm | create a new Semantic Marker&trade; |{namespace}/{category}/{UUID}/digitize | POST |
+> | /exists/ks | query if Semantic Marker&trade; exists |{category}/{namespace} /{UUID}/{escapedSemanticMarker} | GET  |
+> | /train/ks | train a Semantic Marker&trade; |{namespace}/{category} /{UUID}/{escapedSemanticMarker} | GET |
+> | /sm | create a new Semantic Marker&trade; |{namespace}/{category} /{UUID}/digitize | POST |
 > | /smflowpost |Create or modify Semantic Marker&trade; |JSON format | POST |
-> | /invokeSemanticMarker|Invokes a Semantic Marker&trade; |{username}/{password}/{SemanticMarkerAddress}| GET |
-> | /createSemanticMarker|Create a Semantic Marker&trade;|{username}/{password}/{SemanticMarkerAddress}/{AvatarURL}| GET |
+> | /invokeSemanticMarker|Invokes a Semantic Marker&trade; |{username}/{password} /{SemanticMarkerAddress}| GET |
+> | /createSemanticMarker|Create a Semantic Marker&trade;|{username}/{password} /{SemanticMarkerAddress}/{AvatarURL}| GET |
 > | /feed/Send feed command|{username}|{password}| GET |
-> | /feeddevice|Send feed to specific named device|{username}/{password}/{devicename}| GET |
+> | /feeddevice|Send feed to specific named device|{username}/{password} /{devicename}| GET |
 > | /lookupuser|Lookup user returning JSON|{username}/{password}| GET |
 > | /set|sends a set/val|{username}/{password}/{command}/{value}| GET |
-> | /setdevice|sends a set/val to device|{username}/{password}/{devicename}/{command}/{value}| GET |
+> | /setdevice|sends a set/val to device|{username}/{password} /{devicename}/{command}/{value}| GET |
 > | /send|sends a request|{username}/{password}/{request}| GET |
-> | /senddevice|sends a request to a device|{username}/{password}/{device}/{request}| GET |
-> | /set64device|sends command in base64|{username}/{password}/{device}/{command}/{base64Val}| GET |
-> | /command|send boolean command|{username}/{password}/{command}/{on/off}| GET |
-> | /cmddevice|send boolean command to device|{username}/{password}/{device}/{command}/{on/off}| GET |
+> | /senddevice|sends a request to a device|{username}/{password} /{device}/{request}| GET |
+> | /set64device|sends command in base64|{username}/{password} /{device}/{command}/{base64Val}| GET |
+> | /command|send boolean command|{username}/{password} /{command}/{on/off}| GET |
+> | /cmddevice|send boolean command to device|{username}/{password} /{device}/{command}/{on/off}| GET |
 > | /addGroup|add to group|{username}/{password}/{group}| GET |
 > | /removeGroup|remove from group|{username}/{password}/{group}| GET |
-> | /statusGroup|send status to group|{username}/{password}/{group}| GET |
-> | /feedGroup|send feed to group|{username}/{password}/{group}| GET |
-> | /feedDeviceGroup|send feed to group and device|{username}/{password}/{device}/{group}| GET |
+> | /statusGroup|send status to group|{username}/{password} /{group}| GET |
+> | /feedGroup|send feed to group|{username}/{password} /{group}| GET |
+> | /feedDeviceGroup|send feed to group and device|{username}/{password} /{device}/{group}| GET |
 > | /captureGroup|sends capture to group|{username}/{password}/{group}| GET |
-> | /addDeviceToGroup|adds device to group|{username}/{password}/{device}/{display}/{color}/{group}| GET |
+> | /addDeviceToGroup|adds device to group|{username}/{password} /{device}/{display}/{color}/{group}| GET |
 > | /addUserToGroupTopic|add user to group|{group}/{username}/{TOKEN}| GET |
 > | /addUser|creates user account|{username}/{password}/{guestpassword}/{TOKEN}| GET |
 > | mosquitto_pub |publish on topic| -i userID -u username -P password -t topic -m PAYLOAD | MQTT |
