@@ -84,8 +84,8 @@ The list of API calls is shown next with full details later in their appropriate
 > | /createSemanticMarker|{username}/{password}/{SemanticMarkerAddress}/{AvatarURL}| GET |
 > | /feed/{username}|{password}| GET |
 > | /feeddevice|{username}/{password}/{devicename}| GET |
-> | /lookupuser/{username}/{password}| GET |
-> | /set/{username}/{password}/{command}/{value}| GET |
+> | /lookupuser|{username}/{password}| GET |
+> | /set|{username}/{password}/{command}/{value}| GET |
 > | /setdevice|{username}/{password}/{devicename}/{command}/{value}| GET |
 > | /send|{username}/{password}/{request}| GET |
 > | /senddevice|{username}/{password}/{device}/{request}| GET |
@@ -101,7 +101,6 @@ The list of API calls is shown next with full details later in their appropriate
 > | /addDeviceToGroup|{username}/{password}/{device}/{display}/{color}/{group}| GET |
 > | /addUserToGroupTopic|{group}/{username}/{TOKEN}| GET |
 > | /addUser|{username}/{password}/{guestpassword}/{TOKEN}| GET |
-
 > | mosquitto_pub | -i userID -u username -P password -t topic -m PAYLOAD | MQTT |
 > | mosquitto_sub | -i userID -u username -P password -t topic | MQTT |
 > | addMosquitoUser|  user password guestPassword | MQTT |
