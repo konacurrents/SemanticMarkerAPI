@@ -41,40 +41,40 @@ The list of API calls is shown next with full details later in their appropriate
 <details>
  <summary><code>Table of REST, MQTT and BLE API Calls</code> </summary>
 
-> | name      |  parameters | protocol     | 
+> | name      |  description | parameters | protocol     | 
 > |-----------|-----------|-------------------------|
-> | /exists/ks/ | {category}/{namespace}/{UUID}/{escapedSemanticMarker} | GET  |
-> | /train/ks/ | {namespace}/{category}/{UUID}/{escapedSemanticMarker} | GET |
-> | /sm | {namespace}/{category}/{UUID}/digitize | POST |
-> | /smflowpost | | POST |
-> | /invokeSemanticMarker|{username}/{password}/{SemanticMarkerAddress}| GET |
-> | /createSemanticMarker|{username}/{password}/{SemanticMarkerAddress}/{AvatarURL}| GET |
-> | /feed/{username}|{password}| GET |
-> | /feeddevice|{username}/{password}/{devicename}| GET |
-> | /lookupuser|{username}/{password}| GET |
-> | /set|{username}/{password}/{command}/{value}| GET |
-> | /setdevice|{username}/{password}/{devicename}/{command}/{value}| GET |
-> | /send|{username}/{password}/{request}| GET |
-> | /senddevice|{username}/{password}/{device}/{request}| GET |
-> | /set64device|{username}/{password}/{device}/{command}/{base64Val}| GET |
-> | /command|{username}/{password}/{command}/{on/off}| GET |
-> | /cmddevice|{username}/{password}/{device}/{command}/{on/off}| GET |
-> | /addGroup|{username}/{password}/{group}| GET |
-> | /removeGroup|{username}/{password}/{group}| GET |
-> | /statusGroup|{username}/{password}/{group}| GET |
-> | /feedGroup|{username}/{password}/{group}| GET |
-> | /feedDeviceGroup|{username}/{password}/{device}/{group}| GET |
-> | /captureGroup|{username}/{password}/{group}| GET |
-> | /addDeviceToGroup|{username}/{password}/{device}/{display}/{color}/{group}| GET |
-> | /addUserToGroupTopic|{group}/{username}/{TOKEN}| GET |
-> | /addUser|{username}/{password}/{guestpassword}/{TOKEN}| GET |
-> | mosquitto_pub | -i userID -u username -P password -t topic -m PAYLOAD | MQTT |
-> | mosquitto_sub | -i userID -u username -P password -t topic | MQTT |
-> | addMosquitoUser|  user password guestPassword | MQTT |
-> | addMosquitoUser|  user group | MQTT |
-> | /connectBLE | service characteristics | BLE |
-> | /sendCommandBLE | character | BLE |
-> | /sendJSONCommandBLE | JSON | BLE |
+> | /exists/ks | query if Semantic Marker&trade; exists |{category}/{namespace}/{UUID}/{escapedSemanticMarker} | GET  |
+> | /train/ks | train a Semantic Marker&trade; |{namespace}/{category}/{UUID}/{escapedSemanticMarker} | GET |
+> | /sm | create a new Semantic Marker&trade; |{namespace}/{category}/{UUID}/digitize | POST |
+> | /smflowpost |Create or modify Semantic Marker&trade; |JSON format | POST |
+> | /invokeSemanticMarker|Invokes a Semantic Marker&trade; |{username}/{password}/{SemanticMarkerAddress}| GET |
+> | /createSemanticMarker|Create a Semantic Marker&trade;|{username}/{password}/{SemanticMarkerAddress}/{AvatarURL}| GET |
+> | /feed/Send feed command|{username}|{password}| GET |
+> | /feeddevice|Send feed to specific named device|{username}/{password}/{devicename}| GET |
+> | /lookupuser|Lookup user returning JSON|{username}/{password}| GET |
+> | /set|sends a set/val|{username}/{password}/{command}/{value}| GET |
+> | /setdevice|sends a set/val to device|{username}/{password}/{devicename}/{command}/{value}| GET |
+> | /send|sends a request|{username}/{password}/{request}| GET |
+> | /senddevice|sends a request to a device|{username}/{password}/{device}/{request}| GET |
+> | /set64device|sends command in base64|{username}/{password}/{device}/{command}/{base64Val}| GET |
+> | /command|send boolean command|{username}/{password}/{command}/{on/off}| GET |
+> | /cmddevice|send boolean command to device|{username}/{password}/{device}/{command}/{on/off}| GET |
+> | /addGroup|add to group|{username}/{password}/{group}| GET |
+> | /removeGroup|remove from group|{username}/{password}/{group}| GET |
+> | /statusGroup|send status to group|{username}/{password}/{group}| GET |
+> | /feedGroup|send feed to group|{username}/{password}/{group}| GET |
+> | /feedDeviceGroup|send feed to group and device|{username}/{password}/{device}/{group}| GET |
+> | /captureGroup|sends capture to group|{username}/{password}/{group}| GET |
+> | /addDeviceToGroup|adds device to group|{username}/{password}/{device}/{display}/{color}/{group}| GET |
+> | /addUserToGroupTopic|add user to group|{group}/{username}/{TOKEN}| GET |
+> | /addUser|creates user account|{username}/{password}/{guestpassword}/{TOKEN}| GET |
+> | mosquitto_pub |publish on topic| -i userID -u username -P password -t topic -m PAYLOAD | MQTT |
+> | mosquitto_sub |subscribe to topic| -i userID -u username -P password -t topic | MQTT |
+> | addMosquitoUser|Add guest user to group|  user password guestPassword | MQTT |
+> | addMosquitoGroup|Add user to group|  user group | MQTT |
+> | /connectBLE | Binds to the BLE device| service characteristics | BLE |
+> | /sendCommandBLE | Sends character over BLE| character | BLE |
+> | /sendJSONCommandBLE | Sends JSON over BLE| JSON | BLE |
 </details>
 
 ## Other API calls over Bluetooth
