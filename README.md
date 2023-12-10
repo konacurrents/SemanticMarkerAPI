@@ -113,6 +113,46 @@ The following web page image is the result of the current Tier I Semantic Marker
 
 </details>
 
+
+<details>
+<summary><code>ESP-32 M5 Code</code> <code><b>create Semantic Marker</b></code></summary>
+
+This is a simple example of creating a Tier I Semantic Marker™️   inside the ESP-32 code base.
+Ths code is available via [open-source ESP-32 Semantic Marker&trade](https://GitHub.com/konacurrents/SemanticMarkerESP-32/src/DisplayModule/DisplayModule.h)
+
+##### Example ESP32 C Code
+```c
+   //!Draws a SemanticMarker&trade;
+    //!Create a SemanticMarker code with a width of 135 QR code  at (0, 100).
+    //!Please select the appropriate QR code version according to the number of characters. 
+    createSemanticMarker("https://iDogWatch.com/bot/help",0,100,135);
+    //try to draw a character in the middle ...
+    printTextAtTextPosition("SM",_zoomedTextPositions[QRAVATAR_ACTION]);
+```
+#### Example Semantic Marker™️   shown on the small M5 Display 
+
+<img src="images/M5.png" width="300">
+</details>
+
+<details>
+<summary><code>Apple iOS Objective-C</code> <code><b>create Semantic Marker</b></code></summary>
+This is a simple example of creating a Tier I Semantic Marker™️   inside the iOS Apple Objective-c code base.
+The <b>createSemanticMarker</b> is a method that performs all the Semantic Marker™️   image merging and creation. The image merging is placing the avatarImage inside the resulting Semantic Marker™️   at a size and aspect ratio inherent to the Semantic Marker™️   specifications.
+
+##### Example iOS ObjectiveC
+```objectiveC
+    //! create new image with the Avatar Logo inside
+    UIImage *image = [self createSemanticMarker:address avatarImage:image];
+
+```
+#### Example functional Semantic Marker™️   with enclosed Avatar image
+
+![Semantic Marker on Watch Example](images/watch.png)
+
+Note this image captured from the Semantic Marker™️   Apple Watch, shows the Semantic Marker™️   (where a long press will invoke the Semantic Marker™️   using the Tier III REST API), but also shows the <b>FEED</b> button. This makes a call on the <b>/feed</b> REST API shown below. 
+
+</details>
+
 <details>
 <summary><code>Javascript</code> <code><b>new SemanticMarker</b></code></summary>
 
@@ -180,45 +220,6 @@ function createSemanticMarker(command)
 }  
 
 ```
-</details>
-
-
-<details>
-<summary><code>ESP-32 M5 Code</code> <code><b>create Semantic Marker</b></code></summary>
-
-This is a simple example of creating a Tier I Semantic Marker™️   inside the ESP-32 code base.
-
-##### Example ESP32 C Code
-```c
-   //!Draws a SemanticMarker&trade;
-    //!Create a SemanticMarker code with a width of 135 QR code  at (0, 100).
-    //!Please select the appropriate QR code version according to the number of characters. 
-    createSemanticMarker("https://iDogWatch.com/bot/help",0,100,135);
-    //try to draw a character in the middle ...
-    printTextAtTextPosition("SM",_zoomedTextPositions[QRAVATAR_ACTION]);
-```
-#### Example Semantic Marker™️   shown on the small M5 Display 
-
-<img src="images/M5.png" width="300">
-</details>
-
-<details>
-<summary><code>Apple iOS Objective-C</code> <code><b>create Semantic Marker</b></code></summary>
-This is a simple example of creating a Tier I Semantic Marker™️   inside the iOS Apple Objective-c code base.
-The <b>createSemanticMarker</b> is a method that performs all the Semantic Marker™️   image merging and creation. The image merging is placing the avatarImage inside the resulting Semantic Marker™️   at a size and aspect ratio inherent to the Semantic Marker™️   specifications.
-
-##### Example iOS ObjectiveC
-```objectiveC
-    //! create new image with the Avatar Logo inside
-    UIImage *image = [self createSemanticMarker:address avatarImage:image];
-
-```
-#### Example functional Semantic Marker™️   with enclosed Avatar image
-
-![Semantic Marker on Watch Example](images/watch.png)
-
-Note this image captured from the Semantic Marker™️   Apple Watch, shows the Semantic Marker™️   (where a long press will invoke the Semantic Marker™️   using the Tier III REST API), but also shows the <b>FEED</b> button. This makes a call on the <b>/feed</b> REST API shown below. 
-
 </details>
 
 ------------------------------------------------------------------------------------------
