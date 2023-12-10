@@ -118,7 +118,7 @@ The following web page image is the result of the current Tier I Semantic Marker
 <summary><code>ESP-32 M5 Code</code> <code><b>create Semantic Marker</b></code></summary>
 
 This is a simple example of creating a Tier I Semantic Marker™️   inside the ESP-32 code base.
-Ths code is available via [open-source ESP-32 Semantic Marker&trade](https://GitHub.com/konacurrents/SemanticMarkerESP-32/src/DisplayModule/DisplayModule.h)
+Ths code is available via open-source [Semantic Marker&trade; ESP-32](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/DisplayModule/DisplayModule.h)
 
 ##### Example ESP32 C Code
 ```c
