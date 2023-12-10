@@ -105,10 +105,15 @@ directly from the various language implementation. Examples of javascript, C and
 are snipits of code from various Semantic Marker™️   apps to give a flavor of the APIs.
 
 <details>
+<summary>Web page creating Semantic Marker&trade;</summary>
+The following is result of the current Tier I Semantic Marker&trade; service running at [SemanticMarker.org](https://SemanticMarker.org).
+![WebPageExample](images/SMTier1Example.png)
+
+</details>
+
+<details>
 <summary><code>Javascript</code> <code><b>new SemanticMarker</b></code></summary>
 
-The following is result of the current Tier I Semantic Marker service using default:
-![WebPageExample](images/SMTier1Example.png)
 
 ##### Example javascript
 [Example HTML with javascript](sampleSMWeb.html)
