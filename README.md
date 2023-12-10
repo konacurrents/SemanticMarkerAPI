@@ -446,6 +446,7 @@ The results of these REST calls are database entries in the Semantic Marker&trad
 These are the Websocket and MQTT messaging formats. This includes the original [iDogWatch](https://iDogWatch.com) websocket interface
 defined as the <b>Barklet Language</b>. The format is a mix of original Barklet Language used with WebSockets,
 and the newer JSON Format messages.
+Example uses are available via open-source [Semantic Marker&trade; ESP-32](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/MQTTModule/MQTTNetworking.h)
 
 > [!NOTE]
 > Many of the messages described in the following BNF Grammar can be run through the UNIX shell commands at: [Example curl commands](curlCommands) To run, download the scripts and run with a valid username and password. CURL is a tool to send web REST commands from the command line. 
@@ -1393,6 +1394,8 @@ The shell commands for creating users and topics include the following.
 
 These consist of single character commands (so bluetooth clients with length restrictions can send commands), and 
 JSON formatted messages which is a subset of [JSON messages](#mqtt-messaging-using-bnf-grammar) sent over MQTT.
+Example uses are available via open-source [Semantic Marker&trade; ESP-32](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/BLEClientModule/BLEClientNetworking.h)
+and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/BLEServerModule/BLEServerNetworking.h)
 
 <details>
 
