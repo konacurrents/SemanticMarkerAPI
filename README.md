@@ -106,7 +106,9 @@ are snipits of code from various Semantic Marker™️   apps to give a flavor o
 
 <details>
 <summary>Web page creating Semantic Marker&trade;</summary>
-The following is result of the current Tier I Semantic Marker&trade; service running at [SemanticMarker.org](https://SemanticMarker.org).
+
+The following web page image is the result of the current Tier I Semantic Marker&trade; service running at [SemanticMarker.org](https://SemanticMarker.org).
+
 ![WebPageExample](images/SMTier1Example.png)
 
 </details>
