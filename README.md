@@ -77,126 +77,6 @@ The list of API calls is shown next with full details later in their appropriate
 > | /sendJSONCommandBLE | Sends JSON over BLE| JSON | BLE |
 </details>
 
-## Other API calls over Bluetooth
-
-These consist of single character commands (so bluetooth clients with length restrictions can send commands), and 
-JSON formatted messages which is a subset of [JSON messages](#mqtt-messaging-using-bnf-grammar) sent over MQTT.
-
-<details>
-
- <summary><code>BLE Bluetooth ESP-32 Device Interfaces</code> </summary>
-
- Must <b>Discovery</b> and <b>Bind</b> to desired device.
-</details>
-
-<details>
- <summary><code>/connectBLE</code> <code><b>connect to BLE service</b></code></summary>
-
-#### Parameters
-
-> | name      |  value     | description                                                           |
-> |-----------|-----------|-------------------------|
-> | SERVICE_UUID |   B0E6A4BF-CCCC-FFFF-330C-0000000000F0                  | BLE Service UUID |
-> | CHARACTERISTIC_UUID | B0E6A4BF-CCCC-FFFF-330C-0000000000F1 | BLE Characteristic UUID |
-
-</details>
-
-<details>
- <summary><code>/sendCommandBLE</code> <code><b>Sends Command Message over BLE</b></code></summary>
-
-#### Parameters
-
-> | value      |   description |
-> |-----------|-----------|
-> |H | help|
-> |W | restartWIFI|
-> |w | swap WIFI|
-> |N | sendWIFI|
-> |n | nextWIFI|
-> |a | auto feed ON|
-> |A | auto feed OFF|
-> |j | jackpot|
-> |B | buzzerOn|
-> |b | buzzerOff|
-> |s | single feed|
-> |0x00 | single feed|
-> |c | feed|
-> |u | uno|
-> |m | mini|
-> |L | tumbler|
-> |G | gatewayOn|
-> |g | gatewayOff|
-> |R | clean credentials - AP Node|
-> |X | clean EPROM - Factory Reset|
-> |E | use only PTFeeder naming|
-> |e | use naming PTFeeder:name|
-> |T | tiltOn|
-> |t | tiltOff|
-> |O | otaUpdate|
-> |r | reboot |
-
-
-</details>
-
-<details>
-
- <summary><code>/sendJSONCommandBLE</code> <code><b>Sends Command Message in JSON format over BLE</b></code></summary>
-
-#### Parameters
-
-> | JSON value      |   description |
-> |-----------|-----------|
-> |{'cmd':'feed'} | feed |
-> |{'cmd':'status'} | status |
-> |{'cmd':'wifi'} | update WIFI |
-> |{'ssid':'SSID','ssidPassword':'PASS'} | set SSID and SSID Password |
-> |{'username':'NAME','password':'PASS'} | set username and Password for MQTT meessaging|
-> |{'cmd':'sm1'} | M5 change to the s1 (or other) pages |
-> |{'cmd':'clean'} | clean the EPROM |
-> |{'cmd':'erase'} | erase the EPROM |
-> |{'cmd':'poweroff'} | turn the power off on the device |
-> |{'cmd':'ota'} | perform an OTA - Over the Air update |
-> |{'cmd':'feed'} | perform a feed |
-> |{'cmd':'buzzon'} | turn buzzer on |
-> |{'cmd':'buzzoff'} | turn buzzer off |
-> |{'cmd':'bleclienton'} | turn the BLE client feature on |
-> |{'cmd':'bleclientoff'} | turn the BLE client feature off |
-> |{'cmd':'bleserveron'} | turn the BLE Server on |
-> |{'cmd':'bleserveroff'| |  turn the BLE Server off |
-> |{'cmd':'resetfirsttime'} | reset the first time flag |
-> |{'cmd':'reboot' | reboot the IoT device |
-> |{'set':'BLEUseDeviceName','val':'on'"} | use the Device Name for the BLE name service name|
-> |{'set':'BLEUseDeviceName','val':'off'"} | Don't use the Device Name for the BLE name service name|
-> |{'set':'pairnow','val':'on'"} | have the device pair to the named pair device |
-> |{'set':'timerdelay','val':'30'"} | set the timer delay to the val specified (eg. 30 sec) |
-> |{'set':'startTimer','val':'on'"} | start the timer |
-> |{"startTimer" val:@"off"} | stop the timer |
-> |{'cmd':'zoomSMOn'} | M5 display zooms and shows the Semantic Marker&trade; |
-> |{'cmd':'zoomSMoff'} | Don't show the Semantic Marker&trade; |
-> |{'set':'tilt','val':'on'} | turn tilt detection on |
-> |{'set':'tilt','val':'off'} | turn tilt detection off |
-> |{'set':'gateway','val':'on'} | turn the gateway value on |
-> |{'set':'gateway','val':'off'} | turn the gateway value off |
-> |{'set':'hightemp','val':'88'} | set the high temp detector to the val |
-> |{'set':'stepperangle','val':'30'} | change the stepper angle |
-> |{'set':'screentimeout','val':'400'} | change the screen timeout |
-> |{'set':'noclick','val':'400'} | change if no click since val to turn off |
-> |{'set':'stepper','val':'mini'} | change the kind of stepper |
-> |{'set':'stepper','val':'uno'} | change the kind of stepper |
-> |{'set':'stepper','val':'tumbler'} | change the kind of stepper |
-> |{'set':'device','val':'MyFeederName'} | name the device used in messages and BLE Device |
-> |{'set':'location','val':'Buckley, WA USA'} | specify location to city/state/country |
-> |{'set':'gen3only','val':'true'} | turn on gen3 pairing only |
-> |{'set':'gen3only','val':'false'} | turn off gen3 pairing only |
-> |{'send':'temp'} | sends the temperature of the device |
-> |{'send':'capture'} | captures an image and sends it |
-> |{'send':'volume'} | specify the volume to be sent |
-
-</details>
-
-> [!CAUTION]
-> The ESP devices have a small buffer for accepting JSON messages (about 500 characters) so sending these
-> JSON messages will be cut off if the message is too long (an error as not a valid JSON format.)
 
 ## Example Web Pages making REST API calls
 
@@ -226,6 +106,9 @@ are snipits of code from various Semantic Marker™️   apps to give a flavor o
 
 <details>
 <summary><code>Javascript</code> <code><b>new SemanticMarker</b></code></summary>
+
+The following is result of the current Tier I Semantic Marker service using default:
+![WebPageExample](images/SMTier1Example.png)
 
 ##### Example javascript
 [Example HTML with javascript](sampleSMWeb.html)
@@ -1497,6 +1380,127 @@ The shell commands for creating users and topics include the following.
 > | group  |  required | string                  | group name
 
 </details>
+
+## Other API calls over Bluetooth BLE
+
+These consist of single character commands (so bluetooth clients with length restrictions can send commands), and 
+JSON formatted messages which is a subset of [JSON messages](#mqtt-messaging-using-bnf-grammar) sent over MQTT.
+
+<details>
+
+ <summary><code>BLE Bluetooth ESP-32 Device Interfaces</code> </summary>
+
+ Must <b>Discovery</b> and <b>Bind</b> to desired device.
+</details>
+
+<details>
+ <summary><code>/connectBLE</code> <code><b>connect to BLE service</b></code></summary>
+
+#### Parameters
+
+> | name      |  value     | description                                                           |
+> |-----------|-----------|-------------------------|
+> | SERVICE_UUID |   B0E6A4BF-CCCC-FFFF-330C-0000000000F0                  | BLE Service UUID |
+> | CHARACTERISTIC_UUID | B0E6A4BF-CCCC-FFFF-330C-0000000000F1 | BLE Characteristic UUID |
+
+</details>
+
+<details>
+ <summary><code>/sendCommandBLE</code> <code><b>Sends Command Message over BLE</b></code></summary>
+
+#### Parameters
+
+> | value      |   description |
+> |-----------|-----------|
+> |H | help|
+> |W | restartWIFI|
+> |w | swap WIFI|
+> |N | sendWIFI|
+> |n | nextWIFI|
+> |a | auto feed ON|
+> |A | auto feed OFF|
+> |j | jackpot|
+> |B | buzzerOn|
+> |b | buzzerOff|
+> |s | single feed|
+> |0x00 | single feed|
+> |c | feed|
+> |u | uno|
+> |m | mini|
+> |L | tumbler|
+> |G | gatewayOn|
+> |g | gatewayOff|
+> |R | clean credentials - AP Node|
+> |X | clean EPROM - Factory Reset|
+> |E | use only PTFeeder naming|
+> |e | use naming PTFeeder:name|
+> |T | tiltOn|
+> |t | tiltOff|
+> |O | otaUpdate|
+> |r | reboot |
+
+
+</details>
+
+<details>
+
+ <summary><code>/sendJSONCommandBLE</code> <code><b>Sends Command Message in JSON format over BLE</b></code></summary>
+
+#### Parameters
+
+> | JSON value      |   description |
+> |-----------|-----------|
+> |{'cmd':'feed'} | feed |
+> |{'cmd':'status'} | status |
+> |{'cmd':'wifi'} | update WIFI |
+> |{'ssid':'SSID','ssidPassword':'PASS'} | set SSID and SSID Password |
+> |{'username':'NAME','password':'PASS'} | set username and Password for MQTT meessaging|
+> |{'cmd':'sm1'} | M5 change to the s1 (or other) pages |
+> |{'cmd':'clean'} | clean the EPROM |
+> |{'cmd':'erase'} | erase the EPROM |
+> |{'cmd':'poweroff'} | turn the power off on the device |
+> |{'cmd':'ota'} | perform an OTA - Over the Air update |
+> |{'cmd':'feed'} | perform a feed |
+> |{'cmd':'buzzon'} | turn buzzer on |
+> |{'cmd':'buzzoff'} | turn buzzer off |
+> |{'cmd':'bleclienton'} | turn the BLE client feature on |
+> |{'cmd':'bleclientoff'} | turn the BLE client feature off |
+> |{'cmd':'bleserveron'} | turn the BLE Server on |
+> |{'cmd':'bleserveroff'| |  turn the BLE Server off |
+> |{'cmd':'resetfirsttime'} | reset the first time flag |
+> |{'cmd':'reboot' | reboot the IoT device |
+> |{'set':'BLEUseDeviceName','val':'on'"} | use the Device Name for the BLE name service name|
+> |{'set':'BLEUseDeviceName','val':'off'"} | Don't use the Device Name for the BLE name service name|
+> |{'set':'pairnow','val':'on'"} | have the device pair to the named pair device |
+> |{'set':'timerdelay','val':'30'"} | set the timer delay to the val specified (eg. 30 sec) |
+> |{'set':'startTimer','val':'on'"} | start the timer |
+> |{"startTimer" val:@"off"} | stop the timer |
+> |{'cmd':'zoomSMOn'} | M5 display zooms and shows the Semantic Marker&trade; |
+> |{'cmd':'zoomSMoff'} | Don't show the Semantic Marker&trade; |
+> |{'set':'tilt','val':'on'} | turn tilt detection on |
+> |{'set':'tilt','val':'off'} | turn tilt detection off |
+> |{'set':'gateway','val':'on'} | turn the gateway value on |
+> |{'set':'gateway','val':'off'} | turn the gateway value off |
+> |{'set':'hightemp','val':'88'} | set the high temp detector to the val |
+> |{'set':'stepperangle','val':'30'} | change the stepper angle |
+> |{'set':'screentimeout','val':'400'} | change the screen timeout |
+> |{'set':'noclick','val':'400'} | change if no click since val to turn off |
+> |{'set':'stepper','val':'mini'} | change the kind of stepper |
+> |{'set':'stepper','val':'uno'} | change the kind of stepper |
+> |{'set':'stepper','val':'tumbler'} | change the kind of stepper |
+> |{'set':'device','val':'MyFeederName'} | name the device used in messages and BLE Device |
+> |{'set':'location','val':'Buckley, WA USA'} | specify location to city/state/country |
+> |{'set':'gen3only','val':'true'} | turn on gen3 pairing only |
+> |{'set':'gen3only','val':'false'} | turn off gen3 pairing only |
+> |{'send':'temp'} | sends the temperature of the device |
+> |{'send':'capture'} | captures an image and sends it |
+> |{'send':'volume'} | specify the volume to be sent |
+
+</details>
+
+> [!CAUTION]
+> The ESP devices have a small buffer for accepting JSON messages (about 500 characters) so sending these
+> JSON messages will be cut off if the message is too long (an error as not a valid JSON format.)
 
 ------------------------------------------------------------------------------------------
 # Additional Interaction with the SMART Button Infrastructure
