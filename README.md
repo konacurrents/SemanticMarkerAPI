@@ -4,7 +4,7 @@
 
 Creating and processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This GitHub repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The code included is mix of html and javascript. As these are a REST (HTTP) API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.) At the heart of the messaging API is the MQTT publish/subscribe engine described in the [BNF Language Grammar Specification](https://en.wikipedia.org/wiki/Backus-Naur_form).
 and formatted through a collection of [JSON messages](#mqtt-messaging-using-bnf-grammar) sent over MQTT.
-Our [Semantic Marker ESP-32 IoT Device](https://GitHub.com/konacurrents/SemanticMarkerESP-32) software download shows use of this MQTT messaging.
+Our [Semantic Marker ESP-32 IoT Device](https://GitHub.com/konacurrents/SemanticMarkerESP-32) open-source downloadable software shows use of this MQTT messaging.
 
 ## SMART - Semantic Marker™️   Augmented Reality of Things
 
@@ -97,14 +97,16 @@ use of this API. See [Semantic Marker ESP-32 Download](https://GitHub.com/konacu
 ## Tier II.  Semantic Marker™️   Store and Forward
 ## Tier III.  Semantic Marker™️   SMART Button Management
 
-![3Tiers](images/SM3Tiers.png)
+<img src="images/SM3Tiers.png" width=300>
+
+Each are described next.
 
 ------------------------------------------------------------------------------------------
 # Tier I Semantic Marker™️   Indirection
 
 A Tier I Semantic Marker™️   is a straight indirection to a remote address. These are created
 directly from the various language implementation. Examples of javascript, C and objective-c are shown. These
-are snipits of code from various Semantic Marker™️   apps to give a flavor of the APIs.
+are snipits of code are from various Semantic Marker™️  apps to give a flavor of the APIs.
 
 <details>
 <summary>Web page creating Semantic Marker&trade;</summary>
@@ -1396,8 +1398,8 @@ The shell commands for creating users and topics include the following.
 
 These consist of single character commands (so bluetooth clients with length restrictions can send commands), and 
 JSON formatted messages which is a subset of [JSON messages](#mqtt-messaging-using-bnf-grammar) sent over MQTT.
-Example uses are available via open-source [Semantic Marker&trade; ESP-32](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/BLEClientModule/BLEClientNetworking.h)
-and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/BLEServerModule/BLEServerNetworking.h)
+Example uses are available via our Semantic Marker&trade; ESP-32 open-source download for the [BLE Client](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/BLEClientModule/BLEClientNetworking.h)
+and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/BLEServerModule/BLEServerNetworking.h).
 
 <details>
 
