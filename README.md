@@ -100,12 +100,12 @@ use of this API. See [Semantic Marker ESP-32 Download](https://GitHub.com/konacu
 <img src="images/SM3Tiers.png" width=400>
 
 In addition to valuable messaging addresses 
-contained in the Semantic Marker&trade; - we add a user specified graphic image, your <b>Avatar</b>, 
-embedded inside. This helps the user distinguish among potentially 1000's of these new optical
-vision markers (in your photo album). The human eye can pick out different <b>Avatars</b> faster than decoding with our Semantic Marker&trade; scanners.
+contained in the Semantic Marker&trade; - we add a user specified graphic photo image, your <b>Avatar</b>, 
+embedded inside. This helps the user distinguish among [potentially 1000's](https://SemanticMarker.org/vision/Avatars.png) of these new optical
+vision markers (maybe stored in your photo album). The human eye can pick out different <b>Avatars</b> faster than decoding with our Semantic Marker&trade; scanners.
 
-This Graphic Avatar is an important feature of Semantic Marker&trade; and shown as this process:
-<img src="images/SMPlusAvatar.png" width=400>
+This <b>Photo Avatar</b> is an important feature of Semantic Marker&trade; and shown as this process:
+![SMPlusAvatar](images/SMPlusAvatar.png)
 
 Each of the Three Tiers are described below. 
 
@@ -116,7 +116,7 @@ A Tier I Semantic Marker™️   is a straight indirection to a remote address. 
 directly from the various language implementation. Examples of javascript, C and objective-c are shown. These
 are snipits of code are from various Semantic Marker™️  apps to give a flavor of the APIs.
 A valuable use of Tier I is a <i>Photo Bookmark</i> that links to photo cloud storage or social media stories.
-With the Avatar 
+Basically the <i>metadata</i>, the hyper-links, are stored in the <i>Photo Bookmark<>, our <b>Semantic Marker&trade;</b>. They can be printed out, handed out, stored in on-line photo albums, and they all expose their hyper-links via any newer smart phone scanner.
 
 
 <details>
@@ -312,7 +312,7 @@ full user control.
 # Tier III Semantic Marker&trade; - SMART Buttons
 
 A Tier III Semantic Marker&trade; provides storage for the Avatar image and for very fine control of
-Semantic Marker actions. The created result is called a <b>SMART Button</b> - standing for Semantic Marker&trade; Augmented Reality of Things. 
+Semantic Marker actions. The created result is called a <b>SMART Button</b> - standing for Semantic Marker&trade; Augmented Reality of Things. With knowledgable apps, the <b>SMART Buttons</b> can extract the <b>Photo Avatar</b> and use as a Augmented Reality overlay.
 
 > [!TIP]
 > The resulting stored processing steps are especially suited to customized Internet of Things (IoT) processing, such as a custom user manual for your IoT home devices (eg. your accounts, passwords, WIFI address, and device Id's). These utilize all the API calls shown in this document but customized to your environment..
