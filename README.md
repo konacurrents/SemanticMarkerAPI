@@ -97,9 +97,17 @@ use of this API. See [Semantic Marker ESP-32 Download](https://GitHub.com/konacu
 ## Tier II.  Semantic Marker™️   Store and Forward
 ## Tier III.  Semantic Marker™️   SMART Button Management
 
-<img src="images/SM3Tiers.png" width=300>
+<img src="images/SM3Tiers.png" width=400>
 
-Each are described next.
+In addition to valuable messaging addresses 
+contained in the Semantic Marker&trade; - we add a user specified graphic image, your <b>Avatar</b>, 
+embedded inside. This helps the user distinguish among potentially 1000's of these new optical
+vision markers (in your photo album). The human eye can pick out different <b>Avatars</b> faster than decoding with our Semantic Marker&trade; scanners.
+
+This Graphic Avatar is an important feature of Semantic Marker&trade; and shown as this process:
+<img src="images/SMPlusAvatar.png" width=400>
+
+Each of the Three Tiers are described below. 
 
 ------------------------------------------------------------------------------------------
 # Tier I Semantic Marker™️   Indirection
@@ -107,6 +115,9 @@ Each are described next.
 A Tier I Semantic Marker™️   is a straight indirection to a remote address. These are created
 directly from the various language implementation. Examples of javascript, C and objective-c are shown. These
 are snipits of code are from various Semantic Marker™️  apps to give a flavor of the APIs.
+A valuable use of Tier I is a <i>Photo Bookmark</i> that links to photo cloud storage or social media stories.
+With the Avatar 
+
 
 <details>
 <summary>Web page creating Semantic Marker&trade;</summary>
