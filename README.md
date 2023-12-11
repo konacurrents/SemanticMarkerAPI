@@ -1,4 +1,4 @@
-#  Semantic Marker™️  REST, MQTT and BLE essage API Manual
+#  Semantic Marker™️  REST, MQTT and BLE Message API Manual
 
 ![SemanticMarker API](images/SemanticMarkerAPI.png)
 
@@ -96,6 +96,8 @@ use of this API. See [Semantic Marker ESP-32 Download](https://GitHub.com/konacu
 ## Tier I. Semantic Marker™️   Indirection
 ## Tier II.  Semantic Marker™️   Store and Forward
 ## Tier III.  Semantic Marker™️   SMART Button Management
+
+![3Tiers](images/SM3Tiers.png)
 
 ------------------------------------------------------------------------------------------
 # Tier I Semantic Marker™️   Indirection
