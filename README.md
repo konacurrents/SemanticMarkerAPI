@@ -137,7 +137,7 @@ The following web page image is the result of the current Tier I Semantic Marker
 <summary><code>ESP-32 M5 Code</code> <code><b>create Semantic Marker</b></code></summary>
 
 This is a simple example of creating a Tier I Semantic Marker™️   inside the ESP-32 code base.
-Ths code is available via open-source [Semantic Marker&trade; ESP-32](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/DisplayModule/DisplayModule.h)
+Ths code is available via our open-source software at [Semantic Marker&trade; ESP-32](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/DisplayModule/DisplayModule.h).
 
 ##### Example ESP32 C Code
 ```c
@@ -465,7 +465,7 @@ The results of these REST calls are database entries in the Semantic Marker&trad
 These are the Websocket and MQTT messaging formats. This includes the original [iDogWatch](https://iDogWatch.com) websocket interface
 defined as the <b>Barklet Language</b>. The format is a mix of original Barklet Language used with WebSockets,
 and the newer JSON Format messages.
-Example uses are available via open-source [Semantic Marker&trade; ESP-32](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/MQTTModule/MQTTNetworking.h)
+Example uses are available via our open-source at [Semantic Marker&trade; ESP-32](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/MQTTModule/MQTTNetworking.h).
 
 > [!NOTE]
 > Many of the messages described in the following BNF Grammar can be run through the UNIX shell commands at: [Example curl commands](curlCommands) To run, download the scripts and run with a valid username and password. CURL is a tool to send web REST commands from the command line. 
