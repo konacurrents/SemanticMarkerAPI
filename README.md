@@ -99,6 +99,9 @@ use of this API. See [Semantic Marker ESP-32 Download](https://GitHub.com/konacu
 
 <img src="images/SM3Tiers.png" width=400>
 
+
+## Photo Avatar
+
 In addition to valuable messaging addresses 
 contained in the Semantic Marker&trade; - we add a user specified graphic photo image, your <b>Avatar</b>, 
 embedded inside. This helps the user distinguish among [potentially 1000's](https://SemanticMarker.org/vision/Avatars.png) of these new optical
