@@ -1,4 +1,4 @@
-#  Semantic Marker ™️  REST and MQTT Message API Manual
+#  Semantic Marker™️  REST, MQTT and BLE essage API Manual
 
 ![SemanticMarker API](images/SemanticMarkerAPI.png)
 
@@ -1344,7 +1344,7 @@ topic is <b>usersP/bark/#</b>.
 
 ## MQTT Topic Namespace Design
 
-The MQTT pub/sub engine uses topics and permissions to constrain who can receive and who can send information (payload) through the network. The following diagram shows the MQTT Topic Namespace, including a hierarchy of permissions. For example, everyone can communicate to others in the same account, but not across acounts. There is a super account that can send messages to everyone. In addition, there is a dawgpack topic that everyone can collaborate on (much like an old party line). So a <b>status</b> could be requested on the super topic, and replies sent to the dawgpack. In addition, group topics are another way to communication across user accounts (by subscribing to group topics).
+The MQTT pub/sub engine uses topics and permissions to constrain who can receive and who can send information (payload) through the network. The following diagram shows the MQTT Topic Namespace, including a hierarchy of permissions. For example, everyone can communicate with others in the same account, but not across acounts. There is a super account that can send messages to everyone. In addition, there is a dawgpack topic that everyone can collaborate on (much like an old party line). So a <b>status</b> could be requested on the super topic, and replies sent to the dawgpack. In addition, group topics are another way to communication across user accounts (by subscribing to group topics).
 
 The following diagram highlights this namespace design.
 ![MQTT Topic Namespace](images/IOT_MQTT_Namespace.png)
