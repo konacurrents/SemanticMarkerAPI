@@ -102,8 +102,8 @@ use of this API. See [Semantic Marker ESP-32 Download](https://GitHub.com/konacu
 
 ## Photo Avatar
 
-In addition to valuable messaging addresses 
-contained in the Semantic Marker&trade; - we add a user specified graphic photo image, your <b>Avatar</b>, 
+In addition to valuable IoT message addresses 
+contained in the <b>Semantic Marker&trade;</b> - we add a user specified graphic photo image, your <b>Photo Avatar</b>, 
 embedded inside. This helps the user distinguish among [potentially 1000's](https://SemanticMarker.org/vision/Avatars.png) of these new optical
 vision markers (maybe stored in your photo album). The human eye can pick out different <b>Avatars</b> faster than decoding with our Semantic Marker&trade; scanners.
 
@@ -118,14 +118,15 @@ Each of the Three Tiers are described below.
 A Tier I Semantic Marker™️   is a straight indirection to a remote address. These are created
 directly from the various language implementation. Examples of javascript, C and objective-c are shown. These
 are snipits of code are from various Semantic Marker™️  apps to give a flavor of the APIs.
+
 A valuable use of Tier I is a <i>Photo Bookmark</i> that links to photo cloud storage or social media stories.
-Basically the <i>metadata</i>, the hyper-links, are stored in the <i>Photo Bookmark<>, our <b>Semantic Marker&trade;</b>. They can be printed out, handed out, stored in on-line photo albums, and they all expose their hyper-links via any newer smart phone scanner.
+Basically the <i>metadata</i>, the hyper-links, are stored in the <i>Photo Bookmark</i>, our <b>Semantic Marker&trade;</b>. They can be printed out, handed out, stored in on-line photo albums, and they all expose their hyper-links via any newer smart phone scanner.
 
 
 <details>
 <summary>Web page creating Semantic Marker&trade;</summary>
 
-The following web page image is the result of the current Tier I Semantic Marker&trade; service running at [SemanticMarker.org](https://SemanticMarker.org).
+The following web page image is the result of the current Tier I Semantic Marker&trade; service running at [SemanticMarker.org](https://SemanticMarker.org) - under the "Use our Service to Create your own Semantic Marker&trade;" tab. Clicking "Create Semantic Marker&trade;" will create the image below (with potentially another Graphic Avatar - or user selected.)
 
 ![WebPageExample](images/SMTier1Example.png)
 
@@ -155,7 +156,7 @@ Ths code is available via open-source [Semantic Marker&trade; ESP-32](https://gi
 <details>
 <summary><code>Apple iOS Objective-C</code> <code><b>create Semantic Marker</b></code></summary>
 This is a simple example of creating a Tier I Semantic Marker™️   inside the iOS Apple Objective-c code base.
-The <b>createSemanticMarker</b> is a method that performs all the Semantic Marker™️   image merging and creation. The image merging is placing the avatarImage inside the resulting Semantic Marker™️   at a size and aspect ratio inherent to the Semantic Marker™️   specifications.
+The <b>createSemanticMarker</b> is a method that performs all the Semantic Marker™️  image merging and creation. The image merging is placing the avatarImage inside the resulting Semantic Marker™️  at a size and aspect ratio inherent to the Semantic Marker™️  specifications.
 
 ##### Example iOS ObjectiveC
 ```objectiveC
