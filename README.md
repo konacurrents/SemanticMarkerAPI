@@ -2,18 +2,18 @@
 
 ![SemanticMarker API](images/SemanticMarkerAPI.png)
 
-Creating and processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This GitHub repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The code included is mix of html and javascript. As these are a REST (HTTP) API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.) At the heart of the messaging API is the MQTT publish/subscribe engine described in the [BNF Language Grammar Specification](https://en.wikipedia.org/wiki/Backus-Naur_form).
+Creating and processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This GitHub repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The code included is mix of html and javascript. As these are a REST (HTTP) API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.) At the heart of the messaging API is the MQTT publish/subscribe engine described using the [BNF](https://en.wikipedia.org/wiki/Backus-Naur_form) Language grammar specification,
 and formatted through a collection of [JSON messages](#mqtt-messaging-using-bnf-grammar) sent over MQTT.
-Our [Semantic Marker ESP-32 IoT Device](https://GitHub.com/konacurrents/SemanticMarkerESP-32) open-source downloadable software shows use of this MQTT messaging.
+Our [Semantic Marker ESP-32 IoT Device](https://GitHub.com/konacurrents/SemanticMarkerESP-32) open-source downloadable software shows use of this MQTT messaging. The rest of this document describes the API and how it fit's in the Semantic Marker&trade; Architecture.
 
 ## SMART - Semantic Marker™️   Augmented Reality of Things
 
 The main interfaces to the [SemanticMarker.org](https://SemanticMarker.org) web services are through 
-calls embodied in the following web page code, and is available at 
+calls embodied in the following web page code
 [SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. In addition apps, like the [Semantic Marker iOS Apple App](https://semanticmarker.org/vision/testflight.html) are in various phases of development, also interacting with the same API's.
 
 > [!NOTE]
-> Many of these messages, after security matching, are then run through the MQTT publish/subscribe system described [later](#mqtt-messaging-using-bnf-grammar).
+> Many of these messages, after security credential matching, are then run through the MQTT publish/subscribe system described [later](#mqtt-messaging-using-bnf-grammar).
 
 
 These fit an overall cloud and device interaction Semantic Marker™️   architecture shown here and currently hosted at [SemanticMarker.org](https://SemanticMarker.org).
@@ -21,8 +21,8 @@ These fit an overall cloud and device interaction Semantic Marker™️   archit
 ![SemanticMarkerAPIMessages](images/SemanticMarkerAPIMessages.png)
 
 > [!TIP]
-> The versatility of these API's are denoted in upper left of diagram, through additional clients implemented for
-> voice recognition (like Alexa, or Siri), and over messaging systems like telegram, X, discourse, nodered, apache (tomcat) and slack. 
+> The upper left of the diagram shows the versatility of these API's. Here additional clients use the API's to implement other features like
+> voice recognition (e.g., Alexa, or Siri), and supporting other messaging systems like telegram, X, discourse, nodered, apache (tomcat) and slack. 
 
 # Semantic Marker™️  REST and MQTT API
 
@@ -38,7 +38,6 @@ by outside parties, the Semantic Marker™️   address URL must be publically a
 
 The list of API calls is shown next with full details later in their appropriate sections. 
 
-<details>
  <summary><code>Table of REST, MQTT and BLE API Calls</code> </summary>
 
 > | name      |  description | parameters | protocol     | 
@@ -75,19 +74,8 @@ The list of API calls is shown next with full details later in their appropriate
 > | /connectBLE | Binds to the BLE device| service characteristics | BLE |
 > | /sendCommandBLE | Sends character over BLE| character | BLE |
 > | /sendJSONCommandBLE | Sends JSON over BLE| JSON | BLE |
-</details>
 
 
-## Example Web Pages making REST API calls
-
-An example html web page with many javascript calls via these REST API's is included at: [smart.html](smart.html)
-
-Example production web pages includes making appropriate API calls includes:
-[iDogWatch.com](https://idogwatch.com/userpage/userpage.html?username=test&password=test) and 
-[SemanticMarker.org](https://SemanticMarker.org/smart?username=test&password=test)
-
-In addition, applications such as we developed for the ESP-32 family of embedded IoT devices, show
-use of this API. See [Semantic Marker ESP-32 Download](https://GitHub.com/konacurrents/SemanticMarkerESP-32) for an example.
 
 ------------------------------------------------------------------------------------------
 
@@ -132,8 +120,16 @@ The following web page image is the result of the current Tier I Semantic Marker
 
 ![WebPageExample](images/SMTier1Example.png)
 
-</details>
+Another example html web page with many javascript calls via these REST API's is included at: [smart.html](smart.html)
 
+Example production web pages includes making appropriate API calls includes:
+[iDogWatch.com](https://idogwatch.com/userpage/userpage.html?username=test&password=test) and 
+[SemanticMarker.org](https://SemanticMarker.org/smart?username=test&password=test)
+
+In addition, applications such as we developed for the ESP-32 family of embedded IoT devices, show
+use of this API. See [Semantic Marker ESP-32 Download](https://GitHub.com/konacurrents/SemanticMarkerESP-32) for an example.
+
+</details>
 
 <details>
 <summary><code>ESP-32 M5 Code</code> <code><b>create Semantic Marker</b></code></summary>
