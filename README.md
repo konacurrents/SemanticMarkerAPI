@@ -97,8 +97,9 @@ use of this API. See [Semantic Marker ESP-32 Download](https://GitHub.com/konacu
 ## Tier II.  Semantic Marker™️   Store and Forward
 ## Tier III.  Semantic Marker™️   SMART Button Management
 
-<img src="images/SM3Tiers.png" width=400>
+<img src="images/SMTiers.png" width=400>
 
+Tier II and Tier III use the Semantic Marker&trade; Registry (ie. database) requiring a user account. This is anchored by a unique UUID for that user.
 
 ## Photo Avatar
 
@@ -108,9 +109,10 @@ embedded inside. This helps the user distinguish among [potentially 1000's](http
 vision markers (maybe stored in your photo album). The human eye can pick out different <b>Avatars</b> faster than decoding with our Semantic Marker&trade; scanners.
 
 This <b>Photo Avatar</b> is an important feature of Semantic Marker&trade; and shown as this process:
-![SMPlusAvatar](images/SMPlusAvatar.png)
+![SMPlusAvatar](images/SMAdd.png)
+This SMART Button [Semantic Marker&trade; address](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1674517131429) still requires user supplied security credentials to run in their environment.
 
-Each of the Three Tiers are described below. 
+### Each of the Three Tiers are described below. 
 
 ------------------------------------------------------------------------------------------
 # Tier I Semantic Marker™️   Indirection
@@ -245,8 +247,8 @@ function createSemanticMarker(command)
 # Tier II Semantic Marker™️   Store and Forward
 
 A Tier II Semantic Marker™️   invoves storing information at one of our Semantic Marker™️   cloud servers. This
-include an indirect address that a valid user can modify. Later, the Tier III Semantic Marker™️   provides
-full user control.
+includes an indirect address that a valid user can modify. Later, the Tier III Semantic Marker™️   provides
+full user control. Both Tier II and Tier III require a user account since the Semantic Marker&trade; is stored in a database.
 
 ## Creates a Tier II Semantic Marker™️   using the Semantic Marker Address (escaped)
 
