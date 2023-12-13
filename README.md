@@ -4,9 +4,27 @@
 
 Creating and processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This GitHub repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The code included is mix of html and javascript. As these are a REST (HTTP) API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.) At the heart of the messaging API is the MQTT publish/subscribe engine described using the [BNF](https://en.wikipedia.org/wiki/Backus-Naur_form) Language grammar specification,
 and formatted through a collection of [JSON messages](#mqtt-messaging-using-bnf-grammar) sent over MQTT.
-Our [Semantic Marker ESP-32 IoT Device](https://GitHub.com/konacurrents/SemanticMarkerESP-32) open-source downloadable software shows use of this MQTT messaging. The rest of this document describes the API and how it fit's in the Semantic Marker&trade; Architecture.
+Our [Semantic Marker ESP-32 IoT Device](https://GitHub.com/konacurrents/SemanticMarkerESP-32) open-source downloadable software shows use of this MQTT messaging. 
 
-## SMART - Semantic Marker™️   Augmented Reality of Things
+This document describes how the API supports the <b>Semantic Marker&trade;</b> Architecture in the following sections:
+
+1. [SMART](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#smart---semantic-marker%EF%B8%8F---augmented-reality-of-things)
+
+2. [REST and MQTT API](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#semantic-marker%EF%B8%8F--rest-and-mqtt-api)
+
+3. [Three Tiers of Semantic Marker&trade; Service](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#kona-currents-llc-offers-three-tiers-of-semantic-marker%EF%B8%8F---offerings)
+
+4. [Semantic Marker Registry](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#semantic-marker-registry)
+
+5. [Messaging BNF Grammar](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#messaging-bnf-grammar)
+
+6. [Detailed REST API's](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#the-following-are-rest-apis-matching-the-bnf-grammar)
+
+7. [MQTT Messaging API](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#mqtt-messaging-using-bnf-grammar)
+
+8. [SMART Buttons](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#additional-interaction-with-the-smart-button-infrastructure)
+
+# SMART - Semantic Marker™️   Augmented Reality of Things
 
 The main interfaces to the [SemanticMarker.org](https://SemanticMarker.org) web services are through 
 calls embodied in the following web page code
@@ -32,9 +50,6 @@ can also be run locally or moved to other web servers. For the Semantic Marker�
 by outside parties, the Semantic Marker™️   address URL must be publically available 
 (for example, **https://SemanticMarker.org** is globally accessible, while **http://localhost** would only be available for local use - such as a dog kennel operation.) 
 
-> [!NOTE]
->  Throughout this API document, a black arrow <img src="images/arrow.jpg" width=20> denotes expandable **details**. Clicking will expand that section 
-> and show more information (such as the parameter details when using the API.)
 
 The list of API calls is shown next with full details later in their appropriate sections. 
 
@@ -101,6 +116,10 @@ This <b>Photo Avatar</b> is an important feature of Semantic Marker&trade; and s
 This SMART Button [Semantic Marker&trade; address](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1674517131429) still requires user supplied security credentials to run in their environment.
 
 ### Each of the Three Tiers are described below. 
+
+> [!NOTE]
+>  Throughout this API document, a black arrow <img src="images/arrow.jpg" width=20> denotes expandable **details**. Clicking will expand that section 
+> and show more information (such as the parameter details when using the API.)
 
 ------------------------------------------------------------------------------------------
 # Tier I Semantic Marker™️   Indirection
