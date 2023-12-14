@@ -4,17 +4,17 @@
 
 Creating and processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This GitHub repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The code included is mix of html and javascript. As these are a REST (HTTP) API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.) At the heart of the messaging API is the MQTT publish/subscribe engine described using the [BNF](https://en.wikipedia.org/wiki/Backus-Naur_form) Language grammar specification,
 and formatted through a collection of [JSON messages](#mqtt-messaging-using-bnf-grammar) sent over MQTT.
-Our [Semantic Marker ESP-32 IoT Device](https://GitHub.com/konacurrents/SemanticMarkerESP-32) open-source downloadable software shows use of this MQTT messaging. 
+Our [Semantic Marker&trade; ESP-32 IoT Device](https://GitHub.com/konacurrents/SemanticMarkerESP-32) open-source downloadable software shows use of this MQTT messaging. 
 
 This document describes how the API supports the <b>Semantic Marker&trade;</b> Architecture in the following sections:
 
-1. [SMART](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#smart---semantic-marker%EF%B8%8F---augmented-reality-of-things)
+1. [Semantic Marker&trade; Augmented Reality of Things (SMART) Architecture](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#smart---semantic-marker%EF%B8%8F---augmented-reality-of-things)
 
 2. [REST and MQTT API](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#semantic-marker%EF%B8%8F--rest-and-mqtt-api)
 
 3. [Three Tiers of Semantic Marker&trade; Service](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#kona-currents-llc-offers-three-tiers-of-semantic-marker%EF%B8%8F---offerings)
 
-4. [Semantic Marker Registry](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#semantic-marker-registry)
+4. [Semantic Marker&trade; Registry](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#semantic-marker-registry)
 
 5. [Messaging BNF Grammar](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#messaging-bnf-grammar)
 
@@ -28,7 +28,7 @@ This document describes how the API supports the <b>Semantic Marker&trade;</b> A
 
 The main interfaces to the [SemanticMarker.org](https://SemanticMarker.org) web services are through 
 calls embodied in the following web page code
-[SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. In addition apps, like the [Semantic Marker iOS Apple App](https://semanticmarker.org/vision/testflight.html) are in various phases of development, also interacting with the same API's.
+[SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. In addition apps, like the [Semantic Marker&trade; iOS Apple App](https://semanticmarker.org/vision/testflight.html) are in various phases of development, also interacting with the same API's.
 
 > [!NOTE]
 > Many of these messages, after security credential matching, are then run through the MQTT publish/subscribe system described [later](#mqtt-messaging-using-bnf-grammar).
