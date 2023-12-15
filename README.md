@@ -470,12 +470,12 @@ Like many of these interfaces, the credentials including the username and passwo
 > $fullsm
 > ```
 
+</details>
 
 > [!CAUTION]
-> **SMART Buttons** can be **run** by anyone but the internal procedure messages only work with valid user credentials (username, password).
+> **SMART Buttons** can be **run** by anyone but the internal IoT  messages only work with valid user credentials (username, password).
 > The results will be calls to the other **Semantic Marker&trade;** API's after substituting those query parameters. Also with **inheritance** the same SMART Button can include extended user specific values. **Inheritance** requires a user unique **uuid** but the same **flownum**.
 
-</details>
 
 ##### Run a SMART Button substituting parameters 
 <details>
