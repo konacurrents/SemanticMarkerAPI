@@ -1610,4 +1610,4 @@ constantly changes to invalidate a copied screen image of anothers ticket.
 This Semantic Marker&trade; uses the <b>/smrun</b> API to pass
 parameters (like username, password and device) so the stored procedures work
 securely across any user.
-<img src="images/SM_SMART.png">
+<img src="images/SM_SMART.png" width="300">
