@@ -482,7 +482,7 @@ Like many of these interfaces, the credentials including the username and passwo
 > |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
 > | username  | string | string | username |
 > | password  | string | string | password |
-> | devide  | string | string | devide |
+> | device  | string | string | device |
 
 
 
