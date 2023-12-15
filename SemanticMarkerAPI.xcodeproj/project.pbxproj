@@ -11,6 +11,7 @@
 		D24B018E2B2653FE00D29C0A /* SMTier1Example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SMTier1Example.png; sourceTree = "<group>"; };
 		D24B01912B27CB9700D29C0A /* SMTiers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SMTiers.png; sourceTree = "<group>"; };
 		D24B01922B27D95900D29C0A /* SMAdd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SMAdd.png; sourceTree = "<group>"; };
+		D24B01942B2C24E500D29C0A /* SM_SMART.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SM_SMART.png; sourceTree = "<group>"; };
 		D2E4304A2AFEF15600E2C80B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D2E4304C2AFF04F500E2C80B /* SemanticMarkerAPIMessages.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SemanticMarkerAPIMessages.png; sourceTree = "<group>"; };
 		D2E4304D2AFF0E9C00E2C80B /* sampleSMWeb.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = sampleSMWeb.html; sourceTree = "<group>"; };
@@ -292,6 +293,7 @@
 				D24B018E2B2653FE00D29C0A /* SMTier1Example.png */,
 				D24B01912B27CB9700D29C0A /* SMTiers.png */,
 				D24B01922B27D95900D29C0A /* SMAdd.png */,
+				D24B01942B2C24E500D29C0A /* SM_SMART.png */,
 			);
 			path = images;
 			sourceTree = "<group>";

@@ -1600,5 +1600,14 @@ The resulting Semantic Marker&trade; can look like the following examples.
 <img src="images/SemanticMarkerQBar.png" width="200">
 
 ## Semantic Marker&trade; on a small ESP-32 M5 display
-This Semantic Marker&trade; might change every second to reflect sensor status.
+This Semantic Marker&trade; encoded sensor status in it's address. For this, the M5
+is constantly changing this address to reflect changing sensor status (like battery amount
+or feed count). This is similar to how newer tickets to concerts are handled where the marker
+constantly changes to invalidate a copied screen image of anothers ticket.
 <img src="images/M5.png" width="300">
+
+## Semantic Marker&trade; SMART Button for Parameterized calls.
+This Semantic Marker&trade; uses the <b>/smrun</b> API to pass
+parameters (like username, password and device) so the stored procedures work
+securely across any user.
+<img src="images/SM_SMART.png">
