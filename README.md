@@ -470,6 +470,11 @@ Like many of these interfaces, the credentials including the username and passwo
 > $fullsm
 > ```
 
+
+> [!CAUTION]
+> **SMART Buttons** can be **run** by anyone but the internal procedure messages only work with valid user credentials (username, password).
+> The results will be calls to the other **Semantic Marker&trade;** API's after substituting those query parameters. Also with **inheritance** the same SMART Button can include extended user specific values. **Inheritance** requires a user unique **uuid** but the same **flownum**.
+
 </details>
 
 ##### Run a SMART Button substituting parameters 
@@ -480,9 +485,12 @@ Like many of these interfaces, the credentials including the username and passwo
 
 > | name      |  type     | data type               | description                                                           |
 > |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | uuid  | string | string | uuid of SMART button|
+> | flownum  | string | string | flownum of SMART button|
 > | username  | string | string | username |
 > | password  | string | string | password |
 > | device  | string | string | device |
+> | others..  | string | string | other parameters |
 
 
 
@@ -496,7 +504,7 @@ Like many of these interfaces, the credentials including the username and passwo
 ##### Example cURL POST
 
 > ```shell
-> set fullsm = "https://SemanticMarker.org/bot/smrun"
+> set fullsm = "https://SemanticMarker.org/bot/smrun?uuid=x&flownum=y&username=X&password=Y&device=Z"
 > curl --trace-ascii curl.trace  \
 > $fullsm
 > ```
@@ -616,6 +624,7 @@ Example uses are available via our open-source at [Semantic Marker&trade; ESP-32
                       | "zoomSM" <SMNum>
                       | "buttonA" ["longpress" | "shortpress"]
                       | "buttonB" ["longpress" | "shortpress"]
+                      | "scannedDevice" <string>
 
     sendString      ::= "temp" 
                       | "status" 
@@ -1606,8 +1615,10 @@ or feed count). This is similar to how newer tickets to concerts are handled whe
 constantly changes to invalidate a copied screen image of anothers ticket.
 <img src="images/M5.png" width="300">
 
-## Semantic Marker&trade; SMART Button for Parameterized calls.
+## Semantic Marker&trade; SMART Button for Parameterized calls
 This Semantic Marker&trade; uses the <b>/smrun</b> API to pass
 parameters (like username, password and device) so the stored procedures work
-securely across any user.
+securely across any user. The query parameters **uuid** and **flownum** denote
+this SMART Button instance. 
+
 <img src="images/SM_SMART.png" width="300">
