@@ -60,6 +60,7 @@ The list of API calls is shown next with full details later in their appropriate
 > | /exists/ks | query if Semantic Marker&trade; exists |{category}/{namespace} /{UUID}/{escapedSemanticMarker} | GET  |
 > | /train/ks | train a Semantic Marker&trade; |{namespace}/{category} /{UUID}/{escapedSemanticMarker} | GET |
 > | /sm | create a new Semantic Marker&trade; |{namespace}/{category} /{UUID}/digitize | POST |
+> | /smrun |Runs a Semantic Marker&trade; | parameters | GET |
 > | /smflowpost |Create or modify Semantic Marker&trade; |JSON format | POST |
 > | /invokeSemanticMarker|Invokes a Semantic Marker&trade; |{username}/{password} /{SemanticMarkerAddress}| GET |
 > | /createSemanticMarker|Create a Semantic Marker&trade;|{username}/{password} /{SemanticMarkerAddress}/{AvatarURL}| GET |
@@ -465,6 +466,37 @@ Like many of these interfaces, the credentials including the username and passwo
 
 > ```shell
 > set fullsm = "https://SemanticMarker.org/bot/smflowpost"
+> curl --trace-ascii curl.trace  \
+> $fullsm
+> ```
+
+</details>
+
+##### Run a SMART Button substituting parameters 
+<details>
+ <summary><code>GET</code> <code><b>/smrun</b></code> </summary>
+
+##### Query Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username  | string | string | username |
+> | password  | string | string | password |
+> | devide  | string | string | devide |
+
+
+
+##### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `http URL of resulting Avatar Image`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Your SemanticMarker Address was already registered."}`                            |
+
+##### Example cURL POST
+
+> ```shell
+> set fullsm = "https://SemanticMarker.org/bot/smrun"
 > curl --trace-ascii curl.trace  \
 > $fullsm
 > ```
