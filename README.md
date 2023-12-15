@@ -472,10 +472,6 @@ Like many of these interfaces, the credentials including the username and passwo
 
 </details>
 
-> [!CAUTION]
-> **SMART Buttons** can be **run** by anyone but the internal IoT  messages only work with valid user credentials (username, password).
-> The results will be calls to the other **Semantic Marker&trade;** API's after substituting those query parameters. Also with **inheritance** the same SMART Button can include extended user specific values. **Inheritance** requires a user unique **uuid** but the same **flownum**.
-
 
 ##### Run a SMART Button substituting parameters 
 <details>
@@ -511,9 +507,14 @@ Like many of these interfaces, the credentials including the username and passwo
 
 </details>
 
+> [!CAUTION]
+> **SMART Buttons** can be **run** by anyone but the internal IoT  messages only work with valid user credentials (username, password).
+> The results will be calls to the other **Semantic Marker&trade;** API's after substituting those query parameters. Also with **inheritance** the same SMART Button can include extended user specific values. **Inheritance** requires a user unique **uuid** but the same **flownum**.
+
+
 # Semantic Marker&trade; Registry
 
-The results of these REST calls are database entries in the Semantic Marker&trade; registry, as shown in this image.
+The results of these REST calls are secure JSON database entries in the Semantic Marker&trade; registry, as shown in this image.
 ![Semantic Marker Registry](images/SemanticMarkerRegistry.png)
 
 ------------------------------------------------------------------------------------------
