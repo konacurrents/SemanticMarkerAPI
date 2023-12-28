@@ -24,6 +24,8 @@ This document describes how the API supports the <b>Semantic Marker&trade;</b> A
 
 8. [SMART Buttons](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#additional-interaction-with-the-smart-button-infrastructure)
 
+9. [PAT Point-at-Things](https://github.com/konacurrents/SemanticMarkerAPI/issues/2)
+
 # SMART - Semantic Marker™️   Augmented Reality of Things
 
 The main interfaces to the [SemanticMarker.org](https://SemanticMarker.org) web services are through 
@@ -74,6 +76,7 @@ The list of API calls is shown next with full details later in their appropriate
 > | /set64device|sends command in base64|{username}/{password} /{device}/{command}/{base64Val}| GET |
 > | /command|send boolean command|{username}/{password} /{command}/{on/off}| GET |
 > | /cmddevice|send boolean command to device|{username}/{password} /{device}/{command}/{on/off}| GET |
+> | /cmd|send  command to device|{username}/{password} /{device}/{command}| GET |
 > | /addGroup|add to group|{username}/{password}/{group}| GET |
 > | /removeGroup|remove from group|{username}/{password}/{group}| GET |
 > | /statusGroup|send status to group|{username}/{password} /{group}| GET |
@@ -482,7 +485,7 @@ Like many of these interfaces, the credentials including the username and passwo
 > | name      |  type     | data type               | description                                                           |
 > |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
 > | uuid  | string | string | uuid of SMART button|
-> | flownum  | string | string | flownum of SMART button|
+> | flow  | string | string | flownum of SMART button|
 > | username  | string | string | username |
 > | password  | string | string | password |
 > | device  | string | string | device |
@@ -500,16 +503,21 @@ Like many of these interfaces, the credentials including the username and passwo
 ##### Example cURL POST
 
 > ```shell
-> set fullsm = "https://SemanticMarker.org/bot/smrun?uuid=x&flownum=y&username=X&password=Y&device=Z"
+> set fullsm = "https://SemanticMarker.org/bot/smrun?uuid=x&flow=y&username=X&password=Y&device=Z"
 > curl --trace-ascii curl.trace  \
 > $fullsm
 > ```
+
+##### NOTE: if the **device** is not specified, then look for flow steps that have no device.
+> Here, there are 2 flow steps, with an implicit if (device) do the first, otherwise do the second.
+> https://iDogWatch.com/bot/cmddevice/USERNAME/PASSWORD/DEVICE_1/feed
+> https://iDogWatch.com/bot/cmd/USERNAME/PASSWORD/feed
 
 </details>
 
 > [!CAUTION]
 > **SMART Buttons** can be **run** by anyone but the internal IoT  messages only work with valid user credentials (username, password).
-> The results will be calls to the other **Semantic Marker&trade;** API's after substituting those query parameters. Also with **inheritance** the same SMART Button can include extended user specific values. **Inheritance** requires a user unique **uuid** but the same **flownum**.
+> The results will be calls to the other **Semantic Marker&trade;** API's after substituting those query parameters. Also with **inheritance** the same SMART Button can include extended user specific values. **Inheritance** requires a user unique **uuid** but the same **flow**.
 
 
 # Semantic Marker&trade; Registry
@@ -625,13 +633,16 @@ Example uses are available via our open-source at [Semantic Marker&trade; ESP-32
                       | "zoomSM" <SMNum>
                       | "buttonA" ["longpress" | "shortpress"]
                       | "buttonB" ["longpress" | "shortpress"]
-                      | "scannedDevice" <string>
+                      | "scannedDevice" <string> | "_none"
+                      | "remoteScannedDevice" <string> | "_none"
+                      | "socket" <boolean>
 
     sendString      ::= "temp" 
                       | "status" 
                       | "capture" 
                       | "volume" 
                       | "feed" 
+                      | "togglesocket" 
 
     encodedBase64String ::=
                       |  <Semantic Marker value after decoding base64>
@@ -1068,6 +1079,41 @@ command  ::= "command" : command, "val": on/off
 
 ```ebnf
 cmdDevice  ::= "device": device, "command" : command, "val": on/off
+```
+
+#### Parameters
+
+> | name      |  type     | data type               | description                                                           |
+> |-----------|-----------|-------------------------|-----------------------------------------------------------------------|
+> | username |  required | string                  | username of user
+> | password  |  required | string                  | password of user
+> | device  |  required | string                  | device to receive message
+> | command  |  required | string                  | command request string
+> | val  |  required | string                  | the value in boolean (on/off)
+
+
+#### Responses
+
+> | http code     | content-type                      | response                                                            |
+> |---------------|-----------------------------------|---------------------------------------------------------------------|
+> | `201`         | `text/plain;charset=UTF-8`        | `Configuration created successfully`                                |
+> | `400`         | `application/json`                | `{"code":"400","message":"Bad Request"}`                            |
+
+#### Example cURL
+
+> ```javascript
+> set fullsm = "http://localhost:1880/cmddevice/USERNAME/PASSWORD/DEVICE/COMMAND/BOOLEAN_VAL"
+> curl -v  -F username=$user -F password=$pass -F link=$link -F kind=$kind $fullsm
+> ```
+
+</details>
+
+### cmd- sends value to the specified device
+<details>
+ <summary><code>GET</code> <code><b>/cmd/{username}/{password}/{device}/{command}</b></code></summary>
+
+```ebnf
+cmd  ::= "device": device, "command" : command
 ```
 
 #### Parameters
@@ -1619,7 +1665,15 @@ constantly changes to invalidate a copied screen image of anothers ticket.
 ## Semantic Marker&trade; SMART Button for Parameterized calls
 This Semantic Marker&trade; uses the <b>/smrun</b> API to pass
 parameters (like username, password and device) so the stored procedures work
-securely across any user. The query parameters **uuid** and **flownum** denote
+securely across any user. The query parameters **uuid** and **flow** denote
 this SMART Button instance. 
 
 <img src="images/SM_SMART.png" width="300">
+
+------------------------------------------------------------------------------------------
+# PAT - Point at Things
+
+See [PAT](https://github.com/konacurrents/SemanticMarkerAPI/issues/2)
+
+> ![NOTE]
+> Last updated 12.28.23
