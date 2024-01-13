@@ -55,6 +55,7 @@ by outside parties, the Semantic Marker™️   address URL must be publically a
 
 The list of API calls is shown next with full details later in their appropriate sections. 
 
+<details>
  <summary><code>Table of REST, MQTT and BLE API Calls</code> </summary>
 
 > | name      |  description | parameters | protocol     | 
@@ -93,7 +94,8 @@ The list of API calls is shown next with full details later in their appropriate
 > | /connectBLE | Binds to the BLE device| service characteristics | BLE |
 > | /sendCommandBLE | Sends character over BLE| character | BLE |
 > | /sendJSONCommandBLE | Sends JSON over BLE| JSON | BLE |
-
+> | /scannedDevice |Denotes the device scanned| JSON | MQTT |
+</details>
 
 
 ------------------------------------------------------------------------------------------
