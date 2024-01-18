@@ -1535,6 +1535,7 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 > [!CAUTION]
 > The ESP devices have a small buffer for accepting JSON messages (about 500 characters) so sending these
 > JSON messages will be cut off if the message is too long (an error as not a valid JSON format.)
+> Also there is currently no security with BLE as anyone that knows the protocol can connect and make updates.
 
 
 <details>
@@ -1594,7 +1595,7 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 </details>
 
 > [!NOTE]
-> Topic Support will be `S`*uper, `D`evice, `O`wn, `G`roup, Dawg`P`ack
+> Topic Support will be `S`uper, `D`evice, `O`wn, `G`roup, Dawg`P`ack
 > Meaning the message is processed if that topic kind is supported and/or the 
 > device name (or query) matches the processing device. eg. `ODG` says the device must be specified, but supports messages from a group, and it's own topic.
 
