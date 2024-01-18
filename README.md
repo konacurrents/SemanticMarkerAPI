@@ -1,6 +1,7 @@
 #  Semantic Marker™️  REST, MQTT and BLE Message API Manual
 
 ![SemanticMarker API](images/SemanticMarkerAPI.png)
+(c) 2024
 
 Creating and processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This GitHub repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The code included is mix of html and javascript. As these are a REST (HTTP) API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.) At the heart of the messaging API is the MQTT publish/subscribe engine described using the [BNF](https://en.wikipedia.org/wiki/Backus-Naur_form) Language grammar specification,
 and formatted through a collection of [JSON messages](#mqtt-messaging-using-bnf-grammar) sent over MQTT.
@@ -1531,6 +1532,11 @@ JSON formatted messages which is a subset of [JSON messages](#mqtt-messaging-usi
 Example uses are available via our Semantic Marker&trade; ESP-32 open-source download for the [BLE Client](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/BLEClientModule/BLEClientNetworking.h)
 and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/BLEServerModule/BLEServerNetworking.h).
 
+> [!CAUTION]
+> The ESP devices have a small buffer for accepting JSON messages (about 500 characters) so sending these
+> JSON messages will be cut off if the message is too long (an error as not a valid JSON format.)
+
+
 <details>
 
  <summary><code>BLE Bluetooth ESP-32 Device Interfaces</code> </summary>
@@ -1588,7 +1594,7 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 </details>
 
 > ![NOTE]
-> Topic Support will be **S**uper, **D**evice, **O*wn, **G**group, Dawg**P**ack
+> Topic Support will be **S**uper, **D**evice, **O**wn, **G**group, Dawg**P**ack
 > Meaning the message is processed if that topic kind is supported and/or the 
 > the device name (or query) matches the processing device. eg. `ODG` says the device must be specified, but supports messages from a group, and it's own topic.
 
@@ -1615,7 +1621,7 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 > |{'cmd':'bleclienton'} | turn the BLE client feature on | OD|
 > |{'cmd':'bleclientoff'} | turn the BLE client feature off | OD|
 > |{'cmd':'bleserveron'} | turn the BLE Server on | OD|
-> |{'cmd':'bleserveroff'| |  turn the BLE Server off | OD|
+> |{'cmd':'bleserveroff' |  turn the BLE Server off | OD|
 > |{'cmd':'resetfirsttime'} | reset the first time flag | OD|
 > |{'cmd':'reboot' | reboot the IoT device | OD|
 > |{'set':'BLEUseDeviceName','val':'on'"} | use the Device Name for the BLE name service name| OD|
@@ -1647,7 +1653,7 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 
 </details>
 
-## ATOM Specific messages in 2024
+### M5 ATOM Specific messages in 2024
 
 <details>
 
@@ -1656,7 +1662,7 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 #### Parameters
 
 > | JSON value      |   description | Topic Support SDOGP|
-> |-----------|-----------|
+> |-----------|-----------|-------------|
 > |{'set':'scannedDevice','val':'deviceName'} | temp sets the device name| DO|
 > |{'set':'scannedGroup','val':'groupName'} | temp sets the publishe group name| DO|
 > |{'set':'atomSocketGlobalOnOff','val':'boolean'} | socket accepts on/off from groups| DO|
@@ -1669,10 +1675,6 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 
 
 </details>
-
-> [!CAUTION]
-> The ESP devices have a small buffer for accepting JSON messages (about 500 characters) so sending these
-> JSON messages will be cut off if the message is too long (an error as not a valid JSON format.)
 
 ------------------------------------------------------------------------------------------
 # Additional Interaction with the SMART Button Infrastructure
