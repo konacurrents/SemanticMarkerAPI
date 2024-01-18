@@ -1593,8 +1593,8 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 
 </details>
 
-> ![NOTE]
-> Topic Support will be **S**uper, **D**evice, **O**wn, **G**group, Dawg**P**ack
+> [!NOTE]
+> Topic Support will be **S**uper, **D**evice, **O**wn, **G**roup, Dawg**P**ack
 > Meaning the message is processed if that topic kind is supported and/or the 
 > the device name (or query) matches the processing device. eg. `ODG` says the device must be specified, but supports messages from a group, and it's own topic.
 
@@ -1605,7 +1605,7 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 #### Parameters
 
 > | JSON value      |   description | Topic Support SDOGP|
-> |-----------|-----------|
+> |-----------|-----------|----|
 > |{'cmd':'feed'} | perform a feed | SOG|
 > |{'cmd':'status'} | status | SOG|
 > |{'cmd':'wifi'} | update WIFI | O|
@@ -1662,7 +1662,7 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 #### Parameters
 
 > | JSON value      |   description | Topic Support SDOGP|
-> |-----------|-----------|-------------|
+> |-----------|-----------|----|
 > |{'set':'scannedDevice','val':'deviceName'} | temp sets the device name| DO|
 > |{'set':'scannedGroup','val':'groupName'} | temp sets the publishe group name| DO|
 > |{'set':'atomSocketGlobalOnOff','val':'boolean'} | socket accepts on/off from groups| DO|
@@ -1714,5 +1714,5 @@ this SMART Button instance.
 
 See [PAT](https://github.com/konacurrents/SemanticMarkerAPI/issues/2)
 
-> ![NOTE]
-> Last updated 12.28.23
+> [!NOTE]
+> Last updated 1.18.24
