@@ -636,8 +636,13 @@ Example uses are available via our open-source at [Semantic Marker&trade; ESP-32
                       | "buttonA" ["longpress" | "shortpress"]
                       | "buttonB" ["longpress" | "shortpress"]
                       | "scannedDevice" <string> | "_none"
-                      | "remoteScannedDevice" <string> | "_none"
+                      | "scannedGroup" <string> | "_none"
                       | "socket" <boolean>
+                      | "atomscanner" <boolean>
+                      | "PIR_UseSM" <boolean>
+                      | "AtomSocketGlobalOnOff" <boolean>
+                      | "LUXdark" <int eg. 80>
+                      | "M5AtomKind" <M5Scanner=0, M5_Socket=1>
 
     sendString      ::= "temp" 
                       | "status" 
@@ -648,6 +653,9 @@ Example uses are available via our open-source at [Semantic Marker&trade; ESP-32
 
     encodedBase64String ::=
                       |  <Semantic Marker value after decoding base64>
+							 | "semanticMarker" <val>
+							 | "PIR_SM_JSON" <val>
+							 | "PIR_SM_OFF_JSON" <val>
 
     SemanticMarkerAppMessages ::=
                       | DEBUG <boolean>
@@ -1579,59 +1587,86 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 
 </details>
 
+> ![NOTE]
+> Topic Support will be **S**uper, **D**evice, **O*wn, **G**group, Dawg**P**ack
+> Meaning the message is processed if that topic kind is supported and/or the 
+> the device name (or query) matches the processing device. eg. `ODG` says the device must be specified, but supports messages from a group, and it's own topic.
+
 <details>
 
  <summary><code>/sendJSONCommandBLE</code> <code><b>Sends Command Message in JSON format over BLE</b></code></summary>
 
 #### Parameters
 
-> | JSON value      |   description |
+> | JSON value      |   description | Topic Support SDOGP|
 > |-----------|-----------|
-> |{'cmd':'feed'} | feed |
-> |{'cmd':'status'} | status |
-> |{'cmd':'wifi'} | update WIFI |
-> |{'ssid':'SSID','ssidPassword':'PASS'} | set SSID and SSID Password |
-> |{'username':'NAME','password':'PASS'} | set username and Password for MQTT meessaging|
-> |{'cmd':'sm1'} | M5 change to the s1 (or other) pages |
-> |{'cmd':'clean'} | clean the EPROM |
-> |{'cmd':'erase'} | erase the EPROM |
-> |{'cmd':'poweroff'} | turn the power off on the device |
-> |{'cmd':'ota'} | perform an OTA - Over the Air update |
-> |{'cmd':'feed'} | perform a feed |
-> |{'cmd':'buzzon'} | turn buzzer on |
-> |{'cmd':'buzzoff'} | turn buzzer off |
-> |{'cmd':'bleclienton'} | turn the BLE client feature on |
-> |{'cmd':'bleclientoff'} | turn the BLE client feature off |
-> |{'cmd':'bleserveron'} | turn the BLE Server on |
-> |{'cmd':'bleserveroff'| |  turn the BLE Server off |
-> |{'cmd':'resetfirsttime'} | reset the first time flag |
-> |{'cmd':'reboot' | reboot the IoT device |
-> |{'set':'BLEUseDeviceName','val':'on'"} | use the Device Name for the BLE name service name|
-> |{'set':'BLEUseDeviceName','val':'off'"} | Don't use the Device Name for the BLE name service name|
-> |{'set':'pairnow','val':'on'"} | have the device pair to the named pair device |
-> |{'set':'timerdelay','val':'30'"} | set the timer delay to the val specified (eg. 30 sec) |
-> |{'set':'startTimer','val':'on'"} | start the timer |
-> |{"startTimer" val:@"off"} | stop the timer |
-> |{'cmd':'zoomSMOn'} | M5 display zooms and shows the Semantic Marker&trade; |
-> |{'cmd':'zoomSMoff'} | Don't show the Semantic Marker&trade; |
-> |{'set':'tilt','val':'on'} | turn tilt detection on |
-> |{'set':'tilt','val':'off'} | turn tilt detection off |
-> |{'set':'gateway','val':'on'} | turn the gateway value on |
-> |{'set':'gateway','val':'off'} | turn the gateway value off |
-> |{'set':'hightemp','val':'88'} | set the high temp detector to the val |
-> |{'set':'stepperangle','val':'30'} | change the stepper angle |
-> |{'set':'screentimeout','val':'400'} | change the screen timeout |
-> |{'set':'noclick','val':'400'} | change if no click since val to turn off |
-> |{'set':'stepper','val':'mini'} | change the kind of stepper |
-> |{'set':'stepper','val':'uno'} | change the kind of stepper |
-> |{'set':'stepper','val':'tumbler'} | change the kind of stepper |
-> |{'set':'device','val':'MyFeederName'} | name the device used in messages and BLE Device |
-> |{'set':'location','val':'Buckley, WA USA'} | specify location to city/state/country |
-> |{'set':'gen3only','val':'true'} | turn on gen3 pairing only |
-> |{'set':'gen3only','val':'false'} | turn off gen3 pairing only |
-> |{'send':'temp'} | sends the temperature of the device |
-> |{'send':'capture'} | captures an image and sends it |
-> |{'send':'volume'} | specify the volume to be sent |
+> |{'cmd':'feed'} | perform a feed | SOG|
+> |{'cmd':'status'} | status | SOG|
+> |{'cmd':'wifi'} | update WIFI | O|
+> |{'ssid':'SSID','ssidPassword':'PASS'} | set SSID and SSID Password | O|
+> |{'username':'NAME','password':'PASS'} | set username and Password for MQTT meessaging| O|
+> |{'cmd':'sm1'} | M5 change to the s1 (or other) pages | OG|
+> |{'cmd':'clean'} | clean the EPROM | O|
+> |{'cmd':'erase'} | erase the EPROM | O|
+> |{'cmd':'poweroff'} | turn the power off on the device | O|
+> |{'cmd':'ota'} | perform an OTA - Over the Air update | O|
+> |{'cmd':'buzzon'} | turn buzzer on | OG|
+> |{'cmd':'buzzoff'} | turn buzzer off | OG|
+> |{'cmd':'bleclienton'} | turn the BLE client feature on | OD|
+> |{'cmd':'bleclientoff'} | turn the BLE client feature off | OD|
+> |{'cmd':'bleserveron'} | turn the BLE Server on | OD|
+> |{'cmd':'bleserveroff'| |  turn the BLE Server off | OD|
+> |{'cmd':'resetfirsttime'} | reset the first time flag | OD|
+> |{'cmd':'reboot' | reboot the IoT device | OD|
+> |{'set':'BLEUseDeviceName','val':'on'"} | use the Device Name for the BLE name service name| OD|
+> |{'set':'BLEUseDeviceName','val':'off'"} | Don't use the Device Name for the BLE name service name| OD|
+> |{'set':'pairnow','val':'on'"} | have the device pair to the named pair device | OD|
+> |{'set':'timerdelay','val':'30'"} | set the timer delay to the val specified (eg. 30 sec) | OD|
+> |{'set':'startTimer','val':'on'"} | start the timer | OD|
+> |{"startTimer" val:@"off"} | stop the timer | OD|
+> |{'cmd':'zoomSMOn'} | M5 display zooms and shows the Semantic Marker&trade; | OG|
+> |{'cmd':'zoomSMoff'} | Don't show the Semantic Marker&trade; | OD|
+> |{'set':'tilt','val':'on'} | turn tilt detection on | OD|
+> |{'set':'tilt','val':'off'} | turn tilt detection off | OD|
+> |{'set':'gateway','val':'on'} | turn the gateway value on | OD|
+> |{'set':'gateway','val':'off'} | turn the gateway value off | OD|
+> |{'set':'hightemp','val':'88'} | set the high temp detector to the val | OD|
+> |{'set':'stepperangle','val':'30'} | change the stepper angle | OD|
+> |{'set':'screentimeout','val':'400'} | change the screen timeout | OD|
+> |{'set':'noclick','val':'400'} | change if no click since val to turn off | OG|
+> |{'set':'stepper','val':'mini'} | change the kind of stepper | OD|
+> |{'set':'stepper','val':'uno'} | change the kind of stepper | OD|
+> |{'set':'stepper','val':'tumbler'} | change the kind of stepper | OD|
+> |{'set':'device','val':'MyFeederName'} | name the device used in messages and BLE Device | OD|
+> |{'set':'location','val':'Buckley, WA USA'} | specify location to city/state/country | OD|
+> |{'set':'gen3only','val':'true'} | turn on gen3 pairing only | O|
+> |{'set':'gen3only','val':'false'} | turn off gen3 pairing only | O|
+> |{'send':'temp'} | sends the temperature of the device | SOG|
+> |{'send':'capture'} | captures an image and sends it | SOG|
+> |{'send':'volume'} | specify the volume to be sent | OG|
+
+</details>
+
+## ATOM Specific messages in 2024
+
+<details>
+
+ <summary><code>/sendJSONCommandBLE</code> <code><b>Sends ATOM Command Message in JSON format over BLE</b></code></summary>
+
+#### Parameters
+
+> | JSON value      |   description | Topic Support SDOGP|
+> |-----------|-----------|
+> |{'set':'scannedDevice','val':'deviceName'} | temp sets the device name| DO|
+> |{'set':'scannedGroup','val':'groupName'} | temp sets the publishe group name| DO|
+> |{'set':'atomSocketGlobalOnOff','val':'boolean'} | socket accepts on/off from groups| DO|
+> |{'set':'atomScanner','val':'boolean'} | turns on/off the scanner (not yet)| DO|
+> |{'set':'LUXdark','val':'int'} | specify when DARK starts for LUX (eg 80)| DO|
+> |{'set':'PIR_UseSM','val':'boolean'} | motion or light sensor call SM, otherwise FEED| DO|
+> |{'set64':'semanticMarker','val':'base64 JSON'} | Sets the SM command call | DO|
+> |{'set64':'PIR_SM_JSON','val':'base64 JSON'} | Sets the SM command for the sensor to call when on| DO|
+> |{'set64':'PIR_SM_OFF_JSON','val':'base64 JSON'} | Sets the SM command for the sensor to call when off| DO|
+
 
 </details>
 
