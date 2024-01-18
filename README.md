@@ -1594,9 +1594,9 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 </details>
 
 > [!NOTE]
-> Topic Support will be **S**uper, **D**evice, **O**wn, **G**roup, Dawg**P**ack
+> Topic Support will be `S`*uper, `D`evice, `O`wn, `G`roup, Dawg`P`ack
 > Meaning the message is processed if that topic kind is supported and/or the 
-> the device name (or query) matches the processing device. eg. `ODG` says the device must be specified, but supports messages from a group, and it's own topic.
+> device name (or query) matches the processing device. eg. `ODG` says the device must be specified, but supports messages from a group, and it's own topic.
 
 <details>
 
@@ -1666,6 +1666,8 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 > |{'set':'scannedDevice','val':'deviceName'} | temp sets the device name| DO|
 > |{'set':'scannedGroup','val':'groupName'} | temp sets the publishe group name| DO|
 > |{'set':'atomSocketGlobalOnOff','val':'boolean'} | socket accepts on/off from groups| DO|
+> |{'set':'socket','val':'boolean'} | turns on/off the M5 Atom Socket| O & optionally DG|
+> |{'send':'toggleSocket'} | toggles on/off the M5 Atom Socket| DO optionally G |
 > |{'set':'atomScanner','val':'boolean'} | turns on/off the scanner (not yet)| DO|
 > |{'set':'LUXdark','val':'int'} | specify when DARK starts for LUX (eg 80)| DO|
 > |{'set':'PIR_UseSM','val':'boolean'} | motion or light sensor call SM, otherwise FEED| DO|
