@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		D22F15B32B9E5AA7000D2C8A /* smart.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = smart.cpp; sourceTree = "<group>"; };
 		D24B00782B1EE0AB00D29C0A /* arrow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = arrow.jpg; path = images/arrow.jpg; sourceTree = "<group>"; };
 		D24B018E2B2653FE00D29C0A /* SMTier1Example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SMTier1Example.png; sourceTree = "<group>"; };
 		D24B01912B27CB9700D29C0A /* SMTiers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SMTiers.png; sourceTree = "<group>"; };
@@ -130,6 +131,7 @@
 		D2E4303F2AFEE67B00E2C80B = {
 			isa = PBXGroup;
 			children = (
+				D22F15B32B9E5AA7000D2C8A /* smart.cpp */,
 				D2E430C72B15653500E2C80B /* curlCommands */,
 				D2E4304A2AFEF15600E2C80B /* README.md */,
 				D24B00782B1EE0AB00D29C0A /* arrow.jpg */,
