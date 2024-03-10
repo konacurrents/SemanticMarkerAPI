@@ -771,6 +771,7 @@
 		D22F18AE2B9E5C02000D2C8A /* smart_8cpp_aeaa71d2ab67936f8ad468166b54d082f_icgraph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smart_8cpp_aeaa71d2ab67936f8ad468166b54d082f_icgraph.png; sourceTree = "<group>"; };
 		D22F18AF2B9E5C02000D2C8A /* smart_8cpp_a97d5c7e498031743e81e7b5733790016_icgraph.md5 */ = {isa = PBXFileReference; lastKnownFileType = text; path = smart_8cpp_a97d5c7e498031743e81e7b5733790016_icgraph.md5; sourceTree = "<group>"; };
 		D22F18B02B9E5C02000D2C8A /* smart_8cpp_a1d6aeff73a982a9a7e550aff17df3e4e_icgraph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smart_8cpp_a1d6aeff73a982a9a7e550aff17df3e4e_icgraph.png; sourceTree = "<group>"; };
+		D22F18B12B9E6FAD000D2C8A /* SemanticMarker.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = SemanticMarker.js; sourceTree = "<group>"; };
 		D24B00782B1EE0AB00D29C0A /* arrow.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = arrow.jpg; path = images/arrow.jpg; sourceTree = "<group>"; };
 		D24B018E2B2653FE00D29C0A /* SMTier1Example.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SMTier1Example.png; sourceTree = "<group>"; };
 		D24B01912B27CB9700D29C0A /* SMTiers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SMTiers.png; sourceTree = "<group>"; };
@@ -1672,6 +1673,7 @@
 		D2E4303F2AFEE67B00E2C80B = {
 			isa = PBXGroup;
 			children = (
+				D22F18B12B9E6FAD000D2C8A /* SemanticMarker.js */,
 				D22F15B42B9E5BFF000D2C8A /* html */,
 				D22F15B32B9E5AA7000D2C8A /* smart.cpp */,
 				D2E430C72B15653500E2C80B /* curlCommands */,

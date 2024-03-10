@@ -78,7 +78,8 @@ let _useFinal = false;
 var _username = null;
 var _password = null;
 // _word is used for the guest password .. I think it was a worry the cookie was goofy..
-var _word;
+// 12.11.23 .. put back _guestPassword
+var _guestPassword;
 var _saveUserInfo;
 var _devicesJSON =  [{"deviceName":"_GENERIC_"},{"deviceName":"ScoobyDoo"},{"deviceName":"PumpkinUno"},{"deviceName":"GreyGoose"},{"deviceName":"DukeGEN3"},{"deviceName":"HowieFeeder"}, {"deviceName":"M55"}, {"deviceName":"M5Rainier"}, {"deviceName":"LauraBabe"}, {"deviceName":"M522"}, {"deviceName":"M5Rainier"}, {"deviceName":"M5WRR"},{"deviceName":"MoonShot"},{"deviceName":"LacieUSBC"}];
 
@@ -96,7 +97,7 @@ function initGlobals()
   _devicesJSON = [];
   _username = "";
   _password = "";
-  _word = "";
+  _guestPassword = "";
   _UUIDNumbers = [];
   _guestPasswordsJSON = [];
 
@@ -121,7 +122,7 @@ if (_useFinal)
 {
    _username = "{{req.params.NAME}}";
    _password = "{{req.params.PASSWORD}}";
-   _word = "{{req.params.guestPassword}}";
+   _guestPassword = "{{req.params.guestPassword}}";
 	// userInfo == "super" or "normal"
    _saveUserInfo = "{{req.params.userinfo}}";
 
@@ -137,7 +138,7 @@ else
     //_username = "test";
     //_password = "test";
 
-    _word = "NOT_SET";
+    _guestPassword = "NOT_SET";
      _devicesJSON =  [{"deviceName":"_GENERIC_"},{"deviceName":"ScoobyDoo"},{"deviceName":"PumpkinUno"},{"deviceName":"GreyGoose"},{"deviceName":"DukeGEN3"},{"deviceName":"HowieFeeder"}, {"deviceName":"M55"}, {"deviceName":"M5Rainier"}, {"deviceName":"LauraBabe"}, {"deviceName":"M522"}, {"deviceName":"M5Rainier"}, {"deviceName":"M5WRR"},{"deviceName":"MoonShot"},{"deviceName":"LacieUSBC"}];
 
 	  //_smartDecks = [{"uuid":"OvdEK4Ks_j2Z","deckname":"marker1","deckcat":"LegacyMarkers","deckpassword":"darwin","date":1679955654862}];
@@ -160,13 +161,15 @@ var _SemanticMarker_UUID = "soIZ1iH7FK";
 
 // currently these are hardwired and must be lock step ([0] == username, and [0] == _username)
 // eg.  [{"USERNAME":_username},{"PASSWORD",_password}]
-var _SemanticMarkerParameters = ["USERNAME","PASSWORD"];
-var _SemanticMarkerValues = [_username, _password];
+var _SemanticMarkerParameters = ["USERNAME","PASSWORD","GUESTPASSWORD"];
+// on startup these are unknown..
+var _SemanticMarkerValues = [_username, _password, _guestPassword];
 
 //! called to set the values .. after they are known
 function setSemanticMarkerUserPasswordValues()
 {
-  _SemanticMarkerValues = [_username, _password];
+  console.log("setSemanticMarkerUserPasswordValues: " + _username + ", " + _password + "," + _guestPassword);
+  _SemanticMarkerValues = [_username, _password, _guestPassword];
 }
 
 //! the delay in seconds
@@ -868,7 +871,7 @@ function getCommandPathGuest(command)
   if (selectedGuestPassword && selectedGuestPassword.length > 0 &&  selectedGuestPassword != "NONE")
     command = getCommandPathWithPassword(command,selectedGuestPassword);
   else
-    command = getCommandPathWithPassword(command,_word);
+    command = getCommandPathWithPassword(command,_guestPassword);
   console.log("Guest command = '" + command + "'");
   return command;
 }
@@ -911,6 +914,9 @@ function sendNoArgs(idDevices, idCmd)
 
 	var commandPath = getCommandPath(command);
 
+	//! 1.13.24
+	cmd += getCurrentGroupNameQuery(false);
+
 	// bot/cmddevice/NAME/PASS/device/CMD
 
   //! https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
@@ -928,6 +934,25 @@ function sendCommandToDevice(idDevices, cmd)
 
   //! https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
   sendGETCommand(commandPath + "/" + cmd);
+}
+
+//! 12.17.23 return a base64 string from a JSON string
+function createBase64FromJSON(stringJSON)
+{
+    var base64StringJSON  =  escapeBase64InString(stringJSON);
+	 return base64StringJSON;
+}
+
+//! 12.17.23 create base64
+function createBase64ForCredentials()
+{
+   var stringJSON = { "username" : _username,
+	                   "password" : _password,
+							 "guestPassword" : _guestPassword
+							 };
+   var base = createBase64FromJSON(JSON.stringify(stringJSON));
+
+	return base;
 }
 
 //! Special case sending any set:val commands
@@ -962,6 +987,14 @@ function sendAnySetCommand64Both(idDevices, anySetCommandId, anySetValId, encode
 	// encode the device as well.
 	var commandPath = getCommandPath(command);
 
+	//! 1.11.24 kinda kludge. if set64device replace with set64device2 (if not encodeQuery)
+	//! The web should have a command like "set64_2" that way the "getCommandPath()" is unchanged
+	//! since it just tacks on the "device" part
+	if (!encodeQuery)
+	{
+      commandPath = commandPath.replace("set64device","set64device2");
+	}
+
 	var cmd = document.getElementById(anySetCommandId).value;
 	// strip spaces on cmd..
    cmd = cmd.replace(/\s+/g, '');
@@ -992,6 +1025,8 @@ function sendNoArgsM5(idDevices, idCmd)
 	var command = "cmd";
 	var commandPath = getCommandPath(command);
 
+	//! 1.13.24
+	commandPath += getCurrentGroupNameQuery(false);
 
   //! https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
   sendGETCommand(commandPath + "/" + cmd);
@@ -1081,55 +1116,13 @@ function sendBooleanArgs(idDevices, idCmd, idArg)
    command = "set";
 	commandPath = getCommandPath(command) + "/" + cmd + "/" + arg;
 
+	//! 1.13.24
+	commandPath += getCurrentGroupNameQuery(false);
+
   //! https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
   sendGETCommand(commandPath);
 }
 
-//! wraps the command arg == setDevice 
-//! if isBooleanArg, then this is a set:cmd, val:boolValue
-//!  Otherwise it's a cmd:cmd{ON/OFF}
-function sendBooleanArgsOLD(idDevices, idCmd, idArg)
-{
-	//
-	setupDevice(idDevices);
-
-	// the command, either set or cmd
-	var cmd = document.getElementById(idCmd).value;
-	var arg = document.getElementById(idArg).value;
-	var isBooleanArg = "gen3only".localeCompare(cmd)==0 || 
-	                   "minMenu".localeCompare(cmd)==0 || 
-	                   "maxMenu".localeCompare(cmd)==0  ||
-	                   "bleusedevicename".localeCompare(cmd)==0  ||
-	                   "bleusepaireddevicename".localeCompare(cmd)==0 
-							 ;
-	var commandPath = "";
-
-   if (isBooleanArg)
-	{
-      sendBooleanArgs(idDevices, idCmd, idArg)
-		//! command  set:cmd, val:val
-		//!    setDevice/n/u/d/CMD/VAL
-      //command = "set";
-	   //commandPath = getCommandPath(command) + "/" + cmd + "/" + arg;
-	}
-	else
-	{
-		//OLD WAY .. to be deprecated
-	   //! set/u/p/[device]/cmd/arg
-		// tack onto the cmd, eg. buzzon
-	   if ("on".localeCompare(arg)==0)
-	      cmd += "On";
-	   else
-	      cmd += "Off";
-		command = "cmd";
-	   commandPath = getCommandPath(command) + "/" + cmd;
-
-      sendGETCommand(commandPath);
-	}
-
-  //! https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
-  //sendGETCommand(commandPath);
-}
 
 //! wraps the command arg == setDevice 
 //!  set:cmd, val:arg
@@ -1156,6 +1149,9 @@ function sendTextArgs(idDevices, idCmd, idArg)
 	if (arg.localeCompare("")==0)
 	   arg = "_EMPTY_";
 
+	//! 1.13.24
+	arg += getCurrentGroupNameQuery(false);
+
    //! https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
   sendGETCommand(commandPath + "/" + cmd + "/" + arg);
 }
@@ -1176,6 +1172,8 @@ function showSemanticMarker(idDevices)
 	// strip spaces on arg..
    arg = arg.replace(/\s+/g, '');
 
+	//! 1.13.24
+	arg += getCurrentGroupNameQuery(false);
 
    //! https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
    sendGETCommand(commandPath + "/" + cmd + "/" + arg);
@@ -1211,6 +1209,24 @@ function updateOTATest(idDevices, OTATarget)
       {
          // M5QRReader
          commandPath += "/M5QRReader/ESP_IOT.ino.m5stick_c_plus.bin";
+      }
+      //new 12.26.23 for  M5 Atom (power) Socket
+      else if (OTATarget.localeCompare("M5AtomSocket")==0)
+      {
+         // M5AtomSocket
+         commandPath += "/M5AtomSocket/ESP_IOT.ino.m5stick_c_plus.bin";
+      }
+      //new 1.4.24 for  M5 Atom -- all of them in 1
+      else if (OTATarget.localeCompare("M5Atom")==0)
+      {
+         // M5Atom
+         commandPath += "/M5Atom/ESP_IOT.ino.m5stick_c_plus.bin";
+      }
+      //new 1.25.24 for  M5 Core2 -- all of them in 1
+      else if (OTATarget.localeCompare("M5Core2")==0)
+      {
+         // M5Core2
+         commandPath += "/M5Core2/ESP_IOT.ino.m5stack_core2.bin";
       }
    	else if (OTATarget.localeCompare("ESP-ORIG")==0)
    	{
@@ -1325,6 +1341,8 @@ function sendAnySetCommand(idDevices, anySetCommandId, anySetValId)
 	if (arg.localeCompare("")==0)
 	   arg = "_EMPTY_";
 
+	//! 1.13.24
+	arg += getCurrentGroupNameQuery(false);
 
    //! https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/send
   sendGETCommand(commandPath + "/" + cmd + "/" + arg);
@@ -1556,7 +1574,8 @@ function createSemanticMarkerPath(commandPath, avatarURL, idSM, idLabel)
 		alert("Issue with Semantic Marker creation: \n" + error.message + "\nPlease file bug report");
 	}
 
-   document.getElementById(idLabel).value = commandPath;
+   //document.getElementById(idLabel).value = commandPath;
+   document.getElementById(idLabel).innerHTML = commandPath;
 
 }
 
@@ -1564,6 +1583,205 @@ function createSemanticMarkerPath(commandPath, avatarURL, idSM, idLabel)
 function createSemanticMarkerPathId(commandPathId, urlId ,idSM, idLabel)
 {
    var commandPath = document.getElementById(commandPathId).value;
+	var url = document.getElementById(urlId).value;
+   if (!url || url.length==0)
+	{
+	   url = "https://SemanticMarker.org/images/SM-Circle-R.png"; 
+	}
+   createSemanticMarkerPath(commandPath, url ,idSM, idLabel);
+}
+
+//! 12.29.23 add Credentials
+//!create a semantic marker, and place at the idSM location
+//! 1.1.24 added device name
+function createCredentialsSemanticMarkerPathId(smURLPathId, urlId ,idSM, idLabel, idSSID, idSSIDPass, idDeviceName)
+{
+	var ssidString = document.getElementById(idSSID).value;
+	    ssidString = encodeURIComponent(ssidString);
+	var ssidStringPassword = document.getElementById(idSSIDPass).value;
+	    ssidStringPassword = encodeURIComponent(ssidStringPassword);
+	var deviceNameString = document.getElementById(idDeviceName).value;
+	   deviceNameString = encodeURIComponent(deviceNameString);
+
+	var createFull = false;
+	var addDeviceName = false;
+	if (window.confirm("Cancel: Create just WIFI Credentials\n\n" 
+	    + "   ssid        ='" + ssidString + "'\n"
+	    + "   ssidPassword='" + ssidStringPassword + "'\n\n"
+	    + "OK: create full credentials exposing your password\n\n"
+		 ))
+	{
+	    createFull = true;
+	    if (window.confirm("Cancel: do not override device name\n\n"
+    		 + "OK: to define\n"
+	        + "   deviceName  ='" + deviceNameString + "'" + "\n\n"
+			  )
+		 )
+		 {
+		    addDeviceName = true;
+		 }
+
+	}
+
+	//! semantic marker address for credentials
+   var commandPath = "https://SemanticMarker.org/bot/credentials";
+
+	commandPath += "?ssid=" + ssidString;
+	commandPath += "&ssidpass=" + ssidStringPassword;
+
+	if (createFull)
+	{
+	   commandPath += "&username=" + _username;
+	   commandPath += "&password=" + _password;
+		if (addDeviceName)
+	      commandPath += "&deviceName=" + deviceNameString;
+
+		//todo .. add location
+	}
+
+//! TODO: see if not defining the deviceName works..
+
+	document.getElementById(smURLPathId).value = commandPath;
+
+	var url = document.getElementById(urlId).value;
+   if (!url || url.length==0)
+	{
+	   url = "https://SemanticMarker.org/images/SM-Circle-R.png"; 
+	}
+   createSemanticMarkerPath(commandPath, url ,idSM, idLabel);
+}
+
+//! 12.31.23
+//! 1.2.24 add SemanticMarker as option
+// create: /bot/scannedDevice/DeviceName?kind=AtomSocket&status=socket&valKind=onoff
+//!create a semantic marker, and place at the idSM location
+function setupM5AtomKind(idM5AtomKindOption, idKind, idStatus, idValKind)
+{
+	var atomKind = document.getElementById(idM5AtomKindOption).value;
+	var kindString;
+	var statusString;
+	var valKindString;
+	if (atomKind == 'm5socket')
+	{
+	   kindString = "AtomSocket";
+		statusString = "socket";
+		valKindString = "onoff";
+	}
+	else if (atomKind == "m5scanner")
+	{
+	   kindString = "AtomScanner";
+		statusString = "smscanner";
+		valKindString = "boolean";
+	}
+	else if (atomKind == "SemanticMarker")
+	{
+	   if (!_lastCopiedSM)
+		{
+         alert("No Semantic Marker&trade; selected. Select one and click 'Copy SM' Above");
+			return;
+		}
+		kindString = "SemanticMarker";
+		statusString = _lastCopiedSM.uuid;
+		valKindString = _lastCopiedSM.flowNum;
+	}
+
+	document.getElementById(idKind).value = kindString;
+	document.getElementById(idStatus).value = statusString;
+	document.getElementById(idValKind).value = valKindString;
+}
+
+//! 12.31.23
+//! 1.2.24 add the last copied SM to the list (which will fill the status and valKind fields)
+// create: /bot/scannedDevice/DeviceName?kind=AtomSocket&status=socket&valKind=onoff
+//!create a semantic marker, and place at the idSM location
+function createScannedDeviceSemanticMarkerPathId(smURLPathId, urlId ,idSM, idLabel, idKind, idStatus, idValKind, idDevices)
+{
+	// set the device =>  _deviceName
+   setupDevice(idDevices)
+   var commandPath = "https://SemanticMarker.org/bot/scannedDevice/" + _deviceName;
+
+	var kindString = document.getElementById(idKind).value;
+	var statusString = document.getElementById(idStatus).value;
+	var valKindString = document.getElementById(idValKind).value;
+	commandPath += "?kind=" + kindString;
+
+	if (kindString == "SemanticMarker")
+	{
+	   commandPath += "&uuid=" + statusString;
+	   commandPath += "&flow=" + valKindString;
+	}
+	else
+	{
+	   commandPath += "&status=" + statusString;
+	   commandPath += "&valkind=" + valKindString;
+	}
+	document.getElementById(smURLPathId).value = commandPath;
+
+	var url = document.getElementById(urlId).value;
+   if (!url || url.length==0)
+	{
+	   url = "https://SemanticMarker.org/images/SM-Circle-R.png"; 
+	}
+   createSemanticMarkerPath(commandPath, url ,idSM, idLabel);
+}
+
+//! 1.7.24
+// create: /bot/scannedGroup/GroupName
+//!create a semantic marker, and place at the idSM location
+function createScannedGroupSemanticMarkerPathId(smURLPathId, urlId ,idSM, idLabel, idGroups)
+{
+	var groupName = document.getElementById(idGroups).value;
+	var validGroup = true;
+	if (!groupName || groupName.length == 0)
+	{
+      validGroup = false;
+	}
+	else if (groupName == "NO_GROUP")
+	   validGroup = false;
+
+	if (!validGroup)
+	{
+	   alert("Please select a valid group name");
+		return;
+	}
+   var commandPath = "https://SemanticMarker.org/bot/scannedGroup/" + groupName;
+
+	document.getElementById(smURLPathId).value = commandPath;
+
+	var url = document.getElementById(urlId).value;
+   if (!url || url.length==0)
+	{
+	   url = "https://SemanticMarker.org/images/SM-Circle-R.png"; 
+	}
+   createSemanticMarkerPath(commandPath, url ,idSM, idLabel);
+}
+
+//! 12.30.23 add Credentials but in WIFI format
+//!          WIFI:S:<SSID>;T:<WEP|WPA|blank>;P:<PASSWORD>;H:<true|false|blank>;
+//!create a semantic marker, and place at the idSM location
+function createWIFICredentialsSemanticMarkerPathId(smURLPathId, urlId ,idSM, idLabel, idSSID, idSSIDPass)
+{
+   var commandPath = "WIFI:";
+
+	// base64 encode .. seems standards doesn't encode them
+	var encodeArgs = false;
+
+	var ssidString = document.getElementById(idSSID).value;
+	var ssidStringPassword = document.getElementById(idSSIDPass).value;
+	if (encodeArgs)
+	{
+	    ssidString = encodeURIComponent(ssidString);
+	    ssidStringPassword = encodeURIComponent(ssidStringPassword);
+	}
+
+	commandPath += "S:" + ssidString + ";";
+	commandPath += "T:WPA" + ";";
+	commandPath += "P:" + ssidStringPassword + ";";
+	commandPath += "H:" + ";";
+
+
+	document.getElementById(smURLPathId).value = commandPath;
+
 	var url = document.getElementById(urlId).value;
    if (!url || url.length==0)
 	{
@@ -1895,6 +2113,12 @@ function initRegisteredDevices()
 
 
    registerDeviceChange("_GroupCommandsTab", "GROUP Messaging");
+
+	//! 3.3.24 OTA
+   registerDeviceChange ("_OTATab", "OTA Over the Air Updates");
+
+	//! 3.3.24 add the SM Matrix
+   registerDeviceChange ("_SMMatrixTab", "Semantic Marker&trade; Matrix");
 }
 
 
@@ -2025,6 +2249,20 @@ KSWaveId, bridgeSMId, futureId)
 	var videoSM = document.getElementById(videoSMId).value;
 	var isCircularAvatar = document.getElementById(isCircularAvatarId).value;
 
+	//! 1.9.24 .. warn the user if their 0 and 1 values are the same (username, password)
+	if (_SemanticMarkerValues.length > 1)
+	{
+		// this assumes [0] and [1] are username/paswword in some order..
+	   if (_SemanticMarkerValues[0] == _SemanticMarkerValues[1])
+		{
+		   if (!confirm("**** SMART Limitation as of 1.9.24: \n\nYour Username and Password are the same\nSo substituting for parameters is not supported yet. \n\nOK: SAVE anyway\n\nCancel: Don't save"))
+			{
+				alert("*** CANCELING saving this SMART button. Maybe change your password");
+			   return;
+			}
+		}
+	}
+
 	// grab the UUID
    var uuid = document.getElementById(uuidStringTextId).value;
 	//require a uuid
@@ -2096,6 +2334,9 @@ KSWaveId, bridgeSMId, futureId)
 	//! 5.5.23
 	//!   Seems that when saved, the .../DEVICE_1/ ... isn't detected as a parameter to look for.
 	//!  unless the parameterValuesSMId .. is set
+	//! 1.9.24  if username == password (eg. test) then the command substitution doesn't work. It could
+	//! look a line at a time, and start with password (reverse) .. TODO
+	//! BUT: going to remove the M5 and GEN3
 
 	// select options 
 	var flowParametersArray = ["USERNAME","PASSWORD"];
@@ -2330,6 +2571,7 @@ KSWaveId, bridgeSMId, futureId)
 	//   /sm/addflow/BASE64 ...
 	var allCommandsJSON;
 
+
 	//BUT the parameters should be  replaced (eg. myName -> USERNAME)
 	for (var i=0; i< _SemanticMarkerValues.length; i++)
 	{
@@ -2352,6 +2594,10 @@ KSWaveId, bridgeSMId, futureId)
 
 	//! NOW go through the commands looking for the 'devices' anywhere.. if _ALL_ leave it.. but if a parameter name
 	//!  THEN: foreach .. replace with DEVICE_1 DEVICE_2  DEVICE_1 (again) .. 
+	//! 2.8.24 30K above pacific .. The device names need to be reverse sorted by length (bug Issue #289..)
+	//!   Because: name might be M5AtomSocket but there is a device name M5Atom (which matches .. not using delimiter like "/")
+	//!   So a solution is to sort the _devicesJSON by length and go from longest to shortest in following loop (or use delimiter)
+	//! TODO
 	var deviceCount = 0;
 	for (var i=0; i< _devicesJSON.length; i++)
 	{
@@ -2379,14 +2625,23 @@ KSWaveId, bridgeSMId, futureId)
 					 }
 				 }
 			 }
-			 //! see if M5
-			 if (deviceName.indexOf("M5") >= 0)
-			    deviceParamName = "M5_" + deviceParamName;
-			 else if (deviceName.indexOf("GEN3") >= 0)
-			    deviceParamName = deviceParamName + "_GEN3";
-				 //added 3.24.23
-			 else if (deviceName.indexOf("NO_ONE") >= 0)
-			    deviceParamName = "NO_ONE_" + deviceParamName;
+			 //! 1.9.24 not using the M5 or GEN3 distinctions, making substitution easier..
+			 if (false) 
+			 {
+			   //! see if M5
+			   if (deviceName.indexOf("M5") >= 0)
+			      deviceParamName = "M5_" + deviceParamName;
+			   else if (deviceName.indexOf("GEN3") >= 0)
+			      deviceParamName = deviceParamName + "_GEN3";
+				   //added 3.24.23
+			   else if (deviceName.indexOf("NO_ONE") >= 0)
+			      deviceParamName = "NO_ONE_" + deviceParamName;
+			 }
+			 else 
+			 {
+			   if (deviceName.indexOf("NO_ONE") >= 0)
+			      deviceParamName = "NO_ONE_" + deviceParamName;
+			 }
 
 			 // add name to the parameters array..
 			 parameters.push(deviceParamName);
@@ -2530,11 +2785,17 @@ KSWaveId, bridgeSMId, futureId)
 								 "indirectSM" : indirectSM
 							  };
 
-//	 console.log("flowMetaJSON = " + flowMetaJSON);
+ 	 console.log("flowMetaJSON = " + flowMetaJSON);
+	 alert(JSON.stringify(flowMetaJSON));
 
-//	 alert(JSON.stringify(flowMetaJSON));
-
-
+//! setting the testing will NOT save the JSON
+var ____testing = false;
+if (____testing)
+{
+   alert("**** JUST TESTING .. NOT SAVING THIS SMART BUTTON ****");
+}
+else
+{
    if (true)
    {
      // sends this JSON as a POST (not a GET). 
@@ -2576,6 +2837,7 @@ KSWaveId, bridgeSMId, futureId)
        getSMFlows(uuidStringTextId, flowsSelectId);
    
    }
+}
 
 }
 
@@ -3262,7 +3524,7 @@ var _userFlowsJSON = null;
 * @param {flowNameId} id of flowName
 * @param {flowCatId} id of flow Category
 * @param {flowPrivateId} id of flowIsPrivate
-* @param {flowSMNameId} id of flowSMName the Semantic Marker address
+* @param {flowSMNameId} id of flowSMName the Semantic Marker&#x2122; address
 * @param {flowIsDataId} id of flowIsData
 * @param {descTextId} id of description
 * @param {recordedTextId} id of recordedText area. If non null, then decode the flow into HTTP calls in this area
@@ -3581,7 +3843,7 @@ function replaceSMLinks(markup, flow, isInternalWeb)
              result += " (" + SM + ")\n";
       
       		 result += "</h3>\n";
-             result += "<a href='" + webAddress + "'>" + "(Invoke SMART Button - or touch Semantic Marker)" + "</a><br>\n" ;
+             result += "<a href='" + webAddress + "'>" + "(Invoke SMART Button - or touch Semantic Marker&#x2122;)" + "</a><br>\n" ;
       		 result += "<p>" + desc + "</p><br>\n";
 
 				 //append to result
@@ -4164,7 +4426,7 @@ function inheritSM(justClone)
 
      let yourUUID = document.getElementById('_uuidStringText').value;
 	  if (!confirm((justClone?"Cloning":"Inheriting") + " flow into your SMART Deck with uuid: " + yourUUID + "\nFlowName: " + newFlowName + "\nFlowCat: " + newFlowCat + "\nFlowNum: " + flowNum 
-	      + "\n(Note: you must click 'Save Semantic Marker' and confirm overwriting instance"))
+	      + "\n(Note: you must click 'Save Semantic Marker&#x2122;' and confirm overwriting instance"))
 	  {
 	      alert("Cancelled request. Try again later");
 			return;
@@ -4327,7 +4589,7 @@ function clearTextArea(textAreaId)
 		 deckSMId - a text field of command sepeated addresses
 		    "deckSM
 		 isMessagingId - if on (set by the owner) then MQTT messagign will ocurr at UUID.flownum topic
-		    "whether there are MQTT messages over this Semantic Marker address (UUID.flownum)
+		    "whether there are MQTT messages over this Semantic Marker&#x2122; address (UUID.flownum)
        isIndirectSMId - flag if the indirectSm is used (replaces isData)
 		    isIndirectSM - flag
 		 indirectSMId - if set, then a call will go to this indirect SM 
@@ -4757,7 +5019,7 @@ function createConeTreeHTML(depth, parentSM)
 
 		 result += "</h3>\n";
        result += "Links: <a href='#_tableOfContents'>" + "Home" + "</a>\n" ;
-       result += "<br><a href='" + webAddress + "'>" + "(Invoke SMART Button - or touch Semantic Marker)" + "</a><br>\n" ;
+       result += "<br><a href='" + webAddress + "'>" + "(Invoke SMART Button - or touch Semantic Marker&#x2122;)" + "</a><br>\n" ;
 		 result += "<p>" + desc + "</p><br>\n";
 
 		 //!grab the SM  .. this is from the /getSM web call and is in base64 already
@@ -5430,8 +5692,8 @@ It's counter-intuitive, but setting document.cookie does not overwrite already s
 
 //!   This will be name=value
 //!   For preferences, this will be 
-
 //! writeCookie appends to document,cookie
+//! @see https://www.tabnine.com/academy/javascript/how-to-set-cookies-javascript/  
 function writeCookie(name, value)
 {
 	  //! add expiration
@@ -5439,7 +5701,7 @@ function writeCookie(name, value)
      now.setMonth( now.getMonth() + 3 );
 
 	  var cookie = name + "=" + encodeURIComponent(value);
-     cookie += ";expires=" + now.toUTCString() + ";"
+     cookie += ";expires=" + now.toUTCString() + "; path=/"
 
 	  console.log("writeCookie: " + cookie);
 
@@ -5493,7 +5755,7 @@ return;
 		       // start with 1 cookie "SMARTButton = true/false)
 		       if (name.localeCompare("_SMRecordDevice")==0)
 		       {
-                hideShowMarkup(['_SMRecordDevice','_m88.1','_m88.2','_m88.3','_m88.4','_m88.5','_m88.6','_markupTextID','markupText']);
+                hideShowMarkup(['_SMRecordDevice','_m88.99', '_m88.1','_m88.2','_m88.3','_m88.4','_m88.5','_m88.6','_markupTextID','markupText']);
 				 }
 		       // start with 1 cookie "SMARTButton = true/false)
 		       else if (name.localeCompare("_m5Commands")==0)
@@ -5517,6 +5779,9 @@ function saveCookies()
 {
 
 // 11.21.23 no cookies
+	 // THis will take the _username and _password and save them..
+    setSemanticMarkerUserPasswordValues();
+
     return;
 
 	 var cookieNames = ['_SMRecordDevice','_m5Commands','_password','_username', '_GroupCommands'];
@@ -5611,7 +5876,7 @@ function reloadUserAgent()
 		console.log("userJSON = " + JSON.stringify(userJSON));
 
 		//set the guest password 
-		_word = userJSON.guestPassword;
+		_guestPassword = userJSON.guestPassword;
 
 		//! 10.31.23 add the Guest Passwords
 		_guestPasswordsJSON = userJSON.guestPasswords;
@@ -5629,6 +5894,8 @@ function reloadUserAgent()
       createDeviceListOptions('devices');
       createDeviceListOptions('_devicesToPair');
 
+		//! 1.22.24 added 
+      createDeviceListOptions('_devicesToRenameTo'); 
 // NEW .. add to smart.html version *********
 		//! NEW: 
 		_groupsJSON = userJSON.groups;
@@ -5636,9 +5903,14 @@ function reloadUserAgent()
 		if (!_groupsJSON)
 		   _groupsJSON = {"groups":[]};
 
+		//! all the groups
       createGroupsListOptions("_groups");
    
+		//! all the groups and their devices names (what you call them, not the group name)
       createGroupDeviceListOptions("_groups", "_groupDevices");
+
+		//12.12.23 (Amber in Paris) .. set the semantic markers (username,password,guestpassword)
+      setSemanticMarkerUserPasswordValues()
 
 // **** THIS IS A PLACE TO update when ther..
 if (!_useOldSMARTDeck)
@@ -5693,7 +5965,7 @@ function checkQueryParms()
 	{
 	   _username = username;
 	   _password = password;
-		_word = guestpassword;
+		_guestPassword = guestpassword;
       saveCookies();
 	}
 }
@@ -5926,7 +6198,9 @@ function sendAddUserToGroup(idGroups, idUser, idToken)
 		return;
 	}
 
-   sendURL("addusertogrouptopic", [idGroups, idUser, idToken]);
+   //BUG: wrong order 1.9.24 
+	// sendURL("addusertogrouptopic", [idGroups, idUser, idToken]);
+   sendURL("addusertogrouptopic", [idUser, idGroups, idToken]);
 }
 
 
@@ -6017,6 +6291,61 @@ function subscribeGroups(idDevices, idSubscribeGroupNames)
    sendAnySetCommand2(idDevices, anySetCommand, anySetVal)
 
 }
+
+//! 1.13.24 for group names in all messages
+var _useGroupNameInMessages = false;
+//! get the current group name. NULL if not set or NONE
+//! query sytax returns "" or "?group=NAME" or "&group=NAME"
+//! if the argument appendQuery is true, use the "&group=name"
+function getCurrentGroupNameQuery(appendQuery)
+{
+	var queryArg = "";
+	if (!_useGroupNameInMessages)
+	   return queryArg;
+
+   var groupName = document.getElementById('_groups').value;
+	var validGroup = true;
+	if (!groupName || groupName.length == 0)
+	{
+      validGroup = false;
+	}
+	else if (groupName == "NO_GROUP")
+	   validGroup = false;
+
+	if (validGroup)
+	{
+	   if (appendQuery)
+		   queryArg = "&";
+		else
+		   queryArg = "?";
+		queryArg = queryArg + "group=" + groupName;
+	}
+	return queryArg;
+}
+//! sets the global value _useGroupNameInMessages
+//! idButtonBoolFlag is "on" or "off"  -- so convert to boolean
+function setUseGroupNamesFlag(idBoolFlag, idButtonBoolFlag)
+{
+  var flag = document.getElementById(idBoolFlag).value;
+  //flag == "on' "off"  not true/falue
+  var booleanFlag = false;
+  if (flag == "on")
+     booleanFlag = true;
+  else if (flagg == "true")
+     booleanFlag = true;
+
+  _useGroupNameInMessages = booleanFlag;
+  console.log("*** Setting _useGroupNameInMessages = " + booleanFlag);
+
+  //! now change the color of the button (red if using the group)
+  var buttonId = document.getElementById(idButtonBoolFlag);
+  if (booleanFlag)
+     buttonId.className = "M5button";
+  else
+     buttonId.className = "button";
+
+}
+//! end 1.13.24 group names
 
 //TODO.. get the RUN SemanticMarkers working...
 //! make web get call
@@ -6289,6 +6618,7 @@ window.onload = function()
 
 	//! 6.13.23 if not supplied then request user login
 	//requestLoginWindow(true);
+
 	// 9.5.23 change
 	requestLoginWindow(false);
 
@@ -6308,6 +6638,9 @@ function initWebPage()
 	// update the 2 places where devices are shown
    createDeviceListOptions('devices');
    createDeviceListOptions('_devicesToPair');
+		//! 1.22.24 added 
+   createDeviceListOptions('_devicesToRenameTo'); 
+
    var htmlText = "User Page for <a href='https://idogwatch.com/bot/userpage/" + _username + "/" + _password + "'>" + _username + "</a>";
    htmlText += " ";
    //htmlText += "<a href='https://idogwatch.com/bot/userpage2/" + _username + "/" + _password + "'>" + " (NewPage) " + "</a>";
@@ -6327,16 +6660,29 @@ function initWebPage()
 	 //start with hidden fields..
     hideShowMarkup(['m2.1','m3.1','m10.1','m1Note','m2Note']);
 
+    //! 3.3.24 also hide the SMART Button
+	 hideShowMarkup(['_SMRecordDevice','_m88.99', '_m88.1','_m88.2','_m88.3','_m88.4','_m88.5','_m88.6','_markupTextID','markupText','sm1','descriptionText']);
+	 // 3.3.24 more.. of the SMART Button .. merge later
+    hideShowMarkup([ '_SMButton.1', '_SMButton.2', '_SMButton.3', '_SMARTMarkupTableID']);
+
+	 // 3.3.24 hide the matrix
+    hideShowMarkup(['mSM_Matrix.2','mSM_Matrix.3', 'mSM_Matrix.4','mSM_Matrix.5', 'mSM_Matrix.8']);
+
+    // 3.3.234 the Semantic Flows
+	 hideShowMarkup(['mSM.2','sm1','_sm11','_sm12','_SMFlow10']);
+
     // the OTA
     hideShowMarkup(['mOTA.1','_RevertToMainOTA','mOTA.2','_QAOTA','mOTA.3','_DevOTA']);
     hideShowMarkup(['_m99.1']);
 
     hideShowMarkup(['_UserAccounts']);
 
-//    hideShowMarkup(['_GroupCommands']);
+    hideShowMarkup(['_GroupCommands']);
+
+    hideShowMarkup(['_m5Commands','_m5Commands.2','_btnContainer1','_btnContainer2']);
 
 	 // The smart buttons
-    //hideShowMarkup(['_SMRecordDevice','_m88.1','_m88.2','_m88.3','_m88.4','_m88.5','_m88.6','_markupTextID','markupText']);
+    hideShowMarkup(['_scotty']);
 }
 </script>
 
@@ -6366,14 +6712,14 @@ function initWebPage()
   <input type="button" class="HELPButton" id="HELPButton" value="?" 
   onClick="alert('Click on headers to expand or contract that section. Send messages to your devices. And create SMART Buttons.' )" />
    <span class="tooltiptext">
-  Click on headers to expand or contract that section. Send messages to your devices. And create SMART Buttons.
+  Click on  headers to expand or contract that section. Send messages to your devices. And create SMART Buttons.
   </span>
 </div>
 
 <input type="button" class="HELPButton" value="M5 Display Help" onClick="invokeURL('https://idogwatch.com/bot/help')" />
 <input type="button" class="HELPButton" value="Logout" onClick="logout()" />
 <input type="button" class="M5button" value="Login" id="_Login" hidden=1 name="_Login" onClick="login()" />
-<p class="label"">Click on headers to expand or contract
+<p class="label"">Click on  headers to expand or contract sections
 <br>
 
 <!----------------------------------------------------------------------->
@@ -6442,6 +6788,7 @@ Send commands to your device(s). Select the command using the pulldown.
   <option value="temp">temp</option>
   <option value="capture">capture</option>
   <option value="reboot">reboot</option>
+  <option value="togglesocket">Toggle the Power Socket</option>
 </select>
 
 </br>
@@ -6620,8 +6967,8 @@ The DeviceName pulldown will change on refresh.
 
 <br>
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Adds the device name you enter')" />
-<input type="button" class="button" id="button_addDeviceNameBot" value="Add Device" onClick="addDeviceNameBot('addDeviceNameBot_string')" />
-<label class="label" for="addDeviceNameBot_string">Add Device to your agent(bot)</label>
+<input type="button" class="button" id="button_addDeviceNameBot" value="Add Device Name" onClick="addDeviceNameBot('addDeviceNameBot_string')" />
+<label class="label" for="addDeviceNameBot_string">Add New Device Name to your Agent(bot)</label>
 <br>
 <label class="label" for="addDeviceNameBot_string">New Device Name:</label>
 <input class="text" name="addDeviceNameBot_string" id="addDeviceNameBot_string" length="64" type="text"/>
@@ -6634,12 +6981,18 @@ The DeviceName pulldown will change on refresh.
 <label class="label">Remove Device managed by your agent(bot), use above device names</label>
 <br>
 <br>
-<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Rename the device selected above\nTo the name you enter')" />
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Rename the device selected above\nTo the name you enter\nNOTE: This just changes the names possible - not the name of your actual device. Use the Manage Actual Device tab below.')" />
 <input type="button" class="button" id="button_renameDeviceNameBot" value="Rename Device" onClick="renameDeviceNameBot('devices', 'renameDeviceNameBot_string')" />
 <label class="label">Rename Device managed by your agent(bot), use above device names</label>
 <br>
-<label class="label">Renamed Device Name:</label>
-<input class="text" name="renameDeviceNameBot_string" id="renameDeviceNameBot_string" length="64" type="text"/>
+<label class="label">Renamed To Device Name:</label>
+<input class="text" name="renameDeviceNameBot_string" id="renameDeviceNameBot_string" length="64" type="text" readonly/>
+
+<br>
+<label class="label" for="_devicesToRenameTo">Choose from Current Device Names:</label>
+<select class="select label"  id="_devicesToRenameTo" 
+onChange="var v=document.getElementById('_devicesToRenameTo').value; document.getElementById('renameDeviceNameBot_string').value =v;"
+>x</select>
 
 <br>
 <br>
@@ -6703,7 +7056,7 @@ Note: these are messages sent directly to the devices in the above pulldown (wit
 
 <br>
 <br>
-<input type="button" class="HELPButton" id="m5HELPButton" value="?" onClick="alert('Set any JSON to any value including / ')" />
+<input type="button" class="HELPButton" id="m5HELPButton" value="?" onClick="alert('Set any JSON to any value including JSON ')" />
 <input type="button" class="button" id="setCommand64" value="setCommand64" onClick="sendAnySetCommand64('devices','anySetCommand64','anySetVal64')" />
 <br>
 <label class="label">Any Set Command:</label>
@@ -6711,9 +7064,47 @@ Note: these are messages sent directly to the devices in the above pulldown (wit
 <br>
 <label class="label">Val: (any URL allowed)</label>
 <input class="text" name="anySetVal64" id="anySetVal64" length="64" type="text">
+
+<!-- 1.11.24 add common set64 commands --->
+<script>
+//! just sets the values in the setAny64, the user still has to click the button themselves
+//.   idSetOption (select option), idValOption (select option), idSetCommand (where set goes), idValString (where val goes)
+function setCommand64Option(idSetOption, idValOption, idSetCommand, idValString)
+{
+   var setOption = document.getElementById(idSetOption).value;
+   var valOption = document.getElementById(idValOption).value;
+
+   document.getElementById(idSetCommand).value = setOption;
+   document.getElementById(idValString).value = valOption;
+//   alert("Set options. User must still click 'setCommand64' when finished");
+}
+</script>
 <br>
+<br>
+<input type="button" class="HELPButton" id="m5HELPButton" value="?" onClick="alert('Sets common set64 commands. \nNote the PIR_SM_JSON can still be turned on/off below with the \nUse SM for PIR Motion Detection\nSM for DARK or LIGHT detection, etc')" />
+<input type="button" class="button" id="setCommand64Option" value="setCommand64Option" 
+   onClick="setCommand64Option('setCommand64SetOptions', 'setCommand64ValOptions', 'anySetCommand64', 'anySetVal64')" />
+
+<br>
+<label class="label" for="setCommand64SetOptions">Command:</label>
+<select class="select label" name="setCommand64SetOptions" id="setCommand64SetOptions">
+  <option value="PIR_SM_JSON">Use SM JSON when PIR motion detected</option>
+  <option value="PIR_SM_JSON">Use SM JSON when DARK detected</option>
+  <option value="PIR_OFF_SM_JSON">Use SM JSON when LIGHT detected</option>
+</select>
+<br>
+<label class="label" for="setCommand64ValOptions">Val:</label>
+<select class="select label" name="setCommand64ValOptions" id="setCommand64ValOptions">
+  <option value="{'set':'socket','val':'on'}">{'set':'socket','val':'on'}</option>
+  <option value="{'set':'socket','val':'off'}">{'set':'socket','val':'off'}</option>
+  <option value="{'send':'feed'}">Feed Dog {'send':'feed'}</option>
+  <option value="{'send':'capture'}">Take Picture {'send':'capture'}</option>
+</select>
+
+
 
 <!-- New QUERY Base64 name and argument-->
+<br>
 <br>
 <input type="button" class="HELPButton" id="m6HELPButton" onClick="alert('Use wildcard to send the setCommand64 to those device. For example *M5* is all the M5 devices only')" value="?" />
 <input type="button" class="button" id="stringTextArgsQuery" value="Device=Query" onClick="sendAnySetCommand64Both('stringArgTextQuery','anySetCommand64','anySetVal64',true)" />
@@ -6737,6 +7128,7 @@ devices<br>
 <h1 class="H1" id="_GroupCommandsTab" name="_GroupCommandsTab" onClick="hideShowMarkup(['_GroupCommands'])" >GROUP Messaging</h1>
 <p class="label" id="_GroupCommands">
 Manages sending messages to specific message groups, which allows for multiple different users accounts to share feed and status commands.
+Since many commands need a device name, you can add them below - or add the name to your own devices, and use any of the commands throughout this website.
 <br>
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('The Groups you and your devices are members of. And optionally a set of devices of yours and others in the group.')" />
 <label class="label" for="_groups">Groups:</label>
@@ -6809,11 +7201,44 @@ Manages sending messages to specific message groups, which allows for multiple d
   <option value="off">off</option>
 </select>
 
+<!-- 1.13.24 send a scannedGroup with the currently selected group name -->
+<br>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Send temporary scannedGroup using selected group: ' + document.getElementById('_groups').value)" />
+<input type="button" class="button" id="buttonScannedGroup" value="Send Message" onClick="sendBooleanArgs('devices','commandScannedGroup','_groups')" />
+<label class="label" for="commandScannedGroup">Set:</label>
+<select class="select label"  name="commandScannedGroup" id="commandScannedGroup">
+  <option value="scannedGroup">scannedGroup</option>
+</select>
+
+<!-- 1.13.24 send a scannedDevice with the currently selected Device name -->
+<br>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Send temporary scannedDevice using selected device: ' + document.getElementById('devices').value" />
+<input type="button" class="button" id="buttonScannedDevice" value="Send Message" onClick="sendBooleanArgs('devices','commandScannedDevice','devices')" />
+<label class="label" for="commandScannedDevice">Set:</label>
+<select class="select label"  name="commandScannedDevice" id="commandScannedDevice">
+  <option value="scannedDevice">scannedDevice</option>
+</select>
+
+
+<!-- 1.13.24 set use the group for all messages -->
+<br>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Send to group in all messages')" />
+<input type="button" class="button" id="buttonBooleanArgs101" value="Set Global Use Group Flag" onClick="setUseGroupNamesFlag('boolArgValue101','buttonBooleanArgs101')" />
+
+<label class="label" for="boolArgValue101">Flag:</label>
+<select class="select label"  name="boolArgValue101" id="boolArgValue101" onChange="setUseGroupNamesFlag('boolArgValue101','buttonBooleanArgs101')" />
+  <option value="off">off</option>
+  <option value="on">on</option>
+</select>
+
 <br>
 <br>
 <!----------------------------------------------------------------------->
 
-<h2 class="M5button" id="_M5SpecificCommands" name="_M5SpecificCommands" onClick="hideShowMarkup(['_m5Commands'])" >3. M5 Specific Commands</h2>
+<h2 class="M5button" id="_M5SpecificCommands" name="_M5SpecificCommands" onClick="hideShowMarkup(['_m5Commands','_m5Commands.2','_btnContainer1','_btnContainer2'])" >3. M5 Specific Commands</h2>
 <p class="label" id="_m5Commands">
 Message mostly managing the M5 Display or functions the M5 smart clicker manages with the other IoT devices
 <br>
@@ -6831,6 +7256,7 @@ Message mostly managing the M5 Display or functions the M5 smart clicker manages
   <option value="help">help</option>
   <option value="temp">temp</option>
   <option value="capture">capture</option>
+  <option value="togglesocket">Toggle the Power Socket</option>
   <option value="reboot">reboot</option>
 </select>
 
@@ -6846,6 +7272,8 @@ Message mostly managing the M5 Display or functions the M5 smart clicker manages
   <option value="screentimeout">screentimeout</option>
   <option value="noclick">noclick 10000=always on</option>
   <option value="timerdelay">Timer delay in seconds</option>
+<!-- 1.12.24   LUX -->
+  <option value="LUXdark">Set LUX Dark val (80 default)</option>
 </select>
 
 <input class="text" name="intArgText" id="intArgText" length="64" type="number" min=0 max=3000 value=0>
@@ -6883,13 +7311,17 @@ Message mostly managing the M5 Display or functions the M5 smart clicker manages
 <br>
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Cycle the M5 Page \nto the next one')" />
 <input type="button" class="M5button" id="cycleM5Page" value="Cycle M5 Pages" onClick="cycleM5Pages('devices','commandNoArgM5Page')" />
-<br>
-<br>
 
+<br>
+<br>
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Messages that use a boolean value ')" />
 <input type="button" class="M5button" id="buttonBooleanArgsM5" value="Send Message" onClick="sendBooleanArgs('devices','commandBooleanM5','boolArgValueM5')" />
+<!-- the value is the message topic -->
 <label class="label" for="commandBooleanM5">M5 Command:</label>
 <select class="select label"  name="commandBooleanM5" id="commandBooleanM5">
+  <option value="socket">M5Socket: Turn power on/off</option>
+  <option value="AtomSocketGlobalOnOff">M5Socket: Accept power on/off globally</option>
+  <option value="PIR_UseSM">Use SM&trade; when PIR Motion Detected</option>
   <option value="minMenu">minMenu: Minimize the menus</option>
   <option value="maxMenu">maxMenu: Show all the menus</option>
   <option value="gen3only">gen3only: Only Pair with GEN3</option>
@@ -6899,7 +7331,7 @@ Message mostly managing the M5 Display or functions the M5 smart clicker manages
   <option value="tilt">tilt: Set Tilt On/Off</option>
   <option value="buzz">buzzer: Set buzzer On/Off</option>
   <option value="blankscreen">blankscreen: Blank the M5 Screen</option>
-  <option value="docfollow">docfollow: Turn on DOCFOLLOW</option>
+  <option value="usedocfollow">docfollow: Turn on DOCFOLLOW</option>
   <option value="usespiff">usespiff: Use the SPIFF mode</option>
   <option value="ble+wifi">Send WIFI with BLE feed</option>
   <option value="factoryreset">Factory Reset: Reset the device</option>
@@ -6907,7 +7339,7 @@ Message mostly managing the M5 Display or functions the M5 smart clicker manages
   <option value="DiscoverM5PTClicker">Discover M5 PTClicker</option>
   <option value="restartmodels">Restart the Models</option>
   <option value="usegroups">Use GROUPS if a group member</option>
-  <option value="devOnlySM">Only Display SM if to device</option>
+  <option value="devOnlySM">Only Display SM&trade; if to device</option>
 </select>
 
 <label class="label" for="boolArgValueM5">Value:</label>
@@ -6916,10 +7348,44 @@ Message mostly managing the M5 Display or functions the M5 smart clicker manages
   <option value="off">off</option>
 </select>
 
+<!-- M5Atom .. 1.4.24 -->
+<br>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Configure the type of M5AtomKind one time. \n\nDevice will reboot')" />
+<input type="button" class="M5button" id="buttonM5AtomStringArgsM5" value="Send Message" onClick="sendTextArgs('devices','commandStringM5AtomKindSet', 'M5AtomStringArgValueM5')" />
+
+<select class="select label"  name="commandStringM5AtomKindSet" id="commandStringM5AtomKindSet">
+  <option value="M5AtomKind">Set M5Atom</option>
+</select>
+
+
+<label class="label" for="M5AtomStringArgValueM5">Kind:</label>
+<select class="select label"  name="M5AtomStringArgValueM5" id="M5AtomStringArgValueM5">
+  <option value="M5AtomScanner">M5AtomScanner</option>
+  <option value="M5AtomSocket">M5AtomSocket</option>
+</select>
+
+<!-- 1.12.24   LUX -->
+<br>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Change the light sensitivity value (LUX) 80 is good for light and dark. But explore other values.')" />
+<input type="button" class="M5button" id="intBooleanArgs" value="Send Message" onClick="sendTextArgs('devices','intLuxArgCommand','intArgText')" />
+<label class="label" for="intLuxArgCommand">Command:</label>
+<select class="select label"  name="intLuxArgCommand" id="intLuxArgCommand">
+  <option value="screencolor">screencolor</option>
+  <option value="stepperangle">stepperangle</option>
+  <option value="screentimeout">screentimeout</option>
+  <option value="noclick">noclick 10000=always on</option>
+  <option value="timerdelay">Timer delay in seconds</option>
+</select>
+
+<input class="text" name="intArgText" id="intArgText" length="64" type="number" min=0 max=3000 value=0>
+
+<!--  END LUX -->
 
 <br>
 <br>
-<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Sends the Semantic Marker')" />
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Sends the Semantic Marker&#x2122;')" />
 <input type="button" class="M5button" id="buttonBooleanArgsM5-SM" value="Send Message" onClick="sendBooleanArgs('devices','commandBooleanM5-SM','boolArgValueM5-SM')" />
 <select class="select label"  name="commandBooleanM5-SM" id="commandBooleanM5-SM">
   <option value="zoomSM">Show SemanticMarker&#x2122;</option>
@@ -6927,8 +7393,8 @@ Message mostly managing the M5 Display or functions the M5 smart clicker manages
 
 <label class="label" for="boolArgValueM5-SM">Value:</label>
 <select class="select label"  name="boolArgValueM5-SM" id="boolArgValueM5-SM">
-  <option value="off">Show SM</option>
-  <option value="on">Hide SM</option>
+  <option value="off">Show SM&trade;</option>
+  <option value="on">Hide SM&trade;</option>
 </select>
 
 <br>
@@ -6970,7 +7436,7 @@ Message mostly managing the M5 Display or functions the M5 smart clicker manages
 <option value="SM_VideoPlayback">SM_VideoPlayback:: Set a default video playback</option>
 <option value="SM_PlaySound">SM_PlaySound:: Plays Audio/video sound</option>
 <option value="SM_Haptics">SM_Haptics:: Turn on/off haptics(todo)</option>
-<option value="SM_ShowLabels">SM_ShowLabels:: Show Semantic Marker labels in realtime</option>
+<option value="SM_ShowLabels">SM_ShowLabels:: Show Semantic Marker&#x2122; labels in realtime</option>
 <option value="SM_PrintStack">SM_PrintStack:: Used in debugging to set breakpoint</option>
 <option value="SM_FlipRotate">SM_FlipRotate:: Flip/Rotate image internally</option>
 <option value="SM_Flip">SM_Flip:: Flip Image for recognition</option>
@@ -7033,22 +7499,22 @@ _settingKeys = @[SEMANTIC_WIDGETS_SETTING, SEMANTIC_VISION_SHARING_SETTINGS, SEM
 
 -->
 <br>
-<div id="btnContainer">
+<div id="_btnContainer1">
   <button class="btnA" onclick="sendAnySetCommand2('devices','ButtonA','shortPress')"><i class="fa fa-th-large"></i> A Short Press</button>
   <button class="btnB" onclick="sendAnySetCommand2('devices','ButtonB','shortPress')"><i class="fa fa-bars"></i> B Short Press</button>
 </div>
-<div id="btnContainer">
+<div id="_btnContainer2">
   <button class="btnA" onclick="sendAnySetCommand2('devices','ButtonA','longPress')"><i class="fa fa-th-large"></i> A Long Press</button>
   <button class="btnB" onclick="sendAnySetCommand2('devices','ButtonB','longPress')"><i class="fa fa-bars"></i> B Long Press</button>
 </div>
-<br>
 
 <!--    Button Press END --->
 
 <!----------------------------------------------------------------------->
 
 <h1 class="H1" 
-onClick="hideShowMarkup(['_SMRecordDevice','_m88.1','_m88.2','_m88.3','_m88.4','_m88.5','_m88.6','_markupTextID','markupText'])">
+onClick="hideShowMarkup(['_SMRecordDevice','_m88.99', '_m88.1','_m88.2','_m88.3','_m88.4','_m88.5','_m88.6','_markupTextID','markupText','sm1','descriptionText', '_SMButton.1', '_SMButton.2', '_SMButton.3', '_SMARTMarkupTableID'])">
+
 <img src="https://SemanticMarker.org/images/SM-Circle-R.png" width="50">
 SMART Button IoT Recording via Semantic Marker&#x2122; Flows</h2>
 
@@ -7121,7 +7587,7 @@ SMART Button IoT Recording via Semantic Marker&#x2122; Flows</h2>
 <!-- Start  of the new table -->
 <p id='_m88.4'>
 <div class="row" >
-  <div class="column1" style="background-color:lightgrey">
+  <div class="column1" id="_m88.99" style="background-color:lightgrey">
 
   <table class='style1' id='_m88.2'>
 	 <tr>
@@ -7146,18 +7612,18 @@ SMART Button IoT Recording via Semantic Marker&#x2122; Flows</h2>
 	<td>
 <div class="tooltip">
   <input type="button" class="HELPButton" id="HELPButton" value="?" 
-onClick="alert('Invokes (Runs) the Semantic Marker in a new Web Page')"/>
+onClick="alert('Invokes (Runs) the Semantic Marker&#x2122; in a new Web Page')"/>
    <span class="tooltiptext">
-Invokes (Runs) the Semantic Marker in a new Web Page
+Invokes (Runs) the Semantic Marker&#x2122; in a new Web Page
   </span>
 </div>
-   <input type="button" class="HELPButton" id="invokeSMId" value="Invoke Semantic Marker" onClick="invokeSemanticMarker('flowSMName');" />
+   <input type="button" class="HELPButton" id="invokeSMId" value="Invoke Semantic Marker&#x2122;" onClick="invokeSemanticMarker('flowSMName');" />
 	</td>
 
 	</table>
   </div>
   <div class="column2" style="background-color:white">
-    <h1>Semantic Marker&trade; SMART Button</h1>
+    <h1 id='_SMButton.1'>Semantic Marker&trade; SMART Button</h1>
 	 <table class='style1' id='_m88.3'>
 	    <tr>
 <td><input type="button" class="HELPButton2" value="?" onClick="alert('Name of your SMART Button. No spaces, but underscore allowed.')"/>
@@ -7185,7 +7651,7 @@ Invokes (Runs) the Semantic Marker in a new Web Page
 		 </tr>
 
       <tr>
-<td><input type="button" class="HELPButton2" value="?" onClick="alert('The Semantic Marker (SM) Address is a UUID.FlowNumber - which is unique in the SMART System')"/>
+<td><input type="button" class="HELPButton2" value="?" onClick="alert('The Semantic Marker&#x2122; (SM) Address is a UUID.FlowNumber - which is unique in the SMART System')"/>
 <b>My SM Address</b></td>
 <td><input class="text" readonly name="_mySMLink" id="_mySMLink" size="70"  type="text" />
        </td>
@@ -7193,7 +7659,7 @@ Invokes (Runs) the Semantic Marker in a new Web Page
 
 
        <tr>
-<td><input type="button" class="HELPButton2" value="?" onClick="alert('The generated full Semantic Marker address you can share with others.')"/>
+<td><input type="button" class="HELPButton2" value="?" onClick="alert('The generated full Semantic Marker&#x2122; address you can share with others.')"/>
 <b>Full Semantic Marker&#x2122;</b></td>
 <td><input class="text" name="flowSMName" id="flowSMName" size="70" type="text" readonly value="" />
          </td>
@@ -7201,14 +7667,14 @@ Invokes (Runs) the Semantic Marker in a new Web Page
 
 
       <tr>
-<td><input type="button" class="HELPButton2" value="?" onClick="alert('URL Address of the QRAvatar image to use inside your Semantic Marker')"/>
+<td><input type="button" class="HELPButton2" value="?" onClick="alert('URL Address of the QRAvatar image to use inside your Semantic Marker&#x2122;')"/>
 		   <b>QRAvatar URL</b></td>
 <td><input class="text" name="flowQRAvatarURLText" id="flowQRAvatarURLText" size="70" type="text" />
 		   </td>
       </tr>
 
       <tr>
-<td><input type="button" class="HELPButton2" value="?" onClick="alert('If Circular set the QRAvatar inside the Semantic Marker will be circular, otherwise it will be landscape.')"/>
+<td><input type="button" class="HELPButton2" value="?" onClick="alert('If Circular set the QRAvatar inside the Semantic Marker&#x2122; will be circular, otherwise it will be landscape.')"/>
 <b>Is Circular QRAvatar</b></td>
 <td><select class="select label"  name="boolArgValueIsCircularAvatar" id="boolArgValueIsCircularAvatar">
   <option value="false">false</option>
@@ -7389,7 +7855,7 @@ using small text...
      </tr>
 
       <tr id="_futureTextTR">
-<td><input type="button" class="HELPButton2" value="?" onClick="alert('5.23.23 @remap(URL) will remap that existing QR to this Smart Button Semantic Marker when scanned with a Semantic Marker aware tool')"/>
+<td><input type="button" class="HELPButton2" value="?" onClick="alert('5.23.23 @remap(URL) will remap that existing QR to this Smart Button Semantic Marker&#x2122; when scanned with a Semantic Marker&#x2122; aware tool')"/>
 <b>Future Text Area</b></td>
 <!--
 <td><input class="text" name="_futureText" id="_futureText" size="70" type="text" />
@@ -7445,7 +7911,6 @@ using small text...
 <input type="button" class="select label" value="Hide/Show Markup" onClick="hideShowMarkup(['markupText','_SMARTMarkup', '_locationSMTextTR', '_audioSMTextTR', '_dateSMTextTR', '_artifactsSMTextTR', '_videoSMTextTR','_bridgeSMTextTR','_flowValuesSMTR','_parameterValuesSMTR','_MQTTMessagingTR', '_KSMatrixTextTR','_KSWaveTextTR', '_futureTextTR','_languagesSMTR','_markupTextID', '_SMARTMarkupTableID' ])"/>
 </td>
 </tr>
-
 		</table>
   </div>
 </div>
@@ -7462,11 +7927,8 @@ using small text...
 <br>
 <textarea class="label" id="markupText" name="markupText" rows="15" cols="100">
 </textarea>
-<br>
-<br>
 <!-- end 3.22.23 -->
-<br>
-<label class="label" for="descriptionText">Description</label>
+<label class="label" for="descriptionText" id='_SMButton.2'>Description</label>
 <br>
 <textarea class="label" id="descriptionText" name="descriptionText" rows="5" cols="100">
 </textarea
@@ -7485,27 +7947,14 @@ using small text...
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Paste in a SM (uuid.flownum) to load another users SMART Button. You could even inherit or clone this SM')" />
 <input type="button" class="H2green" value="Paste another SM (UUID.flownum):"
 onClick="pushSMLink(document.getElementById('_testSMText').value)"/>
+<br>
+<br>
+<label class="label" for="descriptionText" >UUID.Flownum:</label>
 <input class="text" name="_testSMText" id="_testSMText" size="30" type="text" />
-<br>
-<!--
-<p class="label"> 
-*This overrides or renames same named flow
-<br>
-NOTE: Flows are used when multiple commands are recorded for future playback. 
-Otherwise a single SemanticMarker 
-<br>
-can be sent which will be Base64 encoded (and self contained). 
-<br>
-Although this is being deprecated.
-<br>
-Use 'Setup' to create flows with a number and a name.
-<br> 
-When a flow is selected below, the same info is added above, and can be edited. The Save Flow will update the information.
 
--->
+<!--  **** SMART Button Flows ****** -->
 
-<br>
-<h2 class="H2" onClick="hideShowMarkup(['mSM.2','sm1','_sm11','_sm12'])"><img src="https://SemanticMarker.org/images/SM-Circle-R.png" width="50" >Current Semantic Marker&#x2122; Flows</h2>
+<h1 class="H1" onClick="hideShowMarkup(['mSM.2','sm1','_sm11','_sm12','_SMFlow10'])"><img src="https://SemanticMarker.org/images/SM-Circle-R.png" width="50" >Current Semantic Marker&#x2122; Flows</h1>
 <p class="label" id="mSM.2"> 
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Get the known SM Flows \bfrom your agent')" />
 <input type="button" class="H1" id="buttonSMFlow" value="Get User SM&#x2122; Flows" onClick="getSMFlows('_uuidStringText','flowsSM')" />
@@ -7566,7 +8015,7 @@ onclick="runSemanticMarker('_flowValuesSM')">Run Semantic Marker&#x2122;</button
 <input type="button" class="H1green" id="buttonRunFlow" value="Invoke SM&#x2122; Flow in New Window" onClick="invokeSavedFlow('_recordedMessages','_uuidStringText','_flowNumberText','boolArgValuePrivate')" />
 <br>
 <br>
-<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Sends this flow address \nas a Semantic Marker to your users')" />
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Sends this flow address \nas a Semantic Marker&#x2122; to your users')" />
 <input type="button" class="button" id="buttonSMFlow" value="Send SemanticMarker&#x2122; as DOCFOLLOW" onClick="sendFlowSM('_uuidStringText','_flowNumberText','flowNameText','flowCatText')" />
 
 <br>
@@ -7600,7 +8049,9 @@ one calls smart?uuid=U&flow=F&format=json&isdata=true
 
 <br>
 <br>
+<!-- sm1 is where the SeemanticMarker is drawn so it needs the </p> -->
 <p style="margin-left:100px; margin-right:50px;" id="sm1"></p>
+<p id="_SMFlow10">
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Web Page is flow you run\nJSON is the definition of that flow')" />
 <button type="button" class="button" onclick="invokeURLid('flowSMName')">Web Page</button>
 <button type="button" class="button" onclick="invokeURLid2('flowSMName','&format=json')">JSON</button>
@@ -7627,6 +8078,579 @@ one calls smart?uuid=U&flow=F&format=json&isdata=true
 <!-- calls: /adddeckuuid/:NAME/:PASSWORD/:DECKNAME/:DECKPASSWORD/:DECKCAT -->
 
 
+<script>
+//! **************** 3.3.24 New SM Matrix Support *********************
+
+// this is false if SM Matrix shown
+var _showOnlyAvatar = false;
+var _matrixJSON = 
+
+{"matrix":[
+ [
+  {"SM":"V6gZLkRley.1698208438983",
+    "Name":"My_3_LivingRoom",
+    "Cat": "NDAChallenges_inherited",
+	 "flowNum":"1698208438983",
+	 "uuid":"V6gZLkRley",
+	 "device":"MaggieMae",
+     "InheritedSM": "QebkVLtEvPDI.1698208438983",
+     "URL": "https://SemanticMarker.org/bot/smart?uuid=V6gZLkRley&flow=1698208438983&flowname=My_3_LivingRoom&flowcat=NDAChallenges_inherited",
+     "QRAvatarURL":"https://knowledgeshark.me/docs/IoT_Pitch_AW_Nov21/IoT_Pitch_AW_Nov21.059.jpeg",
+     "paragraph":"1.1finalSemanticMarkerImage",
+     "pdevice":"1.1device"
+   },
+
+{"SM":"V6gZLkRley.1698208438983",
+    "Name":"My_3_LivingRoom",
+    "Cat": "NDAChallenges_inherited",
+	 "flowNum":"1",
+	 "uuid":"uuid",
+	 "device":"ScoobyDoo",
+     "InheritedSM": "QebkVLtEvPDI.1698208438983",
+     "URL": "https://SemanticMarker.org/bot/smart?uuid=V6gZLkRley&flow=1698208438983&flowname=My_3_LivingRoom&flowcat=NDAChallenges_inherited",
+     "QRAvatarURL":"https://user-images.githubusercontent.com/5956266/218890699-09eb9fc2-01c9-465d-a017-6f912831942d.jpeg",
+     "paragraph":"1.2finalSemanticMarkerImage",
+     "pdevice":"1.2device"
+   },
+{"SM":"V6gZLkRley.1698208438983",
+    "Name":"My_3_LivingRoom",
+    "Cat": "NDAChallenges_inherited",
+	 "flowNum":"1",
+	 "uuid":"uuid",
+	 "device":"ScoobyDoo",
+     "InheritedSM": "QebkVLtEvPDI.1698208438983",
+     "URL": "https://SemanticMarker.org/bot/smart?uuid=V6gZLkRley&flow=1698208438983&flowname=My_3_LivingRoom&flowcat=NDAChallenges_inherited",
+     "QRAvatarURL":"https://user-images.githubusercontent.com/5956266/219557658-7e40a085-0079-4852-bf6a-8dfb02731e27.jpeg",
+     "paragraph":"1.3finalSemanticMarkerImage",
+     "pdevice":"1.3device"
+   }
+],
+
+[ {"SM":"V6gZLkRley.1698208438983",
+    "Name":"My_3_LivingRoom",
+    "Cat": "NDAChallenges_inherited",
+	 "flowNum":"1",
+	 "uuid":"uuid",
+	 "device":"ScoobyDoo",
+     "InheritedSM": "QebkVLtEvPDI.1698208438983",
+     "URL": "https://SemanticMarker.org/bot/smart?uuid=V6gZLkRley&flow=1698208438983&flowname=My_3_LivingRoom&flowcat=NDAChallenges_inherited",
+     "QRAvatarURL":"https://SemanticMarker.org/images/M5/M5Menu.jpg",
+     "paragraph":"2.1finalSemanticMarkerImage",
+     "pdevice":"2.1device"
+   },
+
+{"SM":"V6gZLkRley.1698208438983",
+    "Name":"My_3_LivingRoom",
+    "Cat": "NDAChallenges_inherited",
+	 "flowNum":"1",
+	 "uuid":"uuid",
+	 "device":"ScoobyDoo",
+     "InheritedSM": "QebkVLtEvPDI.1698208438983",
+     "URL": "https://SemanticMarker.org/bot/smart?uuid=V6gZLkRley&flow=1698208438983&flowname=My_3_LivingRoom&flowcat=NDAChallenges_inherited",
+     "QRAvatarURL":"https://KnowledgeShark.me/images/SMMatrixSMARTImage.png",
+     "paragraph":"2.2finalSemanticMarkerImage",
+     "pdevice":"2.2device"
+   },
+{"SM":"V6gZLkRley.1698208438983",
+    "Name":"My_3_LivingRoom",
+    "Cat": "NDAChallenges_inherited",
+	 "flowNum":"1",
+	 "uuid":"uuid",
+	 "device":"ScoobyDoo",
+     "InheritedSM": "QebkVLtEvPDI.1698208438983",
+     "URL": "https://SemanticMarker.org/bot/smart?uuid=V6gZLkRley&flow=1698208438983&flowname=My_3_LivingRoom&flowcat=NDAChallenges_inherited",
+     "QRAvatarURL":"https://SemanticMarker.org/users/QHmwUurxC3/Decks/rooms/Room1.png",
+     "paragraph":"2.3finalSemanticMarkerImage",
+     "pdevice":"2.3device"
+   }
+],
+ [{"SM":"V6gZLkRley.1698208438983",
+    "Name":"My_3_LivingRoom",
+    "Cat": "NDAChallenges_inherited",
+	 "flowNum":"1",
+	 "uuid":"uuid",
+	 "device":"ScoobyDoo",
+     "InheritedSM": "QebkVLtEvPDI.1698208438983",
+     "URL": "https://SemanticMarker.org/bot/smart?uuid=V6gZLkRley&flow=1698208438983&flowname=My_3_LivingRoom&flowcat=NDAChallenges_inherited",
+     "QRAvatarURL":"https://SemanticMarker.org/users/QHmwUurxC3/Decks/rooms/Room2.png",
+     "paragraph":"3.1finalSemanticMarkerImage",
+     "pdevice":"3.1device"
+   },
+{"SM":"V6gZLkRley.1698208438983",
+    "Name":"My_3_LivingRoom",
+    "Cat": "NDAChallenges_inherited",
+	 "flowNum":"1",
+	 "uuid":"uuid",
+	 "device":"ScoobyDoo",
+     "InheritedSM": "QebkVLtEvPDI.1698208438983",
+     "URL": "https://SemanticMarker.org/bot/smart?uuid=V6gZLkRley&flow=1698208438983&flowname=My_3_LivingRoom&flowcat=NDAChallenges_inherited",
+     "QRAvatarURL":"https://user-images.githubusercontent.com/5956266/218890699-09eb9fc2-01c9-465d-a017-6f912831942d.jpeg",
+     "paragraph":"3.2finalSemanticMarkerImage",
+     "pdevice":"3.2device"
+   },
+{"SM":"V6gZLkRley.1698208438983",
+    "Name":"My_3_LivingRoom",
+    "Cat": "NDAChallenges_inherited",
+	 "flowNum":"1",
+	 "uuid":"uuid",
+	 "device":"ScoobyDoo",
+     "InheritedSM": "QebkVLtEvPDI.1698208438983",
+     "URL": "https://SemanticMarker.org/bot/smart?uuid=V6gZLkRley&flow=1698208438983&flowname=My_3_LivingRoom&flowcat=NDAChallenges_inherited",
+     "QRAvatarURL":"https://user-images.githubusercontent.com/5956266/221418254-a93d02bf-31b4-46fa-b740-bfde510c43aa.jpeg",
+     "paragraph":"3.3finalSemanticMarkerImage",
+     "pdevice":"3.3device"
+   }
+]
+]
+}
+;
+
+
+//! go through the matrix and perform the operations
+function createSMMatrix(showOnlyAvatar)
+{
+  // save state
+  _showOnlyAvatar = showOnlyAvatar;
+  var matrix = _matrixJSON["matrix"];
+  for (var row =0; row <  matrix.length; row++)
+  {
+      var rowJSON = matrix[row];
+		for (col =0; col < rowJSON.length; col++)
+		{
+			var itemJSON = rowJSON[col];
+		   console.log(JSON.stringify(itemJSON));
+			document.getElementById('semanticMarkerAvatarURL').value = itemJSON.QRAvatarURL;
+			document.getElementById('semanticMarkerURL').value = itemJSON.URL;
+			var paragraphElement = document.getElementById(itemJSON.paragraph);
+			var pdeviceElement = document.getElementById(itemJSON.pdevice);
+
+			var device = itemJSON.device;
+
+			//@see https://imagekit.io/blog/how-to-resize-image-in-html/
+			if (showOnlyAvatar)
+			{
+			    paragraphElement.innerHTML = '<img style="max-height:300px; max-width:300px;" src="' + itemJSON.QRAvatarURL + '">';
+			}
+			else
+			{
+            createSemanticMarkerPathId('semanticMarkerURL','semanticMarkerAvatarURL',itemJSON.paragraph,'semanticMarkerURLId');
+			}
+			pdeviceElement.innerHTML = device;
+
+		}
+	}
+}
+
+</script>
+<script>
+//TODO.. get the RUN SemanticMarkers working...
+//! make web get call
+function callGetCommand(url)
+{
+   var xhttp = new XMLHttpRequest();
+
+	//!https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/readystatechange_event
+   xhttp.onreadystatechange = function() {
+		// called when open is finished
+      if (this.readyState == 4 && this.status == 200)
+	   {
+		    let jsonReply = this.responseText;
+		    if (jsonReply)
+			 {
+			    if (jsonReply.indexOf("Wrong") >= 0
+				 ||
+			        jsonReply.indexOf("Invalid") >= 0
+				 )
+			    {
+			       alert(jsonReply);
+			    }
+			 }
+      }
+		//reload the agent
+      //reloadUserAgent();
+   };
+   //! shows the command at this element
+   //document.getElementById('_messageId').innerHTML = url;
+
+   xhttp.open("GET", url, true);
+   xhttp.send();
+}
+//! just web invokes the SemanticMarker
+function invokeSemanticMarkerWebAddress(webAddress)
+{
+	//var webAddress = document.getElementById(smId).value;
+
+	//if (window.confirm("Invoke: " + webAddress + "?"))
+	{
+	   // invoke this manually..
+      //window.open(webAddress, 'SemanticMarkerWindow');
+      callGetCommand(webAddress);
+	}
+}
+//! called to invoke the selected Semantic Marker
+//! row/col == 1 based
+function invokeSMMatrixRowCol(row, col)
+{
+
+	var matrixArray = _matrixJSON.matrix;
+	var matrixItem = matrixArray[row-1][col-1];
+
+	var uuid = matrixItem.uuid;
+	var flowNum = matrixItem.flowNum;
+	var device = matrixItem.device;
+
+	// value to use
+   //TODO: the smrun isn't implemented yet .. except for #FEED  (need to fix this..)
+   var useSMRun = (document.getElementById("_useSMRun").value == "1");
+	var SMURL = "https://SemanticMarker.org/bot/";
+	if (useSMRun)
+	   SMURL += "smrun";
+	else
+	   SMURL += "smart";
+	SMURL += "?uuid=" + uuid + "&flow=" + flowNum;
+	
+
+	SMURL += "&username=" + _username;
+	SMURL += "&password=" + _password;
+	SMURL += "&device=" + device;
+   invokeSemanticMarkerWebAddress(SMURL);
+
+   if (useSMRun)
+      callGetCommand(SMURL);
+	else
+	   window.open(SMURL, 'SemanticMarkerWindow');
+	
+	//TODO: make this without bringing up the web page..
+
+}
+
+//! called to invoke the selected Semantic Marker
+function invokeSMMatrixCell(matrixRowNumId, matrixColNumId)
+{
+   var row = document.getElementById(matrixRowNumId).value;
+   var col = document.getElementById(matrixColNumId).value;
+
+	if (row =="" || col=="")
+	{
+	   alert("Please select the row/col, currently: " + row + "," + col);
+		return;
+
+	}
+
+	invokeSMMatrixRowCol(row, col);
+}
+</script>
+<script>
+//! 3.3.24 Almost Snowing. Poweder in hills.
+//! This will updeate the _matrixJSON row/col with appropriate info..
+/*
+var _matrixJSON = 
+
+{"matrix":[
+ [
+  {"SM":"V6gZLkRley.1698208438983",
+    "Name":"My_3_LivingRoom",
+    "Cat": "NDAChallenges_inherited",
+	 "flowNum":"1",
+	 "uuid":"uuid",
+	 "device":"device",
+     "InheritedSM": "QebkVLtEvPDI.1698208438983",
+     "URL": "https://SemanticMarker.org/bot/smart?uuid=V6gZLkRley&flow=1698208438983&flowname=My_3_LivingRoom&flowcat=NDAChallenges_inherited",
+     "QRAvatarURL":"https://knowledgeshark.me/docs/IoT_Pitch_AW_Nov21/IoT_Pitch_AW_Nov21.059.jpeg",
+     "paragraph":"1.1finalSemanticMarkerImage"
+     "pdevice":"1.1device"
+   },
+*/
+function saveSMInRowCol(flowsSelectId, matrixRowNumId, matrixColNumId, idDevices)
+{
+	// saves _deviceName;
+	// sets _isSendToAll (which we cannot use ...
+   setupDevice(idDevices);
+
+   var row = document.getElementById(matrixRowNumId).value;
+   var col = document.getElementById(matrixColNumId).value;
+
+	if (row =="" || col=="")
+	{
+	   alert("Please select the row/col, currently: " + row + "," + col);
+		return;
+
+	}
+
+	var matrixArray = _matrixJSON.matrix;
+	var matrixItem = matrixArray[row-1][col-1];
+	
+
+  var selectedFlowIndex = document.getElementById(flowsSelectId).value;
+  var flow = _userFlowsJSON[selectedFlowIndex];
+  var flowName = flow.name;
+  var private = flow.private;
+  var isdata = flow.isdata;
+  var uuid = flow.uuid;
+  var flowNum = flow.flowNum;
+  var flowCat = flow.flowCat;
+  var desc = flow.desc;
+  var date = flow.date;
+  var QRAvatarURL = flow.QRAvatarURL;
+  var nextFlowURL = flow.nextFlowURL;
+
+
+   matrixItem.Name = flowName;
+   matrixItem.Cat = flowCat;
+	matrixItem.SM = uuid + "." + flowNum;
+	matrixItem.QRAvatarURL = QRAvatarURL;
+	matrixItem.uuid = uuid;
+	matrixItem.flowNum = flowNum;
+	matrixItem.device = _deviceName;
+
+	matrixItem.URL = "https://SemanticMarker.org/bot/smart?uuid=" + uuid + "&flow=" + flowNum;
+
+	//! fill in the matrix showing the user what's been selected
+	var tableTextCellId = row + "." + col + "SM";
+	var tableTextCell = document.getElementById(tableTextCellId);
+	tableTextCell.innerHTML = flowCat + "." + flowName + "(" + _deviceName + ")";
+
+	//! 3.5.24 now redisplay matrix
+   createSMMatrix(_showOnlyAvatar);
+
+}
+
+//! create a user version of the matrix that can be pasted back later
+//! syntax:  row,col,cat,name, uuid,flownum \n
+function showSMMatrixDefinition(textAreaId)
+{
+
+	var result = "";
+	var matrixArray = _matrixJSON.matrix;
+	for (var row=1; row < 4; row++)
+	{
+	  for (var col=1; col< 4; col++)
+	  {
+	     var matrixItem = matrixArray[row-1][col-1];
+		  //! syntax:  (row,col,cat,name, uuid,flownum)
+
+        var flowName = matrixItem.Name;
+        var flowCat = matrixItem.Cat;
+	     var uuid = matrixItem.uuid;
+	     var flowNum = matrixItem.flowNum;
+	     var SM = matrixItem.SM;
+		  var device = matrixItem.device;
+
+		  var rowString = row + "," + col + "," + flowCat + "," + flowName + "," + uuid + "," + flowNum  + "," + device;
+
+		  result += rowString + "\n";
+	  }
+	}
+
+	document.getElementById(textAreaId).value = result;
+
+}
+
+//! create a user version of the matrix that can be pasted back later
+//! syntax:  row,col,cat,name, uuid,flownum, device \n
+function importSMMatrixDefinition(textAreaId)
+{
+   var maxCols = 7;
+
+	result = document.getElementById(textAreaId).value;
+//	result = stripSpaces(result);
+// seems to get rid of New lines too..
+
+	var rows = result.split("\n");
+	for (var rowIndex =0; rowIndex < rows.length; rowIndex++)
+	{
+		var thisRow = rows[rowIndex];
+		thisRow = stripSpaces(thisRow);
+
+		if (thisRow.length == 0)
+		   continue;
+
+	   var rowItems = thisRow.split(",");
+		if (rowItems.length != maxCols)
+		{
+		   alert("Syntax Error, you need to enter as specified. You entered: " + thisRow);
+			return;
+		}
+		var row = rowItems[0];
+		var col = rowItems[1];
+		var cat = rowItems[2];
+		var name = rowItems[3];
+		var uuid = rowItems[4];
+		var flowNum = rowItems[5];
+		var device = rowItems[6];
+
+      //! see if this SM.uuid is our UUID, if so then return the flowName
+      //! returns the flow 
+		var flow = flowOfFlowNum( uuid, flowNum);
+	   if (flow)
+		{
+         //alert(JSON.stringify(flow)); 
+	      var matrixArray = _matrixJSON.matrix;
+	      var matrixItem = matrixArray[row-1][col-1];
+	
+
+         var flowName = flow.name;
+         var private = flow.private;
+         var isdata = flow.isdata;
+         var uuid = flow.uuid;
+         var flowNum = flow.flowNum;
+         var flowCat = flow.flowCat;
+         var desc = flow.desc;
+         var date = flow.date;
+         var QRAvatarURL = flow.QRAvatarURL;
+         var nextFlowURL = flow.nextFlowURL;
+       
+       
+         matrixItem.Name = flowName;
+         matrixItem.Cat = flowCat;
+       	matrixItem.SM = uuid + "." + flowNum;
+       	matrixItem.QRAvatarURL = QRAvatarURL;
+       	matrixItem.uuid = uuid;
+       	matrixItem.flowNum = flowNum;
+
+       	matrixItem.device = device;
+
+	      matrixItem.URL = "https://SemanticMarker.org/bot/smart?uuid=" + uuid + "&flow=" + flowNum;
+
+	      //! fill in the matrix showing the user what's been selected
+	      var tableTextCellId = row + "." + col + "SM";
+	      var tableTextCell = document.getElementById(tableTextCellId);
+	      tableTextCell.innerHTML = flowCat + "." + flowName + "(" + device + ")";
+		}
+		else 
+		{
+         alert("Flow isn't loaded: " + uuid + "," + flowNum);
+			return;
+		}
+	}
+
+	//! 3.5.24 now redisplay matrix
+   createSMMatrix(_showOnlyAvatar);
+
+}
+
+</script>
+
+<h2 class="H2" id="_SMMatrixTab" name="_SMMatrixTab" onClick="hideShowMarkup(['mSM_Matrix.2','mSM_Matrix.3', 'mSM_Matrix.4','mSM_Matrix.5', 'mSM_Matrix.8'])"><img src="https://SemanticMarker.org/images/SM-Circle-R.png" width="50" >Semantic Marker&#x2122; Matrix</h2>
+<p class="label" id="mSM_Matrix.2"> 
+<table border="1" style="border-spacing: 20px;" id="mSM_Matrix.3">
+    <tr>
+<td onclick="invokeSMMatrixRowCol(1,1);" valign="middle" align="center" width="300" height="300"><p  id="1.1finalSemanticMarkerImage"></p>
+<p style="bottom:0px;" id="1.1device"></p></td>
+<td onclick="invokeSMMatrixRowCol(1,2);" valign="middle" align="center" width="300" height="300"><p  id="1.2finalSemanticMarkerImage"></p>
+<p id="1.2device"></p></td>
+<td onclick="invokeSMMatrixRowCol(1,3);" valign="middle" align="center" width="300" height="300"><p  id="1.3finalSemanticMarkerImage"></p>
+<p id="1.3device"></p></td>
+    </tr>
+	 <tr>
+<td onclick="invokeSMMatrixRowCol(2,1);" valign="middle" align="center" width="300" height="300"><p  id="2.1finalSemanticMarkerImage"></p>
+<p id="2.1device"></p></td>
+<td onclick="invokeSMMatrixRowCol(2,2);" valign="middle" align="center" width="300" height="300"><p  id="2.2finalSemanticMarkerImage"></p>
+<p id="2.2device"></p></td>
+<td onclick="invokeSMMatrixRowCol(2,3);" valign="middle" align="center" width="300" height="300"><p  id="2.3finalSemanticMarkerImage"></p>
+<p id="2.3device"></p></td>
+	 </tr>
+	 <tr>
+<td onclick="invokeSMMatrixRowCol(3,1);" valign="middle" align="center" width="300" height="300"><p  id="3.1finalSemanticMarkerImage"></p>
+<p id="3.1device"></p></td>
+<td onclick="invokeSMMatrixRowCol(3,2);" valign="middle" align="center" width="300" height="300"><p  id="3.2finalSemanticMarkerImage"></p>
+<p id="3.2device"></p></td>
+<td onclick="invokeSMMatrixRowCol(3,3);" valign="middle" align="center" width="300" height="300"><p  id="3.3finalSemanticMarkerImage"></p>
+<p id="3.3device"></p></td>
+	 </tr>
+</table>
+
+<p id='mSM_Matrix.4'>
+<input type="button" class="HELPButton" id="HELPButton" value="?" 
+    onClick="alert('Shows the SM Matrix either as\nSM Matrix - Semantic Marker&trade;\nSM Matrix Avatars - only the SemanticMarker&trade; Avatar iimages')" />
+<input type="button" class="H1" id="HELPButton" value="SM Matrix" onClick="createSMMatrix(false)" />
+<input type="button" class="H1" id="HELPButton" value="SM Matrix Avatars" onClick="createSMMatrix(true)" />
+
+<br>
+<br>
+<label class="label" >Current SM&trade; Matrix</label>
+<br>
+<table border="1" id="mSM_Matrix.8">
+    <tr>
+<td onclick="invokeSMMatrixRowCol(1,1);" valign="middle" align="center" width="100" ><p  id="1.1SM"></p></td>
+<td onclick="invokeSMMatrixRowCol(1,2);" valign="middle" align="center" width="100" ><p  id="1.2SM"></p></td>
+<td onclick="invokeSMMatrixRowCol(1,3);" valign="middle" align="center" width="100" ><p  id="1.3SM"></p></td>
+    </tr>
+	 <tr>
+<td onclick="invokeSMMatrixRowCol(2,1);" valign="middle" align="center" width="100" ><p  id="2.1SM"></p></td>
+<td onclick="invokeSMMatrixRowCol(2,2);" valign="middle" align="center" width="100" ><p  id="2.2SM"></p></td>
+<td onclick="invokeSMMatrixRowCol(2,3);" valign="middle" align="center" width="100" ><p  id="2.3SM"></p></td>
+	 </tr>
+	 <tr>
+<td onclick="invokeSMMatrixRowCol(3,1);" valign="middle" align="center" width="100" ><p  id="3.1SM"></p></td>
+<td onclick="invokeSMMatrixRowCol(3,2);" valign="middle" align="center" width="100" ><p  id="3.2SM"></p></td>
+<td onclick="invokeSMMatrixRowCol(3,3);" valign="middle" align="center" width="100" ><p  id="3.3SM"></p></td>
+	 </tr>
+</table>
+<p id='mSM_Matrix.5'>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Save selected SM in Matrix Image')" />
+<input type="button" class="H1" value="Save SM&#x2122; In Matrix Row/Col" 
+ onClick="saveSMInRowCol('flowsSM', '_matrixRowNum','_matrixColNum', 'devices')">
+<br>
+<br>
+
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Pick a row and col')" />
+<select class="select label" id="_matrixRowNum" name="_matrixRowNum">
+  <option value="">-Select Row-</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+</select>
+<select class="select label" id="_matrixColNum" name="_matrixColNum">
+  <option value="">-Select Col-</option>
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+</select>
+
+<br>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Invoke selected SM in Matrix Image')" />
+<input type="button" class="H1" value="Invoke SM&#x2122; Row/Col" 
+ onClick="invokeSMMatrixCell( '_matrixRowNum','_matrixColNum')">
+<br>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Invocation method: smrun or smart')" />
+<label class="label" >Command for SM&trade; Invocation:</label>
+<select class="select label" id="_useSMRun" name="_useSMRun">
+  <option value="1">Use smrun (no new window)</option>
+  <option value="0">Use smart (new window)</option>
+</select>
+<br>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Export SM Matrix')" />
+<input type="button" class="H1" value="Show SM&#x2122; Matrix Definition" 
+ onClick="showSMMatrixDefinition('_matrixDefinition')">
+<br>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Import SM Matrix')" />
+<input type="button" class="H1" value="Import SM&#x2122; Matrix Definition" 
+ onClick="importSMMatrixDefinition('_matrixDefinition')">
+
+
+<br>
+<br>
+<label class="label" >Semantic Marker&trade; Matrix Definition Text Area</label>
+<br>
+<textarea class="label" id="_matrixDefinition" name="_matrixDefinition" rows="10" cols="80">
+1,1,MQTT,MQTT_Knob_DynamicTopic,QHmwUurxC3,1691972446952,MaggieMae
+1,2,M5Category,M5Status,QHmwUurxC3,1700332590409,MaggieMae
+1,3,Rooms,FeederA,QHmwUurxC3,1678233279758,MaggieMae
+2,1,JiffySoft,SkiVideo,QHmwUurxC3,1682290513942,MaggieMae
+2,2,iDogWatchMessages,ShowMatrix,QHmwUurxC3,1677954225047,MaggieMae
+2,3,Root,SemanticMarker,QHmwUurxC3,1681406810235,MaggieMae
+3,1,Rooms,FeederB,QHmwUurxC3,1678233346142,MaggieMae
+3,2,MQTT,MQTT_FEED_COUNT,QHmwUurxC3,1691789085005,MaggieMae
+3,3,ESP32Feeder,Talketna,QHmwUurxC3,1677558862159,MaggieMae
+</textarea>
+
+<!--  **** END MATRIX **** -->
 
 <!-- end create a new SMART DECK -->
 <!----------------------------------------------------------------------->
@@ -7635,7 +8659,7 @@ one calls smart?uuid=U&flow=F&format=json&isdata=true
 -->
 <h2 class="H2" id="_DOCFOLLOWMessages" name="_DOCFOLLOWMessages" onClick="hideShowMarkup(['m10.1'])" > DOCFOLLOW SemanticMarker&#x2122; Example Messages</h2>
 <p class="label" id="m10.1">
-<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Sends a Semantic Marker on the DOCFOLLOW topic')" />
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Sends a Semantic Marker&#x2122; on the DOCFOLLOW topic')" />
 <input type="button" class="button" id="setSMCommand64" value="setSMCommand64" onClick="sendAnySetCommand64('devices','smCommand64','smSetVal64')" />
 <label class="label">DOCFOLLOW Command:</label>
 <input class="text" name="smCommand64" id="smCommand64" length="64" type="text" value="SemanticMarker">
@@ -7644,10 +8668,10 @@ one calls smart?uuid=U&flow=F&format=json&isdata=true
 
 <br>
 <br>
-<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Sends a Semantic Marker on the DOCFOLLOW topic')" />
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Sends a Semantic Marker&#x2122; on the DOCFOLLOW topic')" />
 <input type="button" class="button" id="setSMCommand64-2" value="setSMCommand64-2" onClick="sendAnySetCommand64('devices','smCommand64','commandArgSM')" />
 <br>
-<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Cycles through Semantic Marker examples')" />
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Cycles through Semantic Marker&#x2122; examples')" />
 <input type="button" class="button" id="cycleDocfollowExample" value="Cycle DOC FOLLOW Examples" onClick="cycleDOCFOLLOW('devices','smCommand64','commandArgSM','smWebAddress')" />
 <br>
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Specific DOCFOLLOW messages for the Knowledge Shark Book')" />
@@ -7722,7 +8746,7 @@ one calls smart?uuid=U&flow=F&format=json&isdata=true
 
 <br>
 <!-- dawgpackTopicId used in the sendAnySetCommand64 --->
-<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Changes whether the Semantic Marker\nis sent on the dawgpack party line, \nor your own topic')" />
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Changes whether the Semantic Marker&#x2122;\nis sent on the dawgpack party line, \nor your own topic')" />
 <label class="label">DOCFOLLOW Topic:</label>
 <select class="select label"  name="dawgpackTopicId" id="dawgpackTopicId">
   <option value="dawgpack">Send on Dawgpack topic</option>
@@ -7731,7 +8755,7 @@ one calls smart?uuid=U&flow=F&format=json&isdata=true
 
 <!-- repeated here -->
 <br>
-<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Sends the Semantic Marker')" />
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Sends the Semantic Marker&#x2122;')" />
 <input type="button" class="button" id="buttonBooleanArgsM5-SM" value="Send Message" onClick="sendBooleanArgs('devices','commandBooleanM5-SM2','boolArgValueM5-SM2')" />
 <select class="select label"  name="commandBooleanM5-SM2" id="commandBooleanM5-SM2">
   <option value="zoomSM">Show SemanticMarker&#x2122;</option>
@@ -7744,7 +8768,7 @@ one calls smart?uuid=U&flow=F&format=json&isdata=true
 </select>
 <br>
 <!----------------------------------------------------------------------->
-<h1 class="H1" onClick="hideShowMarkup(['mOTA.1','_RevertToMainOTA','mOTA.2','_QAOTA','mOTA.3','_DevOTA'])" >OTA Over the Air Updates</h1>
+<h1 class="H1" id="_OTATab" name="_OTATab"  onClick="hideShowMarkup(['mOTA.1','_RevertToMainOTA','mOTA.2','_QAOTA','mOTA.3','_DevOTA'])" >OTA Over the Air Updates</h1>
 
 <h2 class="H2green" id="_RevertToMainOTA" name="_RevertToMainOTA" >Revert to MAIN OTA</h2>
 <p class="label" id="mOTA.1">
@@ -7774,14 +8798,21 @@ one calls smart?uuid=U&flow=F&format=json&isdata=true
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Updates an ESP32 with board PTFeeder device to the in work dev OTA version')" />
 <input type="button" class="OTHERbutton" id="OTATestESPBoard" value="OTA Test ESP-board update" onClick="updateOTATest('devices','ESP-BOARD')" />
 <br>
+<br>
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Updates an original esp-32 feeder to the in work dev OTA version')" />
 <input type="button" class="OTHERbutton" id="OTATestESPOrig" value="OTA Test ESP-orig update" onClick="updateOTATest('devices','ESP-ORIG')" />
 <br>
 <input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Updates an M5 Camera device to the in work dev OTA version')" />
 <input type="button" class="OTHERbutton" id="OTATestESPM5Camera" value="OTA Test M5 Camera update" onClick="updateOTATest('devices','M5Camera')" />
+
 <br>
-<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Updates an M5 QRReader device to the in work dev OTA version')" />
-<input type="button" class="OTHERbutton" id="OTATestESPM5QRReader" value="OTA Test M5 QRReader update" onClick="updateOTATest('devices','M5QRReader')" />
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Updates an M5 ATOM device to the in work dev OTA version')" />
+<input type="button" class="M5button" id="OTATestESP_M5Atom" value="OTA Test M5 Atom update" onClick="updateOTATest('devices','M5Atom')" />
+<br>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Updates an M5 CORE2 device to the in work dev OTA version')" />
+<input type="button" class="M5button" id="OTATestESP_M5Core2" value="OTA Test M5 Core2 update" onClick="updateOTATest('devices','M5Core2')" />
 
 
 <!------------ USER ACCOUNTS  ----------------------------------------------------------->
@@ -7905,7 +8936,7 @@ onClick="alert('After changing to WIFI of PTFeeder\nTakes browser to 192.168.4.1
 
 
 
-<h1 class="H1">Semantic Marker&#x2122;</h1>
+<h1 class="H1"><img src="https://SemanticMarker.org/images/SM-Circle-R.png" width="50" >Semantic Marker&#x2122; </h1>
 <p class="label">Create your own <a href="https://SemanticMarker.org">Semantic Marker</a>&#x2122; for feeding any of your named devices. 
 if device is --ALL- then it's /feeedguest/pass/guestpass  but if specific name then  /feedguestdevice/pass/guestpass/dev
 Provide a URL of an image, and that will be used inside your SemanticMarker&#x2122;
@@ -7929,18 +8960,72 @@ NOTE: if the GuestPassword is chosen above, then that will be the guest password
 
 <br>
 <br>
-<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('URL of the Semantic Marker to create')" />
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('URL of the Semantic Marker&#x2122; to create')" />
 <input type="button" class="button" id="createSMAny" value="Create Semantic Marker&#x2122;" onClick="createSemanticMarkerPathId('semanticMarkerURL','semanticMarkerAvatarURL','finalSemanticMarkerImage','semanticMarkerURLId')" />
-<label class="label" for="semanticMarkerURL">Any Semantic Marker&#x2122; Address</label><input name="semanticMarkerURL" id="semanticMarkerURL" size="64" type="text">
-<p class="label" id="semanticMarkerURLId">url</p>
-<br><br>
 <br>
-<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Shows the World Wide Feeding Statistics todate')" />
-<input type="button" class="OTHERbutton" onClick="invokeURL('https://idogwatch.com/bot/ui/#!/2?socketid=Gyd2JwbXTLu_z_KXAAAA')" value="Feeding Statistics"/>
+<label class="label" for="semanticMarkerURL">Any Semantic Marker&#x2122; Address</label><input name="semanticMarkerURL" id="semanticMarkerURL" size="120" type="text">
+
+<br>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Creates Credentials Semantic Marker&#x2122; in /credentials?ssid= format')" />
+<input type="button" class="OTHERbutton" id="createSMCredentials" value="Create /credentials Semantic Marker&#x2122;" onClick="createCredentialsSemanticMarkerPathId('semanticMarkerURL','semanticMarkerAvatarURL','finalSemanticMarkerImage','semanticMarkerURLId', 'ssidArg', 'passwordArg','devices')" />
+
+<br>
+<label class="label">WIFI SSID:</label>
+<input class="text" name="ssidArg" id="ssidArg" length="64" type="text">
+<br>
+<label class="label">WIFI Password:</label>
+<input class="text" name="passwordArg" id="passwordArg" length="64" type="text">
+
+<br>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Creates the WIFI Credentials Semantic Marker&#x2122; in format: WIFI:S:<ssid>;P:<pass>')" />
+<input type="button" class="OTHERbutton" id="createSMWIFICredentials" value="Create WIFI Credentials Semantic Marker&#x2122;" onClick="createWIFICredentialsSemanticMarkerPathId('semanticMarkerURL','semanticMarkerAvatarURL','finalSemanticMarkerImage','semanticMarkerURLId', 'ssidArg', 'passwordArg')" />
+
+<!-- /scannedDevice/DeviceName?queryArgs 
+/scannedDevice/DeviceName?kind=AtomSocket&status=socket&valKind=onoff&uuid=X&flow=Y
+-->
+<br>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Creates /scannedDevice Semantic Marker&#x2122; using query args\n\n/scannedDevice/DeviceName/<args>\n\n  <args> == \n    ?kind=AtomSocket&status=socket&valKind=onoff\n  |  ?kind=SemanticMarker&uuid=X&flow=Y\n\n NOTE: SemanticMarker&trade; requires CopySM above ')" />
+<input type="button" class="OTHERbutton" id="createSMScannedDevice" value="Create /scannedDevice Semantic Marker&#x2122;" onClick="createScannedDeviceSemanticMarkerPathId('semanticMarkerURL','semanticMarkerAvatarURL','finalSemanticMarkerImage','semanticMarkerURLId', 'deviceKindArg', 'statusFieldArg', 'valueKindArg','devices')" />
+<br>
+<label class="label">Device Kind:</label>
+<input class="text" name="deviceKindArg" id="deviceKindArg" length="64" type="text">
+<br>
+<label class="label">Status Field:</label>
+<input class="text" name="statusFieldArg" id="statusFieldArg" length="64" type="text">
+<br>
+<label class="label">Value Kind:</label>
+<input class="text" name="valueKindArg" id="valueKindArg" length="64" type="text">
+
+
+<br>
+<label class="label" for="argValueM5AtomKind">Common Device Kinds:</label>
+<select class="select label"  name="argValueM5AtomKind" id="argValueM5AtomKind" 
+onchange="setupM5AtomKind('argValueM5AtomKind','deviceKindArg', 'statusFieldArg', 'valueKindArg')" />
+  <option value="NONE">Pick Kind</option>
+  <option value="m5scanner">M5Atom SM Scanner</option>
+  <option value="m5socket">M5Atom Socket</option>
+  <option value="SemanticMarker">Use Semantic Marker&trade;</option>
+</select>
+
+<!-- 1.7.24 added /scannedGroup -->
+<br>
+<br>
+<input type="button" class="HELPButton" id="HELPButton" value="?" onClick="alert('Creates /scannedGroup Semantic Marker&#x2122; ')" />
+<input type="button" class="OTHERbutton" id="createSMScannedGroup" value="Create /scannedGroup Semantic Marker&#x2122;" onClick="createScannedGroupSemanticMarkerPathId('semanticMarkerURL','semanticMarkerAvatarURL','finalSemanticMarkerImage','semanticMarkerURLId', '_groups')" />
+
+<br>
+<p class="label" id="semanticMarkerURLId">url</p>
+
 
 <br><br>
+<!-- NOTE: the hide/show happens up to the next <p> so adding the following pulls it out of the Matrix hide/show -->
+<p>
 <img src="https://KnowledgeShark.me/images/KCNewLabel600-small.png" width="500"></a>
 <br><br>
-&#169;2023 <a href="https://KonaCurrents.com">KonaCurrents</a>, LLC
+&#169;2024 <a href="https://KonaCurrents.com">KonaCurrents</a>, LLC
 
-<h3>11.29.23 v10.6 Random Interval Timer, Guest Passwords & MQTT Groups & M5QRCodeReader & dev for SM & SMART Decks</h3>
+<h4>3.5.24 Semantic Marker&trade; Matrix support
+<h4>2.8.24 30K, 1.25.24 GROUPS, 1.12.24 PIR_SM, 1.7.24 (groups) 1.4.24 (M5AtomKind) 1.1.24 (scannedDevice) 12.30.23 (WIFI +Credentials, ATOM) 11.29.23 v10.6 Random Interval Timer, Guest Passwords & MQTT Groups & M5QRCodeReader & dev for SM & SMART Decks</h3>
