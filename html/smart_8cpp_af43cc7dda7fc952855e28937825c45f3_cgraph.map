@@ -1,0 +1,18 @@
+<map id="sendAddNewUser" name="sendAddNewUser">
+<area shape="rect" id="node1" title="wraps the command no args" alt="" coords="5,208,133,235"/>
+<area shape="rect" id="node2" href="$smart_8cpp.html#a150b62ae2a5dad8967649db71e9a9088" title=" " alt="" coords="181,208,257,235"/>
+<area shape="rect" id="node3" href="$smart_8cpp.html#a360da97f36594a24a8a16ac6b450efe9" title=" " alt="" coords="305,183,420,210"/>
+<area shape="rect" id="node16" href="$smart_8cpp.html#ade99e2c4ad2d707016578dde83be7a2e" title="strip spaces (THis is wrong.. it only removes the start/end spaces" alt="" coords="318,233,408,260"/>
+<area shape="rect" id="node4" href="$smart_8cpp.html#a3d2c9833a48b268a0538db18d4d2a675" title="end 1.13.24 group names" alt="" coords="468,183,632,210"/>
+<area shape="rect" id="node5" href="$smart_8cpp.html#ac9edee8e4c5234814bf0c0a6dce03e8d" title="! END COOKIE" alt="" coords="680,183,798,210"/>
+<area shape="rect" id="node6" href="$smart_8cpp.html#ae3545fc237fb27b65ef11e26c94a62bb" title="create the list of devices.. Fill in the idDeviceListOptions (which has the select already formed)" alt="" coords="872,5,1036,32"/>
+<area shape="rect" id="node7" href="$smart_8cpp.html#aeaa71d2ab67936f8ad468166b54d082f" title="create the list of devices.. Fill in the idDeviceListOptions (which has the select already formed)" alt="" coords="855,56,1054,83"/>
+<area shape="rect" id="node8" href="$smart_8cpp.html#a8cbe2d2b57fb584024f20d7a421be870" title="create the list of devices.. Fill in the idDeviceListOptions (which has the select already formed)" alt="" coords="872,107,1037,134"/>
+<area shape="rect" id="node9" href="$smart_8cpp.html#a1d6aeff73a982a9a7e550aff17df3e4e" title=" " alt="" coords="846,157,1062,184"/>
+<area shape="rect" id="node10" href="$smart_8cpp.html#a26cba5b77c4beaed25c34afd82e13e42" title="gets the smartDecks of the user 6.13.23" alt="" coords="888,208,1020,235"/>
+<area shape="rect" id="node11" href="$smart_8cpp.html#a42b51b769f10744a0d2508c9e6bc7766" title=" " alt="" coords="1110,233,1237,260"/>
+<area shape="rect" id="node12" href="$smart_8cpp.html#a5ac1c48041cdff0691b88eba8a23a86b" title="logout .. erases cookies" alt="" coords="926,309,982,336"/>
+<area shape="rect" id="node14" href="$smart_8cpp.html#afe3f08f58a649b68aeed0d76a6dade4f" title="called to set the values .. after they are known" alt="" coords="1285,353,1505,395"/>
+<area shape="rect" id="node13" href="$smart_8cpp.html#a51d43f9f0b07e2e1cfdf4f38a04452af" title=" " alt="" coords="1125,309,1222,336"/>
+<area shape="rect" id="node15" href="$smart_8cpp.html#ae252ad8afc94ea68ad538cbccd56a7b6" title=" " alt="" coords="1350,301,1440,328"/>
+</map>

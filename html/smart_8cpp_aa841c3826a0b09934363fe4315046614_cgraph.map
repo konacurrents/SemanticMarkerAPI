@@ -1,0 +1,6 @@
+<map id="invokeSMMatrixCell" name="invokeSMMatrixCell">
+<area shape="rect" id="node1" title="called to invoke the selected Semantic Marker" alt="" coords="5,5,144,32"/>
+<area shape="rect" id="node2" href="$smart_8cpp.html#a817ae1f82f8996aaceec57426bec48d5" title=" " alt="" coords="192,5,354,32"/>
+<area shape="rect" id="node3" href="$smart_8cpp.html#a06e30663189c181306b66c2ecb141431" title="make web get call" alt="" coords="678,5,801,32"/>
+<area shape="rect" id="node4" href="$smart_8cpp.html#a43bad6c5534022421b3c20f84c459f71" title="just web invokes the SemanticMarker" alt="" coords="402,31,630,58"/>
+</map>

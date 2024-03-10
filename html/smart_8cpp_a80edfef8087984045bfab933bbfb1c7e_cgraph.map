@@ -1,0 +1,17 @@
+<map id="requestLoginWindow" name="requestLoginWindow">
+<area shape="rect" id="node1" title=" " alt="" coords="5,132,148,159"/>
+<area shape="rect" id="node2" href="$smart_8cpp.html#a84b7b73cbfb3cd60798048543ecee2fe" title="reads the cookies, will set the documentID if valid (Note this is called 2 times on startup...." alt="" coords="208,5,302,32"/>
+<area shape="rect" id="node4" href="$smart_8cpp.html#a51d43f9f0b07e2e1cfdf4f38a04452af" title=" " alt="" coords="641,81,738,108"/>
+<area shape="rect" id="node7" href="$smart_8cpp.html#ac9edee8e4c5234814bf0c0a6dce03e8d" title="! END COOKIE" alt="" coords="196,233,314,260"/>
+<area shape="rect" id="node15" href="$smart_8cpp.html#a2d4b6a89166194e226c5c43c19276a20" title=" " alt="" coords="206,284,304,311"/>
+<area shape="rect" id="node3" href="$smart_8cpp.html#a4cdbb342a4654b8accc9fc750874888a" title=" " alt="" coords="410,5,531,32"/>
+<area shape="rect" id="node5" href="$smart_8cpp.html#afe3f08f58a649b68aeed0d76a6dade4f" title="called to set the values .. after they are known" alt="" coords="801,281,1021,323"/>
+<area shape="rect" id="node6" href="$smart_8cpp.html#ae252ad8afc94ea68ad538cbccd56a7b6" title=" " alt="" coords="866,81,956,108"/>
+<area shape="rect" id="node8" href="$smart_8cpp.html#ae3545fc237fb27b65ef11e26c94a62bb" title="create the list of devices.. Fill in the idDeviceListOptions (which has the select already formed)" alt="" coords="388,259,552,286"/>
+<area shape="rect" id="node9" href="$smart_8cpp.html#aeaa71d2ab67936f8ad468166b54d082f" title="create the list of devices.. Fill in the idDeviceListOptions (which has the select already formed)" alt="" coords="371,309,570,336"/>
+<area shape="rect" id="node10" href="$smart_8cpp.html#a8cbe2d2b57fb584024f20d7a421be870" title="create the list of devices.. Fill in the idDeviceListOptions (which has the select already formed)" alt="" coords="388,360,553,387"/>
+<area shape="rect" id="node11" href="$smart_8cpp.html#a1d6aeff73a982a9a7e550aff17df3e4e" title=" " alt="" coords="362,411,578,438"/>
+<area shape="rect" id="node12" href="$smart_8cpp.html#a26cba5b77c4beaed25c34afd82e13e42" title="gets the smartDecks of the user 6.13.23" alt="" coords="404,208,536,235"/>
+<area shape="rect" id="node13" href="$smart_8cpp.html#a42b51b769f10744a0d2508c9e6bc7766" title=" " alt="" coords="626,183,753,210"/>
+<area shape="rect" id="node14" href="$smart_8cpp.html#a5ac1c48041cdff0691b88eba8a23a86b" title="logout .. erases cookies" alt="" coords="442,107,498,134"/>
+</map>

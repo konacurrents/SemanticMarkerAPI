@@ -1,0 +1,7 @@
+<map id="readCookies" name="readCookies">
+<area shape="rect" id="node1" title="reads the cookies, will set the documentID if valid (Note this is called 2 times on startup...." alt="" coords="5,42,100,69"/>
+<area shape="rect" id="node2" href="$smart_8cpp.html#a4cdbb342a4654b8accc9fc750874888a" title=" " alt="" coords="148,42,269,69"/>
+<area shape="rect" id="node3" href="$smart_8cpp.html#a51d43f9f0b07e2e1cfdf4f38a04452af" title=" " alt="" coords="317,42,414,69"/>
+<area shape="rect" id="node4" href="$smart_8cpp.html#afe3f08f58a649b68aeed0d76a6dade4f" title="called to set the values .. after they are known" alt="" coords="462,5,683,47"/>
+<area shape="rect" id="node5" href="$smart_8cpp.html#ae252ad8afc94ea68ad538cbccd56a7b6" title=" " alt="" coords="527,72,618,99"/>
+</map>

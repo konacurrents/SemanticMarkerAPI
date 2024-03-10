@@ -1,0 +1,12 @@
+<map id="traverseSMARTDeck" name="traverseSMARTDeck">
+<area shape="rect" id="node1" title="pass in the ID.. to start with.. This will have a parent=SMART" alt="" coords="5,56,152,83"/>
+<area shape="rect" id="node2" href="$smart_8cpp.html#aabda271e3b078950b12fb6343ed7b7b4" title="traverses the _requestedSMs to see if any &#39;smflow&#39; still []" alt="" coords="200,5,374,32"/>
+<area shape="rect" id="node3" href="$smart_8cpp.html#a490e51f69026f439231510844787fabe" title="5.22.23 try incrementing and decrement the waiting count" alt="" coords="616,107,758,134"/>
+<area shape="rect" id="node4" href="$smart_8cpp.html#a6f46112f5d3387af8e67c022d0694124" title=" " alt="" coords="200,233,374,260"/>
+<area shape="rect" id="node5" href="$smart_8cpp.html#a88a9fca25e990d4c07229b46452c7d46" title=" " alt="" coords="430,309,559,336"/>
+<area shape="rect" id="node6" href="$smart_8cpp.html#ae8c2513847b4d68116d959c390b02488" title=" " alt="" coords="614,309,760,336"/>
+<area shape="rect" id="node7" href="$smart_8cpp.html#ade99e2c4ad2d707016578dde83be7a2e" title="strip spaces (THis is wrong.. it only removes the start/end spaces" alt="" coords="808,360,898,387"/>
+<area shape="rect" id="node8" href="$smart_8cpp.html#a5feab67a78c9290cccd4794054665e3e" title="images: https://www.web3.lu/image&#45;manipulations&#45;with&#45;javascript/" alt="" coords="625,360,749,387"/>
+<area shape="rect" id="node9" href="$smart_8cpp.html#aa5b0ca71a77eaa562a1582b3f72e8f21" title="creates a SM from uid/flownum" alt="" coords="648,183,726,210"/>
+<area shape="rect" id="node10" href="$smart_8cpp.html#a53e0d17940870c0100fe6056ddcb970f" title=" " alt="" coords="422,157,566,184"/>
+</map>

@@ -1,0 +1,21 @@
+<map id="replaceSMLinks" name="replaceSMLinks">
+<area shape="rect" id="node1" title=" " alt="" coords="5,286,120,313"/>
+<area shape="rect" id="node2" href="$smart_8cpp.html#a2b1ba9df785dfd3e6ce45ac89b846157" title=" " alt="" coords="185,134,303,161"/>
+<area shape="rect" id="node4" href="$smart_8cpp.html#a2c2f586d993d81dc66cc174abee3e281" title=" " alt="" coords="570,32,686,59"/>
+<area shape="rect" id="node6" href="$smart_8cpp.html#ae8c2513847b4d68116d959c390b02488" title=" " alt="" coords="373,184,518,211"/>
+<area shape="rect" id="node8" href="$smart_8cpp.html#a5feab67a78c9290cccd4794054665e3e" title="images: https://www.web3.lu/image&#45;manipulations&#45;with&#45;javascript/" alt="" coords="384,235,507,262"/>
+<area shape="rect" id="node9" href="$smart_8cpp.html#aa5b0ca71a77eaa562a1582b3f72e8f21" title="creates a SM from uid/flownum" alt="" coords="205,336,283,363"/>
+<area shape="rect" id="node10" href="$smart_8cpp.html#a2af59b7d67a08ecb83e72f0b9ce9af7e" title=" " alt="" coords="187,184,301,211"/>
+<area shape="rect" id="node12" href="$smart_8cpp.html#a5a12550ded3377fe99620791d0bfc395" title=" " alt="" coords="184,387,304,414"/>
+<area shape="rect" id="node13" href="$smart_8cpp.html#ad26ba4fca2c67b71af1fc2ea2cea4fcf" title=" " alt="" coords="168,83,320,110"/>
+<area shape="rect" id="node14" href="$smart_8cpp.html#a1e7d73d0d65f0237fce5447501d2d6fb" title=" " alt="" coords="189,438,299,465"/>
+<area shape="rect" id="node17" href="$smart_8cpp.html#acc663a69f056d5852b7488cc8589462d" title=" " alt="" coords="180,488,308,515"/>
+<area shape="rect" id="node19" href="$smart_8cpp.html#ae2d17b307b11f98682a39964f5bf680e" title=" " alt="" coords="223,539,265,566"/>
+<area shape="rect" id="node3" href="$smart_8cpp.html#a1418308c5b193d78f4866a6ec43a0e37" title="see if this SM.uuid is our UUID, if so then return the flowName" alt="" coords="368,32,522,59"/>
+<area shape="rect" id="node5" href="$smart_8cpp.html#ae9430b9175772d042df94dd23f830b76" title=" " alt="" coords="734,32,828,59"/>
+<area shape="rect" id="node7" href="$smart_8cpp.html#ade99e2c4ad2d707016578dde83be7a2e" title="strip spaces (THis is wrong.. it only removes the start/end spaces" alt="" coords="583,184,673,211"/>
+<area shape="rect" id="node11" href="$smart_8cpp.html#a2e1dd3484867694a0592393303c06504" title="see if this SM.uuid is our UUID, if so then return the flowName" alt="" coords="370,134,520,161"/>
+<area shape="rect" id="node15" href="$smart_8cpp.html#a64fe40ab25779d359fb9c3ed0d7ca6fa" title=" " alt="" coords="381,412,510,439"/>
+<area shape="rect" id="node16" href="$smart_8cpp.html#a1fd9d52aecc54fd8fe4a2f83aefb2cc9" title=" " alt="" coords="394,463,496,490"/>
+<area shape="rect" id="node18" href="$smart_8cpp.html#ac81a63af4092d89cbc6f065610c5a51c" title="creates a slideshow" alt="" coords="387,514,504,541"/>
+</map>

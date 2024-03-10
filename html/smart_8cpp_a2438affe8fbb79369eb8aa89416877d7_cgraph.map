@@ -1,0 +1,4 @@
+<map id="createFlowUUID" name="createFlowUUID">
+<area shape="rect" id="node1" title="creates a flow number (a uuid)" alt="" coords="5,5,125,32"/>
+<area shape="rect" id="node2" href="$smart_8cpp.html#a8096004fc29c78a7186922026dae9bf3" title="creates a flow number (a uuid)" alt="" coords="173,5,304,32"/>
+</map>

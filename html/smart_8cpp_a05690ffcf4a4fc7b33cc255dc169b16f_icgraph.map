@@ -1,0 +1,5 @@
+<map id="getCommandPathGuest" name="getCommandPathGuest">
+<area shape="rect" id="node1" title="This uses knowledge of _isSentToAll, and _deviceName, and this command (which tacks on Device if need..." alt="" coords="206,31,367,58"/>
+<area shape="rect" id="node2" href="$smart_8cpp.html#a831e2f286f873ae63bef72087a923df6" title="create a semantic marker, and place at the idSM location" alt="" coords="5,5,158,32"/>
+<area shape="rect" id="node3" href="$smart_8cpp.html#a3a7f670b1e12d109d1cd6a3c9be32ae1" title="wraps the command no args, but this is sent as a guest" alt="" coords="17,56,146,83"/>
+</map>

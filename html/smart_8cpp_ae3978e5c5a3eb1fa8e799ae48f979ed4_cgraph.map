@@ -1,0 +1,5 @@
+<map id="createSmartDeck" name="createSmartDeck">
+<area shape="rect" id="node1" title=" " alt="" coords="5,31,129,58"/>
+<area shape="rect" id="node2" href="$smart_8cpp.html#a73c569d0d69596c3f92de79e05ca37d5" title="strips spaces, but supports numbers letters and _" alt="" coords="177,5,338,32"/>
+<area shape="rect" id="node3" href="$smart_8cpp.html#a61b8e6e89a332bb1eb5e0a53ee9be2d1" title="sends the GET command, but shows an alert when done.." alt="" coords="178,56,337,83"/>
+</map>

@@ -1,0 +1,8 @@
+<map id="flowInheritedSMOfSM" name="flowInheritedSMOfSM">
+<area shape="rect" id="node1" title="see if this SM.uuid is our UUID, if so then return the flowName" alt="" coords="5,56,155,83"/>
+<area shape="rect" id="node2" href="$smart_8cpp.html#a2c2f586d993d81dc66cc174abee3e281" title=" " alt="" coords="218,5,333,32"/>
+<area shape="rect" id="node4" href="$smart_8cpp.html#ae8c2513847b4d68116d959c390b02488" title=" " alt="" coords="203,56,348,83"/>
+<area shape="rect" id="node6" href="$smart_8cpp.html#a5feab67a78c9290cccd4794054665e3e" title="images: https://www.web3.lu/image&#45;manipulations&#45;with&#45;javascript/" alt="" coords="214,107,337,134"/>
+<area shape="rect" id="node3" href="$smart_8cpp.html#ae9430b9175772d042df94dd23f830b76" title=" " alt="" coords="396,5,490,32"/>
+<area shape="rect" id="node5" href="$smart_8cpp.html#ade99e2c4ad2d707016578dde83be7a2e" title="strip spaces (THis is wrong.. it only removes the start/end spaces" alt="" coords="398,81,488,108"/>
+</map>

@@ -1,0 +1,9 @@
+<map id="sendSavedFlow" name="sendSavedFlow">
+<area shape="rect" id="node1" title="sends flow using info.." alt="" coords="5,132,120,159"/>
+<area shape="rect" id="node2" href="$smart_8cpp.html#a8d000275aa27648366e1cfe8b7bf92df" title="strips spaces, but supports numbers letters and _" alt="" coords="173,5,322,32"/>
+<area shape="rect" id="node3" href="$smart_8cpp.html#af63e31f4b5a97f93b6fad27c73bc7166" title=" " alt="" coords="210,56,285,83"/>
+<area shape="rect" id="node4" href="$smart_8cpp.html#ae9430b9175772d042df94dd23f830b76" title=" " alt="" coords="375,157,469,184"/>
+<area shape="rect" id="node5" href="$smart_8cpp.html#a61b8e6e89a332bb1eb5e0a53ee9be2d1" title="sends the GET command, but shows an alert when done.." alt="" coords="168,157,327,184"/>
+<area shape="rect" id="node6" href="$smart_8cpp.html#a5ba90b149b3197a4b9e4162d7322e799" title="test the POST" alt="" coords="179,208,316,235"/>
+<area shape="rect" id="node7" href="$smart_8cpp.html#ade99e2c4ad2d707016578dde83be7a2e" title="strip spaces (THis is wrong.. it only removes the start/end spaces" alt="" coords="202,259,293,286"/>
+</map>

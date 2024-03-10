@@ -1,0 +1,7 @@
+<map id="createValidDeviceName" name="createValidDeviceName">
+<area shape="rect" id="node1" title="strips spaces, but supports numbers letters and _" alt="" coords="214,81,375,108"/>
+<area shape="rect" id="node2" href="$smart_8cpp.html#a8325f536e42d5ec5dca7c0547b2bbc47" title=" " alt="" coords="16,5,155,32"/>
+<area shape="rect" id="node3" href="$smart_8cpp.html#ae3978e5c5a3eb1fa8e799ae48f979ed4" title=" " alt="" coords="24,56,147,83"/>
+<area shape="rect" id="node4" href="$smart_8cpp.html#a3fe06aff9e3b93fc8bee813ff8afd0b9" title="removes the device (from the deviceName .. to the user)" alt="" coords="5,107,166,134"/>
+<area shape="rect" id="node5" href="$smart_8cpp.html#a888746f65c45ec5a759cb12fbc2cdc58" title="renames the device (from the deviceName .. to the user)" alt="" coords="5,157,166,184"/>
+</map>

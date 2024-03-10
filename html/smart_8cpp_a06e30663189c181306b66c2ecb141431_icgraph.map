@@ -1,0 +1,6 @@
+<map id="callGetCommand" name="callGetCommand">
+<area shape="rect" id="node1" title="make web get call" alt="" coords="678,31,801,58"/>
+<area shape="rect" id="node2" href="$smart_8cpp.html#a43bad6c5534022421b3c20f84c459f71" title="just web invokes the SemanticMarker" alt="" coords="402,5,630,32"/>
+<area shape="rect" id="node3" href="$smart_8cpp.html#a817ae1f82f8996aaceec57426bec48d5" title=" " alt="" coords="192,31,354,58"/>
+<area shape="rect" id="node4" href="$smart_8cpp.html#aa841c3826a0b09934363fe4315046614" title="called to invoke the selected Semantic Marker" alt="" coords="5,31,144,58"/>
+</map>
