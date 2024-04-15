@@ -27,6 +27,8 @@ This document describes how the API supports the <b>Semantic Marker&trade;</b> A
 
 9. [PAT Point-at-Things](https://github.com/konacurrents/SemanticMarkerAPI/issues/2)
 
+10. [SMART Matrix](https://github.com/konacurrents/SemanticMarkerAPI?tab=readme-ov-file#smart-matrix)
+
 # SMART - Semantic Marker™️   Augmented Reality of Things
 
 The main interfaces to the [SemanticMarker.org](https://SemanticMarker.org) web services are through 
