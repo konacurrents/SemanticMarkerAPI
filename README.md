@@ -607,6 +607,11 @@ Example uses are available via our open-source at [Semantic Marker&trade; ESP-32
                       | "gateway"  <boolean>
                       | "DiscoverM5PTClicker"  <boolean>
                       | "useSPIFF"  <boolean>
+                      | "useSPIFF_mqtt"  <boolean>
+                      | "useSPIFF_qratom"  <boolean>
+                      | "readspiff"
+                      | "deletespiff"
+                      | "sendspiff"
                       | "timerDelay" <number>
                       | "timerDelayMax" <number>
                       | "startTimer"  <boolean>
@@ -675,6 +680,7 @@ Example uses are available via our open-source at [Semantic Marker&trade; ESP-32
                       | SM_ReplaceUUID <boolean>
                       | SM_UseCropImage <boolean>
                       | SM_VisionLinker <boolean>
+                      | SM_ShowMatrix <boolean>
                       | animals <boolean>
                       | images <boolean>
                       | matrix <boolean>
@@ -1718,4 +1724,30 @@ this SMART Button instance.
 See [PAT](https://github.com/konacurrents/SemanticMarkerAPI/issues/2)
 
 > [!NOTE]
+> Last updated 4.14.24
 > Last updated 1.18.24
+
+------------------------------------------------------------------------------------------
+# SMART Matrix
+
+Eye Tracker capable for speech and sending messages. The Matrix collects these nicely.
+
+This is the feature where a set of SMART buttons make up a matrix that can be shown
+on a web page, or the SemanticMarker iOS iPhone/iPad app.
+
+The format of the matrix is a simple text file in the `future` of the agent flow definition.
+
+```
+@matrix(1,1,Matrix,Sit,QHmwUurxC3,1713138730023,--ALL--
+1,2,ESP32Feeder,FeedDog,QHmwUurxC3,12,--ALL--
+2,2,M5Category,PairDevicePage,QHmwUurxC3,100,--ALL--
+2,3,M5Category,BLE_WIFI_Feed,QHmwUurxC3,1685637621385,--ALL--
+3,2,M5Category,WIFI_feed,QHmwUurxC3,1674172214476,--ALL--
+3,3,Matrix,FeedMatrix,QHmwUurxC3,1713138245068,--ALL--
+)
+```
+
+![Matrix with Avatars](images/SMMatrix.png)
+![Matrix with Avatars](images/SMMatrixAvatars.png)
+
+
