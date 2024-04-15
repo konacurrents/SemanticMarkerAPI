@@ -1746,8 +1746,12 @@ The format of the matrix is a simple text file in the `future` of the agent flow
 3,3,Matrix,FeedMatrix,QHmwUurxC3,1713138245068,--ALL--
 )
 ```
+## Matrix showing the Semantic Marker
 
 ![Matrix with Avatars](images/SMMatrix.png)
+
+## Matrix with just the Avatar
+
 ![Matrix with Avatars](images/SMMatrixAvatars.png)
 
 
