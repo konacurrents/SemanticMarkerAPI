@@ -1753,6 +1753,7 @@ The format of the matrix is a simple text file in the `future` of the agent flow
 > | row | col | SMART Category | Smart Name   |  UUID . FLOWNum | Device     | 
 > |-----|-----|----------------|--------------|----------------|------------|
 > | 1   | 1   | Matrix         | Sit          | QHmwUurxC3,1713138730023 | --ALL-- |
+> | 1   | 2   | ESP32Feeder    | FeedDog      | QHmwUurxC3,12 | --ALL-- |
 >   
 </details>
 ## Matrix showing the Semantic Marker
