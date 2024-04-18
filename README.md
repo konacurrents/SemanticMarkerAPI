@@ -1,4 +1,4 @@
-#  Semantic Marker™️  REST, MQTT and BLE Message API Manual
+#  Semantic Marker&reg; REST, MQTT and BLE Message API Manual
 
 ![SemanticMarker API](images/SemanticMarkerAPI.png)
 (c) 2024
@@ -1760,7 +1760,7 @@ The format of the matrix is a simple text file in the `future` of the agent flow
 </details>
 ## Matrix showing the Semantic Marker
 
-![Matrix with Avatars](images/SMMatrix.png)
+![Matrix with Avatars](images/SMMatrixCues.png)
 
 ## Matrix with just the Avatar
 
