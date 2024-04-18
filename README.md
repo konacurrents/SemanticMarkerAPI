@@ -5,17 +5,17 @@
 
 Creating and processing with the Semantic Marker™️  System is through various APIs (Application Programer Interface). This GitHub repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The code included is mix of html and javascript. As these are a REST (HTTP) API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.) At the heart of the messaging API is the MQTT publish/subscribe engine described using the [BNF](https://en.wikipedia.org/wiki/Backus-Naur_form) Language grammar specification,
 and formatted through a collection of [JSON messages](#mqtt-messaging-using-bnf-grammar) sent over MQTT.
-Our [Semantic Marker&trade; ESP-32 IoT Device](https://GitHub.com/konacurrents/SemanticMarkerESP-32) open-source downloadable software shows use of this MQTT messaging. 
+Our [Semantic Marker&reg; ESP-32 IoT Device](https://GitHub.com/konacurrents/SemanticMarkerESP-32) open-source downloadable software shows use of this MQTT messaging. 
 
-This document describes how the API supports the <b>Semantic Marker&trade;</b> Architecture in the following sections:
+This document describes how the API supports the <b>Semantic Marker&reg;</b> Architecture in the following sections:
 
-1. [Semantic Marker&trade; Augmented Reality of Things (SMART) Architecture](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#smart---semantic-marker%EF%B8%8F---augmented-reality-of-things)
+1. [Semantic Marker&reg; Augmented Reality of Things (SMART) Architecture](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#smart---semantic-marker%EF%B8%8F---augmented-reality-of-things)
 
 2. [REST and MQTT API](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#semantic-marker%EF%B8%8F--rest-and-mqtt-api)
 
-3. [Three Tiers of Semantic Marker&trade; Service](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#kona-currents-llc-offers-three-tiers-of-semantic-marker%EF%B8%8F---offerings)
+3. [Three Tiers of Semantic Marker&reg; Service](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#kona-currents-llc-offers-three-tiers-of-semantic-marker%EF%B8%8F---offerings)
 
-4. [Semantic Marker&trade; Registry](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#semantic-marker-registry)
+4. [Semantic Marker&reg; Registry](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#semantic-marker-registry)
 
 5. [Messaging BNF Grammar](https://github.com/konacurrents/SemanticMarkerAPI/blob/main/README.md#messaging-bnf-grammar)
 
@@ -33,7 +33,7 @@ This document describes how the API supports the <b>Semantic Marker&trade;</b> A
 
 The main interfaces to the [SemanticMarker.org](https://SemanticMarker.org) web services are through 
 calls embodied in the following web page code
-[SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. In addition apps, like the [Semantic Marker&trade; iOS Apple App](https://semanticmarker.org/vision/testflight.html) are in various phases of development, also interacting with the same API's.
+[SemanticMarker.org/smart](https://SemanticMarker.org/smart). This web page (with html and javascript) is just one way to interface with the SemanticMarker API calls. Other web pages have been created that have a different user interface, while calling the same API's. In addition apps, like the [Semantic Marker&reg; iOS Apple App](https://semanticmarker.org/vision/testflight.html) are in various phases of development, also interacting with the same API's.
 
 > [!NOTE]
 > Many of these messages, after security credential matching, are then run through the MQTT publish/subscribe system described [later](#mqtt-messaging-using-bnf-grammar).
@@ -63,13 +63,13 @@ The list of API calls is shown next with full details later in their appropriate
 
 > | name      |  description | parameters | protocol     | 
 > |-----------|----------------------|---------------|------|
-> | /exists/ks | query if Semantic Marker&trade; exists |{category}/{namespace} /{UUID}/{escapedSemanticMarker} | GET  |
-> | /train/ks | train a Semantic Marker&trade; |{namespace}/{category} /{UUID}/{escapedSemanticMarker} | GET |
-> | /sm | create a new Semantic Marker&trade; |{namespace}/{category} /{UUID}/digitize | POST |
-> | /smrun |Runs a Semantic Marker&trade; | parameters | GET |
-> | /smflowpost |Create or modify Semantic Marker&trade; |JSON format | POST |
-> | /invokeSemanticMarker|Invokes a Semantic Marker&trade; |{username}/{password} /{SemanticMarkerAddress}| GET |
-> | /createSemanticMarker|Create a Semantic Marker&trade;|{username}/{password} /{SemanticMarkerAddress}/{AvatarURL}| GET |
+> | /exists/ks | query if Semantic Marker&reg; exists |{category}/{namespace} /{UUID}/{escapedSemanticMarker} | GET  |
+> | /train/ks | train a Semantic Marker&reg; |{namespace}/{category} /{UUID}/{escapedSemanticMarker} | GET |
+> | /sm | create a new Semantic Marker&reg; |{namespace}/{category} /{UUID}/digitize | POST |
+> | /smrun |Runs a Semantic Marker&reg; | parameters | GET |
+> | /smflowpost |Create or modify Semantic Marker&reg; |JSON format | POST |
+> | /invokeSemanticMarker|Invokes a Semantic Marker&reg; |{username}/{password} /{SemanticMarkerAddress}| GET |
+> | /createSemanticMarker|Create a Semantic Marker&reg;|{username}/{password} /{SemanticMarkerAddress}/{AvatarURL}| GET |
 > | /feed/Send feed command|{username}|{password}| GET |
 > | /feeddevice|Send feed to specific named device|{username}/{password} /{devicename}| GET |
 > | /lookupuser|Lookup user returning JSON|{username}/{password}| GET |
@@ -111,18 +111,18 @@ The list of API calls is shown next with full details later in their appropriate
 
 <img src="images/SMTiers.png" width=400>
 
-Tier II and Tier III use the Semantic Marker&trade; Registry (ie. database) requiring a user account. This is anchored by a unique UUID for that user.
+Tier II and Tier III use the Semantic Marker&reg; Registry (ie. database) requiring a user account. This is anchored by a unique UUID for that user.
 
 ## Photo Avatar
 
 In addition to valuable IoT message addresses 
-contained in the <b>Semantic Marker&trade;</b> - we add a user specified graphic photo image, your <b>Photo Avatar</b>, 
+contained in the <b>Semantic Marker&reg;</b> - we add a user specified graphic photo image, your <b>Photo Avatar</b>, 
 embedded inside. This helps the user distinguish among [potentially 1000's](https://SemanticMarker.org/vision/Avatars.png) of these new optical
-vision markers (maybe stored in your photo album). The human eye can pick out different <b>Avatars</b> faster than decoding with our Semantic Marker&trade; scanners.
+vision markers (maybe stored in your photo album). The human eye can pick out different <b>Avatars</b> faster than decoding with our Semantic Marker&reg; scanners.
 
-This <b>Photo Avatar</b> is an important feature of Semantic Marker&trade; and shown as this process:
+This <b>Photo Avatar</b> is an important feature of Semantic Marker&reg; and shown as this process:
 ![SMPlusAvatar](images/SMAdd.png)
-This SMART Button [Semantic Marker&trade; address](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1674517131429) still requires user supplied security credentials to run in their environment.
+This SMART Button [Semantic Marker&reg; address](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1674517131429) still requires user supplied security credentials to run in their environment.
 
 ### Each of the Three Tiers are described below. 
 
@@ -138,13 +138,13 @@ directly from the various language implementation. Examples of javascript, C and
 are snipits of code are from various Semantic Marker™️  apps to give a flavor of the APIs.
 
 A valuable use of Tier I is a <i>Photo Bookmark</i> that links to photo cloud storage or social media stories.
-Basically the <i>metadata</i>, the hyper-links, are stored in the <i>Photo Bookmark</i>, our <b>Semantic Marker&trade;</b>. They can be printed out, handed out, stored in on-line photo albums, and they all expose their hyper-links via any newer smart phone scanner.
+Basically the <i>metadata</i>, the hyper-links, are stored in the <i>Photo Bookmark</i>, our <b>Semantic Marker&reg;</b>. They can be printed out, handed out, stored in on-line photo albums, and they all expose their hyper-links via any newer smart phone scanner.
 
 
 <details>
-<summary>Web page creating Semantic Marker&trade;</summary>
+<summary>Web page creating Semantic Marker&reg;</summary>
 
-The following web page image is the result of the current Tier I Semantic Marker&trade; service running at [SemanticMarker.org](https://SemanticMarker.org) - under the "Use our Service to Create your own Semantic Marker&trade;" tab. Clicking "Create Semantic Marker&trade;" will create the image below (with potentially another Graphic Avatar - or user selected.)
+The following web page image is the result of the current Tier I Semantic Marker&reg; service running at [SemanticMarker.org](https://SemanticMarker.org) - under the "Use our Service to Create your own Semantic Marker&reg;" tab. Clicking "Create Semantic Marker&reg;" will create the image below (with potentially another Graphic Avatar - or user selected.)
 
 ![WebPageExample](images/SMTier1Example.png)
 
@@ -163,11 +163,11 @@ use of this API. See [Semantic Marker ESP-32 Download](https://GitHub.com/konacu
 <summary><code>ESP-32 M5 Code</code> <code><b>create Semantic Marker</b></code></summary>
 
 This is a simple example of creating a Tier I Semantic Marker™️   inside the ESP-32 code base.
-Ths code is available via our open-source software at [Semantic Marker&trade; ESP-32](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/DisplayModule/DisplayModule.h).
+Ths code is available via our open-source software at [Semantic Marker&reg; ESP-32](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/DisplayModule/DisplayModule.h).
 
 ##### Example ESP32 C Code
 ```c
-   //!Draws a SemanticMarker&trade;
+   //!Draws a SemanticMarker&reg;
     //!Create a SemanticMarker code with a width of 135 QR code  at (0, 100).
     //!Please select the appropriate QR code version according to the number of characters. 
     createSemanticMarker("https://iDogWatch.com/bot/help",0,100,135);
@@ -230,14 +230,14 @@ try
          }).catch (function (errorurl)
          {
 
-            alert("Issue creating Avatar in Semantic Marker&trade; creation: \n" + errorurl + "\nPlease file bug report");
+            alert("Issue creating Avatar in Semantic Marker&reg; creation: \n" + errorurl + "\nPlease file bug report");
          })
 
    }
    catch (error)
    {
 
-      alert("Issue with Semantic Marker&trade; creation: \n" + error.message + "\nPlease file bug report");
+      alert("Issue with Semantic Marker&reg; creation: \n" + error.message + "\nPlease file bug report");
    }
 }
 ```
@@ -272,7 +272,7 @@ function createSemanticMarker(command)
 
 A Tier II Semantic Marker™️   invoves storing information at one of our Semantic Marker™️   cloud servers. This
 includes an indirect address that a valid user can modify. Later, the Tier III Semantic Marker™️   provides
-full user control. Both Tier II and Tier III require a user account since the Semantic Marker&trade; is stored in a database.
+full user control. Both Tier II and Tier III require a user account since the Semantic Marker&reg; is stored in a database.
 
 ## Creates a Tier II Semantic Marker™️   using the Semantic Marker Address (escaped)
 
@@ -339,15 +339,15 @@ full user control. Both Tier II and Tier III require a user account since the Se
 </details>
 
 ------------------------------------------------------------------------------------------
-# Tier III Semantic Marker&trade; - SMART Buttons
+# Tier III Semantic Marker&reg; - SMART Buttons
 
-A Tier III Semantic Marker&trade; provides storage for the Avatar image and for very fine control of
-Semantic Marker actions. The created result is called a <b>SMART Button</b> - standing for Semantic Marker&trade; Augmented Reality of Things. With knowledgable apps, the <b>SMART Buttons</b> can extract the <b>Photo Avatar</b> and use as a Augmented Reality overlay.
+A Tier III Semantic Marker&reg; provides storage for the Avatar image and for very fine control of
+Semantic Marker actions. The created result is called a <b>SMART Button</b> - standing for Semantic Marker&reg; Augmented Reality of Things. With knowledgable apps, the <b>SMART Buttons</b> can extract the <b>Photo Avatar</b> and use as a Augmented Reality overlay.
 
 > [!TIP]
 > The resulting stored processing steps are especially suited to customized Internet of Things (IoT) processing, such as a custom user manual for your IoT home devices (eg. your accounts, passwords, WIFI address, and device Id's). These utilize all the API calls shown in this document but customized to your environment..
 
-A SMART Button has a unique Semantic Marker&trade; address such as:
+A SMART Button has a unique Semantic Marker&reg; address such as:
 
 ##### https://SemanticMarker.org/bot/smart?uuid=V6gZLkRley&flow=1698208438983
 
@@ -522,12 +522,12 @@ Like many of these interfaces, the credentials including the username and passwo
 
 > [!CAUTION]
 > **SMART Buttons** can be **run** by anyone but the internal IoT  messages only work with valid user credentials (username, password).
-> The results will be calls to the other **Semantic Marker&trade;** API's after substituting those query parameters. Also with **inheritance** the same SMART Button can include extended user specific values. **Inheritance** requires a user unique **uuid** but the same **flow**.
+> The results will be calls to the other **Semantic Marker&reg;** API's after substituting those query parameters. Also with **inheritance** the same SMART Button can include extended user specific values. **Inheritance** requires a user unique **uuid** but the same **flow**.
 
 
-# Semantic Marker&trade; Registry
+# Semantic Marker&reg; Registry
 
-The results of these REST calls are secure JSON database entries in the Semantic Marker&trade; registry, as shown in this image.
+The results of these REST calls are secure JSON database entries in the Semantic Marker&reg; registry, as shown in this image.
 ![Semantic Marker Registry](images/SemanticMarkerRegistry.png)
 
 ------------------------------------------------------------------------------------------
@@ -536,7 +536,7 @@ The results of these REST calls are secure JSON database entries in the Semantic
 These are the Websocket and MQTT messaging formats. This includes the original [iDogWatch](https://iDogWatch.com) websocket interface
 defined as the <b>Barklet Language</b>. The format is a mix of original Barklet Language used with WebSockets,
 and the newer JSON Format messages.
-Example uses are available via our open-source at [Semantic Marker&trade; ESP-32](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/MQTTModule/MQTTNetworking.h).
+Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/MQTTModule/MQTTNetworking.h).
 
 > [!NOTE]
 > Many of the messages described in the following BNF Grammar can be run through the UNIX shell commands at: [Example curl commands](curlCommands) To run, download the scripts and run with a valid username and password. CURL is a tool to send web REST commands from the command line. 
@@ -701,7 +701,7 @@ Example uses are available via our open-source at [Semantic Marker&trade; ESP-32
 >    **https://SemanticMarker.org/smart?username=x&password=y&format=JSON**
 
 ------------------------------------------------------------------------------------------
-### invokeSemanticMarker - runs the Semantic Marker&trade;
+### invokeSemanticMarker - runs the Semantic Marker&reg;
 <details>
  <summary><code>GET</code> <code><b>/invokeSemanticMarker/{username}/{password}/{SemanticMarkerAddress}</b></code></summary>
 
@@ -730,7 +730,7 @@ Example uses are available via our open-source at [Semantic Marker&trade; ESP-32
 
 </details>
 
-### createSemanticMarker - creates a Semantic Marker&trade;
+### createSemanticMarker - creates a Semantic Marker&reg;
 <details>
  <summary><code>GET</code> <code><b>/createSemanticMarker/{username}/{password}/{SemanticMarkerAddress}/{AvatarURL}</b></code></summary>
 
@@ -1445,8 +1445,8 @@ The following subset of REST calls are for managing Group entry for the MQTT Pub
 # MQTT Messaging using BNF Grammar
 
 In addition to the REST Web calls, the lower level MQTT messaging can be used directly.
-This requires that the MQTT pub/sub engine be available. Semantic Marker&trade; currently uses
-the Eclipse Mosquitto&trade; open source MQTT broker. This is available at [mosquitto.org](https://mosquitto.org).
+This requires that the MQTT pub/sub engine be available. Semantic Marker&reg; currently uses
+the Eclipse Mosquitto&reg; open source MQTT broker. This is available at [mosquitto.org](https://mosquitto.org).
 
 ## Publish topic payload
 
@@ -1537,7 +1537,7 @@ The shell commands for creating users and topics include the following.
 
 These consist of single character commands (so bluetooth clients with length restrictions can send commands), and 
 JSON formatted messages which is a subset of [JSON messages](#mqtt-messaging-using-bnf-grammar) sent over MQTT.
-Example uses are available via our Semantic Marker&trade; ESP-32 open-source download for the [BLE Client](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/BLEClientModule/BLEClientNetworking.h)
+Example uses are available via our Semantic Marker&reg; ESP-32 open-source download for the [BLE Client](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/BLEClientModule/BLEClientNetworking.h)
 and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/src/BLEServerModule/BLEServerNetworking.h).
 
 > [!CAUTION]
@@ -1639,8 +1639,8 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 > |{'set':'timerdelay','val':'30'"} | set the timer delay to the val specified (eg. 30 sec) | OD|
 > |{'set':'startTimer','val':'on'"} | start the timer | OD|
 > |{"startTimer" val:@"off"} | stop the timer | OD|
-> |{'cmd':'zoomSMOn'} | M5 display zooms and shows the Semantic Marker&trade; | OG|
-> |{'cmd':'zoomSMoff'} | Don't show the Semantic Marker&trade; | OD|
+> |{'cmd':'zoomSMOn'} | M5 display zooms and shows the Semantic Marker&reg; | OG|
+> |{'cmd':'zoomSMoff'} | Don't show the Semantic Marker&reg; | OD|
 > |{'set':'tilt','val':'on'} | turn tilt detection on | OD|
 > |{'set':'tilt','val':'off'} | turn tilt detection off | OD|
 > |{'set':'gateway','val':'on'} | turn the gateway value on | OD|
@@ -1690,14 +1690,14 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 ------------------------------------------------------------------------------------------
 # Additional Interaction with the SMART Button Infrastructure
 
-Outside of creating a Semantic Marker&trade;, modification and invocation is out of scope of this API document. One
+Outside of creating a Semantic Marker&reg;, modification and invocation is out of scope of this API document. One
 web page that encapsulates most of these interactions can seen at:  [SemanticMarker.org/smart](https://SemanticMarker.org/smart)
 
-# Semantic Marker&trade; Examples with Avatar Images Embedded
+# Semantic Marker&reg; Examples with Avatar Images Embedded
 
-The Semantic Marker&trade; supports existing and future two-dimensional optical visual markers. The following are a couple examples.
+The Semantic Marker&reg; supports existing and future two-dimensional optical visual markers. The following are a couple examples.
 
-The resulting Semantic Marker&trade; can look like the following examples.
+The resulting Semantic Marker&reg; can look like the following examples.
 
 ## SMART Buttons
 ![Semantic Marker Examples](images/SemanticMarkerExamples.png)
@@ -1705,15 +1705,15 @@ The resulting Semantic Marker&trade; can look like the following examples.
 ## Alternate two-dimensional optical codes or barcodes
 <img src="images/SemanticMarkerQBar.png" width="200">
 
-## Semantic Marker&trade; on a small ESP-32 M5 display
-This Semantic Marker&trade; encoded sensor status in it's address. For this, the M5
+## Semantic Marker&reg; on a small ESP-32 M5 display
+This Semantic Marker&reg; encoded sensor status in it's address. For this, the M5
 is constantly changing this address to reflect changing sensor status (like battery amount
 or feed count). This is similar to how newer tickets to concerts are handled where the marker
 constantly changes to invalidate a copied screen image of anothers ticket.
 <img src="images/M5.png" width="300">
 
-## Semantic Marker&trade; SMART Button for Parameterized calls
-This Semantic Marker&trade; uses the <b>/smrun</b> API to pass
+## Semantic Marker&reg; SMART Button for Parameterized calls
+This Semantic Marker&reg; uses the <b>/smrun</b> API to pass
 parameters (like username, password and device) so the stored procedures work
 securely across any user. The query parameters **uuid** and **flow** denote
 this SMART Button instance. 
