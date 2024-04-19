@@ -124,6 +124,9 @@ This <b>Photo Avatar</b> is an important feature of Semantic Marker&reg; and sho
 ![SMPlusAvatar](images/SMAdd.png)
 This SMART Button [Semantic Marker&reg; address](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1674517131429) still requires user supplied security credentials to run in their environment.
 
+Combining the <b>Optical Marker</b> with the <b>Visual Marker</b> (the Avatar) creates a unique combination 
+of capability and semantic meaning we trademarked into the <b>Semantic Marker&reg;</b> - an <b>Optical Visual Marker</b>.
+
 ### Each of the Three Tiers are described below. 
 
 > [!NOTE]
@@ -1752,12 +1755,13 @@ The format of the matrix is a simple text file in the `future` of the agent flow
 <details>
  <summary><code>Semantic Marker SMART Matrix Definition</code> </summary>
 
-> | row | col | SMART Category | Smart Name   |  UUID . FLOWNum | Device     | 
+> | row | col | SMART Category | Smart Name   |  UUID , FLOWNum | Device     | 
 > |-----|-----|----------------|--------------|----------------|------------|
 > | 1   | 1   | Matrix         | Sit          | QHmwUurxC3,1713138730023 | --ALL-- |
 > | 1   | 2   | ESP32Feeder    | FeedDog      | QHmwUurxC3,12 | --ALL-- |
 >   
 </details>
+
 ## Matrix showing the Semantic Marker
 
 ![Matrix with Avatars](images/SMMatrixCues.png)
