@@ -39,7 +39,7 @@ calls embodied in the following web page code
 > Many of these messages, after security credential matching, are then run through the MQTT publish/subscribe system described [later](#mqtt-messaging-using-bnf-grammar).
 
 
-These fit an overall cloud and device interaction Semantic Marker™️   architecture shown here and currently hosted at [SemanticMarker.org](https://SemanticMarker.org).
+These fit an overall cloud and device interaction Semantic Marker&reg;   architecture shown here and currently hosted at [SemanticMarker.org](https://SemanticMarker.org).
 
 ![SemanticMarkerAPIMessages](images/SemanticMarkerAPIMessages.png)
 
@@ -47,12 +47,12 @@ These fit an overall cloud and device interaction Semantic Marker™️   archit
 > The upper left of the diagram shows the versatility of these API's. Here additional clients use the API's to implement other features like
 > voice recognition (e.g., Alexa, or Siri), and supporting other messaging systems like telegram, X, discourse, nodered, apache (tomcat) and slack. 
 
-# Semantic Marker™️  REST and MQTT API
+# Semantic Marker&reg;  REST and MQTT API
 
-The following are the main REST API calls to create and manage a Semantic Marker™️  . 
+The following are the main REST API calls to create and manage a Semantic Marker&reg;  . 
 The current base URL for these is [SemanticMarker.org](https://SemanticMarker.org) but the entire set
-can also be run locally or moved to other web servers. For the Semantic Marker™️   to be sharable and run
-by outside parties, the Semantic Marker™️   address URL must be publically available 
+can also be run locally or moved to other web servers. For the Semantic Marker&reg;   to be sharable and run
+by outside parties, the Semantic Marker&reg;   address URL must be publically available 
 (for example, **https://SemanticMarker.org** is globally accessible, while **http://localhost** would only be available for local use - such as a dog kennel operation.) 
 
 
@@ -133,9 +133,9 @@ This SMART Button [Semantic Marker&reg; address](https://semanticmarker.org/bot/
 ------------------------------------------------------------------------------------------
 # Tier I Semantic Marker&reg;   Indirection
 
-A Tier I Semantic Marker™️   is a straight indirection to a remote address. These are created
+A Tier I Semantic Marker&reg;   is a straight indirection to a remote address. These are created
 directly from the various language implementation. Examples of javascript, C and objective-c are shown. These
-are snipits of code are from various Semantic Marker™️  apps to give a flavor of the APIs.
+are snipits of code are from various Semantic Marker&reg;  apps to give a flavor of the APIs.
 
 A valuable use of Tier I is a <i>Photo Bookmark</i> that links to photo cloud storage or social media stories.
 Basically the <i>metadata</i>, the hyper-links, are stored in the <i>Photo Bookmark</i>, our <b>Semantic Marker&reg;</b>. They can be printed out, handed out, stored in on-line photo albums, and they all expose their hyper-links via any newer smart phone scanner.
