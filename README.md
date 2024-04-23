@@ -113,7 +113,7 @@ The list of API calls is shown next with full details later in their appropriate
 
 Tier II and Tier III use the Semantic Marker&reg; Registry (ie. database) requiring a user account. This is anchored by a unique UUID for that user.
 
-## Photo Avatar
+## Optical Visual Marker embedded with our Photo Avatar
 
 In addition to valuable IoT message addresses 
 contained in the <b>Semantic Marker&reg;</b> - we add a user specified graphic photo image, your <b>Photo Avatar</b>, 
@@ -121,11 +121,14 @@ embedded inside. This helps the user distinguish among [potentially 1000's](http
 vision markers (maybe stored in your photo album). The human eye can pick out different <b>Avatars</b> faster than decoding with our Semantic Marker&reg; scanners.
 
 This <b>Photo Avatar</b> is an important feature of Semantic Marker&reg; and shown as this process:
-![SMPlusAvatar](images/SMAdd.png)
+![SMPlusAvatar](https://SemanticMarker.org/images/OpticalVisualMarker.png)
 This SMART Button [Semantic Marker&reg; address](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1674517131429) still requires user supplied security credentials to run in their environment.
 
 Combining the <b>Optical Marker</b> with the <b>Visual Marker</b> (the Avatar) creates a unique combination 
 of capability and semantic meaning we trademarked into the <b>Semantic Marker&reg;</b> - an <b>Optical Visual Marker</b>.
+
+> [!TIP]
+> We humans (mostly) use our Visual skills to make sense of our environment. But we also use Optical tools to enhance (or even make sense) of the same visual environemnt. For example, an optical telescope brings things closer for better understanding (like Planets or climbers on a wall._ Vision recognition of faces or text is also useful. The advantage of a visual two-dimensional code is that special optics can now translate the image into perfect information. So our vision is extended with optics resulting in an Optical Visual Marker - or our Trademarked name: Semantic Marker$reg;
 
 ### Each of the Three Tiers are described below. 
 
