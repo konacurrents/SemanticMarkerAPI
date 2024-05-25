@@ -128,7 +128,7 @@ Combining the <b>Optical Marker</b> with the <b>Visual Marker</b> (the Avatar) c
 of capability and semantic meaning we trademarked into the <b>Semantic Marker&reg;</b> - an <b>Optical Visual Marker</b>.
 
 > [!TIP]
-> We humans (mostly) use our Visual skills to make sense of our environment. But we also use Optical tools to enhance (or even make sense) of the same visual environemnt. For example, an optical telescope brings things closer for better understanding (like Planets or climbers on a wall._ Vision recognition of faces or text is also useful. The advantage of a visual two-dimensional code is that special optics can now translate the image into perfect information. So our vision is extended with optics resulting in an Optical Visual Marker - or our Trademarked name: Semantic Marker$reg;
+> We humans (mostly) use our Visual skills to make sense of our environment. But we also use Optical tools to enhance (or even make sense) of the same visual environemnt. For example, an optical telescope brings things closer for better understanding (like Planets or climbers on a wall.) Vision recognition of faces or text is also useful. The advantage of a visual two-dimensional code is that special optics can now translate the image into perfect information. So our vision is extended with optics resulting in an Optical Visual Marker - or our Trademarked name: Semantic Marker&reg;
 
 ### Each of the Three Tiers are described below. 
 
@@ -688,6 +688,9 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
                       | SM_ReplaceUUID <boolean>
                       | SM_UseCropImage <boolean>
                       | SM_VisionLinker <boolean>
+                      | SM_ShowMatrix <boolean>
+                      | SM_SaveScanned <boolean>
+                      | SM_ShowLabels <boolean>
                       | SM_ShowMatrix <boolean>
                       | animals <boolean>
                       | images <boolean>
@@ -1732,6 +1735,7 @@ this SMART Button instance.
 See [PAT](https://github.com/konacurrents/SemanticMarkerAPI/issues/2)
 
 > [!NOTE]
+> Last updated 5.25.24
 > Last updated 4.14.24
 > Last updated 1.18.24
 
