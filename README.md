@@ -689,9 +689,12 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
                       | SM_UseCropImage <boolean>
                       | SM_VisionLinker <boolean>
                       | SM_ShowMatrix <boolean>
+                      | SM_FocusPause <boolean>
                       | SM_SaveScanned <boolean>
                       | SM_ShowLabels <boolean>
                       | SM_ShowMatrix <boolean>
+                      | SM_UsePhotoLocation <boolean>
+                      | SM_SparseMatrixVisionLinker <boolean>
                       | animals <boolean>
                       | images <boolean>
                       | matrix <boolean>
