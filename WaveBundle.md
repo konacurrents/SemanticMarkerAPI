@@ -20,8 +20,6 @@ APP.bundle
 	  <image artifacts, png, jpeg, jpg>
 ```
 
-![NOTE] While in XCode, a template has been created that can be used to then fill in your own values.
-![KSWave Template](images/KSWaveTemplate.png)
 
 The following details the two `json` files.
 
