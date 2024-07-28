@@ -6,8 +6,7 @@ A wave is a folder structure with images, multi-media artifacts (pdf, mov, mp4, 
 placed anywhere in the bundle and found dynamically. To get an order to the information a couple JSON formated meta-files are also included. 
 
 When seen in the Semantic Marker&reg; app, the Knowledge Shark wave look as follows, where the user switches waves from this menu, or swiping down to get to the next stream.
-> ![KSWave App](images/KSWaveFromApp.png)
-
+<img src="images/KSWaveFromApp.png" width=300>
 
 # Wave Bundle Structure
 The structure of the bundle (which will be put into a `tar` file for later retrieval) is:
@@ -26,6 +25,9 @@ The structure of the bundle (which will be put into a `tar` file for later retri
      LIST.json
 	  <image artifacts, png, jpeg, jpg>
 ```
+
+An example can be found at the Knowledge Shark site:
+<a href="https://KnowledgeShark.me/apps">Knowledge Shark Wave Bundles</a>
 
 The following details the two `json` files.
 
@@ -187,4 +189,5 @@ Each of the 3 streams have a definition as well. This is inclued in the `LIST.js
 
 > [!NOTE] 
 > While in XCode, a template has been created that can be used to then fill in your own values.
+>
 > ![KSWave Template](images/KSWaveTemplate.png)
