@@ -5,12 +5,10 @@ The `Knowledge Shark Wave Bundle` is a formated directory of artifacts.
 A wave is a folder structure with images, multi-media artifacts (pdf, mov, mp4, etc). These are just
 placed anywhere in the bundle and found dynamically. To get an order to the information a couple JSON formated meta-files are also included. 
 
-> [!NOTE] 
-> While in XCode, a template has been created that can be used to then fill in your own values.
-> ![KSWave Template](images/KSWaveTemplate.png)
+The structure of the bundle (which will be put into a `tar` file for later retrieval) is:
 
 ```
-APP.bundle
+<APP.bundle name>
   MODEL.json 
   <multi media artifacts, mov, mp4, mp3>
   Stream1
@@ -23,7 +21,6 @@ APP.bundle
      LIST.json
 	  <image artifacts, png, jpeg, jpg>
 ```
-
 
 The following details the two `json` files.
 
@@ -159,7 +156,7 @@ Each of the 3 streams have a definition as well. This is inclued in the `LIST.js
 
     "images" :
     [
-      SemanticMarkerR.png",
+      "SemanticMarkerR.png",
       "SemanticMarkerRegisteredTrademark.png",
       "SMAppStore.jpg",
       "genres.jpg",
@@ -181,6 +178,8 @@ Each of the 3 streams have a definition as well. This is inclued in the `LIST.js
     ]
 
 }
-
-
 ```
+
+> [!NOTE] 
+> While in XCode, a template has been created that can be used to then fill in your own values.
+> ![KSWave Template](images/KSWaveTemplate.png)
