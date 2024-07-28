@@ -1787,6 +1787,3 @@ These are bundled into a `tar` file that can be dynamically retrieved into the
 users Semantic Marker&reg; app.
 
 [Wave Bundle Format](WaveBundle.md)
-
-> [!NOTE] While in XCode, a template has been created that can be used to then fill in your own values.
-> ![KSWave Template](images/KSWaveTemplate.png)
