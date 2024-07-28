@@ -1781,3 +1781,9 @@ The format of the matrix is a simple text file in the `future` of the agent flow
 ![Matrix with Avatars](images/SMMatrixAvatars.png)
 
 
+# Wave Bundle Format
+A Knowledge Shark Wave has a bundle format defined in the companion document.
+These are bundled into a `tar` file that can be dynamically retrieved into the 
+users Semantic Marker&reg; app.
+
+[Wave Bundle Format](WaveBundle.md)
