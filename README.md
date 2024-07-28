@@ -636,8 +636,8 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
                       | "gen3only" <boolean>
                       | "BLEUsePairedDeviceName" <boolean>
                       | "BLEUseDeviceName" <boolean>
-                      | "minMenue" <boolean>
-                      | "addWIFI" <boolean>
+                      | "minMenu" <boolean>
+                      | "addWIFI" ssid:password
                       | "useDOCFOLLOW" <boolean>
                       | "semanticMarker" 
                       | "blankscreen" <boolean>
