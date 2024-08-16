@@ -1697,6 +1697,7 @@ associated messages: `includeGroups`.
 > |-----------|-----------|----|
 > |{'set':'includeGroups','val':'comma list'"} | Groups to listen for, comma seperated| OD|
 
+</details>
 
 ### M5 ATOM Specific messages in 2024
 
