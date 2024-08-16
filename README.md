@@ -658,6 +658,12 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
                       | "LUXdark" <int eg. 80>
                       | "M5AtomKind" <M5Scanner=0, M5_Socket=1>
 
+				(more as of 8.15.2024)
+							 | "includeGroups" <comma seperated string>
+                      | "stepperangle" <angle number>
+                      | "autoMotorDirection" <boolean>
+
+
     sendString      ::= "temp" 
                       | "status" 
                       | "capture" 
