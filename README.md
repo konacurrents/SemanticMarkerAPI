@@ -702,6 +702,11 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
                       | pause <boolean>
                       | pdf <boolean>
                       | replaceUUID <UUID string>
+
+							 NEW: 8.9.24 (Jerry Garcia memorial day)
+							 | SM_PageTurner <boolean>
+							 | SM_DOCFOLLOW <boolean>
+							 | SM_DOCFOLLOW_Leader <boolean>
 ```
 
 
@@ -1584,7 +1589,7 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 
 > | value      |   description |
 > |-----------|-----------|
-> |H | help|
+> |. | help|
 > |W | restartWIFI|
 > |w | swap WIFI|
 > |N | sendWIFI|
@@ -1610,6 +1615,8 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 > |t | tiltOff|
 > |O | otaUpdate|
 > |r | reboot |
+> |H | autoMotorDirection on|
+> |h | autoMotorDirection off |
 
 
 </details>
@@ -1660,6 +1667,7 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 > |{'set':'hightemp','val':'88'} | set the high temp detector to the val | OD|
 > |{'set':'stepperangle','val':'30'} | change the stepper angle | OD|
 > |{'set':'screentimeout','val':'400'} | change the screen timeout | OD|
+> |{'set':'autoMotorDirection','val':'on/off'} | motor will change directions each feed| OD|
 > |{'set':'noclick','val':'400'} | change if no click since val to turn off | OG|
 > |{'set':'stepper','val':'mini'} | change the kind of stepper | OD|
 > |{'set':'stepper','val':'uno'} | change the kind of stepper | OD|
@@ -1673,6 +1681,22 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 > |{'send':'volume'} | specify the volume to be sent | OG|
 
 </details>
+
+### Group Commands 8.16.24
+
+As mentioned elsewhere, the group concept is powerful. After multiple users are members of the same group,
+most messages to those groups are processed by everyone listening (unless specific device level command.) 
+But for security, some devices will opt out of specific shared groups. Thus the addition of a new state variable and
+associated messages: `includeGroups`.
+
+ <summary><code>/sendJSONCommandBLE</code> <code><b>Sends Command Message in JSON format over BLE</b></code></summary>
+
+#### Parameters
+
+> | JSON value      |   description | Topic Support SDOGP|
+> |-----------|-----------|----|
+> |{'set':'includeGroups','val':'comma list'"} | Groups to listen for, comma seperated| OD|
+
 
 ### M5 ATOM Specific messages in 2024
 
@@ -1738,6 +1762,7 @@ this SMART Button instance.
 See [PAT](https://github.com/konacurrents/SemanticMarkerAPI/issues/2)
 
 > [!NOTE]
+> Last updated 8.16.24
 > Last updated 5.25.24
 > Last updated 4.14.24
 > Last updated 1.18.24
