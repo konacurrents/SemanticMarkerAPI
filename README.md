@@ -1689,11 +1689,12 @@ most messages to those groups are processed by everyone listening (unless specif
 But for security, some devices will opt out of specific shared groups. Thus the addition of a new state variable and
 associated messages: `includeGroups`.
 
- <summary><code>/sendJSONCommandBLE</code> <code><b>Sends Command Message in JSON format over BLE</b></code></summary>
+<details>
+ <summary><code>/sendJSONCommandBLE</code> <code><b>Sends Group Command Message in JSON format- WIFI or BLE</b></code></summary>
 
 #### Parameters
 
-> | JSON value      |   description | Topic Support SDOGP|
+> | JSON value      |   description | Group Support SDOGP|
 > |-----------|-----------|----|
 > |{'set':'includeGroups','val':'comma list'"} | Groups to listen for, comma seperated| OD|
 
