@@ -29,6 +29,8 @@ This document describes how the API supports the <b>Semantic Marker&reg;</b> Arc
 
 10. [SMART Matrix](https://github.com/konacurrents/SemanticMarkerAPI?tab=readme-ov-file#smart-matrix)
 
+11. [SMART Matrix Password](https://github.com/konacurrents/SemanticMarkerAPI?tab=readme-ov-file#smart-matrix-password)
+
 # SMART - Semantic Marker&reg;  Augmented Reality of Things
 
 The main interfaces to the [SemanticMarker.org](https://SemanticMarker.org) web services are through 
@@ -630,8 +632,6 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
                       | "device"  <string>
                       | "pairNow"  <boolean>
                       | "pairDev" <string>
-                      | "useGroups" <boolean>
-                      | "groups" <boolean>
                       | "screenColor" <number>
                       | "gen3only" <boolean>
                       | "BLEUsePairedDeviceName" <boolean>
@@ -659,7 +659,9 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
                       | "M5AtomKind" <M5Scanner=0, M5_Socket=1>
 
 				(more as of 8.15.2024)
-							 | "includeGroups" <comma seperated string>
+                      | "useGroups" <boolean>
+                      | "groups" <list of groups: atlasDogs, houndDogs) or (#) or "") -- Deprecated
+							 | "includeGroups" <comma seperated group names>
                       | "stepperangle" <angle number>
                       | "autoMotorDirection" <boolean>
 
@@ -701,6 +703,7 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
                       | SM_ShowMatrix <boolean>
                       | SM_UsePhotoLocation <boolean>
                       | SM_SparseMatrixVisionLinker <boolean>
+                      | SM_Glasses <boolean>
                       | animals <boolean>
                       | images <boolean>
                       | matrix <boolean>
@@ -1820,3 +1823,12 @@ These are bundled into a `tar` file that can be dynamically retrieved into the
 users Semantic Marker&reg; app.
 
 [Wave Bundle Format](WaveBundle.md)
+
+# SMART Matrix Password
+
+With the SMART Matrix, a new graphical password can be created by making the syntax
+such as it passes on a URL easily. For example:
+
+```
+@matrixPassword(1.1.QHmwUurxC3.1728862503265,1.2.QHmwUurxC3.1728862975699,1.3.QHmwUurxC3.1728863096071,2.1.QHmwUurxC3.6240511737410)
+```
