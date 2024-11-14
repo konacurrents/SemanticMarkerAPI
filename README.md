@@ -1832,3 +1832,27 @@ such as it passes on a URL easily. For example:
 ```
 @matrixPassword(1.1.QHmwUurxC3.1728862503265,1.2.QHmwUurxC3.1728862975699,1.3.QHmwUurxC3.1728863096071,2.1.QHmwUurxC3.6240511737410)
 ```
+
+# Triggers and FutureSm
+
+A new feature to get the Agents really going, is the addition of the `trigger`. This is a condition that when met lets
+the Agent run it's `KSApplet` (Knowledge Shark Applet) - a set of parameterized IoT messages. These are extracted from the Agent's `futureSM` field. The syntax supported
+at present (and when in the DOCFOLLOW mode) are a follows:
+
+```
+@trigger( <trigger_set> <condition> <trigger_val)
+where
+condition is ==, > , < & and a couple still in work
+```
+
+In addition, a hard coded device name can be used (although it reduces the generic nature. It would make
+sense for things like light#5 that all houses might have.)
+```
+@device(<deviceName>)
+```
+
+These agent scripts will be added to the event loop so when `set` `val` messages arrive, this list of trigger objects will be evaluated. If they match the condition, their parameters are substitued dynamically and run (as http IoT messages). This way
+these `KSApplets` can run for the all users but instantiated for the current user and password.
+
+(first run 11.13.24 watching the M5AtomSocket light switch on and off (toggle) when a condition of `disk == 94` arrived.)
+See ![SMART Agent](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1731547244629)

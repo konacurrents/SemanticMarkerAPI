@@ -193,4 +193,54 @@ Each of the 3 streams have a definition as well. This is inclued in the `LIST.js
 >
 > ![KSWave Template](images/KSWaveTemplate.png)
 
+# Semantic Marker(R) Wave Address, or Knowledge Shark Wave, KSWave
+## KSWave 
+
+There needs to be a way to describe the URL of the wave. This is currently
+
+```
+https://KnowledgeShark.me/apps/<WaveName>.bundle.tar
+```
+
+- [ ] it could be extended on the URL to provide another wave name
+```
+https://KnowledgeShark.me/apps/<WaveName>.bundle.tar?wave=<OtherWaveName>
+```
+
+
+So this name can be added to the `KSWave` field in a SMART Button.
+
+So when an address to the wave is handed out, the SMART Button will be used. The
+question is whether there should be a URL to help the user know this is a wave?
+
+Should it be:
+
+```
+https://SemanticMarker.org/bot/smart?uuid=x&flow=y&format=wave
+```
+
+or
+
+```
+https://SemanticMarker.org/bot/wave?uuid=x&flow=y
+```
+
+The receiver of a DOCFOLLOW with the later syntax will know this is a `KSWAVE` versus having to read the agent flow information,
+other than the async access to the QRAvatar.
+
+With `wave` there will have to be code that knows these, versus currently knowing about `smart`.
+
+# Process KSWave
+Here the URL is broken apart to get the wave name and optional other wave name.
+
+- [ ] In Search, Scan or Matrix Clicking of KSWave objects, Ask user to load that wave (or no-op if already loaded), and that wave is rewinded..
+- [ ] If DOCFOLLOW with `wave` syntax, the same can occur
+
+
+# Seems the wave syntax is a good idea.
+
+- [ ] look at simple demo.. using the KSWave of 
+- [ ] only show
+
 <b>(c) Kona Currents, LLC - v7.28.24
+KSWave: v11.5.24
