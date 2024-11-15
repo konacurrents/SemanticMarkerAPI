@@ -1851,8 +1851,15 @@ sense for things like light#5 that all houses might have.)
 @device(<deviceName>)
 ```
 
+```
+@device($scannedDevice)
+```
+
+The $scannedDevice or others with the $ will be meta-names. This means they have local meaning. Seeing the `scannedDevice` message is an example,
+so this will re-evaluate the device name dynamically to whatever the scannedDevice is.
+
 These agent scripts will be added to the event loop so when `set` `val` messages arrive, this list of trigger objects will be evaluated. If they match the condition, their parameters are substitued dynamically and run (as http IoT messages). This way
 these `KSApplets` can run for the all users but instantiated for the current user and password.
 
 (first run 11.13.24 watching the M5AtomSocket light switch on and off (toggle) when a condition of `disk == 94` arrived.)
-See ![SMART Agent](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1731547244629)
+See [SMART Agent](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1731547244629)
