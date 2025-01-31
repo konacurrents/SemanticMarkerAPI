@@ -1,7 +1,7 @@
 #  Semantic Marker&reg; REST, MQTT and BLE Message API Manual
 
 ![SemanticMarker API](images/SemanticMarkerAPI.png)
-(c) 2024
+(c) 2025
 
 Creating and processing with the Semantic Marker&reg; System is through various APIs (Application Programer Interface). This GitHub repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The code included is mix of html and javascript. As these are a REST (HTTP) API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.) At the heart of the messaging API is the MQTT publish/subscribe engine described using the [BNF](https://en.wikipedia.org/wiki/Backus-Naur_form) Language grammar specification,
 and formatted through a collection of [JSON messages](#mqtt-messaging-using-bnf-grammar) sent over MQTT.
