@@ -1,7 +1,7 @@
 #  Semantic Marker&reg; REST, MQTT and BLE Message API Manual
 
 ![SemanticMarker API](images/SemanticMarkerAPI.png)
-(c) 2025
+(c) 2025, 5.15.25
 
 Creating and processing with the Semantic Marker&reg; System is through various APIs (Application Programer Interface). This GitHub repository includes code that makes web calls using the <b>HTTP</b> protocol and various languages, such as javascript, c and objective-c. The code included is mix of html and javascript. As these are a REST (HTTP) API, other languages make calls on these same web API's (such as the [curl](curlCommands) shell calls.) At the heart of the messaging API is the MQTT publish/subscribe engine described using the [BNF](https://en.wikipedia.org/wiki/Backus-Naur_form) Language grammar specification,
 and formatted through a collection of [JSON messages](#mqtt-messaging-using-bnf-grammar) sent over MQTT.
@@ -657,6 +657,8 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
                       | "AtomSocketGlobalOnOff" <boolean>
                       | "LUXdark" <int eg. 80>
                       | "M5AtomKind" <M5Scanner=0, M5_Socket=1>
+						5.15.25
+							 | "sensors" <sensorClass, pin1, pin2>
 
 				(more as of 8.15.2024)
                       | "useGroups" <boolean>
@@ -716,6 +718,9 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
 							 | SM_PageTurner <boolean>
 							 | SM_DOCFOLLOW <boolean>
 							 | SM_DOCFOLLOW_Leader <boolean>
+
+							 NEW: 4.19.25 TRON
+							 | SM_TRON_ONLY <boolean>
 ```
 
 
@@ -1709,7 +1714,7 @@ associated messages: `includeGroups`.
 
 </details>
 
-### M5 ATOM Specific messages in 2024
+### M5 ATOM Specific messages in 2024 and now 2025
 
 <details>
 
@@ -1730,6 +1735,7 @@ associated messages: `includeGroups`.
 > |{'set64':'semanticMarker','val':'base64 JSON'} | Sets the SM command call | DO|
 > |{'set64':'PIR_SM_JSON','val':'base64 JSON'} | Sets the SM command for the sensor to call when on| DO|
 > |{'set64':'PIR_SM_OFF_JSON','val':'base64 JSON'} | Sets the SM command for the sensor to call when off| DO|
+> |{'set':'sensors','val':'sensorClassName,pin1,pin2'} | defines a sensor class and it's pins| DO|
 
 
 </details>
