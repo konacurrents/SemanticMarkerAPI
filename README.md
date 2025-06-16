@@ -667,6 +667,9 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
                       | "stepperangle" <angle number>
                       | "autoMotorDirection" <boolean>
 
+					    6.16.25 - a mapping of a SM (with dynamic uuid.flow) and the mapping URL
+						    | "SM:uuid.flow" <mapping>
+
 
     sendString      ::= "temp" 
                       | "status" 
@@ -1736,6 +1739,7 @@ associated messages: `includeGroups`.
 > |{'set64':'PIR_SM_JSON','val':'base64 JSON'} | Sets the SM command for the sensor to call when on| DO|
 > |{'set64':'PIR_SM_OFF_JSON','val':'base64 JSON'} | Sets the SM command for the sensor to call when off| DO|
 > |{'set':'sensors','val':'sensorClassName,pin1,pin2'} | defines a sensor class and it's pins| DO|
+> |{'set':'SM:uuid.flow','val':'mappingURL'} | defines a mapping of a SM to URL| DO|
 
 
 </details>
@@ -1867,5 +1871,22 @@ so this will re-evaluate the device name dynamically to whatever the scannedDevi
 These agent scripts will be added to the event loop so when `set` `val` messages arrive, this list of trigger objects will be evaluated. If they match the condition, their parameters are substitued dynamically and run (as http IoT messages). This way
 these `KSApplets` can run for the all users but instantiated for the current user and password.
 
+## Location Trigger 5.15.25
+
+The trigger syntax has been extended to include location. Currently in experimental state but the result is a DOCFOLLOW message.
+```
+@trigger($location)
+```
+
+The following will be added that is if a location is within a specified distance (in meters).
+```
+@trigger($location < 20)
+```
+
 (first run 11.13.24 watching the M5AtomSocket light switch on and off (toggle) when a condition of `disk == 94` arrived.)
 See [SMART Agent](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1731547244629)
+
+# History
+- May 1, 2025 added sensor class and pin definitions
+- May 15, 2025 - added Location trigger
+- June 16, 2025 - added SM Mapping 
