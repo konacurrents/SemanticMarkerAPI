@@ -416,6 +416,21 @@ Like many of these interfaces, the credentials including the username and passwo
 
 </details>
 
+#### Example FULL JSON for configuring MQTT
+```json
+{
+  "ssid": "SunnyWhiteriver",
+  "ssidPassword": "sunnyPass",
+  "mqtt_server": "idogwatch.com",
+  "mqtt_port": "1883",
+  "mqtt_password": "pass",
+  "mqtt_guestPassword": "gpass",
+  "mqtt_user": "scott@konacurrents.com",
+  "mqtt_topic": "usersP/bark/scott@konacurrents.com",
+  "deviceName": "M5Hdrive2",
+  "location": "dogland,usa"
+}
+```
 
 ##### Create a SMART Button for an existing user of the Semantic Marker system
 <details>
@@ -1890,3 +1905,6 @@ See [SMART Agent](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1731
 - May 1, 2025 added sensor class and pin definitions
 - May 15, 2025 - added Location trigger
 - June 16, 2025 - added SM Mapping 
+- July 29, 2025 - added MQTT JSON example
+
+
