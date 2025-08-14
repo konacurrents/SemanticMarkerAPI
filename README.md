@@ -628,6 +628,7 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
                       | "restartModels" <boolean>
                       | "screenTimeout" <number>
                       | "stepperAngle" <number>
+                      | "stepperRPM" <number>
                       | "noclick"  <boolean>
                       | "gateway"  <boolean>
                       | "DiscoverM5PTClicker"  <boolean>
@@ -680,6 +681,7 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
                       | "groups" <list of groups: atlasDogs, houndDogs) or (#) or "") -- Deprecated
 							 | "includeGroups" <comma seperated group names>
                       | "stepperangle" <angle number>
+                      | "stepperRPM" <RPM number, 15 default>>
                       | "autoMotorDirection" <boolean>
 
 					    6.16.25 - a mapping of a SM (with dynamic uuid.flow) and the mapping URL
@@ -1698,6 +1700,7 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 > |{'set':'gateway','val':'off'} | turn the gateway value off | OD|
 > |{'set':'hightemp','val':'88'} | set the high temp detector to the val | OD|
 > |{'set':'stepperangle','val':'30'} | change the stepper angle | OD|
+> |{'set':'stepperRPM','val':'15'} | change the stepper RPM| OD|
 > |{'set':'screentimeout','val':'400'} | change the screen timeout | OD|
 > |{'set':'autoMotorDirection','val':'on/off'} | motor will change directions each feed| OD|
 > |{'set':'noclick','val':'400'} | change if no click since val to turn off | OG|
@@ -1902,6 +1905,7 @@ The following will be added that is if a location is within a specified distance
 See [SMART Agent](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1731547244629)
 
 # History
+- Aug 14, 2025 added stepperRPM
 - May 1, 2025 added sensor class and pin definitions
 - May 15, 2025 - added Location trigger
 - June 16, 2025 - added SM Mapping 
