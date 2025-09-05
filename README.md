@@ -673,7 +673,6 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
                       | "AtomSocketGlobalOnOff" <boolean>
                       | "LUXdark" <int eg. 80>
                       | "M5AtomKind" <M5Scanner=0, M5_Socket=1>
-						5.15.25
 							 | "sensors" <sensorClass, pin1, pin2>
 
 				(more as of 8.15.2024)
@@ -684,9 +683,16 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
                       | "stepperRPM" <RPM number, 15 default>>
                       | "autoMotorDirection" <boolean>
 
+				(8.20.25)
+							 | "config" <configName>
+				(9.3.25)
+							 | "2feed" <boolean>
+
 					    6.16.25 - a mapping of a SM (with dynamic uuid.flow) and the mapping URL
 						    | "SM:uuid.flow" <mapping>
 
+	 //8.20.25 this will set numerous values
+    configName      ::= "PTStepper" | "M5AtomCamera" 
 
     sendString      ::= "temp" 
                       | "status" 
@@ -1711,6 +1717,8 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 > |{'set':'location','val':'Buckley, WA USA'} | specify location to city/state/country | OD|
 > |{'set':'gen3only','val':'true'} | turn on gen3 pairing only | O|
 > |{'set':'gen3only','val':'false'} | turn off gen3 pairing only | O|
+> |{'set':'config','val':'various'} | sets the config option | O|
+> |{'set':'2feed','val':'on/off'} | sets use 2 feeds, backward/forward | O|
 > |{'send':'temp'} | sends the temperature of the device | SOG|
 > |{'send':'capture'} | captures an image and sends it | SOG|
 > |{'send':'volume'} | specify the volume to be sent | OG|
@@ -1905,6 +1913,8 @@ The following will be added that is if a location is within a specified distance
 See [SMART Agent](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1731547244629)
 
 # History
+- Sep 3, 2025 added set:2feed val:on/off
+- Aug 20, 2025 added set:config
 - Aug 14, 2025 added stepperRPM
 - May 1, 2025 added sensor class and pin definitions
 - May 15, 2025 - added Location trigger
