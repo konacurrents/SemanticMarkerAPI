@@ -691,6 +691,11 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
 					    6.16.25 - a mapping of a SM (with dynamic uuid.flow) and the mapping URL
 						    | "SM:uuid.flow" <mapping>
 
+					11.21.25 - toggle a boolean value - since you might not know the value (like 2 light switches for same light)
+						    | "toggle" <booleanCommand>
+	 booleanCommand ::= "buzzer"  (todo: | "socket" | "useGroups")
+						    
+
 	 //8.20.25 this will set numerous values
     configName      ::= "PTStepper" | "M5AtomCamera" 
 
@@ -1913,6 +1918,7 @@ The following will be added that is if a location is within a specified distance
 See [SMART Agent](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1731547244629)
 
 # History
+- Nov 21, 2025 add toggle:<kind>, eg toggle:buzzer
 - Sep 3, 2025 added set:2feed val:on/off
 - Aug 20, 2025 added set:config
 - Aug 14, 2025 added stepperRPM
