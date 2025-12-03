@@ -694,10 +694,16 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
 					11.21.25 - toggle a boolean value - since you might not know the value (like 2 light switches for same light)
 						    | "toggle" <booleanCommand>
 	 booleanCommand ::= "buzzer"  (todo: | "socket" | "useGroups")
+
 						    
 
 	 //8.20.25 this will set numerous values
     configName      ::= "PTStepper" | "M5AtomCamera" 
+	                 |  ULN2003_StepperClass
+						  | L9110S_DCStepperClass
+						  | M5NoModule
+						  | M5TinyGPS
+						  | M5AtomScanner
 
     sendString      ::= "temp" 
                       | "status" 
@@ -752,6 +758,23 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
 
 							 NEW: 4.19.25 TRON
 							 | SM_TRON_ONLY <boolean>
+
+	                   NEW 12.2.25 - speech recognition and speaking
+							 | SM_Trademark <boolean>   (place the (R) on the Semantic Marker or not)
+							 | SM_BackgroundDismiss <boolean>  (touch anywhare to dismiss popup windows)
+							 | SM_StartSpeechRecognizer <boolean> (turns on the speech recognizer when entering the Matrix view)
+							 | SM_SpeakMatrixOnView <boolean> (speaks the matrix that is shown)
+							 | SM_Speak <language> (sets the language like: en-CA, ...)
+
+							 (Switching views on the app)
+							 | MQTTPage  (invokes the MQTTPage view)
+							 | BLEPage  (invokes the BLEPageview)
+							 | KSPage (invokes the KSPage view)
+							 | pdf (invokes the pdfview)
+							 | pdfPage (invokes the pdfview)
+							 | CameraPage (invokes the camera view)
+							 | KSQRPage (invokes the KSQR view)
+							 | MapPage (invokes the mapview)
 ```
 
 
@@ -1918,6 +1941,7 @@ The following will be added that is if a location is within a specified distance
 See [SMART Agent](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1731547244629)
 
 # History
+- Dec 2, 2025 add Speech Recognition flags
 - Nov 21, 2025 add toggle:<kind>, eg toggle:buzzer
 - Sep 3, 2025 added set:2feed val:on/off
 - Aug 20, 2025 added set:config
