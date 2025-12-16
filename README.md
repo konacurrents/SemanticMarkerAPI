@@ -763,8 +763,13 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
 							 | SM_Trademark <boolean>   (place the (R) on the Semantic Marker or not)
 							 | SM_BackgroundDismiss <boolean>  (touch anywhare to dismiss popup windows)
 							 | SM_StartSpeechRecognizer <boolean> (turns on the speech recognizer when entering the Matrix view)
+							 | SM_StartSpeechRecognizerOnView <boolean> (turns on the speech recognizer when entering the Matrix view)
 							 | SM_SpeakMatrixOnView <boolean> (speaks the matrix that is shown)
+							 | SM_SpeakMatrix <boolean> (speaks the matrix that is shown)
 							 | SM_Speak <language> (sets the language like: en-CA, ...)
+							 ! SM_StartPage <page> (one of MQTT, Matrix, Map ..)
+							 | SM_MatrixPage <matrixPage> (name of matrix page to show)
+							 | SM_MatrixCell<matrixPage> (1-9 of which matrix cell to invoke, which Semantic Marker(R) to run)
 
 							 (Switching views on the app)
 							 | MQTTPage  (invokes the MQTTPage view)
@@ -1941,6 +1946,7 @@ The following will be added that is if a location is within a specified distance
 See [SMART Agent](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1731547244629)
 
 # History
+- Dec 16, 2025 - SM_MatrixCell <num 1-9> 
 - Dec 2, 2025 add Speech Recognition flags
 - Nov 21, 2025 add toggle:<kind>, eg toggle:buzzer
 - Sep 3, 2025 added set:2feed val:on/off
