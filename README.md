@@ -674,6 +674,8 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
                       | "LUXdark" <int eg. 80>
                       | "M5AtomKind" <M5Scanner=0, M5_Socket=1>
 							 | "sensors" <sensorClass, pin1, pin2>
+							 // 1.22.6 add the button definitions (the program to run, or MQTT message
+							 | "button" <buttonClass>, button1Num, pressKind, set, val, device
 
 				(more as of 8.15.2024)
                       | "useGroups" <boolean>
@@ -768,10 +770,34 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
 							 | SM_SpeakMatrix <boolean> (speaks the matrix that is shown)
 							 | SM_Speak <language> (sets the language like: en-CA, ...)
 							 ! SM_StartPage <page> (one of MQTT, Matrix, Map ..)
-							 | SM_MatrixPage <matrixPage> (name of matrix page to show)
+							 | SM_MatrixName <matrixPage> (name of matrix page to show)
 							 | SM_MatrixCell<matrixPage> (1-9 of which matrix cell to invoke, which Semantic Marker(R) to run)
+							 | SM_MatrixNameCell  Name,<matrixPage> (1-9 of which matrix cell to invoke, which Semantic Marker(R) to run)
+							 | SM_MatrixNameCellMode  Name,<matrixPage>,mode (1-9 of which matrix cell to invoke, which Semantic Marker(R) to run)
+							 ! SM_MatrixMode <mode> eg, the 4 modes to put the matrix into (docfollow, invoke, nav, smart)
 
-							 (Switching views on the app)
+						<mode>: docfollow, invoke, nav, smart
+
+							 NEW 1.25.26 NFL Football Champs in Seattle vs Rams
+							 | SM_ChainButton <buttonNum> [. <pressKind> ]
+							 
+							 <pressKind> :== BUTTON_ANY -1 
+                              | BUTTON_SHORT_PRESS 0
+                              | BUTTON_LONG_PRESS 1
+                              | BUTTON_DOUBLE_PRESS 2
+
+	           2.16.26 -- get and define smartDefn
+				         | getSmartDefn uuid.flownum
+							| smartDefn uuid.flownum(<set>,<val>,<dev>)
+							| runSmart uuid.flownum(<mode>) (if loaded, what happens if multiple listen and do??)
+							| runSmart uuid.flownum  default "invoke"
+
+								 eg set:runSmart, val:uuidflow
+
+
+
+							 (Switching views on the app, <set>page ==
+
 							 | MQTTPage  (invokes the MQTTPage view)
 							 | BLEPage  (invokes the BLEPageview)
 							 | KSPage (invokes the KSPage view)
@@ -780,6 +806,16 @@ Example uses are available via our open-source at [Semantic Marker&reg; ESP-32](
 							 | CameraPage (invokes the camera view)
 							 | KSQRPage (invokes the KSQR view)
 							 | MapPage (invokes the mapview)
+
+typedef NS_ENUM(NSUInteger, KSSemanticMarkerSMModes) {
+    //! DOCFOLLOW mode
+    KSDOCFOLLOWSMMode = docfollow
+    //! Invoke == RUN mode
+    KSInvokeSMMode = invoke
+    //! Navigate == web mode
+    KSNavigateSMMode = nav
+    //! show the SMART Agent
+    KSSHOWSmartButtonAgent = smart
 ```
 
 
@@ -1946,6 +1982,7 @@ The following will be added that is if a location is within a specified distance
 See [SMART Agent](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1731547244629)
 
 # History
+- Dec 18, 2025 - SM_MatrixNameCell "Name","<num 1-9>" 
 - Dec 16, 2025 - SM_MatrixCell <num 1-9> 
 - Dec 2, 2025 add Speech Recognition flags
 - Nov 21, 2025 add toggle:<kind>, eg toggle:buzzer
