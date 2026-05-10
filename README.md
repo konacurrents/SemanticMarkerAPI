@@ -1746,6 +1746,7 @@ and [BLE Server](https://github.com/konacurrents/SemanticMarkerESP-32/blob/main/
 > |{'cmd':'feed'} | perform a feed | SOG|
 > |{'cmd':'status'} | status | SOG|
 > |{'cmd':'wifi'} | update WIFI | O|
+> |{'cmd':'sendRSSI'} | send RSSI values| O|
 > |{'ssid':'SSID','ssidPassword':'PASS'} | set SSID and SSID Password | O|
 > |{'username':'NAME','password':'PASS'} | set username and Password for MQTT meessaging| O|
 > |{'cmd':'sm1'} | M5 change to the s1 (or other) pages | OG|
@@ -1982,6 +1983,7 @@ The following will be added that is if a location is within a specified distance
 See [SMART Agent](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1731547244629)
 
 # History
+- May 10, 2025 - cmd,sendRSSI
 - Dec 18, 2025 - SM_MatrixNameCell "Name","<num 1-9>" 
 - Dec 16, 2025 - SM_MatrixCell <num 1-9> 
 - Dec 2, 2025 add Speech Recognition flags
