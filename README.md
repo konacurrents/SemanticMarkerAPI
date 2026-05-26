@@ -1983,7 +1983,7 @@ The following will be added that is if a location is within a specified distance
 See [SMART Agent](https://semanticmarker.org/bot/smart?uuid=QHmwUurxC3&flow=1731547244629)
 
 # History
-- May 10, 2025 - cmd,sendRSSI
+- May 10, 2026 - cmd,sendRSSI
 - Dec 18, 2025 - SM_MatrixNameCell "Name","<num 1-9>" 
 - Dec 16, 2025 - SM_MatrixCell <num 1-9> 
 - Dec 2, 2025 add Speech Recognition flags
